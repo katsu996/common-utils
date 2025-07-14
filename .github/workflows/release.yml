@@ -60,30 +60,34 @@ jobs:
         with:
           script: |
             const tag = context.ref.replace('refs/tags/', '');
+            const releaseBody = [
+              '## Changes',
+              '',
+              'Released version ' + tag,
+              '',
+              '### Package Information',
+              '- **Package**: @katsu996/common-utils',
+              '- **Version**: ' + tag,
+              '- **NPM**: https://www.npmjs.com/package/@katsu996/common-utils',
+              '',
+              '### Installation',
+              '```bash',
+              'pnpm add @katsu996/common-utils@' + tag,
+              '```',
+              '',
+              'For full changelog, see the [commit history](https://github.com/' + context.repo.owner + '/' + context.repo.repo + '/commits/' + tag + ').'
+            ].join('\n');
+            
             const { data: release } = await github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: tag,
-              name: `Release ${tag}`,
-              body: `## Changes
-
-Released version ${tag}
-
-### Package Information
-- **Package**: @katsu996/common-utils
-- **Version**: ${tag}
-- **NPM**: https://www.npmjs.com/package/@katsu996/common-utils
-
-### Installation
-\`\`\`bash
-pnpm add @katsu996/common-utils@${tag}
-\`\`\`
-
-For full changelog, see the [commit history](https://github.com/${context.repo.owner}/${context.repo.repo}/commits/${tag}).`,
+              name: 'Release ' + tag,
+              body: releaseBody,
               draft: false,
               prerelease: tag.includes('-'),
             });
             
-            console.log(`Created release: ${release.html_url}`);
+            console.log('Created release: ' + release.html_url);
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
