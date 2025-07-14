@@ -85,7 +85,7 @@ jobs:
           fi
 
           # 必要なファイルの存在チェック
-          required_files=("index.js" "index.d.ts")
+          required_files=("index.js" "index.d.ts" "math.js" "math.d.ts")
           for file in "${required_files[@]}"; do
             if [ ! -f "dist/$file" ]; then
               echo "❌ Required file not found: dist/$file"
@@ -115,7 +115,10 @@ jobs:
               const main = require('@katsu996/common-utils');
               console.log('✅ Main export works:', Object.keys(main));
 
-              // ESMインポートのテスト（Node.jsでサポートされている場合）
+              // 個別エクスポートのテスト
+              const math = require('@katsu996/common-utils/math');
+              console.log('✅ Math export works:', Object.keys(math));
+
               console.log('✅ Package exports validation passed');
             } catch (error) {
               console.error('❌ Package exports validation failed:', error.message);
@@ -131,7 +134,7 @@ jobs:
           pnpm run prepublishOnly
 
           # 公開可能な状態かチェック（実際には公開しない）
-          pnpm publish --dry-run --access public
+          pnpm publish --dry-run --access public --no-git-checks
 
           echo "✅ Release process simulation passed"
 
