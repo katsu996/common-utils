@@ -45,7 +45,7 @@ jobs:
 
       - name: Test package exports
         run: |
-          node -e "
+          node -e '
             const pkg = require("./package.json");
             const fs = require("fs");
 
@@ -59,20 +59,20 @@ jobs:
                 if (importPath.startsWith("./dist/")) {
                   const filePath = importPath.replace("./", "");
                   if (!fs.existsSync(filePath)) {
-                    throw new Error(\`Export file not found: \${filePath}\`);
+                    throw new Error(`Export file not found: ${filePath}`);
                   }
-                  console.log(\`✅ \${key} -> \${importPath}\`);
+                  console.log(`✅ ${key} -> ${importPath}`);
                 }
               } else if (typeof value === "string") {
                 if (value.startsWith("./") && !fs.existsSync(value.replace("./", ""))) {
-                  throw new Error(\`Export file not found: \${value}\`);
+                  throw new Error(`Export file not found: ${value}`);
                 }
-                console.log(\`✅ \${key} -> \${value}\`);
+                console.log(`✅ ${key} -> ${value}`);
               }
             }
 
             console.log("🎉 All exports verified successfully!");
-          "
+          '
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -108,7 +108,7 @@ jobs:
       - name: Check for known vulnerabilities
         run: |
           echo "🔍 Checking for known vulnerabilities..."
-          if pnpm audit --json | grep -q ""vulnerabilities""; then
+          if pnpm audit --json | grep -q '"vulnerabilities"'; then
             echo "⚠️ Vulnerabilities found, please review:"
             pnpm audit
           else
