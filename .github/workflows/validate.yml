@@ -106,7 +106,7 @@ jobs:
           mkdir -p test-package
           cd test-package
           npm init -y
-          npm install ../temp/@katsu996-common-utils-*.tgz
+          npm install ../temp/katsu996-common-utils-*.tgz
 
           # インポートテスト
           node -e "
