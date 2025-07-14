@@ -50,6 +50,8 @@ jobs:
 
       - name: Update version and create tag
         run: |
+          git add -A
+          git diff --staged --quiet || git commit -m "chore: prepare for version bump"
           pnpm version ${{ github.event.inputs.version }}
           git push origin main --tags
         env:
