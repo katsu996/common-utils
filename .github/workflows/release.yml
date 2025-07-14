@@ -52,7 +52,7 @@ jobs:
           node -e "console.log(JSON.stringify(require('./package.json').files, null, 2))"
 
       - name: Publish to NPM
-        run: pnpm publish --access public --provenance
+        run: pnpm publish --access public --provenance --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
