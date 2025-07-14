@@ -3,7 +3,11 @@ name: Release to NPM
 on:
   push:
     tags:
-      - 'v*.*.*'  # v1.0.0 形式のタグでトリガー
+      - "v*.*.*"  # v1.0.0 形式のタグでトリガー
+
+env:
+  NODE_VERSION: 22.16.0
+  PNPM_VERSION: 10.12.4
 
 jobs:
   release:
@@ -20,12 +24,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: '^10.12.4'
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.16.0'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
 

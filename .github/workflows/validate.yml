@@ -4,10 +4,14 @@ on:
   workflow_dispatch:  # 手動実行
   push:
     paths:
-      - '.github/workflows/**'
-      - 'package.json'
-      - 'tsconfig.json'
-      - 'biome*.json'
+      - ".github/workflows/**"
+      - "package.json"
+      - "tsconfig.json"
+      - "biome*.json"
+
+env:
+  NODE_VERSION: 22.16.0
+  PNPM_VERSION: 10.12.4
 
 jobs:
   validate-workflows:
@@ -20,13 +24,13 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: '^10.12.4'
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.16.0'
-          cache: 'pnpm'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

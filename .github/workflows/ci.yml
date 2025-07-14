@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+env:
+  NODE_VERSION: 22.16.0
+  PNPM_VERSION: 10.12.4
+
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: ["22.16.0", "20.x"]
 
     steps:
       - name: Checkout code
@@ -21,27 +21,27 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: "^10.12.4"
+          version: ${{ env.PNPM_VERSION }}
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Type check
-        run: pnpm run type-check
+        run: pnpm type-check
 
       - name: Lint and format check
         run: |
-          pnpm run check
-          pnpm run format:check
+          pnpm check
+          pnpm format:check
 
       - name: Build package
-        run: pnpm run build
+        run: pnpm build
 
       - name: Test package exports
         run: |
@@ -91,12 +91,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: "^10.12.4"
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.16.0"
+          node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
 
       - name: Install dependencies
