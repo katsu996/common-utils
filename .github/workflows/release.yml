@@ -64,23 +64,23 @@ jobs:
               name: `Release ${tag}`,
               body: `## Changes
 
-Released version ${tag}
+            Released version ${tag}
 
-### Package Information
-- **Package**: @katsu996/common-utils
-- **Version**: ${tag}
-- **NPM**: https://www.npmjs.com/package/@katsu996/common-utils
+            ### Package Information
+            - **Package**: @katsu996/common-utils
+            - **Version**: ${tag}
+            - **NPM**: https://www.npmjs.com/package/@katsu996/common-utils
 
-### Installation
-\`\`\`bash
-pnpm add @katsu996/common-utils@${tag}
-\`\`\`
+            ### Installation
+            \`\`\`bash
+            pnpm add @katsu996/common-utils@${tag}
+            \`\`\`
 
-For full changelog, see the [commit history](https://github.com/${context.repo.owner}/${context.repo.repo}/commits/${tag}).`,
-              draft: false,
-              prerelease: tag.includes('-'),
-            });
-            
-            console.log(`Created release: ${release.html_url}`);
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            For full changelog, see the [commit history](https://github.com/${context.repo.owner}/${context.repo.repo}/commits/${tag}).`,
+                  draft: false,
+                  prerelease: tag.includes('-'),
+                });
+
+                console.log(`Created release: ${release.html_url}`);
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

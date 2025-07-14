@@ -48,9 +48,9 @@ jobs:
           node -e "
             const pkg = require("./package.json");
             const fs = require("fs");
-            
+
             console.log("🔍 Verifying package exports...");
-            
+
             // Check main exports exist
             const exports = pkg.exports;
             for (const [key, value] of Object.entries(exports)) {
@@ -83,7 +83,7 @@ jobs:
 
   security:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
