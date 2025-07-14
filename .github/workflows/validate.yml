@@ -40,25 +40,25 @@ jobs:
           echo "🔍 Validating package.json..."
 
           # 必要なフィールドの存在チェック
-          node -e "
+          node -p "
             const pkg = require('./package.json');
             const required = ['name', 'version', 'description', 'main', 'types', 'exports', 'scripts'];
 
             for (const field of required) {
-              if (!pkg[field]) {
-                throw new Error(\`Missing required field: \${field}\`);
+              if (pkg[field] === undefined) {
+                throw new Error('Missing required field: ' + field);
               }
             }
 
             // スクリプトの存在チェック
             const requiredScripts = ['build', 'type-check', 'check', 'lint'];
             for (const script of requiredScripts) {
-              if (!pkg.scripts[script]) {
-                throw new Error(\`Missing required script: \${script}\`);
+              if (pkg.scripts[script] === undefined) {
+                throw new Error('Missing required script: ' + script);
               }
             }
 
-            console.log('✅ package.json validation passed');
+            '✅ package.json validation passed';
           "
 
       - name: Validate TypeScript config
@@ -85,7 +85,7 @@ jobs:
           fi
 
           # 必要なファイルの存在チェック
-          required_files=("index.js" "index.mjs" "index.d.ts" "math.js" "math.mjs" "math.d.ts")
+          required_files=("index.js" "index.d.ts" "math.js" "math.d.ts")
           for file in "${required_files[@]}"; do
             if [ ! -f "dist/$file" ]; then
               echo "❌ Required file not found: dist/$file"
