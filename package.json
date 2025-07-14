@@ -15,7 +15,7 @@
     },
     "./package.json": "./package.json",
     "./biome": "./biome.base.json",
-    "./tsconfig": "./tsconfig.json"
+    "./tsconfig": "./tsconfig.base.json"
   },
   "bin": {
     "katsu-init-config": "bin/init-config.js"
@@ -27,16 +27,18 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc --emitDeclarationOnly --declaration --project tsconfig.json",
+    "build": "run-s build:*",
+    "build:vite": "vite build",
+    "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.json",
     "type-check": "tsc --noEmit",
     "lint": "biome lint src/",
-    "lint:fix": "biome lint --write src/",
-    "check": "biome check src/",
-    "check:fix": "biome check --write src/",
-    "format": "biome format --write src/",
-    "format:check": "biome format src/",
+    "lint:fix": "biome lint --write src/ tests/",
+    "check": "biome check src/ tests/",
+    "check:fix": "biome check --write src/ tests/",
+    "format": "biome format --write src/ tests/",
+    "format:check": "biome format src/ tests/",
     "test": "vitest",
-    "prepublishOnly": "pnpm run check && pnpm run build"
+    "prepublishOnly": "run-s check build"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.1",

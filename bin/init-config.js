@@ -21,13 +21,22 @@ const filesToCopy = [
     },
   },
   {
-    source: path.join(packageRoot, 'tsconfig.json'),
+    source: path.join(packageRoot, 'tsconfig.base.json'),
     destination: path.join(process.cwd(), 'tsconfig.json'),
     contentModifier: (content) => {
       // tsconfig.json には extends を追加
       const config = JSON.parse(content);
-      config.extends = '@katsu996/common-utils/tsconfig.json';
-      return JSON.stringify(config, null, 2);
+      const baseConfig = {
+        extends: '@katsu996/common-utils/tsconfig',
+        compilerOptions: {
+          outDir: './dist',
+          rootDir: './src',
+          noEmit: false
+        },
+        include: ['src/**/*'],
+        exclude: ['node_modules', 'dist']
+      };
+      return JSON.stringify(baseConfig, null, 2);
     },
   },
 ];
