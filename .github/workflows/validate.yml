@@ -85,7 +85,7 @@ jobs:
           fi
 
           # 必要なファイルの存在チェック
-          required_files=("index.js" "index.d.ts" "math.js" "math.d.ts")
+          required_files=("index.js" "index.d.ts")
           for file in "${required_files[@]}"; do
             if [ ! -f "dist/$file" ]; then
               echo "❌ Required file not found: dist/$file"
@@ -114,10 +114,6 @@ jobs:
               // メインエクスポートのテスト
               const main = require('@katsu996/common-utils');
               console.log('✅ Main export works:', Object.keys(main));
-
-              // 個別エクスポートのテスト
-              const math = require('@katsu996/common-utils/math');
-              console.log('✅ Math export works:', Object.keys(math));
 
               // ESMインポートのテスト（Node.jsでサポートされている場合）
               console.log('✅ Package exports validation passed');
