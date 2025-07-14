@@ -1,6 +1,6 @@
-export * from './math';
-export * from './string';
+export * from "./math";
 export type CommonData = {
-  id: string;
-  name: string;
+    id: string;
+    name: string;
 };
+//# sourceMappingURL=index.d.ts.map

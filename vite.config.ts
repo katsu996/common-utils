@@ -1,4 +1,3 @@
-// common-utils-repo/vite.config.ts
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 
@@ -8,7 +7,6 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
         math: resolve(__dirname, 'src/math.ts'),
-        string: resolve(__dirname, 'src/string.ts'),
       },
       formats: ['es', 'cjs'],
     },
@@ -18,7 +16,12 @@ export default defineConfig({
         entryFileNames: (chunkInfo) => {
           return `${chunkInfo.name}.${chunkInfo.format === 'es' ? 'mjs' : 'js'}`;
         },
+        chunkFileNames: (chunkInfo) => {
+          return `${chunkInfo.name}.${chunkInfo.format === 'es' ? 'mjs' : 'js'}`;
+        },
       },
     },
+    minify: false,
+    sourcemap: true,
   },
 });

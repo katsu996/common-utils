@@ -8,19 +8,16 @@ const packageRoot = path.resolve(__dirname, '..'); // パッケージのルー�
 
 const filesToCopy = [
   {
-    source: path.join(packageRoot, 'biome.json'),
+    source: path.join(packageRoot, 'biome.base.json'),
     destination: path.join(process.cwd(), 'biome.json'),
     contentModifier: (content) => {
-      // biome.json には extends を追加
+      // 基本的なbiome設定にextendsを追加
       const config = JSON.parse(content);
-      if (!config.extends) {
-        config.extends = [];
-      }
-      const extendPath = './node_modules/ @katsu996/common-utils/biome.json';
-      if (!config.extends.includes(extendPath)) {
-        config.extends.unshift(extendPath); // 先頭に追加
-      }
-      return JSON.stringify(config, null, 2);
+      const baseConfig = {
+        extends: ['@katsu996/common-utils/biome'],
+        ...config,
+      };
+      return JSON.stringify(baseConfig, null, 2);
     },
   },
   {
@@ -29,7 +26,7 @@ const filesToCopy = [
     contentModifier: (content) => {
       // tsconfig.json には extends を追加
       const config = JSON.parse(content);
-      config.extends = ' @katsu996/common-utils/tsconfig.json';
+      config.extends = '@katsu996/common-utils/tsconfig.json';
       return JSON.stringify(config, null, 2);
     },
   },

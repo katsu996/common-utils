@@ -1,10 +1,11 @@
-'use strict';
-Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-function e(t, r) {
-  return t + r;
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+function add(a, b) {
+  return a + b;
 }
-function u(t, r) {
-  return t - r;
+function sub(a, b) {
+  return a - b;
 }
-exports.add = e;
-exports.subtract = u;
+exports.add = add;
+exports.sub = sub;
+//# sourceMappingURL=math.js.map
