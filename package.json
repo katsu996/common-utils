@@ -3,17 +3,14 @@
   "version": "0.1.0",
   "description": "A collection of common utility functions and shared configurations for projects within our organization.",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
     "./math": {
       "types": "./dist/math.d.ts",
-      "import": "./dist/math.mjs",
       "require": "./dist/math.js"
     },
     "./package.json": "./package.json",

@@ -8,17 +8,13 @@ export default defineConfig({
         index: resolve(__dirname, 'src/index.ts'),
         math: resolve(__dirname, 'src/math.ts'),
       },
-      formats: ['es', 'cjs'],
+      formats: ['cjs'],
     },
     rollupOptions: {
       external: [],
       output: {
-        entryFileNames: (chunkInfo) => {
-          return `${chunkInfo.name}.${chunkInfo.format === 'es' ? 'mjs' : 'js'}`;
-        },
-        chunkFileNames: (chunkInfo) => {
-          return `${chunkInfo.name}.${chunkInfo.format === 'es' ? 'mjs' : 'js'}`;
-        },
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
       },
     },
     minify: false,
