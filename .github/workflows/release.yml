@@ -1,0 +1,86 @@
+name: Release to NPM
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # v1.0.0 形式のタグでトリガー
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write  # NPM provenance用
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '^10.12.4'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run quality checks
+        run: |
+          pnpm run type-check
+          pnpm run check
+
+      - name: Build package
+        run: pnpm run build
+
+      - name: Verify package contents
+        run: |
+          echo "📦 Package contents:"
+          ls -la dist/
+          echo "📋 Package.json files field:"
+          node -e "console.log(JSON.stringify(require('./package.json').files, null, 2))"
+
+      - name: Publish to NPM
+        run: pnpm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = context.ref.replace('refs/tags/', '');
+            const { data: release } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tag,
+              name: `Release ${tag}`,
+              body: `## Changes
+
+Released version ${tag}
+
+### Package Information
+- **Package**: @katsu996/common-utils
+- **Version**: ${tag}
+- **NPM**: https://www.npmjs.com/package/@katsu996/common-utils
+
+### Installation
+\`\`\`bash
+pnpm add @katsu996/common-utils@${tag}
+\`\`\`
+
+For full changelog, see the [commit history](https://github.com/${context.repo.owner}/${context.repo.repo}/commits/${tag}).`,
+              draft: false,
+              prerelease: tag.includes('-'),
+            });
+            
+            console.log(`Created release: ${release.html_url}`);
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
