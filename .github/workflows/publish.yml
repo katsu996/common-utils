@@ -94,6 +94,8 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          NODE_ENV: production
 
       - name: Publish to npm
         run: pnpm publish --access public
