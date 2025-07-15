@@ -2,6 +2,8 @@
 
 TypeScriptプロジェクト向けの共通ユーティリティ関数と厳格な開発設定のコレクションです。
 
+> **注意**: このパッケージは個人用として作成されており、個人の開発スタイルや設定に最適化されています。
+
 ## インストール
 
 ```bash
@@ -62,9 +64,8 @@ pnpm = "10.12.4"
 ### Vite設定(vite.config.ts)
 
 ```typescript
-import { defineConfig, mergeConfig } from 'vite';
-import { resolve } from 'node:path';
 import baseConfig from '@katsu996/common-utils/vite';
+import { defineConfig, mergeConfig } from 'vite';
 
 export default mergeConfig(baseConfig, defineConfig({
   // プロジェクト固有の設定をここに追加
@@ -74,8 +75,8 @@ export default mergeConfig(baseConfig, defineConfig({
 ### Vitest設定(vitest.config.ts)
 
 ```typescript
-import { defineConfig, mergeConfig } from 'vitest/config';
 import baseConfig from '@katsu996/common-utils/vitest';
+import { defineConfig, mergeConfig } from 'vitest/config';
 
 export default mergeConfig(baseConfig, defineConfig({
   // プロジェクト固有の設定をここに追加
