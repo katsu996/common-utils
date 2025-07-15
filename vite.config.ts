@@ -1,21 +1,21 @@
-import { defineConfig, mergeConfig } from 'vite';
-import { resolve } from 'node:path';
-import baseConfig from './vite.config.base';
+import { resolve } from "node:path";
+import { defineConfig, mergeConfig } from "vite";
+import baseConfig from "./vite.config.base";
 
 export default mergeConfig(baseConfig, defineConfig({
   build: {
     lib: {
       entry: {
-        index: resolve(__dirname, 'src/index.ts'),
-        math: resolve(__dirname, 'src/math.ts'),
+        index: resolve(__dirname, "src/index.ts"),
+        math: resolve(__dirname, "src/math.ts"),
       },
-      formats: ['cjs'],
+      formats: ["cjs"],
     },
     rollupOptions: {
       external: [],
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
+        entryFileNames: "[name].js",
+        chunkFileNames: "[name].js",
       },
     },
   },

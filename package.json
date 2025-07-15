@@ -4,6 +4,21 @@
   "description": "A collection of common utility functions and shared configurations for projects within our organization.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-s build:*",
+    "build:vite": "vite build",
+    "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.json",
+    "type-check": "tsc --noEmit",
+    "lint": "biome lint src/",
+    "lint:fix": "biome lint --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "test": "vitest",
+    "prepublishOnly": "run-s check build"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -26,21 +41,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/katsu996/common-utils.git"
-  },
-  "scripts": {
-    "dev": "vite",
-    "build": "run-s build:*",
-    "build:vite": "vite build",
-    "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.json",
-    "type-check": "tsc --noEmit",
-    "lint": "biome lint src/",
-    "lint:fix": "biome lint --write src/ tests/",
-    "check": "biome check src/ tests/",
-    "check:fix": "biome check --write src/ tests/",
-    "format": "biome format --write src/ tests/",
-    "format:check": "biome format src/ tests/",
-    "test": "vitest",
-    "prepublishOnly": "run-s check build"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.1",

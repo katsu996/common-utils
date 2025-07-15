@@ -12,9 +12,7 @@
       "!**/node_modules",
       "!**/out",
       "!**/playwright-report",
-      "!**/test-results",
-      "!**/*.config.ts",
-      "!**/*.config.js"
+      "!**/test-results"
     ],
     "ignoreUnknown": true
   },
