@@ -57,31 +57,35 @@ pnpm publish
 ### 開発ワークフロー
 
 1. **機能追加・修正**
+
    ```bash
    # 新しいブランチを作成
    git checkout -b feature/new-feature
-   
+
    # 開発モードで作業
    pnpm dev
    ```
 
 2. **コード品質チェック**
+
    ```bash
    # 品質チェックを実行
    pnpm check
-   
+
    # 自動修正可能な問題を修正
    pnpm lint:fix
    pnpm format
    ```
 
 3. **ビルドテスト**
+
    ```bash
    # プロダクションビルド
    pnpm build
    ```
 
 4. **コミット・プッシュ**
+
    ```bash
    git add .
    git commit -m "feat: 新機能の説明"
@@ -147,11 +151,15 @@ pnpm publish
 ```
 
 **Type:**
+
 - `feat`: 新機能
 - `fix`: バグ修正
 - `docs`: ドキュメント変更
 - `style`: コードスタイル変更
 - `refactor`: リファクタリング
+- `rename`: ファイル名変更
+- `move`: ファイル移動
+- `perf`: パフォーマンス改善
 - `test`: テスト追加・修正
 - `chore`: その他の変更
 
@@ -168,21 +176,24 @@ pnpm publish
 ### リリース手順
 
 1. **変更の確認**
+
    ```bash
    # 品質チェック
    pnpm check
-   
+
    # ビルドテスト
    pnpm build
    ```
 
 2. **バージョン更新**
+
    ```bash
    # package.jsonのバージョンを更新
    npm version [patch|minor|major]
    ```
 
 3. **リリース**
+
    ```bash
    # NPMに公開
    pnpm publish
@@ -214,6 +225,7 @@ pnpm test:coverage
 ### よくある問題
 
 1. **pnpmインストールエラー**
+
    ```bash
    # キャッシュクリア
    pnpm store prune
@@ -224,6 +236,7 @@ pnpm test:coverage
    ```
 
 2. **型エラー**
+
    ```bash
    # TypeScriptキャッシュクリア
    rm -rf dist
@@ -231,6 +244,7 @@ pnpm test:coverage
    ```
 
 3. **リントエラー**
+
    ```bash
    # 自動修正を試行
    pnpm lint:fix

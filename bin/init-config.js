@@ -39,6 +39,18 @@ const filesToCopy = [
       return JSON.stringify(baseConfig, null, 2);
     },
   },
+  {
+    source: path.join(packageRoot, 'mise.toml'),
+    destination: path.join(process.cwd(), 'mise.toml'),
+  },
+  {
+    source: path.join(packageRoot, 'vite.config.template.ts'),
+    destination: path.join(process.cwd(), 'vite.config.ts'),
+  },
+  {
+    source: path.join(packageRoot, 'vitest.config.template.ts'),
+    destination: path.join(process.cwd(), 'vitest.config.ts'),
+  },
 ];
 
 function initializeConfigFile(file) {

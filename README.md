@@ -20,6 +20,9 @@ pnpm dlx katsu-init-config
 
 - `biome.json` - 厳格なリント・フォーマット設定
 - `tsconfig.json` - 厳格なTypeScript設定
+- `mise.toml` - Node.jsとpnpmのバージョン管理設定
+- `vite.config.ts` - Viteビルド設定（ベース継承）
+- `vitest.config.ts` - Vitestテスト設定（ベース継承）
 
 ### ユーティリティ関数
 
@@ -44,9 +47,53 @@ const diff = sub(10, 4); // 6
 
 ```json
 {
-  "extends": "@katsu996/common-utils/tsconfig.json"
+  "extends": "@katsu996/common-utils/tsconfig"
 }
 ```
+
+### Mise設定(mise.toml)
+
+```toml
+[tools]
+node = "22.16.0"
+pnpm = "10.12.4"
+```
+
+### Vite設定(vite.config.ts)
+
+```typescript
+import { defineConfig, mergeConfig } from 'vite';
+import { resolve } from 'node:path';
+import baseConfig from '@katsu996/common-utils/vite';
+
+export default mergeConfig(baseConfig, defineConfig({
+  // プロジェクト固有の設定をここに追加
+}));
+```
+
+### Vitest設定(vitest.config.ts)
+
+```typescript
+import { defineConfig, mergeConfig } from 'vitest/config';
+import baseConfig from '@katsu996/common-utils/vitest';
+
+export default mergeConfig(baseConfig, defineConfig({
+  // プロジェクト固有の設定をここに追加
+}));
+```
+
+## エクスポート
+
+このパッケージは以下のパスでアクセス可能です：
+
+| パス | 説明 |
+|------|------|
+| `@katsu996/common-utils` | メインユーティリティ関数 |
+| `@katsu996/common-utils/math` | 数学関数 |
+| `@katsu996/common-utils/biome` | Biome設定ファイル |
+| `@katsu996/common-utils/tsconfig` | TypeScript設定ファイル |
+| `@katsu996/common-utils/vite` | Viteベース設定 |
+| `@katsu996/common-utils/vitest` | Vitestベース設定 |
 
 ## 開発者向け情報
 

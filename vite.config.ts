@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite';
+import { defineConfig, mergeConfig } from 'vite';
 import { resolve } from 'node:path';
+import baseConfig from './vite.config.base';
 
-export default defineConfig({
+export default mergeConfig(baseConfig, defineConfig({
   build: {
     lib: {
       entry: {
@@ -17,7 +18,5 @@ export default defineConfig({
         chunkFileNames: '[name].js',
       },
     },
-    minify: false,
-    sourcemap: true,
   },
-});
+}));

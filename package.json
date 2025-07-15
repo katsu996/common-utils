@@ -15,7 +15,9 @@
     },
     "./package.json": "./package.json",
     "./biome": "./biome.base.json",
-    "./tsconfig": "./tsconfig.base.json"
+    "./tsconfig": "./tsconfig.base.json",
+    "./vite": "./vite.config.base.ts",
+    "./vitest": "./vitest.config.base.ts"
   },
   "bin": {
     "katsu-init-config": "bin/init-config.js"
