@@ -1,0 +1,265 @@
+# @katsu996/common-utils - 開発者向けドキュメント
+
+このドキュメントは開発者向け情報を記載しています。
+
+## 開発環境セットアップ
+
+### 必要な環境
+
+- **Node.js**: >=22.0.0
+- **pnpm**: >=10.0.0
+- **TypeScript**: >=5.0.0
+
+### 初期セットアップ
+
+```bash
+# リポジトリをクローン
+git clone <repository-url>
+cd common-utils
+
+# 依存関係をインストール
+pnpm install
+
+# 開発用ビルド
+pnpm build
+```
+
+## 開発フロー
+
+### 利用可能なスクリプト
+
+```bash
+# 開発モード（ファイル監視）
+pnpm dev
+
+# パッケージをビルド
+pnpm build
+
+# コードをリント
+pnpm lint
+
+# 自動修正付きリント
+pnpm lint:fix
+
+# コードをフォーマット
+pnpm format
+
+# 型チェック
+pnpm type-check
+
+# 品質チェック（型チェック + リント）
+pnpm check
+
+# 公開（自動品質チェック + ビルド）
+pnpm publish
+```
+
+### 開発ワークフロー
+
+1. **機能追加・修正**
+   ```bash
+   # 新しいブランチを作成
+   git checkout -b feature/new-feature
+   
+   # 開発モードで作業
+   pnpm dev
+   ```
+
+2. **コード品質チェック**
+   ```bash
+   # 品質チェックを実行
+   pnpm check
+   
+   # 自動修正可能な問題を修正
+   pnpm lint:fix
+   pnpm format
+   ```
+
+3. **ビルドテスト**
+   ```bash
+   # プロダクションビルド
+   pnpm build
+   ```
+
+4. **コミット・プッシュ**
+   ```bash
+   git add .
+   git commit -m "feat: 新機能の説明"
+   git push origin feature/new-feature
+   ```
+
+## プロジェクト構造
+
+```
+@katsu996/common-utils/
+├── src/                    # ソースコード
+│   ├── index.ts           # メインエクスポートファイル
+│   ├── math.ts            # 数学ユーティリティ
+│   └── types.ts           # 型定義
+├── bin/                   # CLIツール
+│   └── init-config.js     # 設定初期化スクリプト
+├── dist/                  # ビルドファイル（自動生成）
+├── configs/               # 設定ファイル
+│   ├── biome.base.json    # 共有用Biome設定
+│   └── tsconfig.json      # TypeScript設定
+├── tests/                 # テストファイル
+├── docs/                  # ドキュメント
+├── .github/               # GitHub Actions
+│   └── workflows/
+├── vite.config.ts         # ビルド設定
+├── package.json           # パッケージ設定
+├── README.md             # ユーザー向けドキュメント
+├── DEVELOPMENT.md        # このファイル
+└── CLAUDE.md             # AI開発者向け指示
+```
+
+## コーディング規約
+
+### TypeScript設定
+
+プロジェクトは厳格なTypeScript設定を使用：
+
+- **strict**: true
+- **noUncheckedIndexedAccess**: true
+- **noUnusedLocals**: true
+- **noUnusedParameters**: true
+- **exactOptionalPropertyTypes**: true
+
+### Biome設定
+
+厳格なリント・フォーマット設定：
+
+- エラーレベルでの厳格なリント
+- セキュリティルールの適用
+- パフォーマンス最適化の推奨
+- アクセシビリティルールの強制
+
+### コミットメッセージ規約
+
+[Conventional Commits](https://www.conventionalcommits.org/)に従う：
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+**Type:**
+- `feat`: 新機能
+- `fix`: バグ修正
+- `docs`: ドキュメント変更
+- `style`: コードスタイル変更
+- `refactor`: リファクタリング
+- `test`: テスト追加・修正
+- `chore`: その他の変更
+
+## リリースプロセス
+
+### バージョニング
+
+[Semantic Versioning](https://semver.org/)に従う：
+
+- **MAJOR**: 破壊的変更
+- **MINOR**: 後方互換性のある機能追加
+- **PATCH**: 後方互換性のあるバグ修正
+
+### リリース手順
+
+1. **変更の確認**
+   ```bash
+   # 品質チェック
+   pnpm check
+   
+   # ビルドテスト
+   pnpm build
+   ```
+
+2. **バージョン更新**
+   ```bash
+   # package.jsonのバージョンを更新
+   npm version [patch|minor|major]
+   ```
+
+3. **リリース**
+   ```bash
+   # NPMに公開
+   pnpm publish
+   ```
+
+## テスト
+
+### テスト戦略
+
+- **単体テスト**: 各ユーティリティ関数
+- **統合テスト**: CLIツール
+- **型テスト**: TypeScript型の正確性
+
+### テスト実行
+
+```bash
+# 全テスト実行
+pnpm test
+
+# テスト監視モード
+pnpm test:watch
+
+# カバレッジレポート
+pnpm test:coverage
+```
+
+## トラブルシューティング
+
+### よくある問題
+
+1. **pnpmインストールエラー**
+   ```bash
+   # キャッシュクリア
+   pnpm store prune
+   
+   # node_modules削除して再インストール
+   rm -rf node_modules pnpm-lock.yaml
+   pnpm install
+   ```
+
+2. **型エラー**
+   ```bash
+   # TypeScriptキャッシュクリア
+   rm -rf dist
+   pnpm type-check
+   ```
+
+3. **リントエラー**
+   ```bash
+   # 自動修正を試行
+   pnpm lint:fix
+   pnpm format
+   ```
+
+## コントリビューション
+
+### プルリクエストガイドライン
+
+1. **事前チェック**
+   - [ ] `pnpm check` が成功する
+   - [ ] `pnpm build` が成功する
+   - [ ] 適切なコミットメッセージ
+   - [ ] 必要に応じてドキュメント更新
+
+2. **レビューポイント**
+   - コードの可読性
+   - 型安全性
+   - パフォーマンス
+   - セキュリティ
+
+### 開発のベストプラクティス
+
+- **小さなコミット**: 論理的な単位でコミット
+- **明確な命名**: 関数・変数の意図を明確に
+- **型注釈**: 必要に応じて明示的な型指定
+- **ドキュメント**: 公開APIには適切なドキュメント
+
+## ライセンス
+
+MIT License。詳細は[LICENSE](./LICENSE)を参照してください。
