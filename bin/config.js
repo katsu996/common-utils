@@ -160,7 +160,7 @@ async function initializeNewProject() {
   // 結果の表示
   log.success('✨ 設定ファイルの適用完了');
   console.log();
-  
+
   const successFiles = results.filter(r => r.success);
   if (successFiles.length > 0) {
     console.log('作成されたファイル:');
@@ -233,7 +233,7 @@ async function updateExistingProject() {
   // 結果の表示
   log.success('✨ 設定ファイルの適用完了');
   console.log();
-  
+
   const successFiles = results.filter(r => r.success);
   if (successFiles.length > 0) {
     console.log('作成されたファイル:');
@@ -255,10 +255,10 @@ async function updateExistingProject() {
 // メイン関数
 async function main() {
   intro(pc.inverse(' @katsu996/common-utils 設定ツール '));
-  
+
   console.log();
   console.log(`📂 現在のディレクトリ: ${pc.cyan(process.cwd())}`);
-  
+
   const hasPackage = hasPackageJson();
   const packageStatus = hasPackage ? pc.green('✓ 検出') : pc.gray('✗ 未検出');
   console.log(`📋 package.json: ${packageStatus}`);
