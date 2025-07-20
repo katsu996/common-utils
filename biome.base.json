@@ -8,10 +8,13 @@
       "**/*.jsx",
       "**/*.tsx",
       "**/*.json",
+      "**/*.jsonc",
       "**/*.html",
       "**/*.css",
       "**/*.yaml",
       "**/*.yml",
+      "**/*.gql",
+      "**/*.graphql",
       "**/*.md",
       "!**/.git",
       "!**/coverage",
@@ -26,7 +29,8 @@
   "vcs": {
     "enabled": true,
     "clientKind": "git",
-    "root": "./"
+    "root": "./",
+    "useIgnoreFile": true
   },
   "linter": {
     "rules": {
