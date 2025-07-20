@@ -45,7 +45,7 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // hasPackageJson関数の存在確認
       expect(content).toContain("function hasPackageJson()");
-      expect(content).toContain("fs.existsSync(path.join(process.cwd(), 'package.json'))");
+      expect(content).toContain("fs.existsSync(path.join(process.cwd(), \"package.json\"))");
     });
 
     it("package.jsonが存在する場合は既存プロジェクトモードになる", () => {
@@ -162,7 +162,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      expect(content).toContain("process.on('SIGINT'");
+      expect(content).toContain("process.on(\"SIGINT\"");
       expect(content).toContain("設定をキャンセルしました");
     });
 
@@ -217,7 +217,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const content = fs.readFileSync(configPath, "utf-8");
 
       // デフォルトで全選択の実装確認
-      expect(content).toContain("initialValues: CONFIG_FILES.map(file => file.id)");
+      expect(content).toContain("initialValues: CONFIG_FILES.map((file) => file.id)");
     });
   });
 
