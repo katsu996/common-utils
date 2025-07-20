@@ -12,13 +12,21 @@ pnpm add @katsu996/common-utils
 
 ## 使用方法
 
-### プロジェクト設定の初期化
+### プロジェクト設定の初期化・更新
 
 ```bash
-pnpm dlx katsu-init-config
+pnpm dlx katsu-config
 ```
 
-これにより以下が作成されます：
+**新規プロジェクト（package.json未検出）の場合：**
+- プロジェクト名の入力
+- 適用する設定ファイルを選択（デフォルト：全選択）
+
+**既存プロジェクト（package.json検出）の場合：**
+- 現在の設定ファイル状況を表示
+- 更新・追加する設定ファイルを選択（デフォルト：全選択）
+
+作成される設定ファイル：
 
 - `biome.json` - 厳格なリント・フォーマット設定
 - `tsconfig.json` - 厳格なTypeScript設定

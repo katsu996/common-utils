@@ -2,6 +2,25 @@
 
 このドキュメントは開発者向け情報を記載しています。
 
+## CLIコマンド
+
+### katsu-config
+インタラクティブな設定ファイル管理ツール
+
+**機能:**
+- package.json存在判定による自動モード分岐
+- 新規プロジェクト: プロジェクト名入力 + 設定ファイル選択
+- 既存プロジェクト: 現在状況表示 + 設定ファイル更新選択
+- デフォルトですべての設定ファイルが選択状態
+- @clack/prompts使用のモダンUI
+
+**対応設定ファイル:**
+- TypeScript設定 (tsconfig.json)
+- Biome設定 (biome.json)
+- Mise設定 (mise.toml)
+- Vite設定 (vite.config.ts)
+- Vitest設定 (vitest.config.ts)
+
 ## AI運用原則
 
 以下はXMLで記述されたAIが必ず守らなければいけない事項
