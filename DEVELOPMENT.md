@@ -6,9 +6,9 @@
 
 ### 必要な環境
 
-- **Node.js**: >=22.0.0
-- **pnpm**: >=10.0.0
-- **TypeScript**: >=5.0.0
+- **Node.js**: >=22.16.0
+- **pnpm**: >=10.12.4
+- **TypeScript**: >=5.8.3
 
 ### 初期セットアップ
 
@@ -96,26 +96,71 @@ pnpm publish
 
 ```
 @katsu996/common-utils/
-├── src/                    # ソースコード
-│   ├── index.ts           # メインエクスポートファイル
-│   ├── math.ts            # 数学ユーティリティ
-│   └── types.ts           # 型定義
 ├── bin/                   # CLIツール
-│   └── init-config.js     # 設定初期化スクリプト
+│   ├── config.js          # katsu-config CLIスクリプト (Unix/Linux/macOS)
+│   └── config.cmd         # katsu-config CLIスクリプト (Windows)
 ├── dist/                  # ビルドファイル（自動生成）
-├── configs/               # 設定ファイル
-│   ├── biome.base.json    # 共有用Biome設定
-│   └── tsconfig.json      # TypeScript設定
+├── src/                   # ソースコード
+│   ├── index.ts           # メインエクスポートファイル
+│   └── math.ts            # 数学ユーティリティ
 ├── tests/                 # テストファイル
-├── docs/                  # ドキュメント
-├── .github/               # GitHub Actions
-│   └── workflows/
-├── vite.config.ts         # ビルド設定
+│   ├── config.test.js     # CLI設定テスト
+│   └── math.test.ts       # 数学ユーティリティテスト
+├── biome.base.json        # 共有用Biome設定
+├── biome.json             # プロジェクト用Biome設定
+├── CLAUDE.md              # AI開発者向け指示
+├── DEVELOPMENT.md         # このファイル
+├── mise.toml              # Mise設定テンプレート
 ├── package.json           # パッケージ設定
-├── README.md             # ユーザー向けドキュメント
-├── DEVELOPMENT.md        # このファイル
-└── CLAUDE.md             # AI開発者向け指示
+├── README.md              # ユーザー向けドキュメント
+├── RELEASE.md             # リリースノート
+├── tsconfig.base.json     # 共有用TypeScript設定
+├── tsconfig.json          # プロジェクト用TypeScript設定
+├── vite.config.base.ts    # 共有用Vite設定
+├── vite.config.template.ts # Viteテンプレート設定
+├── vite.config.ts         # プロジェクト用Vite設定
+├── vitest.config.base.ts  # 共有用Vitest設定
+├── vitest.config.template.ts # Vitestテンプレート設定
+└── vitest.config.ts       # プロジェクト用Vitest設定
 ```
+
+## CLIツール
+
+### katsu-config
+
+インタラクティブな設定ファイル管理ツール
+
+#### 実行方法
+
+```bash
+# インストール済みプロジェクト内
+pnpm katsu-config
+
+# 未インストール環境
+pnpm dlx @katsu996/common-utils katsu-config
+```
+
+#### 機能
+
+- **自動モード分岐**: package.json存在判定で新規/既存プロジェクトを自動判別
+- **新規プロジェクト**: プロジェクト名入力 + 設定ファイル選択
+- **既存プロジェクト**: 現在状況表示 + 設定ファイル更新選択
+- **デフォルト全選択**: 全設定ファイルがデフォルトで選択状態
+- **モダンUI**: @clack/prompts使用のインタラクティブUI
+
+#### 対応設定ファイル
+
+- **TypeScript設定** (tsconfig.json)
+- **Biome設定** (biome.json)
+- **Mise設定** (mise.toml)
+- **Vite設定** (vite.config.ts)
+- **Vitest設定** (vitest.config.ts)
+
+#### クロスプラットフォーム対応
+
+- **Unix/Linux/macOS**: `bin/config.js` (shebang: `#!/usr/bin/env node`)
+- **Windows**: `bin/config.cmd` (バッチファイル)
+- **package.json**: `preferGlobal: true` でグローバルインストール推奨
 
 ## コーディング規約
 
@@ -229,13 +274,22 @@ pnpm test:coverage
    ```bash
    # キャッシュクリア
    pnpm store prune
-   
+
    # node_modules削除して再インストール
    rm -rf node_modules pnpm-lock.yaml
    pnpm install
    ```
 
-2. **型エラー**
+2. **katsu-configが実行できない**
+
+   ```bash
+   # package.jsonなしの場合
+   pnpm dlx @katsu996/common-utils katsu-config
+
+   # Windows環境の場合、PowerShellまたはコマンドプロンプトを使用
+   ```
+
+3. **型エラー**
 
    ```bash
    # TypeScriptキャッシュクリア
@@ -243,7 +297,7 @@ pnpm test:coverage
    pnpm type-check
    ```
 
-3. **リントエラー**
+4. **リントエラー**
 
    ```bash
    # 自動修正を試行

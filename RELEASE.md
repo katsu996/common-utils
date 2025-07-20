@@ -4,49 +4,17 @@
 
 ## 🚀 自動リリース（推奨）
 
-### 1. 準備
+### 自動リリース
 
-```bash
-# 最新のmainブランチに切り替え
-git checkout main
-git pull origin main
-
-# 依存関係を更新
-pnpm install
-
-# 品質チェック
-pnpm run check && pnpm run build
-```
-
-### 2. バージョン更新
-
-セマンティックバージョニングに従ってバージョンを更新：
-
-```bash
-# パッチバージョン（バグ修正）
-pnpm version patch
-
-# マイナーバージョン（新機能）
-pnpm version minor
-
-# メジャーバージョン（破壊的変更）
-pnpm version major
-```
-
-### 3. タグをプッシュ
-
-```bash
-git push origin main --tags
-```
-
-### 4. 自動リリース
-
-GitHubにタグがプッシュされると、自動的に以下が実行されます：
+プルリクエストがmainブランチにマージされると、CI/CDパイプラインが自動的に以下を実行します：
 
 1. **品質チェック**: TypeScript型チェック + Biome lint
-2. **ビルド**: パッケージのビルド
-3. **NPM公開**: NPMレジストリへの自動公開
-4. **GitHubリリース**: リリースノートの自動作成
+2. **テスト実行**: Vitestによるユニットテスト
+3. **ビルド**: パッケージのビルド
+4. **バージョン更新**: セマンティックバージョニングに基づく自動バージョン更新
+5. **タグ作成**: Gitタグの自動生成
+6. **NPM公開**: NPMレジストリへの自動公開
+7. **GitHubリリース**: リリースノートの自動作成
 
 ## 🛠 手動リリース（緊急時）
 
@@ -59,12 +27,26 @@ GitHubにタグがプッシュされると、自動的に以下が実行され�
 
 ```bash
 # 1. 品質チェック
-pnpm run check
+pnpm check
 
 # 2. ビルド
-pnpm run build
+pnpm build
 
-# 3. NPMに公開
+# 3. テスト実行
+pnpm test
+
+# 4. バージョン更新
+# パッチバージョン（バグ修正）
+pnpm version patch
+# マイナーバージョン（新機能）
+pnpm version minor
+# メジャーバージョン（破壊的変更）
+pnpm version major
+
+# 5. タグをプッシュ
+git push origin main --tags
+
+# 6. NPMに公開
 pnpm publish --access public
 ```
 
@@ -91,11 +73,13 @@ pnpm publish --access public
 ### リリース後のチェック
 
 1. **NPMでの確認**
+
    ```bash
-   npm view @katsu996/common-utils
+   pnpm view @katsu996/common-utils
    ```
 
 2. **インストールテスト**
+
    ```bash
    # 別ディレクトリでテスト
    mkdir test-install && cd test-install
@@ -104,10 +88,18 @@ pnpm publish --access public
    ```
 
 3. **機能テスト**
+
    ```javascript
    // test.js
    const { add } = require('@katsu996/common-utils');
    console.log(add(2, 3)); // 5
+   ```
+
+4. **CLIツールテスト**
+
+   ```bash
+   # katsu-configコマンドのテスト
+   pnpm dlx @katsu996/common-utils katsu-config
    ```
 
 ## 📝 リリースノート
@@ -133,7 +125,17 @@ pnpm publish --access public
    - TypeScript型エラーの解決
    - 依存関係の更新
 
-3. **GitHub Actions失敗**
+3. **テストエラー**
+   - ユニットテストの失敗確認: `pnpm test`
+   - テスト監視モード: `pnpm test:watch`
+   - カバレッジ確認: `pnpm test:coverage`
+
+4. **katsu-configエラー**
+   - Windows環境でのshebang問題
+   - PowerShell/コマンドプロンプトの使用
+   - `pnpm dlx`での実行
+
+5. **GitHub Actions失敗**
    - ワークフローログの確認
    - シークレット設定の確認
 
@@ -143,10 +145,10 @@ pnpm publish --access public
 
 ```bash
 # NPMから特定バージョンを非推奨化
-npm deprecate @katsu996/common-utils@1.0.1 "This version has critical issues"
+npm deprecate @katsu996/common-utils@0.6.2 "This version has critical issues"
 
 # または完全に削除（72時間以内のみ）
-npm unpublish @katsu996/common-utils@1.0.1
+npm unpublish @katsu996/common-utils@0.6.2
 ```
 
 ## 📊 リリース統計

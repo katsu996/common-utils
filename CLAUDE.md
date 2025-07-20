@@ -5,13 +5,17 @@
 ## CLIコマンド
 
 ### katsu-config
+
 インタラクティブな設定ファイル管理ツール
 
 **実行方法:**
+
 - インストール済み: `pnpm katsu-config`
-- 未インストール: `pnpm dlx katsu-config`
+- 未インストール: `pnpm dlx @katsu996/common-utils katsu-config`
+- クロスプラットフォーム: `npx @katsu996/common-utils katsu-config`
 
 **機能:**
+
 - package.json存在判定による自動モード分岐
 - 新規プロジェクト: プロジェクト名入力 + 設定ファイル選択
 - 既存プロジェクト: 現在状況表示 + 設定ファイル更新選択
@@ -19,6 +23,7 @@
 - @clack/prompts使用のモダンUI
 
 **対応設定ファイル:**
+
 - TypeScript設定 (tsconfig.json)
 - Biome設定 (biome.json)
 - Mise設定 (mise.toml)
