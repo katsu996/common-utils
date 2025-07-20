@@ -44,6 +44,19 @@ jobs:
           pnpm check
           pnpm format:check
 
+      - name: Run tests with coverage
+        run: |
+          echo "🧪 Running tests with coverage..."
+          pnpm test:coverage
+          echo "📊 Test coverage completed"
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-node-${{ matrix.node-version }}
+          path: coverage/
+          retention-days: 30
+
       - name: Build package
         run: pnpm build
 
