@@ -64,8 +64,8 @@ pnpm = "10.12.4"
 ### Vite設定(vite.config.ts)
 
 ```typescript
-import baseConfig from '@katsu996/common-utils/vite';
-import { defineConfig, mergeConfig } from 'vite';
+import baseConfig from "@katsu996/common-utils/vite";
+import { defineConfig, mergeConfig } from "vite";
 
 export default mergeConfig(baseConfig, defineConfig({
   // プロジェクト固有の設定をここに追加
@@ -75,8 +75,8 @@ export default mergeConfig(baseConfig, defineConfig({
 ### Vitest設定(vitest.config.ts)
 
 ```typescript
-import baseConfig from '@katsu996/common-utils/vitest';
-import { defineConfig, mergeConfig } from 'vitest/config';
+import baseConfig from "@katsu996/common-utils/vitest";
+import { defineConfig, mergeConfig } from "vitest/config";
 
 export default mergeConfig(baseConfig, defineConfig({
   // プロジェクト固有の設定をここに追加
