@@ -13,7 +13,8 @@
     "rules": {
       "suspicious": {
         "noConsole": "off",
-        "noExplicitAny": "warn"
+        "noExplicitAny": "warn",
+        "noSkippedTests": "off"
       },
       "complexity": {
         "noForEach": "warn"

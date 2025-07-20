@@ -223,14 +223,12 @@ describe("config.js（インタラクティブCLI）", () => {
 
   // 注意: 実際のインタラクティブテストは手動実行が必要
   describe("統合テスト（手動確認推奨）", () => {
-    // biome-ignore lint/suspicious/noSkippedTests: Interactive test requires manual execution
     it.skip("新規プロジェクトでの設定ファイル作成（手動テスト用）", () => {
       // このテストは手動で確認する必要がある
       // pnpm katsu-config を新規ディレクトリで実行し、
       // 期待されるファイルが作成されることを確認
     });
 
-    // biome-ignore lint/suspicious/noSkippedTests: Interactive test requires manual execution
     it.skip("既存プロジェクトでの設定ファイル更新（手動テスト用）", () => {
       // このテストは手動で確認する必要がある
       // package.jsonのあるディレクトリで pnpm katsu-config を実行し、
