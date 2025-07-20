@@ -14,17 +14,27 @@ pnpm add @katsu996/common-utils
 
 ### プロジェクト設定の初期化・更新
 
+**パッケージがインストール済みの場合：**
+
+```bash
+pnpm katsu-config
+```
+
+**パッケージが未インストールの場合：**
+
 ```bash
 pnpm dlx katsu-config
 ```
 
 **新規プロジェクト（package.json未検出）の場合：**
+
 - プロジェクト名の入力
-- 適用する設定ファイルを選択（デフォルト：全選択）
+- 適用する設定ファイルを選択
 
 **既存プロジェクト（package.json検出）の場合：**
+
 - 現在の設定ファイル状況を表示
-- 更新・追加する設定ファイルを選択（デフォルト：全選択）
+- 更新・追加する設定ファイルを選択
 
 作成される設定ファイル：
 
@@ -34,7 +44,7 @@ pnpm dlx katsu-config
 - `vite.config.ts` - Viteビルド設定（ベース継承）
 - `vitest.config.ts` - Vitestテスト設定（ベース継承）
 
-### ユーティリティ関数
+### ユーティリティ関数(例)
 
 ```typescript
 import { add, sub } from "@katsu996/common-utils";

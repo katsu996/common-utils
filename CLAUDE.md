@@ -7,6 +7,10 @@
 ### katsu-config
 インタラクティブな設定ファイル管理ツール
 
+**実行方法:**
+- インストール済み: `pnpm katsu-config`
+- 未インストール: `pnpm dlx katsu-config`
+
 **機能:**
 - package.json存在判定による自動モード分岐
 - 新規プロジェクト: プロジェクト名入力 + 設定ファイル選択
