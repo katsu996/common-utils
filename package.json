@@ -10,7 +10,7 @@
     "build:vite": "vite build",
     "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.json",
     "type-check": "tsc --noEmit",
-    "lint": "biome lint src/",
+    "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "check": "biome check .",
     "check:fix": "biome check --write .",
