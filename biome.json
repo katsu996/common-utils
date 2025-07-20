@@ -12,11 +12,14 @@
   "linter": {
     "rules": {
       "suspicious": {
-        "noConsole": "warn",
+        "noConsole": "off",
         "noExplicitAny": "warn"
       },
       "complexity": {
         "noForEach": "warn"
+      },
+      "nursery": {
+        "noSecrets": "off"
       }
     }
   }
