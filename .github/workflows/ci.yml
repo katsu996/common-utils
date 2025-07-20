@@ -14,6 +14,9 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["22.16.0", "20", "18"]
 
     steps:
       - name: Checkout code
@@ -27,7 +30,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
       - name: Install dependencies
@@ -78,12 +81,15 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: dist-node-${{ matrix.node-version }}
           path: dist/
           retention-days: 7
 
   security:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["22.16.0", "20", "18"]
 
     steps:
       - name: Checkout code
@@ -97,7 +103,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
       - name: Install dependencies

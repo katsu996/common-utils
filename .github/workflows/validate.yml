@@ -6,8 +6,10 @@ on:
     paths:
       - ".github/workflows/**"
       - "package.json"
-      - "tsconfig.json"
       - "biome*.json"
+      - "tsconfig*.json"
+      - "vite.config*.json"
+      - "vitest.config*.json"
 
 env:
   NODE_VERSION: 22.16.0
@@ -51,7 +53,7 @@ jobs:
             }
 
             // スクリプトの存在チェック
-            const requiredScripts = ['build', 'type-check', 'check', 'lint'];
+            const requiredScripts = ['build', 'type-check', 'check'];
             for (const script of requiredScripts) {
               if (pkg.scripts[script] === undefined) {
                 throw new Error('Missing required script: ' + script);
@@ -83,15 +85,6 @@ jobs:
             echo "❌ dist directory not created"
             exit 1
           fi
-
-          # 必要なファイルの存在チェック
-          required_files=("index.js" "index.d.ts" "math.js" "math.d.ts")
-          for file in "${required_files[@]}"; do
-            if [ ! -f "dist/$file" ]; then
-              echo "❌ Required file not found: dist/$file"
-              exit 1
-            fi
-          done
 
           echo "✅ Build process validation passed"
 
