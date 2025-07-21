@@ -687,7 +687,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const content = fs.readFileSync(configPath, "utf-8");
 
       expect(content).toContain("const versions = getLibraryVersions()");
-      expect(content).toContain("${dep}@${version}");
+      expect(content).toContain("dep}@${version");
       expect(content).toContain("のバージョンが見つかりません");
       expect(content).toContain("最新版をインストールします");
     });

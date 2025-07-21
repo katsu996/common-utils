@@ -13,7 +13,7 @@ function getLibraryVersions() {
   try {
     const packageJsonPath = path.join(packageRoot, "package.json");
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-    
+
     return {
       ...packageJson.dependencies,
       ...packageJson.devDependencies,
@@ -239,7 +239,7 @@ function createViteProject(projectName, _projectDir) {
 function collectDependencies(selectedConfigs) {
   const versions = getLibraryVersions();
   const dependencies = new Set();
-  
+
   // 常に含める基本依存関係（本パッケージは常に最新版）
   dependencies.add("@katsu996/common-utils");
 
