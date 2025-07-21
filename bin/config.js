@@ -308,6 +308,34 @@ function installDependencies(projectDir, dependencies) {
   });
 }
 
+// package.jsonを修正する関数（既存プロジェクト用）
+function updatePackageJsonExisting(selectedConfigs) {
+  try {
+    const packageJsonPath = path.join(process.cwd(), "package.json");
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+
+    // 選択された設定ファイルに基づいてスクリプトを収集
+    const selectedScripts = collectScripts(selectedConfigs);
+
+    // scriptsセクションに動的にスクリプトを追加
+    if (!packageJson.scripts) {
+      packageJson.scripts = {};
+    }
+
+    packageJson.scripts = {
+      ...packageJson.scripts,
+      ...selectedScripts,
+    };
+
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    log.success("✅ package.jsonにスクリプトを追加しました");
+
+    return { success: true, scripts: selectedScripts };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
 // package.jsonを修正する関数
 function updatePackageJson(projectDir, selectedConfigs) {
   try {
@@ -592,6 +620,35 @@ async function updateExistingProject() {
       const result = applyConfigFile(configFile);
       result.wasExisting = !!fileInfo?.exists;
       results.push(result);
+    }
+  }
+
+  // 新しく追加された設定ファイルがある場合、依存関係とスクリプトを処理
+  const newlyAddedConfigs = selectedConfigs.filter((configId) => {
+    const fileInfo = fileStatus.find((f) => f.id === configId);
+    return !fileInfo?.exists;
+  });
+
+  if (newlyAddedConfigs.length > 0) {
+    // 依存関係のインストール
+    const dependencies = collectDependencies(newlyAddedConfigs);
+    if (dependencies.length > 1) {
+      // @katsu996/common-utils以外にも依存関係がある場合
+      try {
+        await installDependencies(process.cwd(), dependencies);
+      } catch (error) {
+        console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
+        console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
+      }
+    }
+
+    // package.jsonの更新（スクリプト追加）
+    const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
+    if (!packageUpdateResult.success) {
+      console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
+    } else if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
+      console.log();
+      displayAvailableCommands(packageUpdateResult);
     }
   }
 

@@ -161,6 +161,8 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain("displayCurrentFileStatus");
       expect(content).toContain("getExistingProjectConfigSelection");
       expect(content).toContain("displayConfigFileResults");
+      expect(content).toContain("newlyAddedConfigs");
+      expect(content).toContain("updatePackageJsonExisting");
     });
 
     it("結果表示のUI要素が含まれている", () => {
@@ -617,6 +619,15 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain('packageJson.type = "module"');
     });
 
+    it("updatePackageJsonExisting関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function updatePackageJsonExisting(selectedConfigs)");
+      expect(content).toContain("package.jsonにスクリプトを追加しました");
+      expect(content).toContain("既存プロジェクト用");
+    });
+
     it("新規プロジェクトで依存関係のインストールが実行される", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
@@ -705,6 +716,16 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain("dep}@${version");
       expect(content).toContain("のバージョンが見つかりません");
       expect(content).toContain("最新版をインストールします");
+    });
+
+    it("既存プロジェクトで新しい設定ファイル追加時の処理が実装されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("newlyAddedConfigs.length > 0");
+      expect(content).toContain("dependencies.length > 1");
+      expect(content).toContain("await installDependencies(process.cwd(), dependencies)");
+      expect(content).toContain("updatePackageJsonExisting(newlyAddedConfigs)");
     });
   });
 
