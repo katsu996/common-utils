@@ -224,12 +224,16 @@ describe("config.js（インタラクティブCLI）", () => {
   // 実際の関数動作をテストする機能テスト
   describe("機能テスト", () => {
     it("TypeScript contentModifier が正しく動作する", () => {
-      const mockTsConfigContent = JSON.stringify({
-        compilerOptions: {
-          target: "ES2020",
-          module: "ESNext"
-        }
-      }, null, 2);
+      const mockTsConfigContent = JSON.stringify(
+        {
+          compilerOptions: {
+            target: "ES2020",
+            module: "ESNext",
+          },
+        },
+        null,
+        2,
+      );
 
       // config.jsから関数を実行するためのヘルパー
       const executeContentModifier = (content) => {
@@ -239,7 +243,7 @@ describe("config.js（インタラクティブCLI）", () => {
           extends: "@katsu996/common-utils/tsconfig",
           compilerOptions: {
             outDir: "./dist",
-            rootDir: "./src", 
+            rootDir: "./src",
             noEmit: false,
           },
           include: ["src/**/*"],
@@ -260,12 +264,16 @@ describe("config.js（インタラクティブCLI）", () => {
     });
 
     it("Biome contentModifier が正しく動作する", () => {
-      const mockBiomeContent = JSON.stringify({
-        formatter: {
-          enabled: true,
-          indentStyle: "space"
-        }
-      }, null, 2);
+      const mockBiomeContent = JSON.stringify(
+        {
+          formatter: {
+            enabled: true,
+            indentStyle: "space",
+          },
+        },
+        null,
+        2,
+      );
 
       // Biome用のcontentModifierロジックを再現
       const executeContentModifier = (content) => {
@@ -306,9 +314,15 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(validateProjectName("")).toBe("プロジェクト名は必須です");
       expect(validateProjectName("   ")).toBe("プロジェクト名は必須です");
       expect(validateProjectName(null)).toBe("プロジェクト名は必須です");
-      expect(validateProjectName("invalid project")).toBe("プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です");
-      expect(validateProjectName("invalid@project")).toBe("プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です");
-      expect(validateProjectName("invalid.project")).toBe("プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です");
+      expect(validateProjectName("invalid project")).toBe(
+        "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です",
+      );
+      expect(validateProjectName("invalid@project")).toBe(
+        "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です",
+      );
+      expect(validateProjectName("invalid.project")).toBe(
+        "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です",
+      );
     });
 
     it("CONFIG_FILES配列の構造が正しい", () => {
@@ -317,7 +331,7 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // CONFIG_FILESの各要素に必要なプロパティがあることを確認
       const requiredIds = ["typescript", "biome", "mise", "vite", "vitest"];
-      
+
       for (const id of requiredIds) {
         expect(content).toContain(`id: "${id}"`);
       }
@@ -343,7 +357,7 @@ describe("config.js（インタラクティブCLI）", () => {
           extends: "@katsu996/common-utils/tsconfig",
           compilerOptions: {
             outDir: "./dist",
-            rootDir: "./src", 
+            rootDir: "./src",
             noEmit: false,
           },
           include: ["src/**/*"],
@@ -373,11 +387,13 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(emptyParsed.extends).toEqual(["@katsu996/common-utils/biome"]);
 
       // 複数プロパティ
-      const complexResult = executeContentModifier(JSON.stringify({
-        formatter: { enabled: false },
-        linter: { enabled: true },
-        files: { includes: ["**/*.ts"] }
-      }));
+      const complexResult = executeContentModifier(
+        JSON.stringify({
+          formatter: { enabled: false },
+          linter: { enabled: true },
+          files: { includes: ["**/*.ts"] },
+        }),
+      );
       const complexParsed = JSON.parse(complexResult);
       expect(complexParsed.extends).toEqual(["@katsu996/common-utils/biome"]);
       expect(complexParsed.formatter.enabled).toBe(false);
