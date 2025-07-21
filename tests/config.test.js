@@ -108,7 +108,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      expect(content).toContain("function applyConfigFile(file)");
+      expect(content).toContain("function applyConfigFile(file");
       expect(content).toContain("fs.readFileSync");
       expect(content).toContain("fs.writeFileSync");
       expect(content).toContain("contentModifier");
@@ -119,7 +119,6 @@ describe("config.js（インタラクティブCLI）", () => {
       const content = fs.readFileSync(configPath, "utf-8");
 
       expect(content).toContain("function validateProjectName(value)");
-      expect(content).toContain("プロジェクト名は必須です");
       expect(content).toContain("/^[a-zA-Z0-9-_]+$/");
       expect(content).toContain("英数字とハイフン、アンダースコア");
     });
@@ -294,10 +293,11 @@ describe("config.js（インタラクティブCLI）", () => {
     });
 
     it("プロジェクト名バリデーションが正しく動作する", () => {
-      // validateProjectName関数のロジックを再現
+      // 修正後のvalidateProjectName関数のロジックを再現（空文字の場合はundefined）
       const validateProjectName = (value) => {
+        // 空文字や未入力の場合は有効とする（デフォルト値を使用するため）
         if (!value || value.trim().length === 0) {
-          return "プロジェクト名は必須です";
+          return undefined;
         }
         if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
           return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
@@ -310,10 +310,12 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(validateProjectName("valid_project")).toBeUndefined();
       expect(validateProjectName("validProject123")).toBeUndefined();
 
+      // 修正後：空文字の場合はundefinedを返す（有効）
+      expect(validateProjectName("")).toBeUndefined();
+      expect(validateProjectName("   ")).toBeUndefined();
+      expect(validateProjectName(null)).toBeUndefined();
+
       // エラーケース
-      expect(validateProjectName("")).toBe("プロジェクト名は必須です");
-      expect(validateProjectName("   ")).toBe("プロジェクト名は必須です");
-      expect(validateProjectName(null)).toBe("プロジェクト名は必須です");
       expect(validateProjectName("invalid project")).toBe(
         "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です",
       );
@@ -402,9 +404,11 @@ describe("config.js（インタラクティブCLI）", () => {
     });
 
     it("プロジェクト名バリデーションの境界値テスト", () => {
+      // 修正後のロジックを再現
       const validateProjectName = (value) => {
+        // 空文字や未入力の場合は有効とする（デフォルト値を使用するため）
         if (!value || value.trim().length === 0) {
-          return "プロジェクト名は必須です";
+          return undefined;
         }
         if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
           return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
@@ -427,9 +431,9 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(validateProjectName("project#")).toBe("プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です");
       expect(validateProjectName("project/")).toBe("プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です");
 
-      // undefined vs null
-      expect(validateProjectName(undefined)).toBe("プロジェクト名は必須です");
-      expect(validateProjectName(null)).toBe("プロジェクト名は必須です");
+      // 修正後：undefined vs null はどちらも有効
+      expect(validateProjectName(undefined)).toBeUndefined();
+      expect(validateProjectName(null)).toBeUndefined();
     });
 
     it("設定ファイルのsourceパスが正しく生成される", () => {

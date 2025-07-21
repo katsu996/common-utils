@@ -46,19 +46,19 @@ const CONFIG_FILES = [
   {
     id: "mise",
     label: "Mise設定 (mise.toml)",
-    source: path.join(packageRoot, "mise.toml"),
+    source: path.resolve(packageRoot, "mise.toml"),
     destination: "mise.toml",
   },
   {
     id: "vite",
     label: "Vite設定 (vite.config.ts)",
-    source: path.join(packageRoot, "vite.config.template.ts"),
+    source: path.resolve(packageRoot, "vite.config.template.ts"),
     destination: "vite.config.ts",
   },
   {
     id: "vitest",
     label: "Vitest設定 (vitest.config.ts)",
-    source: path.join(packageRoot, "vitest.config.template.ts"),
+    source: path.resolve(packageRoot, "vitest.config.template.ts"),
     destination: "vitest.config.ts",
   },
 ];
@@ -87,10 +87,10 @@ function checkConfigFileStatus() {
   }));
 }
 
-// 設定ファイルを作成/更新
-function applyConfigFile(file) {
+// 設定ファイルを作成/更新（プロジェクトフォルダ内）
+function applyConfigFile(file, projectDir = process.cwd()) {
   const { source, destination, contentModifier } = file;
-  const fullDestination = path.join(process.cwd(), destination);
+  const fullDestination = path.join(projectDir, destination);
 
   try {
     let content = fs.readFileSync(source, "utf8");
@@ -106,8 +106,9 @@ function applyConfigFile(file) {
 
 // プロジェクト名のバリデーション
 function validateProjectName(value) {
+  // 空文字や未入力の場合は有効とする（デフォルト値を使用するため）
   if (!value || value.trim().length === 0) {
-    return "プロジェクト名は必須です";
+    return undefined;
   }
   if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
     return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
@@ -120,11 +121,15 @@ async function initializeNewProject() {
   log.info("🚀 新規プロジェクトの初期設定");
 
   // プロジェクト名の入力
-  const projectName = await text({
+  const projectNameInput = await text({
     message: "プロジェクト名を入力してください",
     placeholder: "my-project",
+    defaultValue: "my-project",
     validate: validateProjectName,
   });
+
+  // 空文字の場合はデフォルト値を使用
+  const projectName = projectNameInput?.trim() ? projectNameInput.trim() : "my-project";
 
   if (isCancel(projectName)) {
     cancel("設定をキャンセルしました");
@@ -134,6 +139,7 @@ async function initializeNewProject() {
   // 設定ファイル選択（デフォルトで全選択）
   const selectedConfigs = await multiselect({
     message: "適用する設定ファイルを選択してください（複数選択可）",
+    instructions: "スペースキーで選択、Enterキーで確定",
     options: CONFIG_FILES.map((file) => ({
       value: file.id,
       label: file.label,
@@ -147,18 +153,30 @@ async function initializeNewProject() {
     return;
   }
 
+  // プロジェクトフォルダを作成
+  const projectDir = path.join(process.cwd(), projectName);
+  try {
+    fs.mkdirSync(projectDir, { recursive: true });
+    log.info(`📁 プロジェクトフォルダ作成: ${projectDir}`);
+  } catch (error) {
+    console.error(`${pc.red("❌ フォルダ作成エラー:")} ${error.message}`);
+    return;
+  }
+
   // 設定ファイルの適用
   const results = [];
   for (const configId of selectedConfigs) {
     const configFile = CONFIG_FILES.find((f) => f.id === configId);
     if (configFile) {
-      const result = applyConfigFile(configFile);
+      const result = applyConfigFile(configFile, projectDir);
       results.push(result);
     }
   }
 
   // 結果の表示
   log.success("✨ 設定ファイルの適用完了");
+  console.log();
+  console.log(`📁 プロジェクトフォルダ: ${pc.cyan(projectDir)}`);
   console.log();
 
   const successFiles = results.filter((r) => r.success);
@@ -180,6 +198,7 @@ async function initializeNewProject() {
 
   console.log();
   log.success("🎉 設定完了！以下のコマンドで開発を開始できます：");
+  console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
   console.log(`  ${pc.cyan("pnpm install")}`);
   console.log(`  ${pc.cyan("pnpm dev")}`);
 }
