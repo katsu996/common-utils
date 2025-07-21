@@ -39,11 +39,12 @@
 2. 設定ファイルの選択
 3. `pnpm create vite` でViteプロジェクトを作成
 4. 選択した設定ファイルをプロジェクトに追加
-5. **選択した設定ファイルに応じて必要なパッケージを動的にインストール**
-   - `@katsu996/common-utils` - 共通設定（常にインストール）
-   - `typescript`, `@types/node` - TypeScript設定選択時
-   - `@biomejs/biome` - Biome設定選択時
-   - `vitest`, `@vitest/coverage-v8` - Vitest設定選択時
+5. **選択した設定ファイルに応じて必要なパッケージを動的にインストール（バージョン固定）**
+   - `@katsu996/common-utils` - 共通設定（常に最新版）
+   - `typescript@5.8.3`, `@types/node@22.16.3` - TypeScript設定選択時
+   - `@biomejs/biome@2.1.2` - Biome設定選択時
+   - `vitest@3.2.4`, `@vitest/coverage-v8@3.2.4` - Vitest設定選択時
+   - **本プロジェクトのpackage.jsonと同じバージョンで固定インストール**
 6. **選択した設定ファイルに応じて動的にnpmスクリプトを追加とESモジュール設定（`"type": "module"`）**
 7. 利用可能コマンド一覧の表示
 8. 完了メッセージと開始コマンドの表示
@@ -72,6 +73,7 @@
 - **選択した設定ファイルに応じた動的な環境構築**
 - スタンドアローンなVite/Vitest設定ファイルを生成（外部依存なし）
 - **設定ファイル選択に基づく最適化されたdevDependenciesインストール**
+- **バージョン固定インストール（本プロジェクトのpackage.jsonと同一バージョン）**
 - **設定ファイル選択に基づく動的なnpmスクリプト生成**
 - 本パッケージはCommonJS形式で最大互換性を確保
 - クロスプラットフォーム対応（Windows、Linux、macOS）

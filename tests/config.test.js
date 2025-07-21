@@ -636,6 +636,8 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain("function collectDependencies(selectedConfigs)");
       expect(content).toContain("@katsu996/common-utils");
       expect(content).toContain("configFile.dependencies");
+      expect(content).toContain("getLibraryVersions()");
+      expect(content).toContain("バージョン固定");
     });
 
     it("collectScripts関数が定義されている", () => {
@@ -668,6 +670,26 @@ describe("config.js（インタラクティブCLI）", () => {
       // miseとviteは空の配列/オブジェクト
       expect(content).toContain("dependencies: []");
       expect(content).toContain("scripts: {}");
+    });
+
+    it("getLibraryVersions関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function getLibraryVersions()");
+      expect(content).toContain("packageJson.dependencies");
+      expect(content).toContain("packageJson.devDependencies");
+      expect(content).toContain("ライブラリバージョンの取得に失敗しました");
+    });
+
+    it("collectDependencies関数でバージョン指定が実装されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("const versions = getLibraryVersions()");
+      expect(content).toContain("${dep}@${version}");
+      expect(content).toContain("のバージョンが見つかりません");
+      expect(content).toContain("最新版をインストールします");
     });
   });
 

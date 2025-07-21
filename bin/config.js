@@ -8,6 +8,22 @@ const pc = require("picocolors");
 
 const packageRoot = path.dirname(__dirname);
 
+// 本プロジェクトのpackage.jsonからライブラリバージョンを取得する関数
+function getLibraryVersions() {
+  try {
+    const packageJsonPath = path.join(packageRoot, "package.json");
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+    
+    return {
+      ...packageJson.dependencies,
+      ...packageJson.devDependencies,
+    };
+  } catch (error) {
+    console.warn(`警告: ライブラリバージョンの取得に失敗しました: ${error.message}`);
+    return {};
+  }
+}
+
 // 設定ファイルの定義
 const CONFIG_FILES = [
   {
@@ -219,15 +235,26 @@ function createViteProject(projectName, _projectDir) {
   });
 }
 
-// 選択された設定ファイルから依存関係を収集する関数
+// 選択された設定ファイルから依存関係を収集する関数（バージョン固定）
 function collectDependencies(selectedConfigs) {
-  const dependencies = new Set(["@katsu996/common-utils"]); // 常に含める基本依存関係
+  const versions = getLibraryVersions();
+  const dependencies = new Set();
+  
+  // 常に含める基本依存関係（本パッケージは常に最新版）
+  dependencies.add("@katsu996/common-utils");
 
   for (const configId of selectedConfigs) {
     const configFile = CONFIG_FILES.find((f) => f.id === configId);
     if (configFile?.dependencies) {
       for (const dep of configFile.dependencies) {
-        dependencies.add(dep);
+        const version = versions[dep];
+        if (version) {
+          dependencies.add(`${dep}@${version}`);
+        } else {
+          // バージョンが見つからない場合は警告を出して、パッケージ名のみ追加
+          console.warn(`警告: ${dep} のバージョンが見つかりません。最新版をインストールします。`);
+          dependencies.add(dep);
+        }
       }
     }
   }
