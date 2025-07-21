@@ -542,7 +542,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      expect(content).toContain("function createViteProject(projectName, projectDir)");
+      expect(content).toContain("function createViteProject(projectName, _projectDir)");
       expect(content).toContain("return new Promise((resolve, reject)");
     });
 
@@ -568,7 +568,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const content = fs.readFileSync(configPath, "utf-8");
 
       expect(content).toContain('const isWindows = process.platform === "win32"');
-      expect(content).toContain("const shell = isWindows ? true : false");
+      expect(content).toContain("const shell = !!isWindows");
       expect(content).toContain("shell: shell");
     });
 
@@ -659,12 +659,12 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // biomeの依存関係とスクリプト
       expect(content).toContain('dependencies: ["@biomejs/biome"]');
-      expect(content).toContain('"lint": "biome lint ."');
-      expect(content).toContain('"format": "biome format --write ."');
+      expect(content).toContain('lint: "biome lint ."');
+      expect(content).toContain('format: "biome format --write ."');
 
       // vitestの依存関係とスクリプト
       expect(content).toContain('dependencies: ["vitest", "@vitest/coverage-v8"]');
-      expect(content).toContain('"test": "vitest"');
+      expect(content).toContain('test: "vitest"');
       expect(content).toContain('"test:coverage": "vitest --coverage"');
 
       // miseとviteは空の配列/オブジェクト
