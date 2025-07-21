@@ -52,9 +52,11 @@
 **設定ファイル別の自動追加スクリプト:**
 
 **TypeScript設定選択時:**
+
 - `pnpm type-check` - TypeScript型チェック
 
 **Biome設定選択時:**
+
 - `pnpm lint` - Biomeによるlint
 - `pnpm lint:fix` - lint問題を自動修正
 - `pnpm check` - Biomeによる総合チェック
@@ -63,6 +65,7 @@
 - `pnpm format:check` - フォーマット確認
 
 **Vitest設定選択時:**
+
 - `pnpm test` - テスト実行
 - `pnpm test:watch` - テスト監視モード
 - `pnpm test:coverage` - テストカバレッジ
