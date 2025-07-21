@@ -6,7 +6,7 @@
 
 ### katsu-config
 
-インタラクティブな設定ファイル管理ツール
+インタラクティブな設定ファイル管理ツール（Viteプロジェクト作成機能付き）
 
 **実行方法:**
 
@@ -17,10 +17,13 @@
 **機能:**
 
 - package.json存在判定による自動モード分岐
-- 新規プロジェクト: プロジェクト名入力 + 設定ファイル選択
+- 新規プロジェクト: Viteプロジェクト自動生成 + プロジェクト名入力 + 設定ファイル選択
 - 既存プロジェクト: 現在状況表示 + 設定ファイル更新選択
 - デフォルトですべての設定ファイルが選択状態
+- **選択した設定ファイルに応じた動的な依存関係インストール**
+- **選択した設定ファイルに応じた動的なnpmスクリプト追加**
 - @clack/prompts使用のモダンUI
+- クロスプラットフォーム対応（Windows、Linux、macOS）
 
 **対応設定ファイル:**
 
@@ -29,6 +32,49 @@
 - Mise設定 (mise.toml)
 - Vite設定 (vite.config.ts)
 - Vitest設定 (vitest.config.ts)
+
+**新規プロジェクトの動作:**
+
+1. プロジェクト名の入力
+2. 設定ファイルの選択
+3. `pnpm create vite` でViteプロジェクトを作成
+4. 選択した設定ファイルをプロジェクトに追加
+5. **選択した設定ファイルに応じて必要なパッケージを動的にインストール**
+   - `@katsu996/common-utils` - 共通設定（常にインストール）
+   - `typescript`, `@types/node` - TypeScript設定選択時
+   - `@biomejs/biome` - Biome設定選択時
+   - `vitest`, `@vitest/coverage-v8` - Vitest設定選択時
+6. **選択した設定ファイルに応じて動的にnpmスクリプトを追加とESモジュール設定（`"type": "module"`）**
+7. 利用可能コマンド一覧の表示
+8. 完了メッセージと開始コマンドの表示
+
+**設定ファイル別の自動追加スクリプト:**
+
+**TypeScript設定選択時:**
+- `pnpm type-check` - TypeScript型チェック
+
+**Biome設定選択時:**
+- `pnpm lint` - Biomeによるlint
+- `pnpm lint:fix` - lint問題を自動修正
+- `pnpm check` - Biomeによる総合チェック
+- `pnpm check:fix` - check問題を自動修正
+- `pnpm format` - コードフォーマット
+- `pnpm format:check` - フォーマット確認
+
+**Vitest設定選択時:**
+- `pnpm test` - テスト実行
+- `pnpm test:watch` - テスト監視モード
+- `pnpm test:coverage` - テストカバレッジ
+
+**技術仕様:**
+
+- 新規プロジェクトはESモジュール（`"type": "module"`）で作成
+- **選択した設定ファイルに応じた動的な環境構築**
+- スタンドアローンなVite/Vitest設定ファイルを生成（外部依存なし）
+- **設定ファイル選択に基づく最適化されたdevDependenciesインストール**
+- **設定ファイル選択に基づく動的なnpmスクリプト生成**
+- 本パッケージはCommonJS形式で最大互換性を確保
+- クロスプラットフォーム対応（Windows、Linux、macOS）
 
 ## AI運用原則
 

@@ -122,6 +122,18 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain("/^[a-zA-Z0-9-_]+$/");
       expect(content).toContain("英数字とハイフン、アンダースコア");
     });
+
+    it("createViteProject関数がViteプロジェクト作成を行う", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function createViteProject(projectName");
+      expect(content).toContain("pnpm");
+      expect(content).toContain("create");
+      expect(content).toContain("vite");
+      expect(content).toContain("🚀 Viteプロジェクトを作成中");
+      expect(content).toContain("✅ Viteプロジェクト");
+    });
   });
 
   describe("UI設計", () => {
@@ -150,9 +162,16 @@ describe("config.js（インタラクティブCLI）", () => {
 
       expect(content).toContain("✨ 設定ファイルの適用完了");
       expect(content).toContain("作成されたファイル");
-      expect(content).toContain("🎉 設定完了！");
-      expect(content).toContain("pnpm install");
+      expect(content).toContain("🎉 Viteプロジェクトと設定ファイルの準備完了！");
       expect(content).toContain("pnpm dev");
+      expect(content).toContain("📁 Viteプロジェクト:");
+      expect(content).toContain("利用可能なコマンド:");
+      expect(content).toContain("scriptDescriptions");
+      expect(content).toContain("TypeScript型チェック");
+      expect(content).toContain("Biomeによるlint");
+      expect(content).toContain("テスト実行");
+      expect(content).toContain("テストカバレッジ");
+      expect(content).toContain("packageUpdateResult.scripts");
     });
   });
 
@@ -207,6 +226,23 @@ describe("config.js（インタラクティブCLI）", () => {
       const content = fs.readFileSync(configPath, "utf-8");
 
       expect(content).toContain("process.cwd()");
+    });
+
+    it("child_processモジュールを使用している", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("node:child_process");
+      expect(content).toContain("spawn");
+    });
+
+    it("Windowsとその他のプラットフォームでのshell設定が実装されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("process.platform");
+      expect(content).toContain("win32");
+      expect(content).toContain("shell:");
     });
   });
 
@@ -348,7 +384,7 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      expect(content).toContain('const packageRoot = path.resolve(__dirname, "..");');
+      expect(content).toContain("const packageRoot = path.dirname(__dirname);");
       expect(content).toContain("path.join(packageRoot,");
     });
 
@@ -448,11 +484,32 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain('"vitest.config.template.ts"');
     });
 
+    it("vite.config.base.tsファイルが存在し、package.jsonで正しく参照されている", () => {
+      const viteConfigPath = path.resolve(__dirname, "..", "vite.config.base.ts");
+      const packageJsonPath = path.resolve(__dirname, "..", "package.json");
+
+      // vite.config.base.tsが存在することを確認
+      expect(fs.existsSync(viteConfigPath)).toBe(true);
+
+      // package.jsonでvite.config.base.tsが参照されていることを確認
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+      expect(packageJson.files).toContain("vite.config.base.ts");
+      expect(packageJson.exports["./vite"]).toBe("./vite.config.base.ts");
+    });
+
+    it("common-utilsパッケージがCommonJS形式である", () => {
+      const packageJsonPath = path.resolve(__dirname, "..", "package.json");
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+
+      // "type": "module"が設定されていないことを確認（CommonJS形式）
+      expect(packageJson.type).toBeUndefined();
+    });
+
     it("contentModifierが存在しない設定ファイルの処理", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      // contentModifierを持たない設定ファイル（mise, vite, vitest）の確認
+      // contentModifierを持つ設定ファイル（typescript, biome, vite, vitest）の確認
       const miseIndex = content.indexOf('id: "mise"');
       const viteIndex = content.indexOf('id: "vite"');
       const vitestIndex = content.indexOf('id: "vitest"');
@@ -461,18 +518,166 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(viteIndex).toBeGreaterThan(-1);
       expect(vitestIndex).toBeGreaterThan(-1);
 
-      // これらの設定でcontentModifierが定義されていないことを確認
+      // miseだけcontentModifierが定義されていないことを確認
       const miseSection = content.substring(miseIndex, content.indexOf("}", miseIndex));
       expect(miseSection).not.toContain("contentModifier");
+
+      // vite, vitestはcontentModifierが定義されていることを確認
+      expect(content).toContain("contentModifier: (content) => {");
+    });
+
+    it("createViteProject関数のエラーハンドリングが実装されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain('child.on("close"');
+      expect(content).toContain('child.on("error"');
+      expect(content).toContain("Viteプロジェクトの作成に失敗しました");
+      expect(content).toContain("Viteプロジェクトの作成でエラーが発生しました");
+    });
+  });
+
+  describe("Viteプロジェクト作成機能", () => {
+    it("createViteProject関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function createViteProject(projectName, projectDir)");
+      expect(content).toContain("return new Promise((resolve, reject)");
+    });
+
+    it("新規プロジェクトモードでViteプロジェクト作成が統合されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("await createViteProject(projectName, projectDir);");
+      expect(content).toContain("❌ Viteプロジェクト作成エラー:");
+    });
+
+    it("Viteプロジェクト作成のメッセージが適切に表示される", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("🚀 Viteプロジェクトを作成中...");
+      expect(content).toContain("✅ Viteプロジェクト「");
+      expect(content).toContain("を作成しました");
+    });
+
+    it("クロスプラットフォーム対応のspawnオプションが設定されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain('const isWindows = process.platform === "win32"');
+      expect(content).toContain("const shell = isWindows ? true : false");
+      expect(content).toContain("shell: shell");
+    });
+
+    it("pnpm create viteコマンドが正しく構成されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain('const command = "pnpm"');
+      expect(content).toContain('const args = ["create", "vite", projectName]');
+    });
+  });
+
+  describe("依存関係管理機能", () => {
+    it("installDependencies関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function installDependencies(projectDir, dependencies)");
+      expect(content).toContain("📦 依存関係をインストール中...");
+      expect(content).toContain("pnpm add -D");
+    });
+
+    it("updatePackageJson関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function updatePackageJson(projectDir, selectedConfigs)");
+      expect(content).toContain("package.jsonにスクリプトとESモジュール設定を追加しました");
+      expect(content).toContain("collectScripts");
+      expect(content).toContain("selectedScripts");
+      expect(content).toContain('packageJson.type = "module"');
+    });
+
+    it("新規プロジェクトで依存関係のインストールが実行される", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("await installDependencies(projectDir");
+      expect(content).toContain("collectDependencies(selectedConfigs)");
+      expect(content).toContain('dependencies.join(" ")');
+      expect(content).toContain("依存関係インストールエラー");
+    });
+
+    it("package.jsonの更新が実行される", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("updatePackageJson(projectDir, selectedConfigs");
+      expect(content).toContain("collectScripts(selectedConfigs)");
+      expect(content).toContain("package.json更新エラー");
+    });
+
+    it("依存関係インストール失敗時の手動インストール案内が含まれている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("手動でインストールしてください");
+      expect(content).toContain('dependencies.join(" ")');
+    });
+
+    it("collectDependencies関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function collectDependencies(selectedConfigs)");
+      expect(content).toContain("@katsu996/common-utils");
+      expect(content).toContain("configFile.dependencies");
+    });
+
+    it("collectScripts関数が定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      expect(content).toContain("function collectScripts(selectedConfigs)");
+      expect(content).toContain("configFile.scripts");
+      expect(content).toContain("Object.assign(scripts");
+    });
+
+    it("CONFIG_FILESの各設定ファイルにdependenciesとscriptsが定義されている", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      // typescriptの依存関係とスクリプト
+      expect(content).toContain('dependencies: ["typescript", "@types/node"]');
+      expect(content).toContain('"type-check": "tsc --noEmit"');
+
+      // biomeの依存関係とスクリプト
+      expect(content).toContain('dependencies: ["@biomejs/biome"]');
+      expect(content).toContain('"lint": "biome lint ."');
+      expect(content).toContain('"format": "biome format --write ."');
+
+      // vitestの依存関係とスクリプト
+      expect(content).toContain('dependencies: ["vitest", "@vitest/coverage-v8"]');
+      expect(content).toContain('"test": "vitest"');
+      expect(content).toContain('"test:coverage": "vitest --coverage"');
+
+      // miseとviteは空の配列/オブジェクト
+      expect(content).toContain("dependencies: []");
+      expect(content).toContain("scripts: {}");
     });
   });
 
   // 注意: 実際のインタラクティブテストは手動実行が必要
   describe("統合テスト（手動確認推奨）", () => {
-    it.skip("新規プロジェクトでの設定ファイル作成（手動テスト用）", () => {
+    it.skip("新規プロジェクトでのViteプロジェクト作成と設定ファイル作成（手動テスト用）", () => {
       // このテストは手動で確認する必要がある
       // pnpm katsu-config を新規ディレクトリで実行し、
-      // 期待されるファイルが作成されることを確認
+      // 1. Viteプロジェクトが作成されることを確認
+      // 2. 期待される設定ファイルが作成されることを確認
     });
 
     it.skip("既存プロジェクトでの設定ファイル更新（手動テスト用）", () => {

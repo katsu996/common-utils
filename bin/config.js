@@ -2,10 +2,11 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
+const { spawn } = require("node:child_process");
 const { intro, outro, multiselect, text, isCancel, cancel, log } = require("@clack/prompts");
 const pc = require("picocolors");
 
-const packageRoot = path.resolve(__dirname, "..");
+const packageRoot = path.dirname(__dirname);
 
 // 設定ファイルの定義
 const CONFIG_FILES = [
@@ -14,6 +15,10 @@ const CONFIG_FILES = [
     label: "TypeScript設定 (tsconfig.json)",
     source: path.join(packageRoot, "tsconfig.base.json"),
     destination: "tsconfig.json",
+    dependencies: ["typescript", "@types/node"],
+    scripts: {
+      "type-check": "tsc --noEmit",
+    },
     contentModifier: (content) => {
       JSON.parse(content); // Parse to validate JSON
       const baseConfig = {
@@ -34,6 +39,15 @@ const CONFIG_FILES = [
     label: "Biome設定 (biome.json)",
     source: path.join(packageRoot, "biome.base.json"),
     destination: "biome.json",
+    dependencies: ["@biomejs/biome"],
+    scripts: {
+      lint: "biome lint .",
+      "lint:fix": "biome lint --write .",
+      check: "biome check .",
+      "check:fix": "biome check --write .",
+      format: "biome format --write .",
+      "format:check": "biome format .",
+    },
     contentModifier: (content) => {
       const config = JSON.parse(content);
       const baseConfig = {
@@ -48,18 +62,75 @@ const CONFIG_FILES = [
     label: "Mise設定 (mise.toml)",
     source: path.resolve(packageRoot, "mise.toml"),
     destination: "mise.toml",
+    dependencies: [],
+    scripts: {},
   },
   {
     id: "vite",
     label: "Vite設定 (vite.config.ts)",
     source: path.resolve(packageRoot, "vite.config.template.ts"),
     destination: "vite.config.ts",
+    dependencies: [],
+    scripts: {},
+    contentModifier: (_content) => {
+      // 外部参照を使わずにスタンドアローンなvite.config.tsを生成
+      return `import { resolve } from "node:path";
+import { defineConfig } from "vite";
+
+const isProduction = process.env.NODE_ENV === "production";
+
+export default defineConfig({
+  build: {
+    target: "esnext",
+    minify: isProduction,
+    sourcemap: !isProduction,
+  },
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
+  },
+  // プロジェクト固有の設定をここに追加
+});`;
+    },
   },
   {
     id: "vitest",
     label: "Vitest設定 (vitest.config.ts)",
     source: path.resolve(packageRoot, "vitest.config.template.ts"),
     destination: "vitest.config.ts",
+    dependencies: ["vitest", "@vitest/coverage-v8"],
+    scripts: {
+      test: "vitest",
+      "test:watch": "vitest --watch",
+      "test:coverage": "vitest --coverage",
+    },
+    contentModifier: (_content) => {
+      // 外部参照を使わずにスタンドアローンなvitest.config.tsを生成
+      return `import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: "node",
+    include: ["**/*.{test,spec}.{js,ts}"],
+    exclude: ["node_modules", "dist", "build"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      exclude: [
+        "node_modules/",
+        "dist/",
+        "build/",
+        "**/*.d.ts",
+        "**/*.config.*",
+        "**/coverage/**",
+      ],
+    },
+  },
+  // プロジェクト固有の設定をここに追加
+});`;
+    },
   },
 ];
 
@@ -116,11 +187,165 @@ function validateProjectName(value) {
   return undefined;
 }
 
-// 新規プロジェクト用の初期設定
-async function initializeNewProject() {
-  log.info("🚀 新規プロジェクトの初期設定");
+// Viteプロジェクトを作成する関数
+function createViteProject(projectName, _projectDir) {
+  return new Promise((resolve, reject) => {
+    log.info("🚀 Viteプロジェクトを作成中...");
 
-  // プロジェクト名の入力
+    // クロスプラットフォーム対応: WindowsではCOMSPECを使用、それ以外はshを使用
+    const isWindows = process.platform === "win32";
+    const shell = !!isWindows;
+    const command = "pnpm";
+    const args = ["create", "vite", projectName];
+
+    const child = spawn(command, args, {
+      cwd: process.cwd(),
+      stdio: "inherit",
+      shell: shell,
+    });
+
+    child.on("close", (code) => {
+      if (code === 0) {
+        log.success(`✅ Viteプロジェクト「${projectName}」を作成しました`);
+        resolve();
+      } else {
+        reject(new Error(`Viteプロジェクトの作成に失敗しました (exit code: ${code})`));
+      }
+    });
+
+    child.on("error", (error) => {
+      reject(new Error(`Viteプロジェクトの作成でエラーが発生しました: ${error.message}`));
+    });
+  });
+}
+
+// 選択された設定ファイルから依存関係を収集する関数
+function collectDependencies(selectedConfigs) {
+  const dependencies = new Set(["@katsu996/common-utils"]); // 常に含める基本依存関係
+
+  for (const configId of selectedConfigs) {
+    const configFile = CONFIG_FILES.find((f) => f.id === configId);
+    if (configFile?.dependencies) {
+      for (const dep of configFile.dependencies) {
+        dependencies.add(dep);
+      }
+    }
+  }
+
+  return Array.from(dependencies);
+}
+
+// 選択された設定ファイルからスクリプトを収集する関数
+function collectScripts(selectedConfigs) {
+  const scripts = {};
+
+  for (const configId of selectedConfigs) {
+    const configFile = CONFIG_FILES.find((f) => f.id === configId);
+    if (configFile?.scripts) {
+      Object.assign(scripts, configFile.scripts);
+    }
+  }
+
+  return scripts;
+}
+
+// 依存関係をインストールする関数
+function installDependencies(projectDir, dependencies) {
+  return new Promise((resolve, reject) => {
+    log.info("📦 依存関係をインストール中...");
+
+    // クロスプラットフォーム対応
+    const isWindows = process.platform === "win32";
+    const shell = !!isWindows;
+    const command = "pnpm";
+    const args = ["add", "-D", ...dependencies];
+
+    const child = spawn(command, args, {
+      cwd: projectDir,
+      stdio: "inherit",
+      shell: shell,
+    });
+
+    child.on("close", (code) => {
+      if (code === 0) {
+        log.success("✅ 依存関係のインストールが完了しました");
+        resolve();
+      } else {
+        reject(new Error(`依存関係のインストールに失敗しました (exit code: ${code})`));
+      }
+    });
+
+    child.on("error", (error) => {
+      reject(new Error(`依存関係のインストールでエラーが発生しました: ${error.message}`));
+    });
+  });
+}
+
+// package.jsonを修正する関数
+function updatePackageJson(projectDir, selectedConfigs) {
+  try {
+    const packageJsonPath = path.join(projectDir, "package.json");
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+
+    // 選択された設定ファイルに基づいてスクリプトを収集
+    const selectedScripts = collectScripts(selectedConfigs);
+
+    // scriptsセクションに動的にスクリプトを追加
+    if (!packageJson.scripts) {
+      packageJson.scripts = {};
+    }
+
+    packageJson.scripts = {
+      ...packageJson.scripts,
+      ...selectedScripts,
+    };
+
+    // ESモジュール対応
+    packageJson.type = "module";
+
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+    log.success("✅ package.jsonにスクリプトとESモジュール設定を追加しました");
+
+    return { success: true, scripts: selectedScripts };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
+// 利用可能なコマンドを表示する関数
+function displayAvailableCommands(packageUpdateResult) {
+  if (
+    !(packageUpdateResult.success && packageUpdateResult.scripts) ||
+    Object.keys(packageUpdateResult.scripts).length === 0
+  ) {
+    return;
+  }
+
+  console.log();
+  console.log("利用可能なコマンド:");
+
+  const scriptDescriptions = {
+    "type-check": "TypeScript型チェック",
+    lint: "Biomeによるlint",
+    "lint:fix": "lint問題を自動修正",
+    check: "Biomeによる総合チェック",
+    "check:fix": "check問題を自動修正",
+    format: "コードフォーマット",
+    "format:check": "フォーマット確認",
+    test: "テスト実行",
+    "test:watch": "テスト監視モード",
+    "test:coverage": "テストカバレッジ",
+  };
+
+  for (const scriptName of Object.keys(packageUpdateResult.scripts)) {
+    const description = scriptDescriptions[scriptName] || "カスタムスクリプト";
+    console.log(`  ${pc.cyan(`pnpm ${scriptName}`).padEnd(22)} - ${description}`);
+  }
+  console.log();
+}
+
+// プロジェクト入力を取得する関数
+async function getProjectNameInput() {
   const projectNameInput = await text({
     message: "プロジェクト名を入力してください",
     placeholder: "my-project",
@@ -128,38 +353,58 @@ async function initializeNewProject() {
     validate: validateProjectName,
   });
 
-  // 空文字の場合はデフォルト値を使用
   const projectName = projectNameInput?.trim() ? projectNameInput.trim() : "my-project";
 
   if (isCancel(projectName)) {
     cancel("設定をキャンセルしました");
-    return;
+    return null;
   }
 
-  // 設定ファイル選択（デフォルトで全選択）
+  return projectName;
+}
+
+// 設定ファイル選択を取得する関数
+async function getConfigFileSelection() {
   const selectedConfigs = await multiselect({
     message: "適用する設定ファイルを選択してください（複数選択可）",
-    instructions: "スペースキーで選択、Enterキーで確定",
+    instructions: "Spaceキーで選択/選択解除、Enterキーで確定",
     options: CONFIG_FILES.map((file) => ({
       value: file.id,
       label: file.label,
       hint: file.destination,
     })),
-    initialValues: CONFIG_FILES.map((file) => file.id), // デフォルトで全選択
+    initialValues: CONFIG_FILES.map((file) => file.id),
   });
 
   if (isCancel(selectedConfigs)) {
     cancel("設定をキャンセルしました");
+    return null;
+  }
+
+  return selectedConfigs;
+}
+
+// 新規プロジェクト用の初期設定
+async function initializeNewProject() {
+  log.info("🚀 新規プロジェクトの初期設定");
+
+  const projectName = await getProjectNameInput();
+  if (!projectName) {
     return;
   }
 
-  // プロジェクトフォルダを作成
+  const selectedConfigs = await getConfigFileSelection();
+  if (!selectedConfigs) {
+    return;
+  }
+
   const projectDir = path.join(process.cwd(), projectName);
+
+  // Viteプロジェクトを作成
   try {
-    fs.mkdirSync(projectDir, { recursive: true });
-    log.info(`📁 プロジェクトフォルダ作成: ${projectDir}`);
+    await createViteProject(projectName, projectDir);
   } catch (error) {
-    console.error(`${pc.red("❌ フォルダ作成エラー:")} ${error.message}`);
+    console.error(`${pc.red("❌ Viteプロジェクト作成エラー:")} ${error.message}`);
     return;
   }
 
@@ -173,10 +418,36 @@ async function initializeNewProject() {
     }
   }
 
-  // 結果の表示
+  // 依存関係とpackage.jsonの処理
+  const dependencies = collectDependencies(selectedConfigs);
+
+  try {
+    await installDependencies(projectDir, dependencies);
+  } catch (error) {
+    console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
+    console.log(
+      `${pc.yellow("⚠️ 手動でインストールしてください:")} cd ${projectName} && pnpm add -D ${dependencies.join(" ")}`,
+    );
+  }
+
+  const packageUpdateResult = updatePackageJson(projectDir, selectedConfigs);
+  if (!packageUpdateResult.success) {
+    console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
+  }
+
+  // 結果表示
+  displayProjectResults(projectDir, results, packageUpdateResult);
+
+  log.success("🎉 Viteプロジェクトと設定ファイルの準備完了！以下のコマンドで開発を開始できます：");
+  console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
+  console.log(`  ${pc.cyan("pnpm dev")}`);
+}
+
+// プロジェクト結果を表示する関数
+function displayProjectResults(projectDir, results, packageUpdateResult) {
   log.success("✨ 設定ファイルの適用完了");
   console.log();
-  console.log(`📁 プロジェクトフォルダ: ${pc.cyan(projectDir)}`);
+  console.log(`📁 Viteプロジェクト: ${pc.cyan(projectDir)}`);
   console.log();
 
   const successFiles = results.filter((r) => r.success);
@@ -196,11 +467,7 @@ async function initializeNewProject() {
     }
   }
 
-  console.log();
-  log.success("🎉 設定完了！以下のコマンドで開発を開始できます：");
-  console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
-  console.log(`  ${pc.cyan("pnpm install")}`);
-  console.log(`  ${pc.cyan("pnpm dev")}`);
+  displayAvailableCommands(packageUpdateResult);
 }
 
 // 既存プロジェクト用の設定更新
@@ -222,6 +489,7 @@ async function updateExistingProject() {
   // 設定ファイル選択（デフォルトで全選択）
   const selectedConfigs = await multiselect({
     message: "更新・追加する設定ファイルを選択してください",
+    instructions: "Spaceキーで選択/選択解除、Enterキーで確定",
     options: CONFIG_FILES.map((file) => {
       const action = file.exists ? "更新" : "追加";
       return {
