@@ -393,8 +393,9 @@ async function getProjectNameInput() {
 // 設定ファイル選択を取得する関数
 async function getConfigFileSelection() {
   const selectedConfigs = await multiselect({
-    message: "適用する設定ファイルを選択してください（複数選択可）",
-    instructions: "Spaceキーで選択/選択解除、Enterキーで確定",
+    message:
+      "適用する設定ファイルを選択してください（複数選択可）\n" +
+      pc.yellow("操作方法: Spaceキーで選択/選択解除、Enterキーで確定"),
     options: CONFIG_FILES.map((file) => ({
       value: file.id,
       label: file.label,
@@ -497,60 +498,63 @@ function displayProjectResults(projectDir, results, packageUpdateResult) {
   displayAvailableCommands(packageUpdateResult);
 }
 
-// 既存プロジェクト用の設定更新
-async function updateExistingProject() {
-  const projectName = getProjectName();
+// 現在の設定ファイル状況を表示する関数
+function displayCurrentFileStatus(projectName, fileStatus) {
   log.info("🔄 既存プロジェクトの設定更新");
   console.log(`📦 プロジェクト: ${pc.cyan(projectName)}`);
   console.log();
 
-  // 現在の設定ファイル状況を表示
-  const fileStatus = checkConfigFileStatus();
   console.log("現在の設定ファイル状況:");
   for (const file of fileStatus) {
     const status = file.exists ? pc.green("✓ 存在") : pc.gray("✗ 未存在");
     console.log(`  ${status} ${file.destination}`);
   }
   console.log();
+}
 
-  // 設定ファイル選択（デフォルトで全選択）
-  const selectedConfigs = await multiselect({
-    message: "更新・追加する設定ファイルを選択してください",
-    instructions: "Spaceキーで選択/選択解除、Enterキーで確定",
+// 設定ファイル選択を取得する関数（既存プロジェクト用）
+async function getExistingProjectConfigSelection(fileStatus) {
+  const existingFiles = fileStatus.filter((f) => f.exists).map((f) => f.id);
+
+  return await multiselect({
+    message:
+      "更新・追加する設定ファイルを選択してください\n" +
+      pc.yellow("操作方法: Spaceキーで選択/選択解除、Enterキーで確定"),
     options: CONFIG_FILES.map((file) => {
-      const action = file.exists ? "更新" : "追加";
+      const fileInfo = fileStatus.find((f) => f.id === file.id);
+      const action = fileInfo?.exists ? "更新" : "追加";
       return {
         value: file.id,
         label: `${file.label.replace(/設定/, `設定を${action}`)}`,
         hint: file.destination,
       };
     }),
-    initialValues: CONFIG_FILES.map((file) => file.id), // デフォルトで全選択
+    initialValues: existingFiles,
   });
+}
 
-  if (isCancel(selectedConfigs)) {
-    cancel("設定をキャンセルしました");
-    return;
-  }
-
-  // 設定ファイルの適用
-  const results = [];
-  for (const configId of selectedConfigs) {
-    const configFile = CONFIG_FILES.find((f) => f.id === configId);
-    if (configFile) {
-      const result = applyConfigFile(configFile);
-      results.push(result);
-    }
-  }
-
-  // 結果の表示
+// 設定ファイル適用結果を表示する関数
+function displayConfigFileResults(results) {
   log.success("✨ 設定ファイルの適用完了");
   console.log();
 
   const successFiles = results.filter((r) => r.success);
-  if (successFiles.length > 0) {
+  const updatedFiles = successFiles.filter((r) => r.wasExisting);
+  const createdFiles = successFiles.filter((r) => !r.wasExisting);
+
+  if (updatedFiles.length > 0) {
+    console.log("更新されたファイル:");
+    for (const r of updatedFiles) {
+      console.log(`  ${pc.green("✓")} ${r.file}`);
+    }
+  }
+
+  if (createdFiles.length > 0) {
+    if (updatedFiles.length > 0) {
+      console.log();
+    }
     console.log("作成されたファイル:");
-    for (const r of successFiles) {
+    for (const r of createdFiles) {
       console.log(`  ${pc.green("✓")} ${r.file}`);
     }
   }
@@ -563,6 +567,35 @@ async function updateExistingProject() {
       console.log(`  ${pc.red("✗")} ${r.file}: ${r.error}`);
     }
   }
+}
+
+// 既存プロジェクト用の設定更新
+async function updateExistingProject() {
+  const projectName = getProjectName();
+  const fileStatus = checkConfigFileStatus();
+
+  displayCurrentFileStatus(projectName, fileStatus);
+
+  const selectedConfigs = await getExistingProjectConfigSelection(fileStatus);
+
+  if (isCancel(selectedConfigs)) {
+    cancel("設定をキャンセルしました");
+    return;
+  }
+
+  // 設定ファイルの適用
+  const results = [];
+  for (const configId of selectedConfigs) {
+    const configFile = CONFIG_FILES.find((f) => f.id === configId);
+    if (configFile) {
+      const fileInfo = fileStatus.find((f) => f.id === configId);
+      const result = applyConfigFile(configFile);
+      result.wasExisting = !!fileInfo?.exists;
+      results.push(result);
+    }
+  }
+
+  displayConfigFileResults(results);
 }
 
 // メイン関数

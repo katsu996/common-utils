@@ -145,6 +145,7 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain("プロジェクト名を入力してください");
       expect(content).toContain("適用する設定ファイルを選択してください");
       expect(content).toContain("複数選択可");
+      expect(content).toContain('pc.yellow("操作方法: Spaceキーで選択/選択解除、Enterキーで確定")');
     });
 
     it("既存プロジェクトモードのUI要素が含まれている", () => {
@@ -154,6 +155,12 @@ describe("config.js（インタラクティブCLI）", () => {
       expect(content).toContain("🔄 既存プロジェクトの設定更新");
       expect(content).toContain("現在の設定ファイル状況");
       expect(content).toContain("更新・追加する設定ファイルを選択してください");
+      expect(content).toContain("initialValues: existingFiles");
+      expect(content).toContain("更新されたファイル");
+      expect(content).toContain("wasExisting");
+      expect(content).toContain("displayCurrentFileStatus");
+      expect(content).toContain("getExistingProjectConfigSelection");
+      expect(content).toContain("displayConfigFileResults");
     });
 
     it("結果表示のUI要素が含まれている", () => {
@@ -247,12 +254,20 @@ describe("config.js（インタラクティブCLI）", () => {
   });
 
   describe("デフォルト選択動作", () => {
-    it("multiselectでinitialValuesがすべての設定ファイルを含んでいる", () => {
+    it("新規プロジェクトではmultiselectでinitialValuesがすべての設定ファイルを含んでいる", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      // デフォルトで全選択の実装確認
+      // 新規プロジェクトではデフォルトで全選択
       expect(content).toContain("initialValues: CONFIG_FILES.map((file) => file.id)");
+    });
+
+    it("既存プロジェクトではmultiselectでinitialValuesが既存ファイルのみを含んでいる", () => {
+      const configPath = path.resolve(__dirname, "..", "bin", "config.js");
+      const content = fs.readFileSync(configPath, "utf-8");
+
+      // 既存プロジェクトでは既存ファイルのみデフォルト選択
+      expect(content).toContain("initialValues: existingFiles");
     });
   });
 
