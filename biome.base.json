@@ -22,7 +22,9 @@
       "!**/node_modules",
       "!**/out",
       "!**/playwright-report",
-      "!**/test-results"
+      "!**/test-results",
+      "!vite.config.ts",
+      "!vitest.config.ts"
     ],
     "ignoreUnknown": true
   },

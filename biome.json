@@ -4,10 +4,8 @@
     "includes": [
       "!vite.config.base.ts",
       "!vite.config.template.ts",
-      "!vite.config.ts",
       "!vitest.config.base.ts",
-      "!vitest.config.template.ts",
-      "!vitest.config.ts"
+      "!vitest.config.template.ts"
     ]
   },
   "linter": {

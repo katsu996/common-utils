@@ -20,7 +20,16 @@ function getLibraryVersions() {
     };
   } catch (error) {
     console.warn(`警告: ライブラリバージョンの取得に失敗しました: ${error.message}`);
-    return {};
+    console.warn("代替処理: 基本的なバージョンを使用します。");
+    // 基本的なバージョンの代替値を返す
+    return {
+      "@katsu996/common-utils": "latest",
+      typescript: "5.8.3",
+      "@types/node": "22.16.3",
+      "@biomejs/biome": "2.1.2",
+      vitest: "3.2.4",
+      "@vitest/coverage-v8": "3.2.4",
+    };
   }
 }
 
@@ -29,33 +38,23 @@ const CONFIG_FILES = [
   {
     id: "typescript",
     label: "TypeScript設定 (tsconfig.json)",
-    source: path.join(packageRoot, "tsconfig.base.json"),
+    source: path.resolve(packageRoot, "tsconfig.template.json"),
     destination: "tsconfig.json",
-    dependencies: ["typescript", "@types/node"],
+    dependencies: ["@katsu996/common-utils", "typescript", "@types/node"],
     scripts: {
       "type-check": "tsc --noEmit",
     },
     contentModifier: (content) => {
-      JSON.parse(content); // Parse to validate JSON
-      const baseConfig = {
-        extends: "@katsu996/common-utils/tsconfig",
-        compilerOptions: {
-          outDir: "./dist",
-          rootDir: "./src",
-          noEmit: false,
-        },
-        include: ["src/**/*"],
-        exclude: ["node_modules", "dist"],
-      };
-      return JSON.stringify(baseConfig, null, 2);
+      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      return content;
     },
   },
   {
     id: "biome",
     label: "Biome設定 (biome.json)",
-    source: path.join(packageRoot, "biome.base.json"),
+    source: path.resolve(packageRoot, "biome.template.json"),
     destination: "biome.json",
-    dependencies: ["@biomejs/biome"],
+    dependencies: ["@katsu996/common-utils", "@biomejs/biome"],
     scripts: {
       lint: "biome lint .",
       "lint:fix": "biome lint --write .",
@@ -65,12 +64,8 @@ const CONFIG_FILES = [
       "format:check": "biome format .",
     },
     contentModifier: (content) => {
-      const config = JSON.parse(content);
-      const baseConfig = {
-        extends: ["@katsu996/common-utils/biome"],
-        ...config,
-      };
-      return JSON.stringify(baseConfig, null, 2);
+      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      return content;
     },
   },
   {
@@ -86,28 +81,11 @@ const CONFIG_FILES = [
     label: "Vite設定 (vite.config.ts)",
     source: path.resolve(packageRoot, "vite.config.template.ts"),
     destination: "vite.config.ts",
-    dependencies: [],
+    dependencies: ["@katsu996/common-utils"],
     scripts: {},
-    contentModifier: (_content) => {
-      // 外部参照を使わずにスタンドアローンなvite.config.tsを生成
-      return `import { resolve } from "node:path";
-import { defineConfig } from "vite";
-
-const isProduction = process.env.NODE_ENV === "production";
-
-export default defineConfig({
-  build: {
-    target: "esnext",
-    minify: isProduction,
-    sourcemap: !isProduction,
-  },
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "src"),
-    },
-  },
-  // プロジェクト固有の設定をここに追加
-});`;
+    contentModifier: (content) => {
+      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      return content;
     },
   },
   {
@@ -115,37 +93,15 @@ export default defineConfig({
     label: "Vitest設定 (vitest.config.ts)",
     source: path.resolve(packageRoot, "vitest.config.template.ts"),
     destination: "vitest.config.ts",
-    dependencies: ["vitest", "@vitest/coverage-v8"],
+    dependencies: ["@katsu996/common-utils", "vitest", "@vitest/coverage-v8"],
     scripts: {
       test: "vitest",
       "test:watch": "vitest --watch",
       "test:coverage": "vitest --coverage",
     },
-    contentModifier: (_content) => {
-      // 外部参照を使わずにスタンドアローンなvitest.config.tsを生成
-      return `import { defineConfig } from "vitest/config";
-
-export default defineConfig({
-  test: {
-    globals: true,
-    environment: "node",
-    include: ["**/*.{test,spec}.{js,ts}"],
-    exclude: ["node_modules", "dist", "build"],
-    coverage: {
-      provider: "v8",
-      reporter: ["text", "json", "html"],
-      exclude: [
-        "node_modules/",
-        "dist/",
-        "build/",
-        "**/*.d.ts",
-        "**/*.config.*",
-        "**/coverage/**",
-      ],
-    },
-  },
-  // プロジェクト固有の設定をここに追加
-});`;
+    contentModifier: (content) => {
+      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      return content;
     },
   },
 ];
