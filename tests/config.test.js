@@ -86,18 +86,18 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // テンプレートファイル方式では、contentModifierはテンプレートファイルの内容をそのまま使用
       expect(content).toContain("テンプレートファイルの内容をそのまま使用");
-      
+
       // テンプレートファイルに設定が含まれていることを確認
       const tsconfigTemplate = path.resolve(__dirname, "..", "tsconfig.template.json");
       const biomeTemplate = path.resolve(__dirname, "..", "biome.template.json");
-      
+
       if (fs.existsSync(tsconfigTemplate)) {
         const tsconfigContent = fs.readFileSync(tsconfigTemplate, "utf-8");
         expect(tsconfigContent).toContain("@katsu996/common-utils/tsconfig");
         expect(tsconfigContent).toContain("./dist");
         expect(tsconfigContent).toContain("./src");
       }
-      
+
       if (fs.existsSync(biomeTemplate)) {
         const biomeContent = fs.readFileSync(biomeTemplate, "utf-8");
         expect(biomeContent).toContain("@katsu996/common-utils/biome");
@@ -706,7 +706,7 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // viteの依存関係（@katsu996/common-utils追加）
       expect(content).toContain('dependencies: ["@katsu996/common-utils"]');
-      
+
       // miseは空の配列/オブジェクト
       expect(content).toContain("dependencies: []");
       expect(content).toContain("scripts: {}");
