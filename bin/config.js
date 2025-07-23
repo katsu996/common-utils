@@ -15,20 +15,17 @@ function getLibraryVersions() {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
 
     return {
+      "@katsu996/common-utils": packageJson.version,
       ...packageJson.dependencies,
       ...packageJson.devDependencies,
     };
   } catch (error) {
     console.warn(`警告: ライブラリバージョンの取得に失敗しました: ${error.message}`);
     console.warn("代替処理: 基本的なバージョンを使用します。");
-    // 基本的なバージョンの代替値を返す
+    // package.jsonの読み込みが失敗した場合の代替値
+    // 通常この状況は発生しないが、安全のため最小限のデフォルト値を提供
     return {
       "@katsu996/common-utils": "latest",
-      typescript: "5.8.3",
-      "@types/node": "22.16.3",
-      "@biomejs/biome": "2.1.2",
-      vitest: "3.2.4",
-      "@vitest/coverage-v8": "3.2.4",
     };
   }
 }
@@ -153,6 +150,9 @@ function validateProjectName(value) {
   if (!value || value.trim().length === 0) {
     return undefined;
   }
+  if (value.length > 255) {
+    return "プロジェクト名は255文字以内で入力してください";
+  }
   if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
     return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
   }
@@ -197,7 +197,7 @@ function collectDependencies(selectedConfigs) {
   const dependencies = new Set();
 
   // 常に含める基本依存関係（本パッケージは常に最新版）
-  dependencies.add("@katsu996/common-utils");
+  dependencies.add("@katsu996/common-utils@latest");
 
   for (const configId of selectedConfigs) {
     const configFile = CONFIG_FILES.find((f) => f.id === configId);
