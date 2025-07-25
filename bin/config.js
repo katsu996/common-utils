@@ -35,23 +35,23 @@ const CONFIG_FILES = [
   {
     id: "typescript",
     label: "TypeScript設定 (tsconfig.json)",
-    source: path.resolve(packageRoot, "tsconfig.template.json"),
+    source: path.resolve(packageRoot, "tsconfig.base.json"),
     destination: "tsconfig.json",
-    dependencies: ["@katsu996/common-utils", "typescript", "@types/node"],
+    dependencies: ["typescript", "@types/node"],
     scripts: {
       "type-check": "tsc --noEmit",
     },
     contentModifier: (content) => {
-      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      // base.jsonファイルの内容をそのまま使用（ライブラリ非依存）
       return content;
     },
   },
   {
     id: "biome",
     label: "Biome設定 (biome.json)",
-    source: path.resolve(packageRoot, "biome.template.json"),
+    source: path.resolve(packageRoot, "biome.base.json"),
     destination: "biome.json",
-    dependencies: ["@katsu996/common-utils", "@biomejs/biome"],
+    dependencies: ["@biomejs/biome"],
     scripts: {
       lint: "biome lint .",
       "lint:fix": "biome lint --write .",
@@ -61,7 +61,7 @@ const CONFIG_FILES = [
       "format:check": "biome format .",
     },
     contentModifier: (content) => {
-      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      // base.jsonファイルの内容をそのまま使用（ライブラリ非依存）
       return content;
     },
   },
@@ -76,28 +76,28 @@ const CONFIG_FILES = [
   {
     id: "vite",
     label: "Vite設定 (vite.config.ts)",
-    source: path.resolve(packageRoot, "vite.config.template.ts"),
+    source: path.resolve(packageRoot, "vite.config.base.ts"),
     destination: "vite.config.ts",
-    dependencies: ["@katsu996/common-utils"],
+    dependencies: [],
     scripts: {},
     contentModifier: (content) => {
-      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      // base.tsファイルの内容を使用
       return content;
     },
   },
   {
     id: "vitest",
     label: "Vitest設定 (vitest.config.ts)",
-    source: path.resolve(packageRoot, "vitest.config.template.ts"),
+    source: path.resolve(packageRoot, "vitest.config.base.ts"),
     destination: "vitest.config.ts",
-    dependencies: ["@katsu996/common-utils", "vitest", "@vitest/coverage-v8"],
+    dependencies: ["vitest", "@vitest/coverage-v8"],
     scripts: {
       test: "vitest",
       "test:watch": "vitest --watch",
       "test:coverage": "vitest --coverage",
     },
     contentModifier: (content) => {
-      // テンプレートファイルの内容をそのまま使用（baseファイル参照）
+      // base.tsファイルの内容を使用
       return content;
     },
   },

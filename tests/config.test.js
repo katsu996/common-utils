@@ -84,24 +84,8 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      // テンプレートファイル方式では、contentModifierはテンプレートファイルの内容をそのまま使用
-      expect(content).toContain("テンプレートファイルの内容をそのまま使用");
-
-      // テンプレートファイルに設定が含まれていることを確認
-      const tsconfigTemplate = path.resolve(__dirname, "..", "tsconfig.template.json");
-      const biomeTemplate = path.resolve(__dirname, "..", "biome.template.json");
-
-      if (fs.existsSync(tsconfigTemplate)) {
-        const tsconfigContent = fs.readFileSync(tsconfigTemplate, "utf-8");
-        expect(tsconfigContent).toContain("@katsu996/common-utils/tsconfig");
-        expect(tsconfigContent).toContain("./dist");
-        expect(tsconfigContent).toContain("./src");
-      }
-
-      if (fs.existsSync(biomeTemplate)) {
-        const biomeContent = fs.readFileSync(biomeTemplate, "utf-8");
-        expect(biomeContent).toContain("@katsu996/common-utils/biome");
-      }
+      // base.jsonファイル方式では、contentModifierはbaseファイルの内容を使用
+      expect(content).toContain("base.jsonファイルの内容をそのまま使用");
     });
   });
 
@@ -504,12 +488,12 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      // 各設定ファイルの正しいsourceパス（テンプレートファイル方式）が含まれていることを確認
-      expect(content).toContain('"tsconfig.template.json"');
-      expect(content).toContain('"biome.template.json"');
+      // 各設定ファイルの正しいsourceパス（base.jsonファイル方式）が含まれていることを確認
+      expect(content).toContain('"tsconfig.base.json"');
+      expect(content).toContain('"biome.base.json"');
       expect(content).toContain('"mise.toml"');
-      expect(content).toContain('"vite.config.template.ts"');
-      expect(content).toContain('"vitest.config.template.ts"');
+      expect(content).toContain('"vite.config.base.ts"');
+      expect(content).toContain('"vitest.config.base.ts"');
     });
 
     it("vite.config.base.tsファイルが存在し、package.jsonで正しく参照されている", () => {
@@ -690,22 +674,22 @@ describe("config.js（インタラクティブCLI）", () => {
       const configPath = path.resolve(__dirname, "..", "bin", "config.js");
       const content = fs.readFileSync(configPath, "utf-8");
 
-      // typescriptの依存関係とスクリプト（@katsu996/common-utils追加）
-      expect(content).toContain('dependencies: ["@katsu996/common-utils", "typescript", "@types/node"]');
+      // typescriptの依存関係とスクリプト
+      expect(content).toContain('dependencies: ["typescript", "@types/node"]');
       expect(content).toContain('"type-check": "tsc --noEmit"');
 
-      // biomeの依存関係とスクリプト（@katsu996/common-utils追加）
-      expect(content).toContain('dependencies: ["@katsu996/common-utils", "@biomejs/biome"]');
+      // biomeの依存関係とスクリプト
+      expect(content).toContain('dependencies: ["@biomejs/biome"]');
       expect(content).toContain('lint: "biome lint ."');
       expect(content).toContain('format: "biome format --write ."');
 
-      // vitestの依存関係とスクリプト（@katsu996/common-utils追加）
-      expect(content).toContain('dependencies: ["@katsu996/common-utils", "vitest", "@vitest/coverage-v8"]');
+      // vitestの依存関係とスクリプト
+      expect(content).toContain('dependencies: ["vitest", "@vitest/coverage-v8"]');
       expect(content).toContain('test: "vitest"');
       expect(content).toContain('"test:coverage": "vitest --coverage"');
 
-      // viteの依存関係（@katsu996/common-utils追加）
-      expect(content).toContain('dependencies: ["@katsu996/common-utils"]');
+      // viteの依存関係
+      expect(content).toContain("dependencies: []");
 
       // miseは空の配列/オブジェクト
       expect(content).toContain("dependencies: []");

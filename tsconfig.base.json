@@ -40,6 +40,5 @@
     "checkJs": false,
     "allowJs": false,
     "maxNodeModuleJsDepth": 0
-  },
-  "include": ["vite.config.ts"]
+  }
 }

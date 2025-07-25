@@ -38,14 +38,10 @@
     "dist",
     "bin",
     "biome.base.json",
-    "biome.template.json",
     "mise.toml",
     "tsconfig.base.json",
-    "tsconfig.template.json",
     "vite.config.base.ts",
-    "vite.config.template.ts",
-    "vitest.config.base.ts",
-    "vitest.config.template.ts"
+    "vitest.config.base.ts"
   ],
   "exports": {
     ".": {
@@ -58,14 +54,10 @@
     },
     "./package.json": "./package.json",
     "./biome": "./biome.base.json",
-    "./biome-template": "./biome.template.json",
     "./mise": "./mise.toml",
     "./tsconfig": "./tsconfig.base.json",
-    "./tsconfig-template": "./tsconfig.template.json",
     "./vite": "./vite.config.base.ts",
-    "./vite-template": "./vite.config.template.ts",
-    "./vitest": "./vitest.config.base.ts",
-    "./vitest-template": "./vitest.config.template.ts"
+    "./vitest": "./vitest.config.base.ts"
   },
   "bin": {
     "katsu-config": "./bin/config.js"

@@ -1,12 +1,7 @@
 {
   "extends": ["./biome.base.json"],
   "files": {
-    "includes": [
-      "!vite.config.base.ts",
-      "!vite.config.template.ts",
-      "!vitest.config.base.ts",
-      "!vitest.config.template.ts"
-    ]
+    "includes": ["!vite.config.base.ts", "!vitest.config.base.ts"]
   },
   "linter": {
     "rules": {

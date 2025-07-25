@@ -117,10 +117,8 @@ pnpm publish
 ├── tsconfig.base.json     # 共有用TypeScript設定
 ├── tsconfig.json          # プロジェクト用TypeScript設定
 ├── vite.config.base.ts    # 共有用Vite設定
-├── vite.config.template.ts # Viteテンプレート設定
 ├── vite.config.ts         # プロジェクト用Vite設定
 ├── vitest.config.base.ts  # 共有用Vitest設定
-├── vitest.config.template.ts # Vitestテンプレート設定
 └── vitest.config.ts       # プロジェクト用Vitest設定
 ```
 
