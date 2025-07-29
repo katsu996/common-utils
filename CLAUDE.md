@@ -28,7 +28,7 @@
 **対応設定ファイル:**
 
 - TypeScript設定 (tsconfig.json)
-- Biome設定 (biome.json)
+- Biome設定 (biome.jsonc)
 - Mise設定 (mise.toml)
 - Vite設定 (vite.config.ts)
 - Vitest設定 (vitest.config.ts)

@@ -106,8 +106,8 @@ pnpm publish
 ├── tests/                 # テストファイル
 │   ├── config.test.js     # CLI設定テスト
 │   └── math.test.ts       # 数学ユーティリティテスト
-├── biome.base.json        # 共有用Biome設定
-├── biome.json             # プロジェクト用Biome設定
+├── biome.base.jsonc       # 共有用Biome設定
+├── biome.jsonc            # プロジェクト用Biome設定
 ├── CLAUDE.md              # AI開発者向け指示
 ├── DEVELOPMENT.md         # このファイル
 ├── mise.toml              # Mise設定テンプレート
@@ -149,7 +149,7 @@ pnpm dlx @katsu996/common-utils katsu-config
 #### 対応設定ファイル
 
 - **TypeScript設定** (tsconfig.json)
-- **Biome設定** (biome.json)
+- **Biome設定** (biome.jsonc)
 - **Mise設定** (mise.toml)
 - **Vite設定** (vite.config.ts)
 - **Vitest設定** (vitest.config.ts)

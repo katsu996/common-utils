@@ -74,7 +74,7 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // ラベルとファイル名の確認
       expect(content).toContain("TypeScript設定 (tsconfig.json)");
-      expect(content).toContain("Biome設定 (biome.json)");
+      expect(content).toContain("Biome設定 (biome.jsonc)");
       expect(content).toContain("Mise設定 (mise.toml)");
       expect(content).toContain("Vite設定 (vite.config.ts)");
       expect(content).toContain("Vitest設定 (vitest.config.ts)");
@@ -490,7 +490,7 @@ describe("config.js（インタラクティブCLI）", () => {
 
       // 各設定ファイルの正しいsourceパス（base.jsonファイル方式）が含まれていることを確認
       expect(content).toContain('"tsconfig.base.json"');
-      expect(content).toContain('"biome.base.json"');
+      expect(content).toContain('"biome.base.jsonc"');
       expect(content).toContain('"mise.toml"');
       expect(content).toContain('"vite.config.base.ts"');
       expect(content).toContain('"vitest.config.base.ts"');

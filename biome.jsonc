@@ -1,5 +1,5 @@
 {
-  "extends": ["./biome.base.json"],
+  "extends": ["./biome.base.jsonc"],
   "files": {
     "includes": ["!vite.config.base.ts", "!vitest.config.base.ts"]
   },

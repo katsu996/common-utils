@@ -50,7 +50,7 @@ pnpm dlx katsu-config
 
 作成される設定ファイル：
 
-- `biome.json` - 厳格なリント・フォーマット設定
+- `biome.jsonc` - 厳格なリント・フォーマット設定
 - `tsconfig.json` - 厳格なTypeScript設定
 - `mise.toml` - Node.jsとpnpmのバージョン管理設定
 - `vite.config.ts` - Viteビルド設定（ベース継承）
@@ -67,9 +67,9 @@ const diff = sub(10, 4); // 6
 
 ## 設定ファイル
 
-### Biome設定(biome.json)
+### Biome設定(biome.jsonc)
 
-```json
+```jsonc
 {
   "extends": ["@katsu996/common-utils/biome"]
 }

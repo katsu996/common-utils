@@ -37,7 +37,7 @@
   "files": [
     "dist",
     "bin",
-    "biome.base.json",
+    "biome.base.jsonc",
     "mise.toml",
     "tsconfig.base.json",
     "vite.config.base.ts",
@@ -53,7 +53,7 @@
       "require": "./dist/math.js"
     },
     "./package.json": "./package.json",
-    "./biome": "./biome.base.json",
+    "./biome": "./biome.base.jsonc",
     "./mise": "./mise.toml",
     "./tsconfig": "./tsconfig.base.json",
     "./vite": "./vite.config.base.ts",

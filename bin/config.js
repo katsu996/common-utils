@@ -48,9 +48,9 @@ const CONFIG_FILES = [
   },
   {
     id: "biome",
-    label: "Biome設定 (biome.json)",
-    source: path.resolve(packageRoot, "biome.base.json"),
-    destination: "biome.json",
+    label: "Biome設定 (biome.jsonc)",
+    source: path.resolve(packageRoot, "biome.base.jsonc"),
+    destination: "biome.jsonc",
     dependencies: ["@biomejs/biome"],
     scripts: {
       lint: "biome lint .",
