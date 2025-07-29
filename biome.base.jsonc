@@ -37,7 +37,6 @@
   "linter": {
     "rules": {
       "suspicious": {
-        "noConsole": "error",
         "noExplicitAny": "error",
         "noDebugger": "error",
         "noArrayIndexKey": "error",
@@ -78,7 +77,7 @@
         "noUselessUndefinedInitialization": "error",
         "noUselessTernary": "error",
         "noVoid": "error",
-        "useLiteralKeys": "error",
+        "useLiteralKeys": "off",
         "useOptionalChain": "error",
         "useSimplifiedLogicExpression": "error"
       },
@@ -87,7 +86,6 @@
         "noGlobalEval": "error"
       },
       "nursery": {
-        "noSecrets": "error",
         "useExplicitType": "error",
         "useNamingConvention": "error",
         "useNumericSeparators": "error"

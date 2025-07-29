@@ -6,15 +6,11 @@
   "linter": {
     "rules": {
       "suspicious": {
-        "noConsole": "off",
         "noExplicitAny": "warn",
         "noSkippedTests": "off"
       },
       "complexity": {
         "noForEach": "warn"
-      },
-      "nursery": {
-        "noSecrets": "off"
       }
     }
   }
