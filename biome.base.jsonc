@@ -84,11 +84,6 @@
       "security": {
         "noDangerouslySetInnerHtml": "error",
         "noGlobalEval": "error"
-      },
-      "nursery": {
-        "useExplicitType": "error",
-        "useNamingConvention": "error",
-        "useNumericSeparators": "error"
       }
     }
   },
