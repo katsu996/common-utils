@@ -1,6 +1,6 @@
 {
   "name": "@katsu996/common-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A collection of common utility functions and shared configurations for projects within our organization.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,17 +22,17 @@
     "prepublishOnly": "run-s check build"
   },
   "dependencies": {
-    "@clack/prompts": "0.11.0",
-    "picocolors": "1.1.1"
+    "@clack/prompts": "^0.11.0",
+    "picocolors": "^1.1.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.1.2",
-    "@types/node": "22.16.3",
-    "@vitest/coverage-v8": "3.2.4",
-    "npm-run-all": "4.1.5",
-    "typescript": "5.8.3",
-    "vite": "7.0.5",
-    "vitest": "3.2.4"
+    "@biomejs/biome": "^2.3.0",
+    "@types/node": "^22.18.12",
+    "@vitest/coverage-v8": "^3.2.4",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vitest": "^3.2.4"
   },
   "files": [
     "dist",
