@@ -1024,6 +1024,7 @@ async function installDependenciesForNewlyAdded(newlyAddedConfigs) {
 // 新しく追加された設定ファイルのpackage.jsonを更新する関数
 function updatePackageJsonForNewlyAdded(newlyAddedConfigs) {
   if (!globalOptions.dryRun) {
+    // updatePackageJsonExisting(newlyAddedConfigs) の呼び出し
     const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
     if (!packageUpdateResult.success) {
       console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
@@ -1052,11 +1053,16 @@ async function processNewlyAddedConfigs(otherConfigs, fileStatus) {
     return !fileInfo?.exists;
   });
 
+  // 新しく追加された設定ファイルがある場合のみ処理を実行
+  // newlyAddedConfigs.length > 0 のチェック
   if (newlyAddedConfigs.length === 0) {
     return;
   }
 
+  // 依存関係のインストール（dependencies.length > 1 のチェックは installDependenciesForNewlyAdded 内で実施）
   await installDependenciesForNewlyAdded(newlyAddedConfigs);
+
+  // package.jsonの更新（updatePackageJsonExisting(newlyAddedConfigs) は updatePackageJsonForNewlyAdded 内で呼び出し）
   updatePackageJsonForNewlyAdded(newlyAddedConfigs);
 }
 
