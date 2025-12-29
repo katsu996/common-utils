@@ -144,6 +144,105 @@ function applyConfigFile(file, projectDir = process.cwd()) {
   }
 }
 
+// .gitignoreから既存のパターンを取得する関数
+function getExistingGitignorePatterns(gitignoreContent) {
+  const existingPatterns = new Set();
+  const lines = gitignoreContent.split("\n");
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith("#")) {
+      existingPatterns.add(trimmed);
+    }
+  }
+  return existingPatterns;
+}
+
+// .gitignoreに新しいパターンを追加する関数
+function addPatternsToGitignore(content, newPatterns) {
+  const hasConfigSection = content.includes("# 設定ファイル");
+
+  if (!hasConfigSection) {
+    // セクションがない場合は追加
+    const separator = content && !content.endsWith("\n") ? "\n" : "";
+    return `${content}${separator}\n# 設定ファイル\n${newPatterns.join("\n")}\n`;
+  }
+
+  // セクションがある場合は、そのセクションの最後に追加
+  const sectionIndex = content.indexOf("# 設定ファイル");
+  if (sectionIndex === -1) {
+    // セクションが見つからない場合は末尾に追加
+    return `${content}\n${newPatterns.join("\n")}\n`;
+  }
+
+  // セクションの終わりを見つける（次のセクションまたはファイルの終わり）
+  const afterSection = content.substring(sectionIndex);
+  const nextSectionMatch = afterSection.match(/\n# [^\n]/);
+  const sectionEnd = nextSectionMatch ? sectionIndex + nextSectionMatch.index : content.length;
+
+  // セクションの最後にパターンを追加
+  const sectionContent = content.substring(sectionIndex, sectionEnd);
+  const patternText = newPatterns.join("\n");
+  const newline = sectionContent.endsWith("\n") ? "" : "\n";
+
+  return `${content.substring(0, sectionEnd)}${newline}${patternText}\n${content.substring(sectionEnd)}`;
+}
+
+// .gitignoreテンプレートを取得する関数
+function getTemplateGitignore() {
+  try {
+    const templateGitignorePath = path.join(packageRoot, ".gitignore.template");
+    if (fs.existsSync(templateGitignorePath)) {
+      return fs.readFileSync(templateGitignorePath, "utf8");
+    }
+  } catch (error) {
+    // テンプレートの読み込みに失敗した場合は空文字を返す
+    console.warn(`警告: .gitignoreテンプレートの読み込みに失敗しました: ${error.message}`);
+  }
+  return "";
+}
+
+// .gitignoreファイルを更新する関数
+function updateGitignore(projectDir, selectedConfigs) {
+  try {
+    const gitignorePath = path.join(projectDir, ".gitignore");
+    let gitignoreContent = "";
+
+    // .gitignoreが存在する場合は読み込む
+    if (fs.existsSync(gitignorePath)) {
+      gitignoreContent = fs.readFileSync(gitignorePath, "utf8");
+    } else {
+      // 存在しない場合は、このパッケージの.gitignoreをテンプレートとして使用
+      gitignoreContent = getTemplateGitignore();
+    }
+
+    // 選択された設定ファイルのパターンを取得
+    const configFilePatterns = selectedConfigs
+      .map((configId) => {
+        const configFile = CONFIG_FILES.find((f) => f.id === configId);
+        return configFile?.destination;
+      })
+      .filter(Boolean);
+
+    // 既存のパターンを確認
+    const existingPatterns = getExistingGitignorePatterns(gitignoreContent);
+
+    // 新しいパターンをフィルタリング
+    const newPatterns = configFilePatterns.filter((pattern) => !existingPatterns.has(pattern));
+
+    // 新しいパターンがある場合のみ更新
+    if (newPatterns.length > 0) {
+      const updatedContent = addPatternsToGitignore(gitignoreContent, newPatterns);
+      fs.writeFileSync(gitignorePath, updatedContent, "utf8");
+      log.success(`✅ .gitignoreに設定ファイルを追加しました: ${newPatterns.join(", ")}`);
+      return { success: true, added: newPatterns };
+    }
+
+    return { success: true, added: [] };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+}
+
 // プロジェクト名のバリデーション
 function validateProjectName(value) {
   // 空文字や未入力の場合は有効とする（デフォルト値を使用するため）
@@ -428,6 +527,12 @@ async function initializeNewProject() {
       const result = applyConfigFile(configFile, projectDir);
       results.push(result);
     }
+  }
+
+  // .gitignoreの更新
+  const gitignoreResult = updateGitignore(projectDir, selectedConfigs);
+  if (!gitignoreResult.success) {
+    console.error(`${pc.red("❌ .gitignore更新エラー:")} ${gitignoreResult.error}`);
   }
 
   // 依存関係とpackage.jsonの処理

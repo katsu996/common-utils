@@ -41,9 +41,9 @@
 4. 選択した設定ファイルをプロジェクトに追加
 5. **選択した設定ファイルに応じて必要なパッケージを動的にインストール（バージョン固定）**
    - `@katsu996/common-utils` - 共通設定（常に最新版）
-   - `typescript@5.8.3`, `@types/node@22.16.3` - TypeScript設定選択時
-   - `@biomejs/biome@2.1.2` - Biome設定選択時
-   - `vitest@3.2.4`, `@vitest/coverage-v8@3.2.4` - Vitest設定選択時
+   - `typescript`, `@types/node` - TypeScript設定選択時
+   - `@biomejs/biome` - Biome設定選択時
+   - `vitest`, `@vitest/coverage-v8@` - Vitest設定選択時
    - **本プロジェクトのpackage.jsonと同じバージョンで固定インストール**
 6. **選択した設定ファイルに応じて動的にnpmスクリプトを追加とESモジュール設定（`"type": "module"`）**
 7. 利用可能コマンド一覧の表示

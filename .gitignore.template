@@ -7,7 +7,3 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
-
-coverage
-dist
-node_modules
