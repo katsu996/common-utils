@@ -101,6 +101,15 @@ const CONFIG_FILES = [
       return content;
     },
   },
+  {
+    id: "gitignore",
+    label: ".gitignore設定",
+    source: null,
+    destination: ".gitignore",
+    dependencies: [],
+    scripts: {},
+    isSpecial: true, // 特別な処理が必要なファイル
+  },
 ];
 
 // package.jsonの存在確認
@@ -121,10 +130,30 @@ function getProjectName() {
 
 // 設定ファイルの存在状況を確認
 function checkConfigFileStatus() {
-  return CONFIG_FILES.map((file) => ({
-    ...file,
-    exists: fs.existsSync(path.join(process.cwd(), file.destination)),
-  }));
+  return CONFIG_FILES.map((file) => {
+    if (file.id === "gitignore") {
+      // .gitignoreの場合は、ファイルの存在と設定ファイルセクションの存在を確認
+      const gitignorePath = path.join(process.cwd(), file.destination);
+      const exists = fs.existsSync(gitignorePath);
+      if (exists) {
+        try {
+          const content = fs.readFileSync(gitignorePath, "utf8");
+          // 設定ファイルセクションが存在するか確認
+          return {
+            ...file,
+            exists: content.includes("# 設定ファイル"),
+          };
+        } catch {
+          return { ...file, exists: false };
+        }
+      }
+      return { ...file, exists: false };
+    }
+    return {
+      ...file,
+      exists: fs.existsSync(path.join(process.cwd(), file.destination)),
+    };
+  });
 }
 
 // 設定ファイルを作成/更新（プロジェクトフォルダ内）
@@ -501,12 +530,12 @@ async function initializeNewProject() {
 
   const projectName = await getProjectNameInput();
   if (!projectName) {
-    return;
+    return false;
   }
 
   const selectedConfigs = await getConfigFileSelection();
   if (!selectedConfigs) {
-    return;
+    return false;
   }
 
   const projectDir = path.join(process.cwd(), projectName);
@@ -516,7 +545,7 @@ async function initializeNewProject() {
     await createViteProject(projectName, projectDir);
   } catch (error) {
     console.error(`${pc.red("❌ Viteプロジェクト作成エラー:")} ${error.message}`);
-    return;
+    return false;
   }
 
   // 設定ファイルの適用
@@ -558,6 +587,7 @@ async function initializeNewProject() {
   log.success("🎉 Viteプロジェクトと設定ファイルの準備完了！以下のコマンドで開発を開始できます：");
   console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
   console.log(`  ${pc.cyan("pnpm dev")}`);
+  return true;
 }
 
 // プロジェクト結果を表示する関数
@@ -658,6 +688,77 @@ function displayConfigFileResults(results) {
   }
 }
 
+// 設定ファイルを適用する関数（既存プロジェクト用）
+function applyConfigFilesForExisting(selectedConfigs, fileStatus) {
+  const results = [];
+  const gitignoreSelected = selectedConfigs.includes("gitignore");
+  const otherConfigs = selectedConfigs.filter((id) => id !== "gitignore");
+
+  for (const configId of otherConfigs) {
+    const configFile = CONFIG_FILES.find((f) => f.id === configId);
+    if (configFile) {
+      const fileInfo = fileStatus.find((f) => f.id === configId);
+      const result = applyConfigFile(configFile);
+      result.wasExisting = !!fileInfo?.exists;
+      results.push(result);
+    }
+  }
+
+  // .gitignoreの更新処理
+  if (gitignoreSelected) {
+    const fileInfo = fileStatus.find((f) => f.id === "gitignore");
+    const gitignoreResult = updateGitignore(process.cwd(), otherConfigs);
+    if (gitignoreResult.success) {
+      results.push({
+        success: true,
+        file: ".gitignore",
+        wasExisting: !!fileInfo?.exists,
+      });
+    } else {
+      results.push({
+        success: false,
+        file: ".gitignore",
+        error: gitignoreResult.error,
+        wasExisting: !!fileInfo?.exists,
+      });
+    }
+  }
+
+  return results;
+}
+
+// 新しく追加された設定ファイルの依存関係とスクリプトを処理する関数
+async function processNewlyAddedConfigs(otherConfigs, fileStatus) {
+  const newlyAddedConfigs = otherConfigs.filter((configId) => {
+    const fileInfo = fileStatus.find((f) => f.id === configId);
+    return !fileInfo?.exists;
+  });
+
+  if (newlyAddedConfigs.length === 0) {
+    return;
+  }
+
+  // 依存関係のインストール
+  const dependencies = collectDependencies(newlyAddedConfigs);
+  if (dependencies.length > 1) {
+    try {
+      await installDependencies(process.cwd(), dependencies);
+    } catch (error) {
+      console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
+      console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
+    }
+  }
+
+  // package.jsonの更新（スクリプト追加）
+  const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
+  if (!packageUpdateResult.success) {
+    console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
+  } else if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
+    console.log();
+    displayAvailableCommands(packageUpdateResult);
+  }
+}
+
 // 既存プロジェクト用の設定更新
 async function updateExistingProject() {
   const projectName = getProjectName();
@@ -669,51 +770,16 @@ async function updateExistingProject() {
 
   if (isCancel(selectedConfigs)) {
     cancel("設定をキャンセルしました");
-    return;
+    return false;
   }
 
-  // 設定ファイルの適用
-  const results = [];
-  for (const configId of selectedConfigs) {
-    const configFile = CONFIG_FILES.find((f) => f.id === configId);
-    if (configFile) {
-      const fileInfo = fileStatus.find((f) => f.id === configId);
-      const result = applyConfigFile(configFile);
-      result.wasExisting = !!fileInfo?.exists;
-      results.push(result);
-    }
-  }
+  const otherConfigs = selectedConfigs.filter((id) => id !== "gitignore");
+  const results = applyConfigFilesForExisting(selectedConfigs, fileStatus);
 
-  // 新しく追加された設定ファイルがある場合、依存関係とスクリプトを処理
-  const newlyAddedConfigs = selectedConfigs.filter((configId) => {
-    const fileInfo = fileStatus.find((f) => f.id === configId);
-    return !fileInfo?.exists;
-  });
-
-  if (newlyAddedConfigs.length > 0) {
-    // 依存関係のインストール
-    const dependencies = collectDependencies(newlyAddedConfigs);
-    if (dependencies.length > 1) {
-      // @katsu996/common-utils以外にも依存関係がある場合
-      try {
-        await installDependencies(process.cwd(), dependencies);
-      } catch (error) {
-        console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
-        console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
-      }
-    }
-
-    // package.jsonの更新（スクリプト追加）
-    const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
-    if (!packageUpdateResult.success) {
-      console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
-    } else if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
-      console.log();
-      displayAvailableCommands(packageUpdateResult);
-    }
-  }
+  await processNewlyAddedConfigs(otherConfigs, fileStatus);
 
   displayConfigFileResults(results);
+  return true;
 }
 
 // メイン関数
@@ -729,17 +795,21 @@ async function main() {
   console.log();
 
   try {
+    let completed = false;
     if (hasPackage) {
-      await updateExistingProject();
+      completed = await updateExistingProject();
     } else {
-      await initializeNewProject();
+      completed = await initializeNewProject();
+    }
+
+    // キャンセルされていない場合のみ完了メッセージを表示
+    if (completed) {
+      outro(pc.green("設定が完了しました！"));
     }
   } catch (error) {
     console.error(`${pc.red("❌ エラー:")} ${error.message}`);
     process.exit(1);
   }
-
-  outro(pc.green("設定が完了しました！"));
 }
 
 // エラーハンドリング
