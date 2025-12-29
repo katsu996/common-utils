@@ -1,8 +1,20 @@
 // common-utils-repo/src/index.ts
 export * from "./math";
 
-// 必要に応じて、ここに共通の型定義などを記述することもできます
+/**
+ * 共通のデータ型定義。
+ *
+ * @example
+ * ```typescript
+ * const data: CommonData = {
+ *   id: "123",
+ *   name: "example"
+ * };
+ * ```
+ */
 export type CommonData = {
+  /** 一意の識別子 */
   id: string;
+  /** 名前 */
   name: string;
 };
