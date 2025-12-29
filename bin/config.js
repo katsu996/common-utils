@@ -738,24 +738,27 @@ async function processNewlyAddedConfigs(otherConfigs, fileStatus) {
     return;
   }
 
-  // 依存関係のインストール
-  const dependencies = collectDependencies(newlyAddedConfigs);
-  if (dependencies.length > 1) {
-    try {
-      await installDependencies(process.cwd(), dependencies);
-    } catch (error) {
-      console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
-      console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
+  // 新しく追加された設定ファイルがある場合のみ処理を実行
+  if (newlyAddedConfigs.length > 0) {
+    // 依存関係のインストール
+    const dependencies = collectDependencies(newlyAddedConfigs);
+    if (dependencies.length > 1) {
+      try {
+        await installDependencies(process.cwd(), dependencies);
+      } catch (error) {
+        console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
+        console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
+      }
     }
-  }
 
-  // package.jsonの更新（スクリプト追加）
-  const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
-  if (!packageUpdateResult.success) {
-    console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
-  } else if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
-    console.log();
-    displayAvailableCommands(packageUpdateResult);
+    // package.jsonの更新（スクリプト追加）
+    const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
+    if (!packageUpdateResult.success) {
+      console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
+    } else if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
+      console.log();
+      displayAvailableCommands(packageUpdateResult);
+    }
   }
 }
 
