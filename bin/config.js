@@ -8,6 +8,161 @@ const pc = require("picocolors");
 
 const packageRoot = path.dirname(__dirname);
 
+// グローバルオプション
+const globalOptions = {
+  list: false,
+  config: null, // カンマ区切りの設定ファイルIDの配列
+  skipInstall: false,
+  dryRun: false,
+};
+
+// パッケージのバージョンを取得する関数
+function getPackageVersion() {
+  try {
+    const packageJsonPath = path.join(packageRoot, "package.json");
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+    return packageJson.version;
+  } catch {
+    return "unknown";
+  }
+}
+
+// ヘルプを表示する関数
+function displayHelp() {
+  console.log(`
+${pc.inverse(" @katsu996/common-utils 設定ツール ")}
+${pc.bold("使用方法:")}
+  katsu-config [オプション]
+
+${pc.bold("オプション:")}
+  -v, --version          バージョン番号を出力
+  -h, --help             このヘルプメッセージを表示
+  -l, --list             利用可能な設定ファイルの一覧を表示
+  -c, --config <ids>     適用する設定ファイルを指定（カンマ区切り）
+                         例: --config typescript,biome
+  --skip-install         依存関係のインストールをスキップ
+  -n, --dry-run          実際の変更を行わずにプレビュー
+
+${pc.bold("説明:")}
+  このツールは、プロジェクトに設定ファイルを追加・更新するためのツールです。
+  
+  - 新規プロジェクトの場合: Viteプロジェクトを作成し、設定ファイルを適用します
+  - 既存プロジェクトの場合: 既存の設定ファイルを更新または新規追加します
+
+${pc.bold("設定ファイルID:")}
+  typescript    TypeScript設定 (tsconfig.json)
+  biome         Biome設定 (biome.jsonc)
+  mise          Mise設定 (mise.toml)
+  vite          Vite設定 (vite.config.ts)
+  vitest        Vitest設定 (vitest.config.ts)
+  gitignore     .gitignore設定
+`);
+}
+
+// 設定ファイル一覧を表示する関数
+function displayList() {
+  console.log(`
+${pc.inverse(" 利用可能な設定ファイル ")}
+`);
+  for (const file of CONFIG_FILES) {
+    console.log(`${pc.cyan(file.id).padEnd(12)} - ${file.label}`);
+    console.log(`            ${pc.gray(`→ ${file.destination}`)}`);
+    if (file.dependencies && file.dependencies.length > 0) {
+      console.log(`            ${pc.yellow(`依存関係: ${file.dependencies.join(", ")}`)}`);
+    }
+    console.log();
+  }
+}
+
+// 設定ファイルIDの検証を行う関数
+function validateConfigIds(configIds) {
+  const validIds = CONFIG_FILES.map((f) => f.id);
+  const invalidIds = configIds.filter((id) => !validIds.includes(id));
+  if (invalidIds.length > 0) {
+    console.error(`${pc.red("❌ エラー:")} 無効な設定ファイルID: ${invalidIds.join(", ")}`);
+    console.error(`  利用可能なID: ${validIds.join(", ")}`);
+    process.exit(1);
+  }
+}
+
+// --configオプションを処理する関数
+function handleConfigOption(args, index) {
+  if (index + 1 < args.length) {
+    const configIds = args[index + 1]
+      .split(",")
+      .map((id) => id.trim())
+      .filter(Boolean);
+    globalOptions.config = configIds;
+    return index + 1; // 次のインデックスを返す
+  }
+  console.error(`${pc.red("❌ エラー:")} --configオプションには設定ファイルIDが必要です`);
+  console.error(`  例: ${pc.cyan("--config typescript,biome")}`);
+  process.exit(1);
+}
+
+// 即座に終了するオプション（-v, -h, -l）を処理する関数
+function handleExitOptions(arg) {
+  if (arg === "-v" || arg === "--version") {
+    console.log(getPackageVersion());
+    process.exit(0);
+  }
+
+  if (arg === "-h" || arg === "--help") {
+    displayHelp();
+    process.exit(0);
+  }
+
+  if (arg === "-l" || arg === "--list") {
+    displayList();
+    process.exit(0);
+  }
+
+  return false; // 処理されなかった場合
+}
+
+// フラグオプションを処理する関数
+function handleFlagOptions(arg) {
+  if (arg === "--skip-install") {
+    globalOptions.skipInstall = true;
+    return true;
+  }
+
+  if (arg === "-n" || arg === "--dry-run") {
+    globalOptions.dryRun = true;
+    return true;
+  }
+
+  return false; // 処理されなかった場合
+}
+
+// コマンドライン引数を解析する関数
+function parseArguments() {
+  const args = process.argv.slice(2);
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+
+    // 即座に終了するオプション
+    if (handleExitOptions(arg)) {
+      continue; // process.exit()が呼ばれるので実際には到達しない
+    }
+
+    // --configオプション
+    if (arg === "-c" || arg === "--config") {
+      i = handleConfigOption(args, i);
+      continue;
+    }
+
+    // フラグオプション
+    handleFlagOptions(arg);
+  }
+
+  // 設定ファイルIDの検証
+  if (globalOptions.config) {
+    validateConfigIds(globalOptions.config);
+  }
+}
+
 // 本プロジェクトのpackage.jsonからライブラリバージョンを取得する関数
 function getLibraryVersions() {
   try {
@@ -166,6 +321,13 @@ function applyConfigFile(file, projectDir = process.cwd()) {
     if (contentModifier) {
       content = contentModifier(content);
     }
+
+    if (globalOptions.dryRun) {
+      // dry-runモード: ファイルの存在確認のみ
+      const exists = fs.existsSync(fullDestination);
+      return { success: true, file: destination, dryRun: true, wouldCreate: !exists, wouldUpdate: exists };
+    }
+
     fs.writeFileSync(fullDestination, content, "utf8");
     return { success: true, file: destination };
   } catch (error) {
@@ -260,6 +422,11 @@ function updateGitignore(projectDir, selectedConfigs) {
 
     // 新しいパターンがある場合のみ更新
     if (newPatterns.length > 0) {
+      if (globalOptions.dryRun) {
+        log.info(`[DRY RUN] .gitignoreに設定ファイルを追加します: ${newPatterns.join(", ")}`);
+        return { success: true, added: newPatterns, dryRun: true };
+      }
+
       const updatedContent = addPatternsToGitignore(gitignoreContent, newPatterns);
       fs.writeFileSync(gitignorePath, updatedContent, "utf8");
       log.success(`✅ .gitignoreに設定ファイルを追加しました: ${newPatterns.join(", ")}`);
@@ -504,6 +671,11 @@ async function getProjectNameInput() {
 
 // 設定ファイル選択を取得する関数
 async function getConfigFileSelection() {
+  // --configオプションが指定されている場合は対話をスキップ
+  if (globalOptions.config) {
+    return globalOptions.config;
+  }
+
   const selectedConfigs = await multiselect({
     message:
       "適用する設定ファイルを選択してください（複数選択可）\n" +
@@ -524,9 +696,75 @@ async function getConfigFileSelection() {
   return selectedConfigs;
 }
 
+// Viteプロジェクトを作成する（新規プロジェクト用）
+async function createViteProjectForNew(projectName, projectDir) {
+  if (!globalOptions.dryRun) {
+    try {
+      await createViteProject(projectName, projectDir);
+    } catch (error) {
+      console.error(`${pc.red("❌ Viteプロジェクト作成エラー:")} ${error.message}`);
+      return false;
+    }
+  } else {
+    log.info(`[DRY RUN] Viteプロジェクト「${projectName}」を作成します`);
+  }
+  return true;
+}
+
+// 依存関係をインストールする（新規プロジェクト用）
+async function installDependenciesForNew(projectDir, dependencies, projectName) {
+  const shouldSkipInstall = globalOptions.skipInstall || globalOptions.dryRun;
+  if (shouldSkipInstall) {
+    if (globalOptions.dryRun) {
+      log.info(`[DRY RUN] 依存関係をインストールします: ${dependencies.join(", ")}`);
+    } else {
+      log.info("⏭️  依存関係のインストールをスキップしました");
+    }
+    return;
+  }
+
+  try {
+    await installDependencies(projectDir, dependencies);
+  } catch (error) {
+    console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
+    console.log(
+      `${pc.yellow("⚠️ 手動でインストールしてください:")} cd ${projectName} && pnpm add -D ${dependencies.join(" ")}`,
+    );
+  }
+}
+
+// package.jsonを更新する（新規プロジェクト用）
+function updatePackageJsonForNew(projectDir, selectedConfigs) {
+  if (!globalOptions.dryRun) {
+    const packageUpdateResult = updatePackageJson(projectDir, selectedConfigs);
+    if (!packageUpdateResult.success) {
+      console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
+    }
+    return packageUpdateResult;
+  }
+
+  log.info(`[DRY RUN] package.jsonを更新します`);
+  return { success: true, scripts: collectScripts(selectedConfigs) };
+}
+
+// 完了メッセージを表示する（新規プロジェクト用）
+function displayCompletionMessage(projectName) {
+  if (globalOptions.dryRun) {
+    log.success("🎉 [DRY RUN] 実際には変更は行われませんでした");
+  } else {
+    log.success("🎉 Viteプロジェクトと設定ファイルの準備完了！以下のコマンドで開発を開始できます：");
+    console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
+    console.log(`  ${pc.cyan("pnpm dev")}`);
+  }
+}
+
 // 新規プロジェクト用の初期設定
 async function initializeNewProject() {
-  log.info("🚀 新規プロジェクトの初期設定");
+  if (globalOptions.dryRun) {
+    log.info("🚀 新規プロジェクトの初期設定 [DRY RUN]");
+  } else {
+    log.info("🚀 新規プロジェクトの初期設定");
+  }
 
   const projectName = await getProjectNameInput();
   if (!projectName) {
@@ -541,10 +779,7 @@ async function initializeNewProject() {
   const projectDir = path.join(process.cwd(), projectName);
 
   // Viteプロジェクトを作成
-  try {
-    await createViteProject(projectName, projectDir);
-  } catch (error) {
-    console.error(`${pc.red("❌ Viteプロジェクト作成エラー:")} ${error.message}`);
+  if (!(await createViteProjectForNew(projectName, projectDir))) {
     return false;
   }
 
@@ -564,44 +799,40 @@ async function initializeNewProject() {
     console.error(`${pc.red("❌ .gitignore更新エラー:")} ${gitignoreResult.error}`);
   }
 
-  // 依存関係とpackage.jsonの処理
+  // 依存関係のインストール
   const dependencies = collectDependencies(selectedConfigs);
+  await installDependenciesForNew(projectDir, dependencies, projectName);
 
-  try {
-    await installDependencies(projectDir, dependencies);
-  } catch (error) {
-    console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
-    console.log(
-      `${pc.yellow("⚠️ 手動でインストールしてください:")} cd ${projectName} && pnpm add -D ${dependencies.join(" ")}`,
-    );
-  }
-
-  const packageUpdateResult = updatePackageJson(projectDir, selectedConfigs);
-  if (!packageUpdateResult.success) {
-    console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
-  }
+  // package.jsonの更新
+  const packageUpdateResult = updatePackageJsonForNew(projectDir, selectedConfigs);
 
   // 結果表示
   displayProjectResults(projectDir, results, packageUpdateResult);
+  displayCompletionMessage(projectName);
 
-  log.success("🎉 Viteプロジェクトと設定ファイルの準備完了！以下のコマンドで開発を開始できます：");
-  console.log(`  ${pc.cyan(`cd ${projectName}`)}`);
-  console.log(`  ${pc.cyan("pnpm dev")}`);
   return true;
 }
 
 // プロジェクト結果を表示する関数
 function displayProjectResults(projectDir, results, packageUpdateResult) {
-  log.success("✨ 設定ファイルの適用完了");
+  if (globalOptions.dryRun) {
+    log.success("✨ 設定ファイルの適用プレビュー [DRY RUN]");
+  } else {
+    log.success("✨ 設定ファイルの適用完了");
+  }
   console.log();
   console.log(`📁 Viteプロジェクト: ${pc.cyan(projectDir)}`);
   console.log();
 
   const successFiles = results.filter((r) => r.success);
   if (successFiles.length > 0) {
-    console.log("作成されたファイル:");
+    console.log(globalOptions.dryRun ? "作成されるファイル:" : "作成されたファイル:");
     for (const r of successFiles) {
-      console.log(`  ${pc.green("✓")} ${r.file}`);
+      if (r.dryRun) {
+        console.log(`  ${pc.yellow("[DRY RUN]")} ${pc.green("✓")} ${r.file}`);
+      } else {
+        console.log(`  ${pc.green("✓")} ${r.file}`);
+      }
     }
   }
 
@@ -633,6 +864,11 @@ function displayCurrentFileStatus(projectName, fileStatus) {
 
 // 設定ファイル選択を取得する関数（既存プロジェクト用）
 async function getExistingProjectConfigSelection(fileStatus) {
+  // --configオプションが指定されている場合は対話をスキップ
+  if (globalOptions.config) {
+    return globalOptions.config;
+  }
+
   const existingFiles = fileStatus.filter((f) => f.exists).map((f) => f.id);
 
   return await multiselect({
@@ -652,40 +888,73 @@ async function getExistingProjectConfigSelection(fileStatus) {
   });
 }
 
+// ファイル結果を表示する関数
+function displayFileResult(result) {
+  if (result.dryRun) {
+    console.log(`  ${pc.yellow("[DRY RUN]")} ${pc.green("✓")} ${result.file}`);
+  } else {
+    console.log(`  ${pc.green("✓")} ${result.file}`);
+  }
+}
+
+// 更新されたファイルを表示する関数
+function displayUpdatedFiles(updatedFiles) {
+  if (updatedFiles.length === 0) {
+    return false;
+  }
+
+  console.log(globalOptions.dryRun ? "更新されるファイル:" : "更新されたファイル:");
+  for (const r of updatedFiles) {
+    displayFileResult(r);
+  }
+  return true;
+}
+
+// 作成されたファイルを表示する関数
+function displayCreatedFiles(createdFiles, hasUpdatedFiles) {
+  if (createdFiles.length === 0) {
+    return;
+  }
+
+  if (hasUpdatedFiles) {
+    console.log();
+  }
+  console.log(globalOptions.dryRun ? "作成されるファイル:" : "作成されたファイル:");
+  for (const r of createdFiles) {
+    displayFileResult(r);
+  }
+}
+
+// エラーが発生したファイルを表示する関数
+function displayFailedFiles(failedFiles) {
+  if (failedFiles.length === 0) {
+    return;
+  }
+
+  console.log();
+  console.log("エラーが発生したファイル:");
+  for (const r of failedFiles) {
+    console.log(`  ${pc.red("✗")} ${r.file}: ${r.error}`);
+  }
+}
+
 // 設定ファイル適用結果を表示する関数
 function displayConfigFileResults(results) {
-  log.success("✨ 設定ファイルの適用完了");
+  if (globalOptions.dryRun) {
+    log.success("✨ 設定ファイルの適用プレビュー [DRY RUN]");
+  } else {
+    log.success("✨ 設定ファイルの適用完了");
+  }
   console.log();
 
   const successFiles = results.filter((r) => r.success);
   const updatedFiles = successFiles.filter((r) => r.wasExisting);
   const createdFiles = successFiles.filter((r) => !r.wasExisting);
-
-  if (updatedFiles.length > 0) {
-    console.log("更新されたファイル:");
-    for (const r of updatedFiles) {
-      console.log(`  ${pc.green("✓")} ${r.file}`);
-    }
-  }
-
-  if (createdFiles.length > 0) {
-    if (updatedFiles.length > 0) {
-      console.log();
-    }
-    console.log("作成されたファイル:");
-    for (const r of createdFiles) {
-      console.log(`  ${pc.green("✓")} ${r.file}`);
-    }
-  }
-
   const failedFiles = results.filter((r) => !r.success);
-  if (failedFiles.length > 0) {
-    console.log();
-    console.log("エラーが発生したファイル:");
-    for (const r of failedFiles) {
-      console.log(`  ${pc.red("✗")} ${r.file}: ${r.error}`);
-    }
-  }
+
+  const hasUpdatedFiles = displayUpdatedFiles(updatedFiles);
+  displayCreatedFiles(createdFiles, hasUpdatedFiles);
+  displayFailedFiles(failedFiles);
 }
 
 // 設定ファイルを適用する関数（既存プロジェクト用）
@@ -727,6 +996,55 @@ function applyConfigFilesForExisting(selectedConfigs, fileStatus) {
   return results;
 }
 
+// 新しく追加された設定ファイルの依存関係をインストールする関数
+async function installDependenciesForNewlyAdded(newlyAddedConfigs) {
+  const dependencies = collectDependencies(newlyAddedConfigs);
+  if (dependencies.length <= 1) {
+    return;
+  }
+
+  const shouldSkipInstall = globalOptions.skipInstall || globalOptions.dryRun;
+  if (shouldSkipInstall) {
+    if (globalOptions.dryRun) {
+      log.info(`[DRY RUN] 依存関係をインストールします: ${dependencies.join(", ")}`);
+    } else {
+      log.info("⏭️  依存関係のインストールをスキップしました");
+    }
+    return;
+  }
+
+  try {
+    await installDependencies(process.cwd(), dependencies);
+  } catch (error) {
+    console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
+    console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
+  }
+}
+
+// 新しく追加された設定ファイルのpackage.jsonを更新する関数
+function updatePackageJsonForNewlyAdded(newlyAddedConfigs) {
+  if (!globalOptions.dryRun) {
+    const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
+    if (!packageUpdateResult.success) {
+      console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
+      return;
+    }
+
+    if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
+      console.log();
+      displayAvailableCommands(packageUpdateResult);
+    }
+    return;
+  }
+
+  log.info(`[DRY RUN] package.jsonを更新します`);
+  const scripts = collectScripts(newlyAddedConfigs);
+  if (Object.keys(scripts).length > 0) {
+    console.log();
+    displayAvailableCommands({ success: true, scripts });
+  }
+}
+
 // 新しく追加された設定ファイルの依存関係とスクリプトを処理する関数
 async function processNewlyAddedConfigs(otherConfigs, fileStatus) {
   const newlyAddedConfigs = otherConfigs.filter((configId) => {
@@ -738,34 +1056,18 @@ async function processNewlyAddedConfigs(otherConfigs, fileStatus) {
     return;
   }
 
-  // 新しく追加された設定ファイルがある場合のみ処理を実行
-  if (newlyAddedConfigs.length > 0) {
-    // 依存関係のインストール
-    const dependencies = collectDependencies(newlyAddedConfigs);
-    if (dependencies.length > 1) {
-      try {
-        await installDependencies(process.cwd(), dependencies);
-      } catch (error) {
-        console.error(`${pc.red("❌ 依存関係インストールエラー:")} ${error.message}`);
-        console.log(`${pc.yellow("⚠️ 手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
-      }
-    }
-
-    // package.jsonの更新（スクリプト追加）
-    const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
-    if (!packageUpdateResult.success) {
-      console.error(`${pc.red("❌ package.json更新エラー:")} ${packageUpdateResult.error}`);
-    } else if (Object.keys(packageUpdateResult.scripts || {}).length > 0) {
-      console.log();
-      displayAvailableCommands(packageUpdateResult);
-    }
-  }
+  await installDependenciesForNewlyAdded(newlyAddedConfigs);
+  updatePackageJsonForNewlyAdded(newlyAddedConfigs);
 }
 
 // 既存プロジェクト用の設定更新
 async function updateExistingProject() {
   const projectName = getProjectName();
   const fileStatus = checkConfigFileStatus();
+
+  if (globalOptions.dryRun) {
+    log.info("🔄 既存プロジェクトの設定更新 [DRY RUN]");
+  }
 
   displayCurrentFileStatus(projectName, fileStatus);
 
@@ -782,11 +1084,19 @@ async function updateExistingProject() {
   await processNewlyAddedConfigs(otherConfigs, fileStatus);
 
   displayConfigFileResults(results);
+
+  if (globalOptions.dryRun) {
+    log.success("🎉 [DRY RUN] 実際には変更は行われませんでした");
+  }
+
   return true;
 }
 
 // メイン関数
 async function main() {
+  // コマンドライン引数を解析
+  parseArguments();
+
   intro(pc.inverse(" @katsu996/common-utils 設定ツール "));
 
   console.log();
