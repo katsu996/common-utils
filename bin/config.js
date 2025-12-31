@@ -1106,7 +1106,9 @@ async function main() {
   intro(pc.inverse(" @katsu996/common-utils 設定ツール "));
 
   console.log();
-  console.log(`📂 現在のディレクトリ: ${pc.cyan(process.cwd())}`);
+  // 現在の作業ディレクトリを取得（シンボリックリンクを解決したパスを使用）
+  const currentDir = fs.realpathSync(process.cwd());
+  console.log(`📂 現在のディレクトリ: ${pc.cyan(currentDir)}`);
 
   const hasPackage = hasPackageJson();
   const packageStatus = hasPackage ? pc.green("✓ 検出") : pc.gray("✗ 未検出");
