@@ -1079,10 +1079,10 @@ describe("config.js（インタラクティブCLI）", () => {
         // bin/config.jsを直接requireして、モジュールが読み込めることを確認
         // これにより、カバレッジが追跡される
         const configPath = path.resolve(__dirname, "..", "bin", "config.js");
-        
+
         // ファイルが存在することを確認
         expect(fs.existsSync(configPath)).toBe(true);
-        
+
         // ファイルの内容を読み込んで、主要な関数が定義されていることを確認
         const content = fs.readFileSync(configPath, "utf-8");
         expect(content).toContain("function validateConfigIds");
@@ -1091,7 +1091,7 @@ describe("config.js（インタラクティブCLI）", () => {
         expect(content).toContain("function getPackageVersion");
         expect(content).toContain("function displayHelp");
         expect(content).toContain("function displayList");
-        
+
         // bin/config.jsをrequireして、モジュールが読み込めることを確認
         // ただし、bin/config.jsは実行可能スクリプトなので、requireすると即座に実行される
         // そのため、process.argvを一時的に変更して、--helpで即座に終了させる
@@ -1099,20 +1099,20 @@ describe("config.js（インタラクティブCLI）", () => {
         const originalExit = process.exit;
         let exitCalled = false;
         let exitCode = null;
-        
+
         // process.exitをモック
-        process.exit = ((code) => {
+        process.exit = (code) => {
           exitCalled = true;
           exitCode = code;
-        });
-        
+        };
+
         try {
           // --helpで即座に終了するように設定
           process.argv = ["node", "config.js", "--help"];
-          
+
           // モジュールを読み込む（--helpで即座に終了するため、実際の実行は行われない）
           require(configPath);
-          
+
           // process.exitが呼ばれたことを確認
           expect(exitCalled).toBe(true);
           expect(exitCode).toBe(0);
@@ -1132,12 +1132,12 @@ describe("config.js（インタラクティブCLI）", () => {
         const originalExit = process.exit;
         let exitCalled = false;
         let exitCode = null;
-        
-        process.exit = ((code) => {
+
+        process.exit = (code) => {
           exitCalled = true;
           exitCode = code;
-        });
-        
+        };
+
         try {
           process.argv = ["node", "config.js", "--version"];
           require(configPath);
@@ -1157,12 +1157,12 @@ describe("config.js（インタラクティブCLI）", () => {
         const originalExit = process.exit;
         let exitCalled = false;
         let exitCode = null;
-        
-        process.exit = ((code) => {
+
+        process.exit = (code) => {
           exitCalled = true;
           exitCode = code;
-        });
-        
+        };
+
         try {
           process.argv = ["node", "config.js", "--list"];
           require(configPath);
@@ -1182,12 +1182,12 @@ describe("config.js（インタラクティブCLI）", () => {
         const originalExit = process.exit;
         let exitCalled = false;
         let exitCode = null;
-        
-        process.exit = ((code) => {
+
+        process.exit = (code) => {
           exitCalled = true;
           exitCode = code;
-        });
-        
+        };
+
         try {
           process.argv = ["node", "config.js", "-v"];
           require(configPath);
@@ -1207,12 +1207,12 @@ describe("config.js（インタラクティブCLI）", () => {
         const originalExit = process.exit;
         let exitCalled = false;
         let exitCode = null;
-        
-        process.exit = ((code) => {
+
+        process.exit = (code) => {
           exitCalled = true;
           exitCode = code;
-        });
-        
+        };
+
         try {
           process.argv = ["node", "config.js", "-h"];
           require(configPath);
@@ -1232,12 +1232,12 @@ describe("config.js（インタラクティブCLI）", () => {
         const originalExit = process.exit;
         let exitCalled = false;
         let exitCode = null;
-        
-        process.exit = ((code) => {
+
+        process.exit = (code) => {
           exitCalled = true;
           exitCode = code;
-        });
-        
+        };
+
         try {
           process.argv = ["node", "config.js", "-l"];
           require(configPath);
@@ -1278,7 +1278,7 @@ describe("config.js（インタラクティブCLI）", () => {
       it("getPackageVersion関数のエラーハンドリング（カバレッジ用）", () => {
         const configPath = path.resolve(__dirname, "..", "bin", "config.js");
         const content = fs.readFileSync(configPath, "utf-8");
-        
+
         // getPackageVersion関数のエラーハンドリングが実装されていることを確認
         expect(content).toContain("function getPackageVersion()");
         expect(content).toContain("try {");
@@ -1289,7 +1289,7 @@ describe("config.js（インタラクティブCLI）", () => {
       it("getLibraryVersions関数のエラーハンドリング（カバレッジ用）", () => {
         const configPath = path.resolve(__dirname, "..", "bin", "config.js");
         const content = fs.readFileSync(configPath, "utf-8");
-        
+
         // getLibraryVersions関数のエラーハンドリングが実装されていることを確認
         expect(content).toContain("function getLibraryVersions()");
         expect(content).toContain("try {");
@@ -1301,7 +1301,7 @@ describe("config.js（インタラクティブCLI）", () => {
       it("getTemplateGitignore関数のエラーハンドリング（カバレッジ用）", () => {
         const configPath = path.resolve(__dirname, "..", "bin", "config.js");
         const content = fs.readFileSync(configPath, "utf-8");
-        
+
         // getTemplateGitignore関数のエラーハンドリングが実装されていることを確認
         expect(content).toContain("function getTemplateGitignore()");
         expect(content).toContain("try {");
@@ -1313,7 +1313,7 @@ describe("config.js（インタラクティブCLI）", () => {
       it("getProjectName関数のエラーハンドリング（カバレッジ用）", () => {
         const configPath = path.resolve(__dirname, "..", "bin", "config.js");
         const content = fs.readFileSync(configPath, "utf-8");
-        
+
         // getProjectName関数のエラーハンドリングが実装されていることを確認
         expect(content).toContain("function getProjectName()");
         expect(content).toContain("try {");
@@ -1324,7 +1324,7 @@ describe("config.js（インタラクティブCLI）", () => {
       it("checkConfigFileStatus関数のgitignore処理（カバレッジ用）", () => {
         const configPath = path.resolve(__dirname, "..", "bin", "config.js");
         const content = fs.readFileSync(configPath, "utf-8");
-        
+
         // checkConfigFileStatus関数のgitignore処理が実装されていることを確認
         expect(content).toContain("function checkConfigFileStatus()");
         expect(content).toContain('if (file.id === "gitignore")');
@@ -1466,10 +1466,7 @@ describe("config.js（インタラクティブCLI）", () => {
         try {
           createPackageJson(testDir);
           // 既に設定ファイルセクションがある.gitignoreを作成
-          fs.writeFileSync(
-            path.join(testDir, ".gitignore"),
-            "node_modules/\n# 設定ファイル\ntsconfig.json\n",
-          );
+          fs.writeFileSync(path.join(testDir, ".gitignore"), "node_modules/\n# 設定ファイル\ntsconfig.json\n");
           // biomeとgitignoreを適用すると、biome.jsoncが.gitignoreに追加される
           // updateGitignore関数はgitignoreSelectedがtrueの場合のみ呼び出される
           const result = await runKatsuConfig(["-c", "biome,gitignore"], testDir);
@@ -1521,10 +1518,7 @@ describe("config.js（インタラクティブCLI）", () => {
         const testDir = createTempDirectory();
         try {
           createPackageJson(testDir);
-          const result = await runKatsuConfig(
-            ["-c", "typescript,biome", "--skip-install", "--dry-run"],
-            testDir,
-          );
+          const result = await runKatsuConfig(["-c", "typescript,biome", "--skip-install", "--dry-run"], testDir);
           expect(result.code).not.toBe(1);
           expect(result.stdout).toContain("[DRY RUN]");
           // dry-runモードでは実際のファイルは作成されない
@@ -1542,7 +1536,7 @@ describe("config.js（インタラクティブCLI）", () => {
           // 最初にtypescriptを適用
           await runKatsuConfig(["-c", "typescript"], testDir);
           expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
-          
+
           // 次にbiomeを追加
           const result = await runKatsuConfig(["-c", "biome"], testDir);
           expect(result.code).not.toBe(1);
@@ -1562,7 +1556,7 @@ describe("config.js（インタラクティブCLI）", () => {
           await runKatsuConfig(["-c", "typescript,biome"], testDir);
           expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
           expect(configFileExists(testDir, "biome.jsonc")).toBe(true);
-          
+
           // 次にvitestを追加
           const result = await runKatsuConfig(["-c", "vitest"], testDir);
           expect(result.code).not.toBe(1);
