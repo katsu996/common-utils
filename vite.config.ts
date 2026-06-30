@@ -19,9 +19,4 @@ export default mergeConfig(baseConfig, defineConfig({
       },
     },
   },
-  test: {
-    coverage: {
-      include: ["bin/**/*.js"],
-    },
-  },
 }));
