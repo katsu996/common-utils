@@ -6,7 +6,7 @@ const { intro, outro, multiselect, text, isCancel, cancel, log } = require("@cla
 const pc = require("picocolors");
 
 const { globalOptions } = require("./args");
-const { CONFIG_FILES } = require("./config-files");
+const { CONFIG_FILES } = require("./config-files-data");
 
 const packageRoot = path.resolve(__dirname, "../..");
 
