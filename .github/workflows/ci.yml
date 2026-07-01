@@ -51,7 +51,7 @@ jobs:
           echo "📊 Test coverage completed"
 
       - name: Upload coverage reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-report-node-${{ matrix.node-version }}
           path: coverage/
@@ -92,7 +92,7 @@ jobs:
           '
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dist-node-${{ matrix.node-version }}
           path: dist/
