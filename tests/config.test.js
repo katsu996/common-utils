@@ -107,15 +107,6 @@ function configFileExists(dir, filename) {
   return fs.existsSync(path.join(dir, filename));
 }
 
-function getPackageJsonScripts(dir) {
-  const packageJsonPath = path.join(dir, "package.json");
-  if (!fs.existsSync(packageJsonPath)) {
-    return null;
-  }
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-  return packageJson.scripts || {};
-}
-
 describe("config.js（インタラクティブCLI）", () => {
   let tempDir;
 
@@ -201,7 +192,9 @@ describe("config.js（インタラクティブCLI）", () => {
     it("validateConfigIdsが無効なIDでエラーを投げる", () => {
       const originalExit = process.exit;
       let exitCode = null;
-      process.exit = (code) => { exitCode = code; };
+      process.exit = (code) => {
+        exitCode = code;
+      };
       try {
         validateConfigIds(["invalid"]);
         expect(exitCode).toBe(1);
@@ -270,10 +263,10 @@ describe("config.js（インタラクティブCLI）", () => {
       const status = checkConfigFileStatus();
       expect(Array.isArray(status)).toBe(true);
       expect(status.length).toBe(CONFIG_FILES.length);
-      status.forEach((s) => {
+      for (const s of status) {
         expect(s.exists).toBeDefined();
         expect(typeof s.exists).toBe("boolean");
-      });
+      }
     });
   });
 

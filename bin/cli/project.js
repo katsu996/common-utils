@@ -3,7 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { spawn } = require("node:child_process");
-const { intro, outro, cancel, log } = require("@clack/prompts");
+const { intro, outro, isCancel, cancel, log } = require("@clack/prompts");
 const pc = require("picocolors");
 
 const { globalOptions } = require("./args");
@@ -120,7 +120,9 @@ async function installDependenciesForNew(projectDir, dependencies, projectName) 
     await installDependencies(projectDir, dependencies);
   } catch (error) {
     console.error(`${pc.red("依存関係インストールエラー:")} ${error.message}`);
-    console.log(`${pc.yellow("手動でインストールしてください:")} cd ${projectName} && pnpm add -D ${dependencies.join(" ")}`);
+    console.log(
+      `${pc.yellow("手動でインストールしてください:")} cd ${projectName} && pnpm add -D ${dependencies.join(" ")}`,
+    );
   }
 }
 

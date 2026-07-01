@@ -11,7 +11,9 @@ export function sum(values: number[]): number {
 }
 
 export function average(values: number[]): number {
-  if (values.length === 0) return 0;
+  if (values.length === 0) {
+    return 0;
+  }
   return sum(values) / values.length;
 }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { add, sub, sum, average, clamp, roundTo } from "../src/math";
+import { add, average, clamp, roundTo, sub, sum } from "../src/math";
 
 describe("Math utilities", () => {
   describe("add", () => {
@@ -160,9 +160,9 @@ describe("Math utilities", () => {
 
   describe("roundTo", () => {
     it("should round to the specified number of decimal places", () => {
-      expect(roundTo(3.14159, 2)).toBe(3.14);
-      expect(roundTo(3.14159, 3)).toBe(3.142);
-      expect(roundTo(3.14159, 0)).toBe(3);
+      expect(roundTo(Math.PI, 2)).toBe(3.14);
+      expect(roundTo(Math.PI, 3)).toBe(Math.PI);
+      expect(roundTo(Math.PI, 0)).toBe(3);
     });
 
     it("should handle rounding up", () => {
@@ -176,7 +176,7 @@ describe("Math utilities", () => {
     });
 
     it("should handle negative numbers", () => {
-      expect(roundTo(-3.14159, 2)).toBe(-3.14);
+      expect(roundTo(-Math.PI, 2)).toBe(-3.14);
       expect(roundTo(-2.5, 0)).toBe(-2);
     });
 

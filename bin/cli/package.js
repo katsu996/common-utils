@@ -3,9 +3,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { log } = require("@clack/prompts");
-const pc = require("picocolors");
 
-const { globalOptions } = require("./args");
 const { collectScripts } = require("./config-files");
 
 function hasPackageJson() {

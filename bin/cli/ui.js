@@ -2,7 +2,7 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
-const { intro, outro, multiselect, text, isCancel, cancel, log } = require("@clack/prompts");
+const { multiselect, text, isCancel, cancel, log } = require("@clack/prompts");
 const pc = require("picocolors");
 
 const { globalOptions } = require("./args");
