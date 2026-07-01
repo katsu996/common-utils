@@ -14,7 +14,7 @@ on:
           - major
 
 env:
-  NODE_VERSION: 22.16.0
+  NODE_VERSION: 24.16.0
   PNPM_VERSION: 10.12.4
 
 jobs:
