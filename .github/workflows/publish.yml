@@ -99,9 +99,7 @@ jobs:
           NODE_ENV: production
 
       - name: Publish to npm
-        run: pnpm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm publish --access public --no-git-checks
 
   create-release:
     runs-on: ubuntu-latest
