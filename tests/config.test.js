@@ -191,7 +191,9 @@ describe("config.js（インタラクティブCLI）", () => {
 
     it("validateConfigIdsが無効なIDでエラーを投げる", () => {
       const originalExit = process.exit;
+      const originalConsoleError = console.error;
       let exitCode = null;
+      console.error = () => {};
       process.exit = (code) => {
         exitCode = code;
       };
@@ -200,6 +202,7 @@ describe("config.js（インタラクティブCLI）", () => {
         expect(exitCode).toBe(1);
       } finally {
         process.exit = originalExit;
+        console.error = originalConsoleError;
       }
     });
 
