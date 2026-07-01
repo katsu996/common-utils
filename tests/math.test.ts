@@ -160,9 +160,9 @@ describe("Math utilities", () => {
 
   describe("roundTo", () => {
     it("should round to the specified number of decimal places", () => {
-      expect(roundTo(Math.PI, 2)).toBe(3.14);
-      expect(roundTo(Math.PI, 3)).toBe(Math.PI);
-      expect(roundTo(Math.PI, 0)).toBe(3);
+      expect(roundTo(1.23456, 2)).toBe(1.23);
+      expect(roundTo(1.23456, 3)).toBe(1.235);
+      expect(roundTo(1.23456, 0)).toBe(1);
     });
 
     it("should handle rounding up", () => {
