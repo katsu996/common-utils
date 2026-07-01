@@ -19,7 +19,7 @@
 
 1. **バージョン更新**: セマンティックバージョニングに基づくバージョン更新（patch/minor/majorを選択）
 2. **タグ作成**: Gitタグの自動生成
-3. **NPM公開**: NPMレジストリへの自動公開
+3. **NPM公開**: **Trusted Publisher** を使用して npm レジストリへ自動公開
 4. **GitHubリリース**: リリースノートの自動作成
 
 ### パブリッシュの手順
@@ -34,15 +34,16 @@
 
 - CIの実行（品質チェック、テスト、ビルド）
 - バージョン更新とタグ作成
-- NPMへの公開
+- NPMへの公開（Trusted Publisher経由）
 - GitHubリリースの作成
 
 ## 🛠 手動リリース（緊急時）
 
 ### 前提条件
 
-- NPMトークンが設定されている
+- npm cli でログインしている（`npm login`）
 - リポジトリへの書き込み権限がある
+- パッケージのコラボレーター権限がある
 
 ### 手順
 
@@ -68,26 +69,49 @@ pnpm version major
 git push origin main --tags
 
 # 6. NPMに公開
-pnpm publish --access public
+pnpm publish --access public --no-git-checks
 ```
 
-## 📋 必要な設定
+## 📋 必要な設定（初回のみ）
+
+### Trusted Publisher の設定
+
+本パッケージは **NPMトークンを使用せず**、npm の Trusted Publisher（OpenID Connect）による認証で公開します。
+
+#### 前提条件
+
+- `@katsu996` 組織が npmjs.com に存在すること
+- 組織の管理者権限があること
+
+#### 設定手順
+
+1. [npmjs.com](https://www.npmjs.com) にログイン
+2. `@katsu996/common-utils` のパッケージページを開く
+   - 未作成の場合は先に `pnpm publish --access public --dry-run` で公開を試み、404 エラーを確認した上で `npm init --scope=katsu996` 等で作成する
+3. パッケージ設定 > "Access" セクション > "Manage Access"
+4. 「Add Integration」→「GitHub Actions」を選択
+5. 以下の情報を入力：
+
+   | 項目 | 値 |
+   | ---- | --- |
+   | Owner | `katsu996` |
+   | Repository | `common-utils` |
+   | Workflow | `publish.yml` |
+   | Environment | 空欄（すべての環境を許可） |
+
+6. 「Create Integration」をクリック
+
+#### 確認
+
+設定が完了すると、GitHub Actions の publish ワークフローが `id-token: write` 権限を使用して npm に認証できるようになります。
 
 ### GitHub Secrets
 
-以下のシークレットをGitHubリポジトリに設定してください：
-
-| シークレット名 | 説明 | 取得方法 |
-| -------------- | ---- | -------- |
-| `NPM_TOKEN` | NPMレジストリの認証トークン | [npmjs.com](https://www.npmjs.com) > Settings > Access Tokens |
+| シークレット名 | 説明 | 備考 |
+| -------------- | ---- | ---- |
 | `GITHUB_TOKEN` | GitHubのアクセストークン | 自動的に提供される（設定不要） |
 
-### NPMトークンの設定
-
-1. [npmjs.com](https://www.npmjs.com) にログイン
-2. Settings > Access Tokens
-3. "Generate New Token" > "Automation"
-4. 生成されたトークンをGitHub Secrets `NPM_TOKEN` に設定
+> **Note**: `NPM_TOKEN` は不要です。認証は Trusted Publisher（OIDC）によって行われます。
 
 ## 🔍 リリース確認
 
@@ -138,7 +162,10 @@ pnpm publish --access public
 ### よくある問題
 
 1. **NPM公開エラー**
-   - NPMトークンの有効性を確認
+   - Trusted Publisher の設定が正しいか確認（npm パッケージ設定 > Access > Integrations）
+   - `@katsu996` 組織が npmjs.com に存在するか確認
+   - publish.yml に `id-token: write` 権限が付与されているか確認
+   - 初回公開時は手動で `npm publish` が必要な場合あり（package の作成）
    - パッケージ名の重複チェック
    - ネットワーク接続の確認
 
@@ -158,7 +185,7 @@ pnpm publish --access public
 
 5. **GitHub Actions失敗**
    - ワークフローログの確認
-   - シークレット設定の確認
+   - Trusted Publisher（Integration）設定の確認
 
 ### ロールバック
 
