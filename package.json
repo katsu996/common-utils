@@ -1,6 +1,6 @@
 {
   "name": "@katsu996/common-utils",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "A collection of common utility functions and shared configurations for projects within our organization.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
