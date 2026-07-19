@@ -81,7 +81,7 @@ import { CommonData } from "@katsu996/common-utils";
 
 const user: CommonData = {
   id: "123",
-  name: "John Doe"
+  name: "John Doe",
 };
 ```
 
@@ -99,7 +99,7 @@ const result = add(10, 20); // 30
 
 ```jsonc
 {
-  "extends": ["@katsu996/common-utils/biome"]
+  "extends": ["@katsu996/common-utils/biome"],
 }
 ```
 
@@ -115,8 +115,8 @@ const result = add(10, 20); // 30
 
 ```toml
 [tools]
-node = "22.16.0"
-pnpm = "10.12.4"
+node = "22.23.1"
+pnpm = "10.34.5"
 ```
 
 ### Vite設定(vite.config.ts)
@@ -125,9 +125,12 @@ pnpm = "10.12.4"
 import baseConfig from "@katsu996/common-utils/vite";
 import { defineConfig, mergeConfig } from "vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  // プロジェクト固有の設定をここに追加
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    // プロジェクト固有の設定をここに追加
+  }),
+);
 ```
 
 ### Vitest設定(vitest.config.ts)
@@ -136,23 +139,26 @@ export default mergeConfig(baseConfig, defineConfig({
 import baseConfig from "@katsu996/common-utils/vitest";
 import { defineConfig, mergeConfig } from "vitest/config";
 
-export default mergeConfig(baseConfig, defineConfig({
-  // プロジェクト固有の設定をここに追加
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    // プロジェクト固有の設定をここに追加
+  }),
+);
 ```
 
 ## エクスポート
 
 このパッケージは以下のパスでアクセス可能です：
 
-| パス | 説明 |
-|------|------|
-| `@katsu996/common-utils` | メインユーティリティ関数 |
-| `@katsu996/common-utils/math` | 数学関数 |
-| `@katsu996/common-utils/biome` | Biome設定ファイル |
-| `@katsu996/common-utils/tsconfig` | TypeScript設定ファイル |
-| `@katsu996/common-utils/vite` | Viteベース設定 |
-| `@katsu996/common-utils/vitest` | Vitestベース設定 |
+| パス                              | 説明                     |
+| --------------------------------- | ------------------------ |
+| `@katsu996/common-utils`          | メインユーティリティ関数 |
+| `@katsu996/common-utils/math`     | 数学関数                 |
+| `@katsu996/common-utils/biome`    | Biome設定ファイル        |
+| `@katsu996/common-utils/tsconfig` | TypeScript設定ファイル   |
+| `@katsu996/common-utils/vite`     | Viteベース設定           |
+| `@katsu996/common-utils/vitest`   | Vitestベース設定         |
 
 ## よくある質問（FAQ）
 
@@ -161,11 +167,13 @@ export default mergeConfig(baseConfig, defineConfig({
 **A:** 以下の方法を試してください：
 
 1. パッケージがインストールされている場合：
+
    ```bash
    pnpm katsu-config
    ```
 
 2. パッケージがインストールされていない場合：
+
    ```bash
    pnpm dlx katsu-config
    ```
@@ -182,7 +190,7 @@ export default mergeConfig(baseConfig, defineConfig({
 
 ### Q: どのバージョンのNode.jsが必要ですか？
 
-**A:** Node.js >= 22.16.0 が必要です。Mise設定ファイルでバージョンが指定されています。
+**A:** Node.js >= 22.23.1 が必要です。Mise設定ファイルでバージョンが指定されています。
 
 ## トラブルシューティング
 
@@ -240,12 +248,14 @@ pnpm format
 ### 開発ワークフロー
 
 1. **新規プロジェクト開始時**：
+
    ```bash
    pnpm katsu-config  # 設定ファイルの初期化
    pnpm install       # 依存関係のインストール
    ```
 
 2. **コード品質チェック**：
+
    ```bash
    pnpm check         # 型チェック + リント
    pnpm test          # テスト実行

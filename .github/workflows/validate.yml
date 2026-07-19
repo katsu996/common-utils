@@ -1,7 +1,7 @@
 name: Validate Workflows
 
 on:
-  workflow_dispatch:  # 手動実行
+  workflow_dispatch: # 手動実行
   push:
     paths:
       - ".github/workflows/**"
@@ -12,8 +12,8 @@ on:
       - "vitest.config*.json"
 
 env:
-  NODE_VERSION: 22.16.0
-  PNPM_VERSION: 10.12.4
+  NODE_VERSION: 22.23.1
+  PNPM_VERSION: 10.34.5
 
 jobs:
   validate-workflows:

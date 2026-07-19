@@ -15,7 +15,7 @@ on:
 
 env:
   NODE_VERSION: 24.16.0
-  PNPM_VERSION: 10.12.4
+  PNPM_VERSION: 10.34.5
 
 jobs:
   ci:

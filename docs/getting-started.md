@@ -2,8 +2,8 @@
 
 ## 必要条件
 
-- **Node.js**: `>=22.16.0`
-- **pnpm**: `>=10.12.4`
+- **Node.js**: `>=22.23.1`
+- **pnpm**: `>=10.34.5`
 
 ## インストール
 
@@ -50,8 +50,8 @@ import { add } from "@katsu996/common-utils/math";
 {
   "extends": ["@katsu996/common-utils/biome"],
   "files": {
-    "includes": ["src/**/*"]
-  }
+    "includes": ["src/**/*"],
+  },
 }
 ```
 
@@ -61,14 +61,17 @@ import { add } from "@katsu996/common-utils/math";
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  build: {
-    lib: {
-      entry: { index: "src/index.ts" },
-      formats: ["cjs"],
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    build: {
+      lib: {
+        entry: { index: "src/index.ts" },
+        formats: ["cjs"],
+      },
     },
-  },
-}));
+  }),
+);
 ```
 
 #### Vitest 設定
@@ -77,11 +80,14 @@ export default mergeConfig(baseConfig, defineConfig({
 import { defineConfig, mergeConfig } from "vitest/config";
 import baseConfig from "@katsu996/common-utils/vitest";
 
-export default mergeConfig(baseConfig, defineConfig({
-  test: {
-    include: ["tests/**/*.{test,spec}.{js,ts}"],
-  },
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    test: {
+      include: ["tests/**/*.{test,spec}.{js,ts}"],
+    },
+  }),
+);
 ```
 
 ### CLI ツールの使用
@@ -98,13 +104,13 @@ pnpm dlx @katsu996/common-utils katsu-config
 
 ## エクスポートパス
 
-| パス | 内容 |
-|------|------|
-| `@katsu996/common-utils` | メインエントリ（ユーティリティ関数） |
-| `@katsu996/common-utils/math` | 数学ユーティリティ |
-| `@katsu996/common-utils/package.json` | package.json |
-| `@katsu996/common-utils/biome` | Biome ベース設定 |
-| `@katsu996/common-utils/mise` | Mise 設定 |
-| `@katsu996/common-utils/tsconfig` | TypeScript ベース設定 |
-| `@katsu996/common-utils/vite` | Vite ベース設定 |
-| `@katsu996/common-utils/vitest` | Vitest ベース設定 |
+| パス                                  | 内容                                 |
+| ------------------------------------- | ------------------------------------ |
+| `@katsu996/common-utils`              | メインエントリ（ユーティリティ関数） |
+| `@katsu996/common-utils/math`         | 数学ユーティリティ                   |
+| `@katsu996/common-utils/package.json` | package.json                         |
+| `@katsu996/common-utils/biome`        | Biome ベース設定                     |
+| `@katsu996/common-utils/mise`         | Mise 設定                            |
+| `@katsu996/common-utils/tsconfig`     | TypeScript ベース設定                |
+| `@katsu996/common-utils/vite`         | Vite ベース設定                      |
+| `@katsu996/common-utils/vitest`       | Vitest ベース設定                    |

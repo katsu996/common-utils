@@ -21,8 +21,8 @@
 {
   "extends": ["@katsu996/common-utils/biome"],
   "files": {
-    "includes": ["src/**/*"]
-  }
+    "includes": ["src/**/*"],
+  },
 }
 ```
 
@@ -32,14 +32,17 @@
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  build: {
-    lib: {
-      entry: { index: "src/index.ts" },
-      formats: ["cjs"],
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    build: {
+      lib: {
+        entry: { index: "src/index.ts" },
+        formats: ["cjs"],
+      },
     },
-  },
-}));
+  }),
+);
 ```
 
 ## Vitest 設定
@@ -48,11 +51,14 @@ export default mergeConfig(baseConfig, defineConfig({
 import { defineConfig, mergeConfig } from "vitest/config";
 import baseConfig from "@katsu996/common-utils/vitest";
 
-export default mergeConfig(baseConfig, defineConfig({
-  test: {
-    include: ["tests/**/*.{test,spec}.{js,ts}"],
-  },
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    test: {
+      include: ["tests/**/*.{test,spec}.{js,ts}"],
+    },
+  }),
+);
 ```
 
 ## Mise 設定
@@ -61,16 +67,16 @@ Mise は TOML の `extends` 機構を持たないため、内容を参考に直�
 
 ```toml
 [tools]
-node = "22.16.0"
-pnpm = "10.12.4"
+node = "22.23.1"
+pnpm = "10.34.5"
 ```
 
 ## エクスポートパス一覧
 
-| パス | 設定ファイル | 継承方法 |
-|------|------------|---------|
-| `@katsu996/common-utils/tsconfig` | `tsconfig.base.json` | `extends` |
-| `@katsu996/common-utils/biome` | `biome.base.jsonc` | `extends`（配列） |
-| `@katsu996/common-utils/vite` | `vite.config.base.ts` | `mergeConfig` |
-| `@katsu996/common-utils/vitest` | `vitest.config.base.ts` | `mergeConfig` |
-| `@katsu996/common-utils/mise` | `mise.toml` | 手動コピー |
+| パス                              | 設定ファイル            | 継承方法          |
+| --------------------------------- | ----------------------- | ----------------- |
+| `@katsu996/common-utils/tsconfig` | `tsconfig.base.json`    | `extends`         |
+| `@katsu996/common-utils/biome`    | `biome.base.jsonc`      | `extends`（配列） |
+| `@katsu996/common-utils/vite`     | `vite.config.base.ts`   | `mergeConfig`     |
+| `@katsu996/common-utils/vitest`   | `vitest.config.base.ts` | `mergeConfig`     |
+| `@katsu996/common-utils/mise`     | `mise.toml`             | 手動コピー        |

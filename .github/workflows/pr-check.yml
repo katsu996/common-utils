@@ -5,8 +5,8 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
-  NODE_VERSION: 22.16.0
-  PNPM_VERSION: 10.12.4
+  NODE_VERSION: 22.23.1
+  PNPM_VERSION: 10.34.5
 
 jobs:
   pr-check:
@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0  # 全履歴を取得してdiffを確認
+          fetch-depth: 0 # 全履歴を取得してdiffを確認
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
