@@ -26,8 +26,8 @@ git push origin release/v1.x.x
 
    GitHub リポジトリの Actions タブ → Publish → **Run workflow**
 
-   | パラメーター | 説明 |
-   |------------|------|
+   | パラメーター   | 説明                                 |
+   | -------------- | ------------------------------------ |
    | `version_bump` | `patch` / `minor` / `major` から選択 |
 
 4. **自動処理**
@@ -87,8 +87,8 @@ npm deprecate @katsu996/common-utils@1.x.x "重大な問題のため使用しな
 
 OIDC を使用しない場合、以下の Secrets が必要です:
 
-| Secret | 説明 |
-|--------|------|
+| Secret      | 説明                                        |
+| ----------- | ------------------------------------------- |
 | `NPM_TOKEN` | npm automation token（`automation` タイプ） |
 
 ## リリースフロー図

@@ -42,6 +42,7 @@ ${pc.bold("説明")}
 ${pc.bold("設定ファイルID:")}
   typescript    TypeScript設定 (tsconfig.json)
   biome         Biome設定 (biome.jsonc)
+  oxc           OXC設定 (oxlint.json / oxlint + oxfmt)
   mise          Mise設定 (mise.toml)
   vite          Vite設定 (vite.config.ts)
   vitest        Vitest設定 (vitest.config.ts)
@@ -75,9 +76,9 @@ function displayAvailableCommands(packageUpdateResult) {
 
   const scriptDescriptions = {
     "type-check": "TypeScript型チェック",
-    lint: "Biomeによるlint",
+    lint: "lintを実行",
     "lint:fix": "lint問題を自動修正",
-    check: "Biomeによる総合チェック",
+    check: "総合チェック",
     "check:fix": "check問題を自動修正",
     format: "コードフォーマット",
     "format:check": "フォーマット確認",

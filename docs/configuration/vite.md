@@ -8,25 +8,28 @@
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  build: {
-    lib: {
-      entry: {
-        index: resolve(__dirname, "src/index.ts"),
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    build: {
+      lib: {
+        entry: {
+          index: resolve(__dirname, "src/index.ts"),
+        },
+        formats: ["cjs"],
       },
-      formats: ["cjs"],
     },
-  },
-}));
+  }),
+);
 ```
 
 ## 設定概要
 
-| オプション | 値 | 説明 |
-|-----------|-----|------|
-| `build.target` | `esnext` | 最新ターゲット向けにビルド |
-| `build.minify` | 本番時: `true` / 開発時: `false` | 環境に応じた minify |
-| `build.sourcemap` | 本番時: `false` / 開発時: `true` | 環境に応じたソースマップ |
+| オプション        | 値                               | 説明                       |
+| ----------------- | -------------------------------- | -------------------------- |
+| `build.target`    | `esnext`                         | 最新ターゲット向けにビルド |
+| `build.minify`    | 本番時: `true` / 開発時: `false` | 環境に応じた minify        |
+| `build.sourcemap` | 本番時: `false` / 開発時: `true` | 環境に応じたソースマップ   |
 
 ### エイリアス
 
@@ -49,24 +52,27 @@ import { resolve } from "node:path";
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  build: {
-    lib: {
-      entry: {
-        index: resolve(__dirname, "src/index.ts"),
-        math: resolve(__dirname, "src/math.ts"),
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    build: {
+      lib: {
+        entry: {
+          index: resolve(__dirname, "src/index.ts"),
+          math: resolve(__dirname, "src/math.ts"),
+        },
+        formats: ["cjs"],
       },
-      formats: ["cjs"],
-    },
-    rollupOptions: {
-      external: [],
-      output: {
-        entryFileNames: "[name].js",
-        chunkFileNames: "[name].js",
+      rollupOptions: {
+        external: [],
+        output: {
+          entryFileNames: "[name].js",
+          chunkFileNames: "[name].js",
+        },
       },
     },
-  },
-}));
+  }),
+);
 ```
 
 ### アプリケーションモード
@@ -75,9 +81,12 @@ export default mergeConfig(baseConfig, defineConfig({
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  build: {
-    outDir: "build",
-  },
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    build: {
+      outDir: "build",
+    },
+  }),
+);
 ```

@@ -28,7 +28,9 @@ describe("Math utilities", () => {
 
     it("should handle Infinity values", () => {
       expect(add(Number.POSITIVE_INFINITY, 5)).toBe(Number.POSITIVE_INFINITY);
-      expect(add(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY)).toBe(Number.POSITIVE_INFINITY);
+      expect(add(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY)).toBe(
+        Number.POSITIVE_INFINITY,
+      );
       expect(add(Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY)).toBeNaN();
     });
 

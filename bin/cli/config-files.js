@@ -74,7 +74,13 @@ function applyConfigFile(file, projectDir = process.cwd()) {
 
     if (globalOptions.dryRun) {
       const exists = fs.existsSync(fullDestination);
-      return { success: true, file: destination, dryRun: true, wouldCreate: !exists, wouldUpdate: exists };
+      return {
+        success: true,
+        file: destination,
+        dryRun: true,
+        wouldCreate: !exists,
+        wouldUpdate: exists,
+      };
     }
 
     fs.writeFileSync(fullDestination, content, "utf8");

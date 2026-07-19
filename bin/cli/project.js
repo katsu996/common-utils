@@ -16,7 +16,12 @@ const {
   checkConfigFileStatus,
   validateConfigIds,
 } = require("./config-files");
-const { hasPackageJson, getProjectName, updatePackageJsonExisting, updatePackageJson } = require("./package");
+const {
+  hasPackageJson,
+  getProjectName,
+  updatePackageJsonExisting,
+  updatePackageJson,
+} = require("./package");
 const {
   getPackageVersion,
   displayHelp,
@@ -244,7 +249,9 @@ async function installDependenciesForNewlyAdded(newlyAddedConfigs) {
     await installDependencies(process.cwd(), dependencies);
   } catch (error) {
     console.error(`${pc.red("依存関係インストールエラー:")} ${error.message}`);
-    console.log(`${pc.yellow("手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`);
+    console.log(
+      `${pc.yellow("手動でインストールしてください:")} pnpm add -D ${dependencies.join(" ")}`,
+    );
   }
 }
 

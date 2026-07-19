@@ -47,6 +47,7 @@ pnpm run build
 ## 関連Issue
 
 <!-- 関連するIssueがあれば記載してください -->
+
 Fixes #(issue番号)
 
 ## スクリーンショット（該当する場合）

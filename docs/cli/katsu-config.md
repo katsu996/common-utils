@@ -17,14 +17,14 @@ npx @katsu996/common-utils katsu-config
 
 ## CLI オプション
 
-| オプション | 説明 |
-|-----------|------|
-| `-v`, `--version` | バージョン情報を表示 |
-| `-h`, `--help` | ヘルプを表示 |
-| `-l`, `--list` | 利用可能な設定ファイル一覧を表示 |
+| オプション                | 説明                                               |
+| ------------------------- | -------------------------------------------------- |
+| `-v`, `--version`         | バージョン情報を表示                               |
+| `-h`, `--help`            | ヘルプを表示                                       |
+| `-l`, `--list`            | 利用可能な設定ファイル一覧を表示                   |
 | `-c`, `--config <ids...>` | 設定ファイル ID を直接指定（スキップ可能: `skip`） |
-| `--skip-install` | 依存関係のインストールをスキップ |
-| `-n`, `--dry-run` | ドライラン（変更を実際に行わない） |
+| `--skip-install`          | 依存関係のインストールをスキップ                   |
+| `-n`, `--dry-run`         | ドライラン（変更を実際に行わない）                 |
 
 ### --config オプションの例
 
@@ -68,14 +68,15 @@ katsu-config -c skip
 
 ## 対応設定ファイル
 
-| ID | ファイル | 依存パッケージ | 自動追加スクリプト |
-|----|---------|---------------|-------------------|
-| `typescript` | `tsconfig.json` | `typescript`, `@types/node` | `type-check` |
-| `biome` | `biome.jsonc` | `@biomejs/biome` | `lint`, `lint:fix`, `check`, `check:fix`, `format`, `format:check` |
-| `mise` | `mise.toml` | なし | なし |
-| `vite` | `vite.config.ts` | なし | なし |
-| `vitest` | `vitest.config.ts` | `vitest`, `@vitest/coverage-v8` | `test`, `test:watch`, `test:coverage` |
-| `gitignore` | `.gitignore` | なし | なし |
+| ID           | ファイル           | 依存パッケージ                  | 自動追加スクリプト                                                 |
+| ------------ | ------------------ | ------------------------------- | ------------------------------------------------------------------ |
+| `typescript` | `tsconfig.json`    | `typescript`, `@types/node`     | `type-check`                                                       |
+| `biome`      | `biome.jsonc`      | `@biomejs/biome`                | `lint`, `lint:fix`, `check`, `check:fix`, `format`, `format:check` |
+| `oxc`        | `oxlint.json`      | `oxlint`, `oxfmt`               | `lint`, `lint:fix`, `format`, `format:check`                       |
+| `mise`       | `mise.toml`        | なし                            | なし                                                               |
+| `vite`       | `vite.config.ts`   | なし                            | なし                                                               |
+| `vitest`     | `vitest.config.ts` | `vitest`, `@vitest/coverage-v8` | `test`, `test:watch`, `test:coverage`                              |
+| `gitignore`  | `.gitignore`       | なし                            | なし                                                               |
 
 ## 自動追加スクリプト
 
@@ -94,6 +95,15 @@ pnpm check         # Biome による総合チェック
 pnpm check:fix     # check 問題を自動修正
 pnpm format        # コードフォーマット
 pnpm format:check  # フォーマット確認
+```
+
+### OXC 設定選択時
+
+```bash
+pnpm lint           # OXC による lint
+pnpm lint:fix       # lint 問題を自動修正
+pnpm format         # コードフォーマット
+pnpm format:check   # フォーマット確認
 ```
 
 ### Vitest 設定選択時

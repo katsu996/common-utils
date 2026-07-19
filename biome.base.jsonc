@@ -24,15 +24,15 @@
       "!**/playwright-report",
       "!**/test-results",
       "!vite.config.ts",
-      "!vitest.config.ts"
+      "!vitest.config.ts",
     ],
-    "ignoreUnknown": true
+    "ignoreUnknown": true,
   },
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "root": "./",
-    "useIgnoreFile": true
+    "useIgnoreFile": true,
   },
   "linter": {
     "rules": {
@@ -41,7 +41,7 @@
         "noDebugger": "error",
         "noArrayIndexKey": "error",
         "noSkippedTests": "error",
-        "noFocusedTests": "error"
+        "noFocusedTests": "error",
       },
       "style": {
         "noNonNullAssertion": "error",
@@ -53,12 +53,12 @@
         "useTemplate": "error",
         "useEnumInitializers": "error",
         "useShorthandFunctionType": "error",
-        "useSingleVarDeclarator": "error"
+        "useSingleVarDeclarator": "error",
       },
       "performance": {
         "noDelete": "error",
         "noReExportAll": "off",
-        "noBarrelFile": "off"
+        "noBarrelFile": "off",
       },
       "correctness": {
         "noUnusedVariables": "error",
@@ -66,7 +66,7 @@
         "useImportExtensions": "off",
         "noUndeclaredVariables": "error",
         "noUnusedLabels": "error",
-        "noUnusedPrivateClassMembers": "error"
+        "noUnusedPrivateClassMembers": "error",
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": "error",
@@ -79,17 +79,17 @@
         "noVoid": "error",
         "useLiteralKeys": "off",
         "useOptionalChain": "error",
-        "useSimplifiedLogicExpression": "error"
+        "useSimplifiedLogicExpression": "error",
       },
       "security": {
         "noDangerouslySetInnerHtml": "error",
-        "noGlobalEval": "error"
-      }
-    }
+        "noGlobalEval": "error",
+      },
+    },
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 119
-  }
+    "lineWidth": 119,
+  },
 }

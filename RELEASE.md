@@ -92,11 +92,11 @@ pnpm publish --access public --no-git-checks
 4. 「Add Integration」→「GitHub Actions」を選択
 5. 以下の情報を入力：
 
-   | 項目 | 値 |
-   | ---- | --- |
-   | Owner | `katsu996` |
-   | Repository | `common-utils` |
-   | Workflow | `publish.yml` |
+   | 項目        | 値                         |
+   | ----------- | -------------------------- |
+   | Owner       | `katsu996`                 |
+   | Repository  | `common-utils`             |
+   | Workflow    | `publish.yml`              |
    | Environment | 空欄（すべての環境を許可） |
 
 6. 「Create Integration」をクリック
@@ -107,8 +107,8 @@ pnpm publish --access public --no-git-checks
 
 ### GitHub Secrets
 
-| シークレット名 | 説明 | 備考 |
-| -------------- | ---- | ---- |
+| シークレット名 | 説明                     | 備考                           |
+| -------------- | ------------------------ | ------------------------------ |
 | `GITHUB_TOKEN` | GitHubのアクセストークン | 自動的に提供される（設定不要） |
 
 > **Note**: `NPM_TOKEN` は不要です。認証は Trusted Publisher（OIDC）によって行われます。
@@ -136,7 +136,7 @@ pnpm publish --access public --no-git-checks
 
    ```javascript
    // test.js
-   const { add } = require('@katsu996/common-utils');
+   const { add } = require("@katsu996/common-utils");
    console.log(add(2, 3)); // 5
    ```
 

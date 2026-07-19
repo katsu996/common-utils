@@ -37,6 +37,22 @@ const CONFIG_FILES = [
     },
   },
   {
+    id: "oxc",
+    label: "OXC設定 (oxlint.json / oxlint + oxfmt)",
+    source: path.resolve(packageRoot, "oxlint.base.json"),
+    destination: "oxlint.json",
+    dependencies: ["oxlint", "oxfmt"],
+    scripts: {
+      lint: "oxlint",
+      "lint:fix": "oxlint --fix",
+      format: "oxfmt --write .",
+      "format:check": "oxfmt --check .",
+    },
+    contentModifier: (content) => {
+      return content;
+    },
+  },
+  {
     id: "mise",
     label: "Mise設定 (mise.toml)",
     source: path.resolve(packageRoot, "mise.toml"),

@@ -71,8 +71,8 @@ pnpm add -D typescript @types/node
 {
   "extends": ["@katsu996/common-utils/biome"],
   "files": {
-    "includes": ["src/**/*"]
-  }
+    "includes": ["src/**/*"],
+  },
 }
 ```
 
@@ -105,11 +105,14 @@ pnpm add -D @biomejs/biome
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 
-export default mergeConfig(baseConfig, defineConfig({
-  build: {
-    outDir: "dist",
-  },
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    build: {
+      outDir: "dist",
+    },
+  }),
+);
 ```
 
 ### Vitest 設定
@@ -120,11 +123,14 @@ export default mergeConfig(baseConfig, defineConfig({
 import { defineConfig, mergeConfig } from "vitest/config";
 import baseConfig from "@katsu996/common-utils/vitest";
 
-export default mergeConfig(baseConfig, defineConfig({
-  test: {
-    include: ["tests/**/*.{test,spec}.{js,ts}"],
-  },
-}));
+export default mergeConfig(
+  baseConfig,
+  defineConfig({
+    test: {
+      include: ["tests/**/*.{test,spec}.{js,ts}"],
+    },
+  }),
+);
 ```
 
 2. 依存関係をインストール:
@@ -153,8 +159,8 @@ GitHub Actions を使用している場合、`.github/workflows/ci.yml` を参�
 
 ```yaml
 - run: pnpm install
-- run: pnpm type-check    # TypeScript 型チェック
-- run: pnpm check         # Biome チェック
-- run: pnpm test          # テスト
-- run: pnpm build         # ビルド
+- run: pnpm type-check # TypeScript 型チェック
+- run: pnpm check # Biome チェック
+- run: pnpm test # テスト
+- run: pnpm build # ビルド
 ```
