@@ -26,16 +26,16 @@
     "prepublishOnly": "pnpm check && pnpm build"
   },
   "dependencies": {
-    "@clack/prompts": "^1.6.0",
+    "@clack/prompts": "^1.7.0",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.1",
-    "@types/node": "^26.0.1",
-    "@vitest/coverage-v8": "^4.1.9",
-    "typescript": "^6.0.3",
-    "vite": "^8.1.2",
-    "vitest": "^4.1.9"
+    "@biomejs/biome": "^2.5.4",
+    "@types/node": "^26.1.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
   },
   "files": [
     ".gitignore.template",
