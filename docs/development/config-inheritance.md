@@ -67,7 +67,7 @@ Mise は TOML の `extends` 機構を持たないため、内容を参考に直�
 
 ```toml
 [tools]
-node = "22.23.1"
+node = "24.18.0"
 pnpm = "10.34.5"
 ```
 
