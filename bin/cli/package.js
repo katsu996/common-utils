@@ -33,6 +33,19 @@ function validateProjectName(value) {
   return undefined;
 }
 
+function ensureCaretVersions(packageJson) {
+  for (const key of ["dependencies", "devDependencies"]) {
+    if (packageJson[key]) {
+      for (const pkg of Object.keys(packageJson[key])) {
+        const v = packageJson[key][pkg];
+        if (typeof v === "string" && !v.startsWith("^") && !v.startsWith("~")) {
+          packageJson[key][pkg] = `^${v}`;
+        }
+      }
+    }
+  }
+}
+
 function updatePackageJsonExisting(selectedConfigs) {
   try {
     const packageJsonPath = path.join(process.cwd(), "package.json");
@@ -49,6 +62,7 @@ function updatePackageJsonExisting(selectedConfigs) {
       ...selectedScripts,
     };
 
+    ensureCaretVersions(packageJson);
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     log.success("package.jsonにスクリプトを追加しました");
 
@@ -76,6 +90,7 @@ function updatePackageJson(projectDir, selectedConfigs) {
 
     packageJson.type = "module";
 
+    ensureCaretVersions(packageJson);
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     log.success("package.jsonにスクリプトとESモジュール設定を追加しました");
 

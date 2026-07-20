@@ -26,6 +26,14 @@ pnpm katsu-config
 pnpm dlx katsu-config
 ```
 
+**サブコマンド（明示的指定）：**
+
+```bash
+katsu-config init     # 新規プロジェクト作成
+katsu-config update   # 既存プロジェクト更新
+katsu-config list     # 設定ファイル一覧表示
+```
+
 **新規プロジェクト（package.json未検出）の場合：**
 
 1. **プロジェクト名の入力**
@@ -36,10 +44,15 @@ pnpm dlx katsu-config
    - デフォルトで全ての設定ファイルが選択状態
    - 複数選択可能（Space キーで選択/解除）
 
-3. **設定完了後の推奨コマンド**
+3. **自動インストール（Ora スピナーで進捗表示）**
+   - Vite プロジェクト作成
+   - 選択したパッケージのインストール
+   - npm スクリプトの自動追加
+
+4. **設定完了後の推奨コマンド**
 
    ```bash
-   pnpm install
+   cd <project-name>
    pnpm dev
    ```
 
@@ -47,6 +60,7 @@ pnpm dlx katsu-config
 
 - 現在の設定ファイル状況を表示
 - 更新・追加する設定ファイルを選択
+- 新規追加の設定ファイルがあれば自動インストール
 
 作成される設定ファイル：
 

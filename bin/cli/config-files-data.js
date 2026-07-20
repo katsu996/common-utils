@@ -38,7 +38,7 @@ const CONFIG_FILES = [
   },
   {
     id: "oxc",
-    label: "OXC設定 (oxlint.json / oxlint + oxfmt)",
+    label: "OXC設定 (oxlint.json)",
     source: path.resolve(packageRoot, "oxlint.base.json"),
     destination: "oxlint.json",
     dependencies: ["oxlint", "oxfmt"],

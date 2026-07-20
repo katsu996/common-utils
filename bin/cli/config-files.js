@@ -5,7 +5,7 @@ const path = require("node:path");
 const { log } = require("@clack/prompts");
 const pc = require("picocolors");
 
-const { globalOptions } = require("./args");
+const { globalOptions } = require("./utils/global-options");
 const { CONFIG_FILES, packageRoot } = require("./config-files-data");
 
 function getLibraryVersions() {
@@ -33,6 +33,10 @@ function validateConfigIds(configIds) {
   if (invalidIds.length > 0) {
     console.error(`${pc.red("エラー:")} 無効な設定ファイルID: ${invalidIds.join(", ")}`);
     console.error(`  利用可能なID: ${validIds.join(", ")}`);
+    process.exit(1);
+  }
+  if (configIds.includes("oxc") && configIds.includes("biome")) {
+    console.error(`${pc.red("エラー:")} OXCとBiomeは同時に選択できません`);
     process.exit(1);
   }
 }
@@ -65,6 +69,10 @@ function checkConfigFileStatus() {
 function applyConfigFile(file, projectDir = process.cwd()) {
   const { source, destination, contentModifier } = file;
   const fullDestination = path.join(projectDir, destination);
+
+  if (!source) {
+    return { success: false, file: destination, error: "source path is not defined" };
+  }
 
   try {
     let content = fs.readFileSync(source, "utf8");
@@ -182,18 +190,16 @@ function collectDependencies(selectedConfigs) {
   const versions = getLibraryVersions();
   const dependencies = new Set();
 
-  dependencies.add("@katsu996/common-utils@latest");
-
   for (const configId of selectedConfigs) {
     const configFile = CONFIG_FILES.find((f) => f.id === configId);
     if (configFile?.dependencies) {
       for (const dep of configFile.dependencies) {
         const version = versions[dep];
         if (version) {
-          dependencies.add(`${dep}@${version}`);
+          const normalized = version.startsWith("^") || version.startsWith("~") ? version : `^${version}`;
+          dependencies.add(`${dep}@${normalized}`);
         } else {
-          console.warn(`警告: ${dep} のバージョンが見つかりません。最新版をインストールします。`);
-          dependencies.add(dep);
+          dependencies.add(`${dep}@latest`);
         }
       }
     }
@@ -204,10 +210,10 @@ function collectDependencies(selectedConfigs) {
 
 function collectScripts(selectedConfigs) {
   const scripts = {};
+  const selectedSet = new Set(selectedConfigs);
 
-  for (const configId of selectedConfigs) {
-    const configFile = CONFIG_FILES.find((f) => f.id === configId);
-    if (configFile?.scripts) {
+  for (const configFile of CONFIG_FILES) {
+    if (selectedSet.has(configFile.id) && configFile.scripts) {
       Object.assign(scripts, configFile.scripts);
     }
   }

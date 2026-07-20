@@ -60,11 +60,14 @@
     "test:watch": "vitest --watch",
     "test:coverage": "vitest --coverage",
     "// Utilities": "=========================================",
+    "cli": "node scripts/sandbox-cli.js",
     "audit": "pnpm audit",
     "prepublishOnly": "pnpm check && pnpm build"
   },
   "dependencies": {
     "@clack/prompts": "^1.7.0",
+    "commander": "^15.0.0",
+    "ora": "^9.4.1",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {

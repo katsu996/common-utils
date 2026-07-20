@@ -91,8 +91,26 @@ pnpm publish
 ```
 @katsu996/common-utils/
 ├── bin/                   # CLIツール
-│   ├── config.js          # katsu-config CLIスクリプト (Unix/Linux/macOS)
-│   └── config.cmd         # katsu-config CLIスクリプト (Windows)
+│   ├── config.js          # katsu-config エントリーポイント (Commander.js)
+│   ├── config.cmd         # katsu-config CLIスクリプト (Windows)
+│   └── cli/               # CLIモジュール
+│       ├── commands/      # コマンドハンドラ
+│       │   ├── init.js    # katsu-config init
+│       │   ├── update.js  # katsu-config update
+│       │   └── list.js    # katsu-config list
+│       ├── services/      # ビジネスロジック
+│       │   └── project.js # Vite作成・依存インストール
+│       ├── ui/            # UI表現レイヤー
+│       │   ├── theme.js   # picocolors カラーテーマ（一元管理）
+│       │   ├── spinner.js # Ora ローディングスピナーラッパー
+│       │   ├── prompts.js # @clack/prompts 対話ラッパー
+│       │   └── display.js # 表示ヘルパー
+│       ├── utils/         # 横断的ユーティリティ
+│       │   ├── errors.js  # エラーハンドリング統合
+│       │   └── global-options.js # グローバルオプション状態
+│       ├── config-files.js       # 設定ファイル操作
+│       ├── config-files-data.js  # 設定ファイル定義データ
+│       └── package.js            # package.json操作
 ├── dist/                  # ビルドファイル（自動生成）
 ├── src/                   # ソースコード
 │   ├── index.ts           # メインエクスポートファイル
@@ -120,7 +138,26 @@ pnpm publish
 
 ### katsu-config
 
-インタラクティブな設定ファイル管理ツール
+インタラクティブな設定ファイル管理ツール（Vite プロジェクト作成機能付き）
+
+#### 技術スタック
+
+| レイヤー         | ライブラリ            | 用途                       |
+| ---------------- | --------------------- | -------------------------- |
+| 引数解析         | Commander.js          | コマンド・オプション解析   |
+| 対話UI          | @clack/prompts        | プロンプト・入力検証       |
+| ローディング     | Ora                   | 進捗スピナー表示           |
+| 色付け           | picocolors            | カラーテーマ（一元管理）   |
+
+#### アーキテクチャ
+
+```
+config.js (Commander エントリーポイント)
+  → コマンドディスパッチ (init | update | list)
+    → commands/*.js   (オーケストレーション)
+      → services/*.js (ビジネスロジック)
+      → ui/*.js       (プロンプト・表示・スピナー)
+```
 
 #### 実行方法
 
@@ -135,24 +172,13 @@ pnpm dlx @katsu996/common-utils katsu-config
 #### 機能
 
 - **自動モード分岐**: package.json存在判定で新規/既存プロジェクトを自動判別
+- **明示的コマンド**: `katsu-config init` / `update` / `list` サブコマンド対応
 - **新規プロジェクト**: プロジェクト名入力 + 設定ファイル選択
 - **既存プロジェクト**: 現在状況表示 + 設定ファイル更新選択
 - **デフォルト全選択**: 全設定ファイルがデフォルトで選択状態
+- **ローディングスピナー**: OraによるVite作成・依存インストールの進捗表示
 - **モダンUI**: @clack/prompts使用のインタラクティブUI
-
-#### 対応設定ファイル
-
-- **TypeScript設定** (tsconfig.json)
-- **Biome設定** (biome.jsonc)
-- **Mise設定** (mise.toml)
-- **Vite設定** (vite.config.ts)
-- **Vitest設定** (vitest.config.ts)
-
-#### クロスプラットフォーム対応
-
-- **Unix/Linux/macOS**: `bin/config.js` (shebang: `#!/usr/bin/env node`)
-- **Windows**: `bin/config.cmd` (バッチファイル)
-- **package.json**: `preferGlobal: true` でグローバルインストール推奨
+- **カラーテーマ**: picocolorsによる統一テーマ
 
 ## コーディング規約
 

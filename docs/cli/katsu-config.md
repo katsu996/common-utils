@@ -15,14 +15,25 @@ pnpm dlx @katsu996/common-utils katsu-config
 npx @katsu996/common-utils katsu-config
 ```
 
+## 使用方法
+
+```bash
+# 自動モード（package.json の有無で分岐）
+katsu-config [options]
+
+# 明示的なコマンド指定
+katsu-config init [options]   # 新規プロジェクト
+katsu-config update [options] # 既存プロジェクト更新
+katsu-config list             # 利用可能な設定ファイル一覧
+```
+
 ## CLI オプション
 
 | オプション                | 説明                                               |
 | ------------------------- | -------------------------------------------------- |
-| `-v`, `--version`         | バージョン情報を表示                               |
+| `-V`, `--version`         | バージョン情報を表示                               |
 | `-h`, `--help`            | ヘルプを表示                                       |
-| `-l`, `--list`            | 利用可能な設定ファイル一覧を表示                   |
-| `-c`, `--config <ids...>` | 設定ファイル ID を直接指定（スキップ可能: `skip`） |
+| `-c`, `--config <ids>`    | 設定ファイル ID をカンマ区切りで指定               |
 | `--skip-install`          | 依存関係のインストールをスキップ                   |
 | `-n`, `--dry-run`         | ドライラン（変更を実際に行わない）                 |
 
@@ -32,31 +43,25 @@ npx @katsu996/common-utils katsu-config
 # 単一の設定ファイルを適用
 katsu-config -c typescript
 
-# 複数の設定ファイルを適用
-katsu-config -c typescript biome vitest
-
-# 全設定ファイルを適用
-katsu-config -c all
-
-# スキップ（メッセージのみ表示）
-katsu-config -c skip
+# 複数の設定ファイルを適用（カンマ区切り）
+katsu-config -c typescript,biome,vitest
 ```
 
 ## 動作モード
 
-### 新規プロジェクトモード
+### 新規プロジェクトモード（init）
 
 カレントディレクトリに `package.json` が存在しない場合に自動的に選択されます。
 
 1. プロジェクト名の入力
 2. 設定ファイルの選択（デフォルト: 全選択）
-3. `pnpm create vite` で Vite プロジェクトを作成
+3. `pnpm create vite` で Vite プロジェクトを作成（進捗表示: Ora スピナー）
 4. 選択した設定ファイルをプロジェクトに追加
 5. 選択した設定ファイルに応じてパッケージを自動インストール（バージョン固定）
 6. npm スクリプトを自動追加
 7. ES モジュール設定 (`"type": "module"`) を自動設定
 
-### 既存プロジェクトモード
+### 既存プロジェクトモード（update）
 
 カレントディレクトリに `package.json` が存在する場合に自動的に選択されます。
 
