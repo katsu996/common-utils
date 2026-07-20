@@ -196,7 +196,8 @@ function collectDependencies(selectedConfigs) {
       for (const dep of configFile.dependencies) {
         const version = versions[dep];
         if (version) {
-          const normalized = version.startsWith("^") || version.startsWith("~") ? version : `^${version}`;
+          const normalized =
+            version.startsWith("^") || version.startsWith("~") ? version : `^${version}`;
           dependencies.add(`${dep}@${normalized}`);
         } else {
           dependencies.add(`${dep}@latest`);

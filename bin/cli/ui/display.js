@@ -68,7 +68,9 @@ function showResults(results) {
 }
 
 function showProjectResults(projectDir, results, packageUpdateResult) {
-  log.success(globalOptions.dryRun ? "設定ファイルの適用プレビュー [DRY RUN]" : "設定ファイルの適用完了");
+  log.success(
+    globalOptions.dryRun ? "設定ファイルの適用プレビュー [DRY RUN]" : "設定ファイルの適用完了",
+  );
   console.log();
   log.info(`Viteプロジェクト: ${theme.path(projectDir)}`);
   console.log();

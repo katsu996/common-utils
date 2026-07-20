@@ -1,9 +1,20 @@
 const { outro, isCancel, cancel, log } = require("@clack/prompts");
 const { theme } = require("../ui/theme");
-const { showIntro, showConfigFileStatus, showResults, showAvailableCommands } = require("../ui/display");
+const {
+  showIntro,
+  showConfigFileStatus,
+  showResults,
+  showAvailableCommands,
+} = require("../ui/display");
 const { getExistingProjectConfigSelection } = require("../ui/prompts");
 const { installDependencies } = require("../services/project");
-const { CONFIG_FILES, checkConfigFileStatus, applyConfigFile, updateGitignore, collectDependencies } = require("../config-files");
+const {
+  CONFIG_FILES,
+  checkConfigFileStatus,
+  applyConfigFile,
+  updateGitignore,
+  collectDependencies,
+} = require("../config-files");
 const { updatePackageJsonExisting } = require("../package");
 const { globalOptions } = require("../utils/global-options");
 const { handleError } = require("../utils/errors");
@@ -40,7 +51,12 @@ async function updateCommand() {
       if (gitignoreResult.success) {
         results.push({ success: true, file: ".gitignore", wasExisting: true });
       } else {
-        results.push({ success: false, file: ".gitignore", error: gitignoreResult.error, wasExisting: true });
+        results.push({
+          success: false,
+          file: ".gitignore",
+          error: gitignoreResult.error,
+          wasExisting: true,
+        });
       }
     }
 
@@ -53,7 +69,10 @@ async function updateCommand() {
       const dependencies = collectDependencies(newlyAddedConfigs);
       await installDependencies(process.cwd(), dependencies);
       const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
-      if (packageUpdateResult?.success && Object.keys(packageUpdateResult.scripts || {}).length > 0) {
+      if (
+        packageUpdateResult?.success &&
+        Object.keys(packageUpdateResult.scripts || {}).length > 0
+      ) {
         showAvailableCommands(packageUpdateResult);
       }
     }
