@@ -10,7 +10,8 @@
   "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": true,
-  "endOfLine": "crlf",
+  "endOfLine": "lf",
+
   "ignorePatterns": [
     "**/.git",
     "**/coverage",
