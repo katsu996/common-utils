@@ -1,1 +1,194 @@
-{"nodes": [{"id": "docs_cli_katsu_config", "label": "katsu-config CLI Documentation", "file_type": "document", "source_file": "docs/cli/katsu-config.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}, {"id": "docs_cli_katsu_config_version_pinned_installation", "label": "Version-Pinned Installation Mechanism", "file_type": "rationale", "source_file": "docs/cli/katsu-config.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "katsu-config installs dependencies pinned to the exact versions used by this package's own package.json (e.g. typescript, vitest, @vitest/coverage-v8) so generated projects are reproducible."}, {"id": "docs_cli_katsu_config_cross_platform_support", "label": "Cross-Platform Support Principle", "file_type": "rationale", "source_file": "docs/cli/katsu-config.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "The CLI must run on Windows, Linux, and macOS; this drives the CommonJS package format for maximum compatibility, npx/pnpm dlx invocation paths, and PowerShell/Command Prompt guidance."}, {"id": "docs_cli_katsu_config_oxc_config", "label": "OXC Config Option (oxlint.json)", "file_type": "concept", "source_file": "docs/cli/katsu-config.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "OXC (oxlint/oxfmt) is offered by katsu-config as an alternative linter config id alongside Biome, adding lint/lint:fix/format/format:check scripts."}], "edges": [{"source": "docs_cli_katsu_config", "target": "package_bin_katsu_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "bin_cli_commands_init_initcommand", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "bin_cli_commands_update_updatecommand", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "bin_cli_commands_list_listcommand", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "bin_cli_config_files_data_config_files", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "docs_cli_katsu_config_version_pinned_installation", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "docs_cli_katsu_config_cross_platform_support", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "docs_cli_katsu_config_oxc_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "oxlint_json_oxlint", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "package_devdependencies_oxlint", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "oxfmt", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "clack_prompts", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "ora", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}, {"source": "docs_cli_katsu_config", "target": "package_scripts_type_check", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/cli/katsu-config.md", "source_location": null, "weight": 1.0}], "hyperedges": []}
+{
+  "nodes": [
+    {
+      "id": "docs_cli_katsu_config",
+      "label": "katsu-config CLI Documentation",
+      "file_type": "document",
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_cli_katsu_config_version_pinned_installation",
+      "label": "Version-Pinned Installation Mechanism",
+      "file_type": "rationale",
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "katsu-config installs dependencies pinned to the exact versions used by this package's own package.json (e.g. typescript, vitest, @vitest/coverage-v8) so generated projects are reproducible."
+    },
+    {
+      "id": "docs_cli_katsu_config_cross_platform_support",
+      "label": "Cross-Platform Support Principle",
+      "file_type": "rationale",
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "The CLI must run on Windows, Linux, and macOS; this drives the CommonJS package format for maximum compatibility, npx/pnpm dlx invocation paths, and PowerShell/Command Prompt guidance."
+    },
+    {
+      "id": "docs_cli_katsu_config_oxc_config",
+      "label": "OXC Config Option (oxlint.json)",
+      "file_type": "concept",
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "OXC (oxlint/oxfmt) is offered by katsu-config as an alternative linter config id alongside Biome, adding lint/lint:fix/format/format:check scripts."
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "package_bin_katsu_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "bin_cli_commands_init_initcommand",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "bin_cli_commands_update_updatecommand",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "bin_cli_commands_list_listcommand",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "bin_cli_config_files_data_config_files",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "docs_cli_katsu_config_version_pinned_installation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "docs_cli_katsu_config_cross_platform_support",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "docs_cli_katsu_config_oxc_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "oxlint_json_oxlint",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "package_devdependencies_oxlint",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "oxfmt",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "clack_prompts",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "ora",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_cli_katsu_config",
+      "target": "package_scripts_type_check",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/cli/katsu-config.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

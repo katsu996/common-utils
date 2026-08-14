@@ -1,0 +1,28 @@
+{
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 119,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "semi": true,
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+
+  "ignorePatterns": [
+    "**/.git",
+    "**/coverage",
+    "**/dist",
+    "**/node_modules",
+    "**/out",
+    "**/playwright-report",
+    "**/test-results",
+    "temp",
+    "test-package",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}

@@ -1,11 +1,6 @@
 const { outro, isCancel, cancel, log } = require("@clack/prompts");
 const { theme } = require("../ui/theme");
-const {
-  showIntro,
-  showConfigFileStatus,
-  showResults,
-  showAvailableCommands,
-} = require("../ui/display");
+const { showIntro, showConfigFileStatus, showResults, showAvailableCommands } = require("../ui/display");
 const { getExistingProjectConfigSelection } = require("../ui/prompts");
 const { installDependencies } = require("../services/project");
 const {
@@ -69,10 +64,7 @@ async function updateCommand() {
       const dependencies = collectDependencies(newlyAddedConfigs);
       await installDependencies(process.cwd(), dependencies);
       const packageUpdateResult = updatePackageJsonExisting(newlyAddedConfigs);
-      if (
-        packageUpdateResult?.success &&
-        Object.keys(packageUpdateResult.scripts || {}).length > 0
-      ) {
+      if (packageUpdateResult?.success && Object.keys(packageUpdateResult.scripts || {}).length > 0) {
         showAvailableCommands(packageUpdateResult);
       }
     }

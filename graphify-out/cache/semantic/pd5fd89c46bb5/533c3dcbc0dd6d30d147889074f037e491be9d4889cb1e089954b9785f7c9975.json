@@ -1,1 +1,178 @@
-{"nodes": [{"id": "docs_index", "label": "Documentation Index", "file_type": "document", "source_file": "docs/index.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}], "edges": [{"source": "docs_index", "target": "docs_getting_started", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_cli_katsu_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_api_math", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_configuration_biome", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_configuration_typescript", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_configuration_vite", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_configuration_vitest", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_configuration_mise", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_development_contributing", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_development_release", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_development_config_inheritance", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "docs_guides_migration", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "src_math_add", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "src_math_sub", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "src_math_sum", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}, {"source": "docs_index", "target": "package_bin_katsu_config", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.95, "source_file": "docs/index.md", "source_location": null, "weight": 1.0}], "hyperedges": []}
+{
+  "nodes": [
+    {
+      "id": "docs_index",
+      "label": "Documentation Index",
+      "file_type": "document",
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_index",
+      "target": "docs_getting_started",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_cli_katsu_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_api_math",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_configuration_biome",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_configuration_typescript",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_configuration_vite",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_configuration_vitest",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_configuration_mise",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_development_contributing",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_development_release",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_development_config_inheritance",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "docs_guides_migration",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "src_math_add",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "src_math_sub",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "src_math_sum",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index",
+      "target": "package_bin_katsu_config",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

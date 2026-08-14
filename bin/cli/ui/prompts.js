@@ -12,8 +12,7 @@ async function getProjectNameInput() {
     validate: (value) => {
       if (!value || value.trim().length === 0) return undefined;
       if (value.length > 255) return "プロジェクト名は255文字以内で入力してください";
-      if (!/^[a-zA-Z0-9-_]+$/.test(value))
-        return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
+      if (!/^[a-zA-Z0-9-_]+$/.test(value)) return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
       return undefined;
     },
   });
@@ -96,9 +95,7 @@ async function getExistingProjectConfigSelection(fileStatus) {
   if (linter === undefined) return null;
 
   const otherConfigs = getNonLinterConfigs();
-  const initialValues = otherConfigs
-    .filter((f) => fileStatus.find((s) => s.id === f.id)?.exists)
-    .map((f) => f.id);
+  const initialValues = otherConfigs.filter((f) => fileStatus.find((s) => s.id === f.id)?.exists).map((f) => f.id);
 
   const selectedOthers = await multiselect({
     message: `更新・追加する設定ファイルを選択してください\n${theme.muted("Spaceキーで選択/選択解除、Enterキーで確定")}`,

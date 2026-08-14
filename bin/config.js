@@ -36,10 +36,7 @@ program
     });
   });
 
-program
-  .command("init")
-  .description("新規プロジェクトを作成（Vite + 設定ファイル）")
-  .action(initCommand);
+program.command("init").description("新規プロジェクトを作成（Vite + 設定ファイル）").action(initCommand);
 
 program.command("update").description("既存プロジェクトの設定ファイルを更新").action(updateCommand);
 

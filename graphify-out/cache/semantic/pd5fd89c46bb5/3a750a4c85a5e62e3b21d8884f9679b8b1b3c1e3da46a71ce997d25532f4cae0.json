@@ -1,1 +1,60 @@
-{"nodes": [{"id": "_github_pull_request_template", "label": "Pull Request Template", "file_type": "document", "source_file": ".github/PULL_REQUEST_TEMPLATE.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null}, {"id": "_github_pull_request_template_semantic_versioning", "label": "Semantic Versioning Principle", "file_type": "rationale", "source_file": ".github/PULL_REQUEST_TEMPLATE.md", "source_location": null, "source_url": null, "captured_at": null, "author": null, "contributor": null, "rationale": "Package version bumps must follow semver (patch/minor/major) so breaking changes are communicated; enforced by the PR template checklist and programmatically by the PR Check workflow."}], "edges": [{"source": "_github_pull_request_template", "target": "package_scripts_check", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".github/PULL_REQUEST_TEMPLATE.md", "source_location": null, "weight": 1.0}, {"source": "_github_pull_request_template", "target": "package_scripts_build", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".github/PULL_REQUEST_TEMPLATE.md", "source_location": null, "weight": 1.0}, {"source": "_github_pull_request_template", "target": "_github_pull_request_template_semantic_versioning", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": ".github/PULL_REQUEST_TEMPLATE.md", "source_location": null, "weight": 1.0}], "hyperedges": []}
+{
+  "nodes": [
+    {
+      "id": "_github_pull_request_template",
+      "label": "Pull Request Template",
+      "file_type": "document",
+      "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_pull_request_template_semantic_versioning",
+      "label": "Semantic Versioning Principle",
+      "file_type": "rationale",
+      "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Package version bumps must follow semver (patch/minor/major) so breaking changes are communicated; enforced by the PR template checklist and programmatically by the PR Check workflow."
+    }
+  ],
+  "edges": [
+    {
+      "source": "_github_pull_request_template",
+      "target": "package_scripts_check",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_pull_request_template",
+      "target": "package_scripts_build",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_pull_request_template",
+      "target": "_github_pull_request_template_semantic_versioning",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/PULL_REQUEST_TEMPLATE.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}
