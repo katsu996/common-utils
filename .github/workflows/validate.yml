@@ -126,8 +126,8 @@ jobs:
           # prepublishOnlyスクリプトのテスト
           pnpm run prepublishOnly
 
-          # 公開可能な状態かチェック（実際には公開しない）
-          pnpm publish --dry-run --access public --no-git-checks
+          # 公開物の内容を検証（既に公開済みのバージョンへ接続しない）
+          pnpm pack --dry-run
 
           echo "✅ Release process simulation passed"
 
