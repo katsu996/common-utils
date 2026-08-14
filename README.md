@@ -308,6 +308,17 @@ pnpm format
 - 依存関係を最新の状態に保つ
 - セキュリティアップデートがある場合は速やかに適用
 
+## テストカバレッジ
+
+ローカルでは、次のコマンドでHTML、LCOV、JSONサマリーを `coverage/` に生成し、パッケージ別・全体の加重集計を確認できます。
+
+```bash
+pnpm test:coverage
+pnpm coverage:summary
+```
+
+`main` ブランチへのPushまたはPull Requestでは、CIワークフローが同じ計測を自動実行します。GitHubの **Actions** タブで対象のCIワークフローを開き、**Job Summary** で全体・パッケージ別カバレッジを確認してください。詳細を確認する場合は、**Artifacts** から `test-coverage-node-24.18.0` をダウンロードし、展開後の `index.html` をブラウザで開きます。LCOVデータは同じ成果物内の `lcov.info`、集計元のJSONは `coverage-summary.json` にあります。
+
 ## 開発者向け情報
 
 開発に関する詳細は [DEVELOPMENT.md](./DEVELOPMENT.md) を参照してください。

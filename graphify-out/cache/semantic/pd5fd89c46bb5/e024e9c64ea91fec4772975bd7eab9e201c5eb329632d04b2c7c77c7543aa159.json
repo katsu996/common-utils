@@ -1,1 +1,159 @@
-{"nodes": [{"id": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question", "label": "Q: Is katsu-config Doc the only cross-layer bridge to config-files.js?", "file_type": "concept", "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "source_url": null, "captured_at": "2026-08-05T12:59:53.826763+00:00", "author": null, "contributor": null}, {"id": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "label": "No-cross-layer-bridge finding", "file_type": "rationale", "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "source_url": null, "captured_at": "2026-08-05T12:59:53.826763+00:00", "author": null, "contributor": null}], "edges": [{"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question", "target": "docs_cli_katsu_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question", "target": "bin_cli_config_files", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question", "relation": "rationale_for", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "docs_cli_katsu_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "bin_cli_config_files", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "bin_config", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "package", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "package_exports", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "src_math", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "docs_typescript_config", "relation": "references", "confidence": "INFERRED", "confidence_score": 0.65, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.75, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding", "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_tsconfig_fragmentation_finding", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.75, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md", "source_location": null, "weight": 1.0}], "hyperedges": [{"id": "cross_layer_bridge_gap", "label": "Cross-layer bridge gap (docs vs implementation)", "nodes": ["docs_cli_katsu_config", "bin_cli_config_files", "bin_config", "package_exports", "src_math"], "relation": "form", "confidence": "INFERRED", "confidence_score": 0.65, "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md"}]}
+{
+  "nodes": [
+    {
+      "id": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question",
+      "label": "Q: Is katsu-config Doc the only cross-layer bridge to config-files.js?",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-08-05T12:59:53.826763+00:00",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "label": "No-cross-layer-bridge finding",
+      "file_type": "rationale",
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-08-05T12:59:53.826763+00:00",
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question",
+      "target": "docs_cli_katsu_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question",
+      "target": "bin_cli_config_files",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_question",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "docs_cli_katsu_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "bin_cli_config_files",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "bin_config",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "package",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "package_exports",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "src_math",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "docs_typescript_config",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_no_cross_layer_bridge_finding",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_tsconfig_fragmentation_finding",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "cross_layer_bridge_gap",
+      "label": "Cross-layer bridge gap (docs vs implementation)",
+      "nodes": ["docs_cli_katsu_config", "bin_cli_config_files", "bin_config", "package_exports", "src_math"],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md"
+    }
+  ]
+}

@@ -1,14 +1,17 @@
-# Graph Report - .  (2026-08-05)
+# Graph Report - . (2026-08-05)
 
 ## Corpus Check
+
 - Corpus is ~12,698 words - fits in a single context window. You may not need a graph.
 
 ## Summary
+
 - 365 nodes · 764 edges · 16 communities
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 88 edges (avg confidence: 0.7)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
+
 - Documentation Hub
 - TypeScript Compiler Options
 - Package Manager Utils
@@ -27,6 +30,7 @@
 - Spinner and Theme UI
 
 ## God Nodes (most connected - your core abstractions)
+
 1. `compilerOptions` - 43 edges
 2. `scripts` - 22 edges
 3. `DEVELOPMENT.md - Developer Documentation` - 20 edges
@@ -39,18 +43,20 @@
 10. `Config fragmentation-pattern finding` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Validate Workflows` --references--> `dist`  [INFERRED]
+
+- `Validate Workflows` --references--> `dist` [INFERRED]
   .github/workflows/validate.yml → package.json
-- `katsu-config CLI Documentation` --references--> `oxfmt`  [INFERRED]
+- `katsu-config CLI Documentation` --references--> `oxfmt` [INFERRED]
   docs/cli/katsu-config.md → package.json
-- `No-cross-layer-bridge finding` --references--> `exports`  [INFERRED]
+- `No-cross-layer-bridge finding` --references--> `exports` [INFERRED]
   graphify-out/memory/query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to.md → package.json
-- `CLAUDE.md - AI Developer Instructions` --references--> `type-check`  [INFERRED]
+- `CLAUDE.md - AI Developer Instructions` --references--> `type-check` [INFERRED]
   CLAUDE.md → package.json
-- `katsu-config CLI Documentation` --references--> `type-check`  [INFERRED]
+- `katsu-config CLI Documentation` --references--> `type-check` [INFERRED]
   docs/cli/katsu-config.md → package.json
 
 ## Import Cycles
+
 - 1-file cycle: `bin/cli/commands/init.js -> bin/cli/commands/init.js`
 - 1-file cycle: `bin/cli/config-files.js -> bin/cli/config-files.js`
 - 1-file cycle: `bin/cli/services/project.js -> bin/cli/services/project.js`
@@ -73,6 +79,7 @@
 - 3-file cycle: `bin/cli/commands/init.js -> bin/cli/package.js -> bin/cli/config-files.js -> bin/cli/commands/init.js`
 
 ## Hyperedges (group relationships)
+
 - **Release Pipeline (CI -> Tag -> Publish -> GitHub Release)** — _github_workflows_publish, _github_workflows_ci, release, docs_development_release [EXTRACTED 1.00]
 - **Shared Config Template Inheritance System** — docs_development_config_inheritance, tsconfig_base, ref_biome_base_jsonc, ref_vite_config_base_ts, ref_vitest_config_base_ts, ref_mise_toml [INFERRED 0.85]
 - **CI Quality Gate Pipeline (type-check/check/build)** — _github_workflows_ci, _github_workflows_pr_check, _github_workflows_validate, package_scripts_check, package_scripts_type_check [INFERRED 0.85]
@@ -85,85 +92,103 @@
 ## Communities (16 total, 0 thin omitted)
 
 ### Community 0 - "Documentation Hub"
+
 Cohesion: 0.09
 Nodes (49): Math Utilities API Reference, Biome Configuration Guide, Mise Configuration Guide, TypeScript Configuration Guide, Vite Configuration Guide, Vitest Configuration Guide, Config Inheritance Guide, Getting Started Guide (+41 more)
 
 ### Community 1 - "TypeScript Compiler Options"
+
 Cohesion: 0.05
 Nodes (44): DOM, DOM.Iterable, ES2022, compilerOptions, allowJs, allowSyntheticDefaultImports, allowUnreachableCode, allowUnusedLabels (+36 more)
 
 ### Community 2 - "Package Manager Utils"
+
 Cohesion: 0.06
 Nodes (34): collectScripts(), { collectScripts }, ensureCaretVersions(), fs, getProjectName(), hasPackageJson(), { log }, path (+26 more)
 
 ### Community 3 - "CI/CD and Release Docs"
+
 Cohesion: 0.13
 Nodes (32): Pull Request Template, Semantic Versioning Principle, CI Workflow, PR Check Workflow, Publish to npm Workflow, Validate Workflows, DEVELOPMENT.md - Developer Documentation, Conventional Commits Convention (+24 more)
 
 ### Community 4 - "Manifest and Dependencies"
+
 Cohesion: 0.11
 Nodes (23): Dependabot Configuration, @clack/prompts, commander, Scripts-to-CLI-Dependencies manifest bridge finding, Q: Why does scripts connect npm Scripts to CLI Dependencies?, ora, bin, dependencies (+15 more)
 
 ### Community 5 - "CLI Documentation and Analysis"
+
 Cohesion: 0.12
 Nodes (23): katsu-config CLI Documentation, Cross-Platform Support Principle, OXC Config Option (oxlint.json), Version-Pinned Installation Mechanism, TypeScript Configuration Doc, Q: tsconfig.base.json connections and edge-gap impact, tsconfig.base.json fragmentation finding, No-cross-layer-bridge finding (+15 more)
 
 ### Community 6 - "CLI Error Handling"
+
 Cohesion: 0.12
 Nodes (18): listCommand(), { showConfigList }, showConfigList(), { cancel }, handleError(), setupProcessHandlers(), { theme }, fs (+10 more)
 
 ### Community 7 - "Dev Dependencies and AI Docs"
+
 Cohesion: 0.15
 Nodes (17): CLAUDE.md - AI Developer Instructions, Dynamic Environment Setup Mechanism, oxfmt, devDependencies, oxfmt, oxlint, @types/node, typescript (+9 more)
 
 ### Community 8 - "Update Command Flow"
+
 Cohesion: 0.17
 Nodes (15): {
-  CONFIG_FILES,
-  checkConfigFileStatus,
-  applyConfigFile,
-  updateGitignore,
-  collectDependencies,
+CONFIG_FILES,
+checkConfigFileStatus,
+applyConfigFile,
+updateGitignore,
+collectDependencies,
 }, { getExistingProjectConfigSelection }, { globalOptions }, { handleError }, { installDependencies }, { outro, isCancel, cancel, log }, {
-  showIntro,
-  showConfigFileStatus,
-  showResults,
-  showAvailableCommands,
+showIntro,
+showConfigFileStatus,
+showResults,
+showAvailableCommands,
 }, { theme } (+7 more)
 
 ### Community 9 - "Init Command Flow"
+
 Cohesion: 0.16
 Nodes (14): { createViteProject, installDependencies, applyConfigFiles }, { getProjectNameInput, getConfigFileSelection }, { globalOptions }, { handleError }, initCommand(), { outro }, path, { showIntro, showProjectResults, showCompletionMessage } (+6 more)
 
 ### Community 10 - "Project Services"
+
 Cohesion: 0.17
 Nodes (13): applyConfigFile(), CONFIG_FILES (config-files-data), applyConfigFiles(), { CONFIG_FILES, applyConfigFile }, createViteProject(), { globalOptions }, installDependencies(), { log } (+5 more)
 
 ### Community 11 - "Config Data and Display"
+
 Cohesion: 0.15
 Nodes (10): CONFIG_FILES, packageRoot, path, { CONFIG_FILES }, getPackageVersion(), { globalOptions }, { intro, outro, log }, { packageRoot } (+2 more)
 
 ### Community 12 - "Config File Registry"
+
 Cohesion: 0.21
 Nodes (12): addPatternsToGitignore(), collectDependencies(), { CONFIG_FILES, packageRoot }, fs, getExistingGitignorePatterns(), getLibraryVersions(), getTemplateGitignore(), { globalOptions } (+4 more)
 
 ### Community 13 - "Oxlint Config"
+
 Cohesion: 0.21
 Nodes (8): Q: Do biome/oxlint/vite/vitest/mise show the same fragmentation pattern as tsconfig?, $schema, rules, no-console, no-debugger, $schema, node:path, vite
 
 ### Community 14 - "Interactive Prompts"
+
 Cohesion: 0.29
 Nodes (10): validateConfigIds(), { CONFIG_FILES }, getConfigFileSelection(), getExistingProjectConfigSelection(), getLinterSelection(), getNonLinterConfigs(), { globalOptions }, { text, select, multiselect, isCancel, cancel } (+2 more)
 
 ### Community 15 - "Spinner and Theme UI"
+
 Cohesion: 0.24
 Nodes (8): createSpinner(), oraModule, { theme }, withSpinner(), pc, theme, ora, picocolors
 
 ## Knowledge Gaps
+
 - **157 isolated node(s):** `path`, `{ outro }`, `{ theme }`, `{ showIntro, showProjectResults, showCompletionMessage }`, `{ getProjectNameInput, getConfigFileSelection }` (+152 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
+
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `compilerOptions` connect `TypeScript Compiler Options` to `Documentation Hub`, `CLI Documentation and Analysis`?**

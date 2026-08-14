@@ -1,1 +1,239 @@
-{"nodes": [{"id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question", "label": "Q: Why does exports connect Package Exports to CLI Dependencies?", "file_type": "concept", "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "source_url": null, "captured_at": "2026-08-05T12:20:29.836603+00:00", "author": null, "contributor": null}, {"id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "label": "Package Exports structural-islands finding", "file_type": "rationale", "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "source_url": null, "captured_at": "2026-08-05T12:20:29.836603+00:00", "author": null, "contributor": null}], "edges": [{"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question", "target": "package_exports", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question", "target": "package_exports_math", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question", "target": "package", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question", "target": "bin_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question", "relation": "rationale_for", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_math", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_package_json", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_biome", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_mise", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_oxlint", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_tsconfig", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_vite", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_exports_vitest", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_math_types", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_math_import", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "package_math_require", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "bin_config", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}, {"source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding", "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_tsconfig_fragmentation_finding", "relation": "conceptually_related_to", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md", "source_location": null, "weight": 1.0}], "hyperedges": [{"id": "package_exports_public_subpath_set", "label": "Package Exports public subpath set", "nodes": ["package_exports", "package_exports_math", "package_exports_package_json", "package_exports_biome", "package_exports_mise", "package_exports_oxlint", "package_exports_tsconfig", "package_exports_vite", "package_exports_vitest"], "relation": "form", "confidence": "EXTRACTED", "confidence_score": 0.9, "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md"}]}
+{
+  "nodes": [
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question",
+      "label": "Q: Why does exports connect Package Exports to CLI Dependencies?",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-08-05T12:20:29.836603+00:00",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "label": "Package Exports structural-islands finding",
+      "file_type": "rationale",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": "2026-08-05T12:20:29.836603+00:00",
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question",
+      "target": "package_exports",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question",
+      "target": "package_exports_math",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question",
+      "target": "package",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question",
+      "target": "bin_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_question",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_math",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_package_json",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_biome",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_mise",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_oxlint",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_tsconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_vite",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_exports_vitest",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_math_types",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_math_import",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "package_math_require",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "bin_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_islands_finding",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_tsconfig_fragmentation_finding",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "package_exports_public_subpath_set",
+      "label": "Package Exports public subpath set",
+      "nodes": [
+        "package_exports",
+        "package_exports_math",
+        "package_exports_package_json",
+        "package_exports_biome",
+        "package_exports_mise",
+        "package_exports_oxlint",
+        "package_exports_tsconfig",
+        "package_exports_vite",
+        "package_exports_vitest"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md"
+    }
+  ]
+}
