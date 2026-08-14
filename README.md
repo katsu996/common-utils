@@ -14,16 +14,31 @@ pnpm add @katsu996/common-utils
 
 ### プロジェクト設定の初期化・更新
 
-**パッケージがインストール済みの場合：**
+package.json の有無によって実行方法が異なります。
+
+**新規プロジェクト作成（package.jsonが無いフォルダ）の場合：**
+
+> `pnpm katsu-config` は package.json が無いフォルダでは実行できません（pnpm がスクリプト解決に package.json を必要とするため `ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND` になります）。
 
 ```bash
-pnpm katsu-config
+# パッケージ未インストール
+pnpm dlx @katsu996/common-utils katsu-config
+
+# クロスプラットフォーム
+npx @katsu996/common-utils katsu-config
+
+# グローバルインストール済みの場合（pnpm add -g @katsu996/common-utils）
+katsu-config
 ```
 
-**パッケージが未インストールの場合：**
+**既存プロジェクト（package.jsonが有るフォルダ）の場合：**
 
 ```bash
-pnpm dlx katsu-config
+# パッケージがインストール済み（ローカルまたはグローバル）
+pnpm katsu-config
+
+# パッケージが未インストール
+pnpm dlx @katsu996/common-utils katsu-config
 ```
 
 **サブコマンド（明示的指定）：**
@@ -180,19 +195,25 @@ export default mergeConfig(
 
 **A:** 以下の方法を試してください：
 
-1. パッケージがインストールされている場合：
+1. 新規プロジェクト作成（package.jsonが無いフォルダ）の場合、`pnpm katsu-config` は実行できません（pnpm がスクリプト解決に package.json を必要とするため `ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND` になります）。代わりに以下を実行してください：
+
+   ```bash
+   pnpm dlx @katsu996/common-utils katsu-config
+   ```
+
+2. パッケージがインストール済み（ローカルまたはグローバル）で、package.jsonが有るフォルダの場合：
 
    ```bash
    pnpm katsu-config
    ```
 
-2. パッケージがインストールされていない場合：
+3. パッケージがインストールされていない場合：
 
    ```bash
-   pnpm dlx katsu-config
+   pnpm dlx @katsu996/common-utils katsu-config
    ```
 
-3. Windows環境の場合、PowerShellまたはコマンドプロンプトを使用してください。
+4. Windows環境の場合、PowerShellまたはコマンドプロンプトを使用してください。
 
 ### Q: 設定ファイルを個別に更新したい
 
@@ -264,7 +285,7 @@ pnpm format
 1. **新規プロジェクト開始時**：
 
    ```bash
-   pnpm katsu-config  # 設定ファイルの初期化
+   pnpm dlx @katsu996/common-utils katsu-config  # 設定ファイルの初期化（package.jsonが無いフォルダではpnpm katsu-configは使用不可）
    pnpm install       # 依存関係のインストール
    ```
 

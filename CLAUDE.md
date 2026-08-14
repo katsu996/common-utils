@@ -10,9 +10,9 @@
 
 **実行方法:**
 
-- インストール済み: `pnpm katsu-config`
-- 未インストール: `pnpm dlx @katsu996/common-utils katsu-config`
-- クロスプラットフォーム: `npx @katsu996/common-utils katsu-config`
+- 新規プロジェクト作成（package.jsonが無いフォルダ）: `pnpm dlx @katsu996/common-utils katsu-config` ※ `pnpm katsu-config` は package.jsonが無いフォルダでは ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND になり使用不可（グローバルインストール済みなら `katsu-config` を直接実行）
+- 既存プロジェクト更新（package.jsonが有るフォルダ）: `pnpm katsu-config`（ローカル/グローバルインストール済み）、未インストールなら `pnpm dlx @katsu996/common-utils katsu-config`
+- クロスプラットフォーム: `npx @katsu996/common-utils katsu-config`（※ `pnpm dlx katsu-config` はパッケージ名が存在しないため実行不可）
 
 **機能:**
 

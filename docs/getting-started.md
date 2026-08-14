@@ -93,10 +93,15 @@ export default mergeConfig(
 ### CLI ツールの使用
 
 ```bash
-# インストール済み
+# 既存プロジェクト（package.jsonが有るフォルダ）、インストール済み
 pnpm katsu-config
 
 # 未インストール
+pnpm dlx @katsu996/common-utils katsu-config
+
+# 新規プロジェクト作成（package.jsonが無いフォルダ）
+# ※ pnpm katsu-config はpackage.jsonが無いフォルダではERR_PNPM_NO_IMPORTER_MANIFEST_FOUNDになり使用不可
+cd <新規プロジェクトを作成する親フォルダ>
 pnpm dlx @katsu996/common-utils katsu-config
 ```
 

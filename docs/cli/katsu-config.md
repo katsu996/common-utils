@@ -4,16 +4,20 @@
 
 ## 実行方法
 
+package.json の有無によって実行方法が異なります。
+
 ```bash
-# インストール済み
-pnpm katsu-config
+# 新規プロジェクト作成（package.jsonが無いフォルダ）
+# ※ pnpm katsu-config はpackage.jsonが無いフォルダではERR_PNPM_NO_IMPORTER_MANIFEST_FOUNDになり使用不可
+pnpm dlx @katsu996/common-utils katsu-config   # 未インストール
+npx @katsu996/common-utils katsu-config        # クロスプラットフォーム
 
-# 未インストール
-pnpm dlx @katsu996/common-utils katsu-config
-
-# クロスプラットフォーム
-npx @katsu996/common-utils katsu-config
+# 既存プロジェクト更新（package.jsonが有るフォルダ）
+pnpm katsu-config                               # ローカル/グローバルインストール済み
+pnpm dlx @katsu996/common-utils katsu-config   # 未インストール
 ```
+
+> **注意**: `pnpm dlx katsu-config` はパッケージ名 `katsu-config` が存在しないため `ERR_PNPM_DLX_NO_BIN` になります。必ず `@katsu996/common-utils` を指定してください。
 
 ## 使用方法
 
