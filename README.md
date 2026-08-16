@@ -144,8 +144,8 @@ const result = add(10, 20); // 30
 
 ```toml
 [tools]
-node = "24.18.0"
-pnpm = "10.34.5"
+node = "24.19.0"
+pnpm = "11.21.0"
 ```
 
 ### Vite設定(vite.config.ts)
@@ -225,7 +225,7 @@ export default mergeConfig(
 
 ### Q: どのバージョンのNode.jsが必要ですか？
 
-**A:** Node.js >= 24.18.0 が必要です。Mise設定ファイルでバージョンが指定されています。
+**A:** Node.js >= 24.19.0 が必要です。Mise設定ファイルでバージョンが指定されています。
 
 ## トラブルシューティング
 
@@ -317,7 +317,7 @@ pnpm test:coverage
 pnpm coverage:summary
 ```
 
-`main` ブランチへのPushまたはPull Requestでは、CIワークフローが同じ計測を自動実行します。GitHubの **Actions** タブで対象のCIワークフローを開き、**Job Summary** で全体・パッケージ別カバレッジを確認してください。詳細を確認する場合は、**Artifacts** から `test-coverage-node-24.18.0` をダウンロードし、展開後の `index.html` をブラウザで開きます。LCOVデータは同じ成果物内の `lcov.info`、集計元のJSONは `coverage-summary.json` にあります。
+`main` ブランチへのPushまたはPull Requestでは、CIワークフローが同じ計測を自動実行します。GitHubの **Actions** タブで対象のCIワークフローを開き、**Job Summary** で全体・パッケージ別カバレッジを確認してください。詳細を確認する場合は、**Artifacts** から `test-coverage-node-24.19.0` をダウンロードし、展開後の `index.html` をブラウザで開きます。LCOVデータは同じ成果物内の `lcov.info`、集計元のJSONは `coverage-summary.json` にあります。
 
 ## 開発者向け情報
 

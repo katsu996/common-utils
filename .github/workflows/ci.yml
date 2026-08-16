@@ -2,21 +2,21 @@ name: CI
 
 on:
   push:
-    branches: main
+    branches: [main]
   pull_request:
-    branches: main
+    branches: [main]
   workflow_call:
 
 env:
-  NODE_VERSION: 24.18.0
-  PNPM_VERSION: 10.34.5
+  NODE_VERSION: 24.19.0
+  PNPM_VERSION: 11.21.0
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["24.18.0", "22", "20"]
+        node-version: ["26", "24", "22"]
 
     steps:
       - name: Checkout code
@@ -108,7 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["24.18.0", "22", "20"]
+        node-version: ["26", "24", "22"]
 
     steps:
       - name: Checkout code

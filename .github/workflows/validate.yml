@@ -12,8 +12,8 @@ on:
       - "vitest.config*.json"
 
 env:
-  NODE_VERSION: 24.18.0
-  PNPM_VERSION: 10.34.5
+  NODE_VERSION: 24.19.0
+  PNPM_VERSION: 11.21.0
 
 jobs:
   validate-workflows:
