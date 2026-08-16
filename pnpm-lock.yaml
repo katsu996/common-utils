@@ -9,41 +9,41 @@ importers:
   .:
     dependencies:
       '@clack/prompts':
-        specifier: ^1.7.0
+        specifier: 1.7.0
         version: 1.7.0
       commander:
-        specifier: ^15.0.0
+        specifier: 15.0.0
         version: 15.0.0
       ora:
-        specifier: ^9.4.1
+        specifier: 9.4.1
         version: 9.4.1
       picocolors:
-        specifier: ^1.1.1
+        specifier: 1.1.1
         version: 1.1.1
     devDependencies:
       '@types/node':
-        specifier: ^26.2.0
+        specifier: 26.2.0
         version: 26.2.0
       '@vitest/coverage-v8':
-        specifier: ^4.1.10
+        specifier: 4.1.10
         version: 4.1.10(vitest@4.1.10)
       node:
         specifier: runtime:>=24.19.0
         version: runtime:26.7.0
       oxfmt:
-        specifier: ^0.63.0
+        specifier: 0.63.0
         version: 0.63.0
       oxlint:
-        specifier: ^1.78.0
+        specifier: 1.78.0
         version: 1.78.0
       typescript:
-        specifier: ^7.0.2
+        specifier: 7.0.2
         version: 7.0.2
       vite:
-        specifier: ^8.2.1
+        specifier: 8.2.1
         version: 8.2.1(@types/node@26.2.0)
       vitest:
-        specifier: ^4.1.10
+        specifier: 4.1.10
         version: 4.1.10(@types/node@26.2.0)(@vitest/coverage-v8@4.1.10)(vite@8.2.1(@types/node@26.2.0))
 
 packages:

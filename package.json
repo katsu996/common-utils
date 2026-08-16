@@ -66,19 +66,19 @@
     "prepublishOnly": "pnpm check && pnpm build"
   },
   "dependencies": {
-    "@clack/prompts": "^1.7.0",
-    "commander": "^15.0.0",
-    "ora": "^9.4.1",
-    "picocolors": "^1.1.1"
+    "@clack/prompts": "1.7.0",
+    "commander": "15.0.0",
+    "ora": "9.4.1",
+    "picocolors": "1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
-    "@vitest/coverage-v8": "^4.1.10",
-    "oxfmt": "^0.63.0",
-    "oxlint": "^1.78.0",
-    "typescript": "^7.0.2",
-    "vite": "^8.2.1",
-    "vitest": "^4.1.10"
+    "@types/node": "26.2.0",
+    "@vitest/coverage-v8": "4.1.10",
+    "oxfmt": "0.63.0",
+    "oxlint": "1.78.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.1",
+    "vitest": "4.1.10"
   },
   "packageManager": "pnpm@11.21.0",
   "engines": {
