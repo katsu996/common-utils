@@ -2,27 +2,11 @@
   "name": "@katsu996/common-utils",
   "version": "1.1.12",
   "description": "A collection of common utility functions and shared configurations for projects within our organization.",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/katsu996/common-utils.git"
   },
-  "bin": {
-    "katsu-config": "./bin/config.js"
-  },
-  "files": [
-    ".gitignore.template",
-    "dist",
-    "bin",
-    "biome.base.jsonc",
-    "mise.toml",
-    "oxlint.base.json",
-    "tsconfig.base.json",
-    "vite.config.base.ts",
-    "vitest.config.base.ts"
-  ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -42,6 +26,22 @@
     "./vite": "./vite.config.base.ts",
     "./vitest": "./vitest.config.base.ts"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "katsu-config": "./bin/config.js"
+  },
+  "files": [
+    ".gitignore.template",
+    "dist",
+    "bin",
+    "biome.base.jsonc",
+    "mise.toml",
+    "oxlint.base.json",
+    "tsconfig.base.json",
+    "vite.config.base.ts",
+    "vitest.config.base.ts"
+  ],
   "scripts": {
     "// Development": "=======================================",
     "dev": "vite",
@@ -80,15 +80,15 @@
     "vite": "^8.2.1",
     "vitest": "^4.1.10"
   },
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=22"
+  },
   "devEngines": {
     "runtime": {
       "name": "node",
       "version": ">=24.19.0",
       "onFail": "download"
     }
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "packageManager": "pnpm@11.21.0"
+  }
 }
