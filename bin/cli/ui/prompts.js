@@ -1,4 +1,10 @@
-const { text, select, multiselect, isCancel, cancel } = require("@clack/prompts");
+const {
+  text,
+  select,
+  multiselect,
+  isCancel,
+  cancel,
+} = require("@clack/prompts");
 const { theme } = require("./theme");
 const { CONFIG_FILES } = require("../config-files-data");
 const { globalOptions } = require("../utils/global-options");
@@ -11,8 +17,10 @@ async function getProjectNameInput() {
     defaultValue: "my-project",
     validate: (value) => {
       if (!value || value.trim().length === 0) return undefined;
-      if (value.length > 255) return "プロジェクト名は255文字以内で入力してください";
-      if (!/^[a-zA-Z0-9-_]+$/.test(value)) return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
+      if (value.length > 255)
+        return "プロジェクト名は255文字以内で入力してください";
+      if (!/^[a-zA-Z0-9-_]+$/.test(value))
+        return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
       return undefined;
     },
   });
@@ -88,14 +96,18 @@ async function getExistingProjectConfigSelection(fileStatus) {
     return globalOptions.config;
   }
 
-  const existingLinter = fileStatus.find((f) => (f.id === "oxc" || f.id === "biome") && f.exists);
+  const existingLinter = fileStatus.find(
+    (f) => (f.id === "oxc" || f.id === "biome") && f.exists,
+  );
   const currentLinterId = existingLinter?.id || null;
 
   const linter = await getLinterSelection(currentLinterId);
   if (linter === undefined) return null;
 
   const otherConfigs = getNonLinterConfigs();
-  const initialValues = otherConfigs.filter((f) => fileStatus.find((s) => s.id === f.id)?.exists).map((f) => f.id);
+  const initialValues = otherConfigs
+    .filter((f) => fileStatus.find((s) => s.id === f.id)?.exists)
+    .map((f) => f.id);
 
   const selectedOthers = await multiselect({
     message: `更新・追加する設定ファイルを選択してください\n${theme.muted("Spaceキーで選択/選択解除、Enterキーで確定")}`,

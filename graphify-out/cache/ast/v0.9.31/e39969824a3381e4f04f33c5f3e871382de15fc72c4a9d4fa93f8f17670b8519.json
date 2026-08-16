@@ -420,7 +420,13 @@
       "source_file": "package.json",
       "source_location": "L70"
     },
-    { "id": "ora", "label": "ora", "file_type": "concept", "source_file": "package.json", "source_location": "L70" },
+    {
+      "id": "ora",
+      "label": "ora",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": "L70"
+    },
     {
       "id": "$graphify-root$_package_dependencies_picocolors",
       "label": "picocolors",
@@ -519,7 +525,13 @@
       "source_file": "package.json",
       "source_location": "L79"
     },
-    { "id": "vite", "label": "vite", "file_type": "concept", "source_file": "package.json", "source_location": "L79" },
+    {
+      "id": "vite",
+      "label": "vite",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": "L79"
+    },
     {
       "id": "$graphify-root$_package_devdependencies_vitest",
       "label": "vitest",

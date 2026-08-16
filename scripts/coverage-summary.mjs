@@ -5,7 +5,13 @@ import { relative, resolve } from "node:path";
 const rootDirectory = process.cwd();
 const summaryRelativePath = "coverage/coverage-summary.json";
 const metricNames = ["statements", "branches", "functions", "lines"];
-const skippedDirectories = new Set([".git", "build", "coverage", "dist", "node_modules"]);
+const skippedDirectories = new Set([
+  ".git",
+  "build",
+  "coverage",
+  "dist",
+  "node_modules",
+]);
 
 async function findPackages(directory) {
   const packages = [];
@@ -37,8 +43,14 @@ function formatPercentage(covered, total) {
 
 function getMetric(summary, metricName, packageLabel) {
   const metric = summary.total?.[metricName];
-  if (!metric || !Number.isFinite(metric.covered) || !Number.isFinite(metric.total)) {
-    throw new Error(`${packageLabel} の ${metricName} 集計値を読み取れません。`);
+  if (
+    !metric ||
+    !Number.isFinite(metric.covered) ||
+    !Number.isFinite(metric.total)
+  ) {
+    throw new Error(
+      `${packageLabel} の ${metricName} 集計値を読み取れません。`,
+    );
   }
 
   return { covered: metric.covered, total: metric.total };
@@ -63,13 +75,20 @@ for (const packageDirectory of packageDirectories) {
   }
 
   const [packageJson, coverageSummary] = await Promise.all([
-    readFile(resolve(packageDirectory, "package.json"), "utf8").then(JSON.parse),
+    readFile(resolve(packageDirectory, "package.json"), "utf8").then(
+      JSON.parse,
+    ),
     readFile(summaryPath, "utf8").then(JSON.parse),
   ]);
   const relativePath = relative(rootDirectory, packageDirectory) || ".";
-  const packageLabel = packageJson.name ? `${packageJson.name} (${relativePath})` : relativePath;
+  const packageLabel = packageJson.name
+    ? `${packageJson.name} (${relativePath})`
+    : relativePath;
   const metrics = Object.fromEntries(
-    metricNames.map((metricName) => [metricName, getMetric(coverageSummary, metricName, packageLabel)]),
+    metricNames.map((metricName) => [
+      metricName,
+      getMetric(coverageSummary, metricName, packageLabel),
+    ]),
   );
 
   reports.push({ label: packageLabel, metrics });
@@ -79,7 +98,9 @@ if (reports.length === 0) {
   console.error(`カバレッジサマリーが見つかりません: ${summaryRelativePath}`);
   process.exitCode = 1;
 } else {
-  const totals = Object.fromEntries(metricNames.map((metricName) => [metricName, { covered: 0, total: 0 }]));
+  const totals = Object.fromEntries(
+    metricNames.map((metricName) => [metricName, { covered: 0, total: 0 }]),
+  );
 
   for (const report of reports) {
     for (const metricName of metricNames) {

@@ -4,7 +4,14 @@ date: "2026-08-05T12:47:53.117373+00:00"
 question: "Do biome/oxlint/vite/vitest/mise show the same fragmentation pattern as tsconfig?"
 contributor: "graphify"
 outcome: "useful"
-source_nodes: ["vite.config.ts", "vite.config.base.ts", "oxlint.json", "oxlint.base.json", "./biome"]
+source_nodes:
+  [
+    "vite.config.ts",
+    "vite.config.base.ts",
+    "oxlint.json",
+    "oxlint.base.json",
+    "./biome",
+  ]
 ---
 
 # Q: Do biome/oxlint/vite/vitest/mise show the same fragmentation pattern as tsconfig?

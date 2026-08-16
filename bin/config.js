@@ -36,11 +36,20 @@ program
     });
   });
 
-program.command("init").description("新規プロジェクトを作成（Vite + 設定ファイル）").action(initCommand);
+program
+  .command("init")
+  .description("新規プロジェクトを作成（Vite + 設定ファイル）")
+  .action(initCommand);
 
-program.command("update").description("既存プロジェクトの設定ファイルを更新").action(updateCommand);
+program
+  .command("update")
+  .description("既存プロジェクトの設定ファイルを更新")
+  .action(updateCommand);
 
-program.command("list").description("利用可能な設定ファイル一覧を表示").action(listCommand);
+program
+  .command("list")
+  .description("利用可能な設定ファイル一覧を表示")
+  .action(listCommand);
 
 program.action(async () => {
   const hasPackage = fs.existsSync(path.join(process.cwd(), "package.json"));

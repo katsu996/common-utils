@@ -1,9 +1,20 @@
 const path = require("node:path");
 const { outro } = require("@clack/prompts");
 const { theme } = require("../ui/theme");
-const { showIntro, showProjectResults, showCompletionMessage } = require("../ui/display");
-const { getProjectNameInput, getConfigFileSelection } = require("../ui/prompts");
-const { createViteProject, installDependencies, applyConfigFiles } = require("../services/project");
+const {
+  showIntro,
+  showProjectResults,
+  showCompletionMessage,
+} = require("../ui/display");
+const {
+  getProjectNameInput,
+  getConfigFileSelection,
+} = require("../ui/prompts");
+const {
+  createViteProject,
+  installDependencies,
+  applyConfigFiles,
+} = require("../services/project");
 const { updateGitignore, collectDependencies } = require("../config-files");
 const { updatePackageJson } = require("../package");
 const { globalOptions } = require("../utils/global-options");
@@ -27,7 +38,9 @@ async function initCommand() {
 
     const gitignoreResult = updateGitignore(projectDir, selectedConfigs);
     if (!gitignoreResult.success) {
-      console.error(`${theme.error(".gitignore更新エラー:")} ${gitignoreResult.error}`);
+      console.error(
+        `${theme.error(".gitignore更新エラー:")} ${gitignoreResult.error}`,
+      );
     }
 
     const dependencies = collectDependencies(selectedConfigs);

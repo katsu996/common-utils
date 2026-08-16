@@ -58,7 +58,12 @@
     {
       "id": "release_pipeline",
       "label": "Release Pipeline (CI -> Tag -> Publish -> GitHub Release)",
-      "nodes": ["_github_workflows_publish", "_github_workflows_ci", "release", "docs_development_release"],
+      "nodes": [
+        "_github_workflows_publish",
+        "_github_workflows_ci",
+        "release",
+        "docs_development_release"
+      ],
       "relation": "participate_in",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,

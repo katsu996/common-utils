@@ -15,7 +15,10 @@ function spawnAsync(command, args, cwd) {
 
     child.on("close", (code) => {
       if (code === 0) resolve();
-      else reject(new Error(`${command} の実行に失敗しました (exit code: ${code})`));
+      else
+        reject(
+          new Error(`${command} の実行に失敗しました (exit code: ${code})`),
+        );
     });
     child.on("error", (error) => reject(error));
   });

@@ -4,7 +4,13 @@ date: "2026-08-05T12:22:53.600253+00:00"
 question: "tsconfig.base.json connections and edge-gap impact"
 contributor: "graphify"
 outcome: "useful"
-source_nodes: ["compilerOptions", "tsconfig.base.json", "tsconfig.json", "TypeScript Configuration Doc"]
+source_nodes:
+  [
+    "compilerOptions",
+    "tsconfig.base.json",
+    "tsconfig.json",
+    "TypeScript Configuration Doc",
+  ]
 ---
 
 # Q: tsconfig.base.json connections and edge-gap impact

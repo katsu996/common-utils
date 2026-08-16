@@ -221,7 +221,11 @@
     {
       "id": "tsconfig_base_json_triple_identity_split",
       "label": "tsconfig.base.json triple-identity split",
-      "nodes": ["tsconfig_base", "package_json_ref_tsconfig_base_json", "tsconfig_json_ref_tsconfig_base_json"],
+      "nodes": [
+        "tsconfig_base",
+        "package_json_ref_tsconfig_base_json",
+        "tsconfig_json_ref_tsconfig_base_json"
+      ],
       "relation": "form",
       "confidence": "EXTRACTED",
       "confidence_score": 0.9,

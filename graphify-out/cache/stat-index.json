@@ -3,7 +3,9 @@
     "size": 601,
     "mtime_ns": 1784507214340733200,
     "word_count": 39,
-    "hashes": { ".claude/settings.json": "d9830f3fb408ab2b09dab8679d02a3fb1820db14119b21b9c446f4fc702b04c6" }
+    "hashes": {
+      ".claude/settings.json": "d9830f3fb408ab2b09dab8679d02a3fb1820db14119b21b9c446f4fc702b04c6"
+    }
   },
   ".github/PULL_REQUEST_TEMPLATE.md": {
     "size": 1490,
@@ -17,93 +19,175 @@
     "size": 238,
     "mtime_ns": 1782897237841717600,
     "word_count": 21,
-    "hashes": { ".github/dependabot.yml": "47eeb499964c465bc53cd0fb960fca95199f94dd99555346a303e6c2e81c4615" }
+    "hashes": {
+      ".github/dependabot.yml": "47eeb499964c465bc53cd0fb960fca95199f94dd99555346a303e6c2e81c4615"
+    }
   },
   ".github/workflows/ci.yml": {
     "size": 3695,
     "mtime_ns": 1784507193362952100,
     "word_count": 348,
-    "hashes": { ".github/workflows/ci.yml": "2a67f506dd6b161a63ed2b3becf85085943134c7e93cafb4ad724fd5b42fe726" }
+    "hashes": {
+      ".github/workflows/ci.yml": "2a67f506dd6b161a63ed2b3becf85085943134c7e93cafb4ad724fd5b42fe726"
+    }
   },
   ".github/workflows/pr-check.yml": {
     "size": 6227,
     "mtime_ns": 1784507163278747600,
     "word_count": 517,
-    "hashes": { ".github/workflows/pr-check.yml": "768a8f2cb75f18ba635d4f6b0c506a25cc3b1a6797bdd774d8404214b8df7f0c" }
+    "hashes": {
+      ".github/workflows/pr-check.yml": "768a8f2cb75f18ba635d4f6b0c506a25cc3b1a6797bdd774d8404214b8df7f0c"
+    }
   },
   ".github/workflows/publish.yml": {
     "size": 2859,
     "mtime_ns": 1784477667130056500,
     "word_count": 270,
-    "hashes": { ".github/workflows/publish.yml": "6c60ce150d99899521e2c410e8f4c18c1410515f27060706744ea45ade34ca7a" }
+    "hashes": {
+      ".github/workflows/publish.yml": "6c60ce150d99899521e2c410e8f4c18c1410515f27060706744ea45ade34ca7a"
+    }
   },
   ".github/workflows/validate.yml": {
     "size": 4372,
     "mtime_ns": 1784507163278747600,
     "word_count": 393,
-    "hashes": { ".github/workflows/validate.yml": "05e192d0c61e480bc0a19b9a1c76afca99b6db9820a8aa6d3c27c7b75fdb8bc5" }
+    "hashes": {
+      ".github/workflows/validate.yml": "05e192d0c61e480bc0a19b9a1c76afca99b6db9820a8aa6d3c27c7b75fdb8bc5"
+    }
   },
   "CLAUDE.md": {
     "size": 4002,
     "mtime_ns": 1782894526567188400,
     "word_count": 191,
-    "hashes": { "claude.md": "d83e2048ded4e6e661bdf69a39cfd8e6e945cbba02cd0a7e64fa798dcd17290e" }
+    "hashes": {
+      "claude.md": "d83e2048ded4e6e661bdf69a39cfd8e6e945cbba02cd0a7e64fa798dcd17290e"
+    }
   },
   "DEVELOPMENT.md": {
     "size": 9564,
     "mtime_ns": 1784506277768468400,
     "word_count": 720,
-    "hashes": { "development.md": "e35895cba71fc1cf7913d5667b303f9f51680424aab3367ce4aa78bd8799ffd7" }
+    "hashes": {
+      "development.md": "e35895cba71fc1cf7913d5667b303f9f51680424aab3367ce4aa78bd8799ffd7"
+    }
   },
   "README.md": {
     "size": 7958,
     "mtime_ns": 1784507163278747600,
     "word_count": 495,
-    "hashes": { "readme.md": "83f1b0c7233aad43330b1c31e6647e0744d3e71f0621a28b5ae87e46f273f9cd" }
+    "hashes": {
+      "readme.md": "83f1b0c7233aad43330b1c31e6647e0744d3e71f0621a28b5ae87e46f273f9cd"
+    }
   },
   "RELEASE.md": {
     "size": 6917,
     "mtime_ns": 1784500469693585200,
     "word_count": 456,
-    "hashes": { "release.md": "35f1d70666056e3c565b58b851cf88d0efa23385b858d8fe18d047a3921e4d05" }
+    "hashes": {
+      "release.md": "35f1d70666056e3c565b58b851cf88d0efa23385b858d8fe18d047a3921e4d05"
+    }
   },
-  "bin/cli/commands/init.js": { "size": 1756, "mtime_ns": 1784501292912444700, "word_count": 143 },
-  "bin/cli/commands/list.js": { "size": 136, "mtime_ns": 1784501235288660700, "word_count": 16 },
-  "bin/cli/commands/update.js": { "size": 2878, "mtime_ns": 1784506277440944300, "word_count": 238 },
-  "bin/cli/config-files-data.js": { "size": 2486, "mtime_ns": 1784505117037917300, "word_count": 227 },
-  "bin/cli/config-files.js": { "size": 7312, "mtime_ns": 1784506277440944300, "word_count": 638 },
-  "bin/cli/package.js": { "size": 3063, "mtime_ns": 1784505891875607300, "word_count": 255 },
-  "bin/cli/services/project.js": { "size": 2209, "mtime_ns": 1784504261168456100, "word_count": 199 },
-  "bin/cli/ui/display.js": { "size": 6069, "mtime_ns": 1784506277440944300, "word_count": 429 },
-  "bin/cli/ui/prompts.js": { "size": 4082, "mtime_ns": 1784505122452433300, "word_count": 350 },
-  "bin/cli/ui/spinner.js": { "size": 647, "mtime_ns": 1784506277440944300, "word_count": 66 },
-  "bin/cli/ui/theme.js": { "size": 741, "mtime_ns": 1784501199860257600, "word_count": 86 },
-  "bin/cli/utils/errors.js": { "size": 701, "mtime_ns": 1784501203030365700, "word_count": 52 },
-  "bin/cli/utils/global-options.js": { "size": 537, "mtime_ns": 1784501228320564900, "word_count": 51 },
-  "bin/config.js": { "size": 2138, "mtime_ns": 1784506277440944300, "word_count": 152 },
+  "bin/cli/commands/init.js": {
+    "size": 1756,
+    "mtime_ns": 1784501292912444700,
+    "word_count": 143
+  },
+  "bin/cli/commands/list.js": {
+    "size": 136,
+    "mtime_ns": 1784501235288660700,
+    "word_count": 16
+  },
+  "bin/cli/commands/update.js": {
+    "size": 2878,
+    "mtime_ns": 1784506277440944300,
+    "word_count": 238
+  },
+  "bin/cli/config-files-data.js": {
+    "size": 2486,
+    "mtime_ns": 1784505117037917300,
+    "word_count": 227
+  },
+  "bin/cli/config-files.js": {
+    "size": 7312,
+    "mtime_ns": 1784506277440944300,
+    "word_count": 638
+  },
+  "bin/cli/package.js": {
+    "size": 3063,
+    "mtime_ns": 1784505891875607300,
+    "word_count": 255
+  },
+  "bin/cli/services/project.js": {
+    "size": 2209,
+    "mtime_ns": 1784504261168456100,
+    "word_count": 199
+  },
+  "bin/cli/ui/display.js": {
+    "size": 6069,
+    "mtime_ns": 1784506277440944300,
+    "word_count": 429
+  },
+  "bin/cli/ui/prompts.js": {
+    "size": 4082,
+    "mtime_ns": 1784505122452433300,
+    "word_count": 350
+  },
+  "bin/cli/ui/spinner.js": {
+    "size": 647,
+    "mtime_ns": 1784506277440944300,
+    "word_count": 66
+  },
+  "bin/cli/ui/theme.js": {
+    "size": 741,
+    "mtime_ns": 1784501199860257600,
+    "word_count": 86
+  },
+  "bin/cli/utils/errors.js": {
+    "size": 701,
+    "mtime_ns": 1784501203030365700,
+    "word_count": 52
+  },
+  "bin/cli/utils/global-options.js": {
+    "size": 537,
+    "mtime_ns": 1784501228320564900,
+    "word_count": 51
+  },
+  "bin/config.js": {
+    "size": 2138,
+    "mtime_ns": 1784506277440944300,
+    "word_count": 152
+  },
   "docs/api/math.md": {
     "size": 1831,
     "mtime_ns": 1784500469728767600,
     "word_count": 203,
-    "hashes": { "docs/api/math.md": "cca433d0732904aa8cba465eb7440cc594af9184683e769c27aed7322ba274f9" }
+    "hashes": {
+      "docs/api/math.md": "cca433d0732904aa8cba465eb7440cc594af9184683e769c27aed7322ba274f9"
+    }
   },
   "docs/cli/katsu-config.md": {
     "size": 5321,
     "mtime_ns": 1784506277728469900,
     "word_count": 370,
-    "hashes": { "docs/cli/katsu-config.md": "29855c67b6b5b3330f3956709c5fc016c823f39b1cb5866900d8f2c9981d5774" }
+    "hashes": {
+      "docs/cli/katsu-config.md": "29855c67b6b5b3330f3956709c5fc016c823f39b1cb5866900d8f2c9981d5774"
+    }
   },
   "docs/configuration/biome.md": {
     "size": 3444,
     "mtime_ns": 1784500469653814400,
     "word_count": 326,
-    "hashes": { "docs/configuration/biome.md": "e26292e9f716e5c664ee7a915d583c2499fec6fa473ddddb2388dd3113fdde4e" }
+    "hashes": {
+      "docs/configuration/biome.md": "e26292e9f716e5c664ee7a915d583c2499fec6fa473ddddb2388dd3113fdde4e"
+    }
   },
   "docs/configuration/mise.md": {
     "size": 1276,
     "mtime_ns": 1784507163278747600,
     "word_count": 85,
-    "hashes": { "docs/configuration/mise.md": "cdfe9db39ac3f21628b8c96dd1d514013f116a748cdb940e9fc46365c99d31b2" }
+    "hashes": {
+      "docs/configuration/mise.md": "cdfe9db39ac3f21628b8c96dd1d514013f116a748cdb940e9fc46365c99d31b2"
+    }
   },
   "docs/configuration/typescript.md": {
     "size": 4202,
@@ -117,13 +201,17 @@
     "size": 2075,
     "mtime_ns": 1784500469708021200,
     "word_count": 193,
-    "hashes": { "docs/configuration/vite.md": "3ffb53a7d5dba0725e0f0b8208d3ac5edca5de661989045c6b0462759d48979c" }
+    "hashes": {
+      "docs/configuration/vite.md": "3ffb53a7d5dba0725e0f0b8208d3ac5edca5de661989045c6b0462759d48979c"
+    }
   },
   "docs/configuration/vitest.md": {
     "size": 1819,
     "mtime_ns": 1784500469687615200,
     "word_count": 161,
-    "hashes": { "docs/configuration/vitest.md": "37a0fd7e754fdf9f9e94ee4095851c93c22681bea1a9d9737dfea842359727b9" }
+    "hashes": {
+      "docs/configuration/vitest.md": "37a0fd7e754fdf9f9e94ee4095851c93c22681bea1a9d9737dfea842359727b9"
+    }
   },
   "docs/development/config-inheritance.md": {
     "size": 1873,
@@ -145,25 +233,33 @@
     "size": 3322,
     "mtime_ns": 1784500469542067500,
     "word_count": 292,
-    "hashes": { "docs/development/release.md": "8e9399387e198c44469cd80a65c8499a446da1d19a389b6fc61c858f3c6eb076" }
+    "hashes": {
+      "docs/development/release.md": "8e9399387e198c44469cd80a65c8499a446da1d19a389b6fc61c858f3c6eb076"
+    }
   },
   "docs/getting-started.md": {
     "size": 2655,
     "mtime_ns": 1784507163278747600,
     "word_count": 228,
-    "hashes": { "docs/getting-started.md": "bd83955cc8f815ff228380913cedd4f5fa6ba9b6a84ddc64728db507bfaccd77" }
+    "hashes": {
+      "docs/getting-started.md": "bd83955cc8f815ff228380913cedd4f5fa6ba9b6a84ddc64728db507bfaccd77"
+    }
   },
   "docs/guides/migration.md": {
     "size": 2963,
     "mtime_ns": 1784500469814887400,
     "word_count": 289,
-    "hashes": { "docs/guides/migration.md": "862e88720b401a86ee2ff93c05f24ad317706f5ab879b404c0ce7e0e30ce8dbc" }
+    "hashes": {
+      "docs/guides/migration.md": "862e88720b401a86ee2ff93c05f24ad317706f5ab879b404c0ce7e0e30ce8dbc"
+    }
   },
   "docs/index.md": {
     "size": 1624,
     "mtime_ns": 1784475917706835600,
     "word_count": 89,
-    "hashes": { "docs/index.md": "533c3dcbc0dd6d30d147889074f037e491be9d4889cb1e089954b9785f7c9975" }
+    "hashes": {
+      "docs/index.md": "533c3dcbc0dd6d30d147889074f037e491be9d4889cb1e089954b9785f7c9975"
+    }
   },
   "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md": {
     "size": 1089,
@@ -209,39 +305,85 @@
     "size": 66,
     "mtime_ns": 1784506848337260100,
     "word_count": 4,
-    "hashes": { "oxlint.base.json": "77bdd8f69ffee27cec21bc7b6f1430c49509a3d529bf7b4e7f86e0d4d2ab14c1" }
+    "hashes": {
+      "oxlint.base.json": "77bdd8f69ffee27cec21bc7b6f1430c49509a3d529bf7b4e7f86e0d4d2ab14c1"
+    }
   },
   "oxlint.json": {
     "size": 137,
     "mtime_ns": 1784506629442669500,
     "word_count": 11,
-    "hashes": { "oxlint.json": "16a89e6b46bfbb056072ad8a14e64c9de88fc4f68427cd92e4c0b112382589fb" }
+    "hashes": {
+      "oxlint.json": "16a89e6b46bfbb056072ad8a14e64c9de88fc4f68427cd92e4c0b112382589fb"
+    }
   },
   "package.json": {
     "size": 2513,
     "mtime_ns": 1784507163278747600,
     "word_count": 198,
-    "hashes": { "package.json": "e39969824a3381e4f04f33c5f3e871382de15fc72c4a9d4fa93f8f17670b8519" }
+    "hashes": {
+      "package.json": "e39969824a3381e4f04f33c5f3e871382de15fc72c4a9d4fa93f8f17670b8519"
+    }
   },
-  "scripts/sandbox-cli.js": { "size": 666, "mtime_ns": 1784502359990885500, "word_count": 76 },
-  "src/index.ts": { "size": 24, "mtime_ns": 1782834320580087200, "word_count": 4 },
-  "src/math.ts": { "size": 651, "mtime_ns": 1782893095573347100, "word_count": 96 },
-  "tests/config.test.js": { "size": 21772, "mtime_ns": 1784505515908469100, "word_count": 1289 },
-  "tests/math.test.ts": { "size": 5229, "mtime_ns": 1784500469291037400, "word_count": 533 },
+  "scripts/sandbox-cli.js": {
+    "size": 666,
+    "mtime_ns": 1784502359990885500,
+    "word_count": 76
+  },
+  "src/index.ts": {
+    "size": 24,
+    "mtime_ns": 1782834320580087200,
+    "word_count": 4
+  },
+  "src/math.ts": {
+    "size": 651,
+    "mtime_ns": 1782893095573347100,
+    "word_count": 96
+  },
+  "tests/config.test.js": {
+    "size": 21772,
+    "mtime_ns": 1784505515908469100,
+    "word_count": 1289
+  },
+  "tests/math.test.ts": {
+    "size": 5229,
+    "mtime_ns": 1784500469291037400,
+    "word_count": 533
+  },
   "tsconfig.base.json": {
     "size": 1312,
     "mtime_ns": 1782895722385768200,
     "word_count": 87,
-    "hashes": { "tsconfig.base.json": "c7855934a9f2c2b5f3e5d15fe408cedb6d90908481842acdc4e536744b01abca" }
+    "hashes": {
+      "tsconfig.base.json": "c7855934a9f2c2b5f3e5d15fe408cedb6d90908481842acdc4e536744b01abca"
+    }
   },
   "tsconfig.json": {
     "size": 237,
     "mtime_ns": 1753034398615639300,
     "word_count": 21,
-    "hashes": { "tsconfig.json": "e2f405592bfbd76f422c709bc71f4767b7f8580b2ac00bdad3d8cacc7253873c" }
+    "hashes": {
+      "tsconfig.json": "e2f405592bfbd76f422c709bc71f4767b7f8580b2ac00bdad3d8cacc7253873c"
+    }
   },
-  "vite.config.base.ts": { "size": 340, "mtime_ns": 1784500469271632400, "word_count": 40 },
-  "vite.config.ts": { "size": 562, "mtime_ns": 1784500469285531200, "word_count": 53 },
-  "vitest.config.base.ts": { "size": 419, "mtime_ns": 1784500469277284500, "word_count": 39 },
-  "vitest.config.ts": { "size": 245, "mtime_ns": 1767139875005737300, "word_count": 23 }
+  "vite.config.base.ts": {
+    "size": 340,
+    "mtime_ns": 1784500469271632400,
+    "word_count": 40
+  },
+  "vite.config.ts": {
+    "size": 562,
+    "mtime_ns": 1784500469285531200,
+    "word_count": 53
+  },
+  "vitest.config.base.ts": {
+    "size": 419,
+    "mtime_ns": 1784500469277284500,
+    "word_count": 39
+  },
+  "vitest.config.ts": {
+    "size": 245,
+    "mtime_ns": 1767139875005737300,
+    "word_count": 23
+  }
 }

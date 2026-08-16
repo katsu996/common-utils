@@ -19,7 +19,9 @@ function getLibraryVersions() {
       ...packageJson.devDependencies,
     };
   } catch (error) {
-    console.warn(`警告: ライブラリバージョンの取得に失敗しました: ${error.message}`);
+    console.warn(
+      `警告: ライブラリバージョンの取得に失敗しました: ${error.message}`,
+    );
     console.warn("代替処理: 基本バージョンを使用します。");
     return {
       "@katsu996/common-utils": "latest",
@@ -31,7 +33,9 @@ function validateConfigIds(configIds) {
   const validIds = CONFIG_FILES.map((f) => f.id);
   const invalidIds = configIds.filter((id) => !validIds.includes(id));
   if (invalidIds.length > 0) {
-    console.error(`${pc.red("エラー:")} 無効な設定ファイルID: ${invalidIds.join(", ")}`);
+    console.error(
+      `${pc.red("エラー:")} 無効な設定ファイルID: ${invalidIds.join(", ")}`,
+    );
     console.error(`  利用可能なID: ${validIds.join(", ")}`);
     process.exit(1);
   }
@@ -71,7 +75,11 @@ function applyConfigFile(file, projectDir = process.cwd()) {
   const fullDestination = path.join(projectDir, destination);
 
   if (!source) {
-    return { success: false, file: destination, error: "source path is not defined" };
+    return {
+      success: false,
+      file: destination,
+      error: "source path is not defined",
+    };
   }
 
   try {
@@ -125,7 +133,9 @@ function addPatternsToGitignore(content, newPatterns) {
 
   const afterSection = content.substring(sectionIndex);
   const nextSectionMatch = afterSection.match(/\n# [^\n]/);
-  const sectionEnd = nextSectionMatch ? sectionIndex + nextSectionMatch.index : content.length;
+  const sectionEnd = nextSectionMatch
+    ? sectionIndex + nextSectionMatch.index
+    : content.length;
 
   const sectionContent = content.substring(sectionIndex, sectionEnd);
   const patternText = newPatterns.join("\n");
@@ -141,7 +151,9 @@ function getTemplateGitignore() {
       return fs.readFileSync(templateGitignorePath, "utf8");
     }
   } catch (error) {
-    console.warn(`警告: .gitignoreテンプレートの読み込みに失敗しました: ${error.message}`);
+    console.warn(
+      `警告: .gitignoreテンプレートの読み込みに失敗しました: ${error.message}`,
+    );
   }
   return "";
 }
@@ -166,17 +178,26 @@ function updateGitignore(projectDir, selectedConfigs) {
 
     const existingPatterns = getExistingGitignorePatterns(gitignoreContent);
 
-    const newPatterns = configFilePatterns.filter((pattern) => !existingPatterns.has(pattern));
+    const newPatterns = configFilePatterns.filter(
+      (pattern) => !existingPatterns.has(pattern),
+    );
 
     if (newPatterns.length > 0) {
       if (globalOptions.dryRun) {
-        log.info(`[DRY RUN] .gitignoreに設定ファイルを追加します: ${newPatterns.join(", ")}`);
+        log.info(
+          `[DRY RUN] .gitignoreに設定ファイルを追加します: ${newPatterns.join(", ")}`,
+        );
         return { success: true, added: newPatterns, dryRun: true };
       }
 
-      const updatedContent = addPatternsToGitignore(gitignoreContent, newPatterns);
+      const updatedContent = addPatternsToGitignore(
+        gitignoreContent,
+        newPatterns,
+      );
       fs.writeFileSync(gitignorePath, updatedContent, "utf8");
-      log.success(`.gitignoreに設定ファイルを追加しました: ${newPatterns.join(", ")}`);
+      log.success(
+        `.gitignoreに設定ファイルを追加しました: ${newPatterns.join(", ")}`,
+      );
       return { success: true, added: newPatterns };
     }
 
@@ -196,7 +217,10 @@ function collectDependencies(selectedConfigs) {
       for (const dep of configFile.dependencies) {
         const version = versions[dep];
         if (version) {
-          const normalized = version.startsWith("^") || version.startsWith("~") ? version : `^${version}`;
+          const normalized =
+            version.startsWith("^") || version.startsWith("~")
+              ? version
+              : `^${version}`;
           dependencies.add(`${dep}@${normalized}`);
         } else {
           dependencies.add(`${dep}@latest`);

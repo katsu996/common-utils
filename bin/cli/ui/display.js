@@ -7,7 +7,9 @@ const { packageRoot } = require("../config-files-data");
 function getPackageVersion() {
   try {
     const packageJsonPath = require("path").join(packageRoot, "package.json");
-    const packageJson = JSON.parse(require("fs").readFileSync(packageJsonPath, "utf8"));
+    const packageJson = JSON.parse(
+      require("fs").readFileSync(packageJsonPath, "utf8"),
+    );
     return packageJson.version;
   } catch {
     return "unknown";
@@ -30,7 +32,9 @@ function showProjectInfo(currentDir, packageStatus) {
 function showConfigFileStatus(fileStatus) {
   log.info("現在の設定ファイル状況:");
   for (const file of fileStatus) {
-    const status = file.exists ? theme.success("✓ 存在") : theme.muted("✗ 未存在");
+    const status = file.exists
+      ? theme.success("✓ 存在")
+      : theme.muted("✗ 未存在");
     console.log(`  ${status} ${file.destination}`);
   }
 }
@@ -42,7 +46,9 @@ function showResults(results) {
   const failedFiles = results.filter((r) => !r.success);
 
   if (updatedFiles.length > 0) {
-    log.success(globalOptions.dryRun ? "更新されるファイル:" : "更新されたファイル:");
+    log.success(
+      globalOptions.dryRun ? "更新されるファイル:" : "更新されたファイル:",
+    );
     for (const r of updatedFiles) {
       const prefix = r.dryRun ? `${theme.warning("[DRY RUN]")} ` : "";
       console.log(`  ${prefix}${theme.success("✓")} ${r.file}`);
@@ -51,7 +57,9 @@ function showResults(results) {
 
   if (createdFiles.length > 0) {
     if (updatedFiles.length > 0) console.log();
-    log.success(globalOptions.dryRun ? "作成されるファイル:" : "作成されたファイル:");
+    log.success(
+      globalOptions.dryRun ? "作成されるファイル:" : "作成されたファイル:",
+    );
     for (const r of createdFiles) {
       const prefix = r.dryRun ? `${theme.warning("[DRY RUN]")} ` : "";
       console.log(`  ${prefix}${theme.success("✓")} ${r.file}`);
@@ -68,7 +76,11 @@ function showResults(results) {
 }
 
 function showProjectResults(projectDir, results, packageUpdateResult) {
-  log.success(globalOptions.dryRun ? "設定ファイルの適用プレビュー [DRY RUN]" : "設定ファイルの適用完了");
+  log.success(
+    globalOptions.dryRun
+      ? "設定ファイルの適用プレビュー [DRY RUN]"
+      : "設定ファイルの適用完了",
+  );
   console.log();
   log.info(`Viteプロジェクト: ${theme.path(projectDir)}`);
   console.log();
@@ -102,14 +114,18 @@ function showAvailableCommands(packageUpdateResult) {
 
   for (const name of Object.keys(scripts)) {
     const desc = descriptions[name] || "カスタムスクリプト";
-    console.log(`  ${theme.command(`pnpm ${name}`).padEnd(22)} ${theme.muted(desc)}`);
+    console.log(
+      `  ${theme.command(`pnpm ${name}`).padEnd(22)} ${theme.muted(desc)}`,
+    );
   }
   console.log();
 }
 
 function showCompletionMessage(projectName) {
   console.log();
-  log.success("Viteプロジェクトと設定ファイルの準備完了! 以下のコマンドで開発を開始できます:");
+  log.success(
+    "Viteプロジェクトと設定ファイルの準備完了! 以下のコマンドで開発を開始できます:",
+  );
   console.log(`  ${theme.command(`cd ${projectName}`)}`);
   console.log(`  ${theme.command("pnpm dev")}`);
 }
@@ -141,7 +157,9 @@ function showHelpMessage() {
   ];
 
   for (const file of CONFIG_FILES) {
-    lines.push(`  ${theme.highlight(file.id).padEnd(14)} ${theme.muted(file.destination)}`);
+    lines.push(
+      `  ${theme.highlight(file.id).padEnd(14)} ${theme.muted(file.destination)}`,
+    );
   }
 
   console.log(lines.join("\n"));
@@ -153,7 +171,9 @@ function showConfigList() {
     console.log(`${theme.highlight(file.id).padEnd(14)} ${file.label}`);
     console.log(`              ${theme.muted(`-> ${file.destination}`)}`);
     if (file.dependencies?.length > 0) {
-      console.log(`              ${theme.warning(`依存関係: ${file.dependencies.join(", ")}`)}`);
+      console.log(
+        `              ${theme.warning(`依存関係: ${file.dependencies.join(", ")}`)}`,
+      );
     }
     console.log();
   }

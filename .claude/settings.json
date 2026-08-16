@@ -16,6 +16,13 @@
       "WebFetch(domain:stackoverflow.com)",
       "WebFetch(domain:ux.stackexchange.com)"
     ],
-    "deny": ["Bash(sudo:*)", "Bash(curl:*)", "Bash(rm -rf /)", "Bash(rm -rf ~)", "Bash(rm -rf ~/*)", "Bash(rm -rf /*)"]
+    "deny": [
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf /*)"
+    ]
   }
 }

@@ -149,7 +149,13 @@
     {
       "id": "cross_layer_bridge_gap",
       "label": "Cross-layer bridge gap (docs vs implementation)",
-      "nodes": ["docs_cli_katsu_config", "bin_cli_config_files", "bin_config", "package_exports", "src_math"],
+      "nodes": [
+        "docs_cli_katsu_config",
+        "bin_cli_config_files",
+        "bin_config",
+        "package_exports",
+        "src_math"
+      ],
       "relation": "form",
       "confidence": "INFERRED",
       "confidence_score": 0.65,
