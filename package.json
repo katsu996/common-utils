@@ -80,16 +80,15 @@
     "vite": "^8.2.1",
     "vitest": "^4.1.10"
   },
-  "preferGlobal": true,
-  "engines": {
-    "node": ">=22"
-  },
   "devEngines": {
     "runtime": {
       "name": "node",
       "version": ">=24.19.0",
       "onFail": "download"
     }
+  },
+  "engines": {
+    "node": ">=22"
   },
   "packageManager": "pnpm@11.21.0"
 }
