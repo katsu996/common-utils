@@ -13,10 +13,6 @@ on:
           - minor
           - major
 
-env:
-  NODE_VERSION: 24.19.0
-  PNPM_VERSION: 11.21.0
-
 jobs:
   ci:
     uses: ./.github/workflows/ci.yml
@@ -34,15 +30,9 @@ jobs:
         with:
           ref: "main"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - uses: pnpm/setup@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: ${{ env.PNPM_VERSION }}
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -79,16 +69,9 @@ jobs:
         with:
           ref: "main"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - uses: pnpm/setup@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: ${{ env.PNPM_VERSION }}
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

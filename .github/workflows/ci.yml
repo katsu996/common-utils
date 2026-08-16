@@ -16,22 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["26", "24", "22"]
+        node: [22, 24]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - uses: pnpm/setup@v2
         with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          runtime: node@${{ matrix.node }}
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -114,16 +108,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - uses: pnpm/setup@v2
         with:
-          version: ${{ env.PNPM_VERSION }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          runtime: node@${{ matrix.node }}
+          cache: true
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
