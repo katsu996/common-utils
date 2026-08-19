@@ -127,9 +127,6 @@ function addPatternsToGitignore(content, newPatterns) {
   }
 
   const sectionIndex = content.indexOf("# 設定ファイル");
-  if (sectionIndex === -1) {
-    return `${content}\n${newPatterns.join("\n")}\n`;
-  }
 
   const afterSection = content.substring(sectionIndex);
   const nextSectionMatch = afterSection.match(/\n# [^\n]/);

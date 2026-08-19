@@ -1,22 +1,38 @@
 const { cancel } = require("@clack/prompts");
 const { theme } = require("../ui/theme");
 
-function handleError(error) {
-  if (error?.name === "CancelError" || error?.message === "cancel") {
-    cancel(theme.warning("設定をキャンセルしました"));
-    process.exit(0);
+function createErrorHandlers(dependencies = {}) {
+  const {
+    cancelFn = cancel,
+    themeModule = theme,
+    processRef = process,
+    consoleRef = console,
+  } = dependencies;
+
+  function handleError(error) {
+    if (error?.name === "CancelError" || error?.message === "cancel") {
+      cancelFn(themeModule.warning("設定をキャンセルしました"));
+      processRef.exit(0);
+      return;
+    }
+    consoleRef.error(
+      `\n${themeModule.error("予期しないエラー:")} ${error.message}`,
+    );
+    processRef.exit(1);
   }
-  console.error(`\n${theme.error("予期しないエラー:")} ${error.message}`);
-  process.exit(1);
+
+  function setupProcessHandlers() {
+    processRef.on("SIGINT", () => {
+      cancelFn(themeModule.warning("設定をキャンセルしました"));
+      processRef.exit(0);
+    });
+    processRef.on("uncaughtException", handleError);
+    processRef.on("unhandledRejection", handleError);
+  }
+
+  return { handleError, setupProcessHandlers };
 }
 
-function setupProcessHandlers() {
-  process.on("SIGINT", () => {
-    cancel(theme.warning("設定をキャンセルしました"));
-    process.exit(0);
-  });
-  process.on("uncaughtException", handleError);
-  process.on("unhandledRejection", handleError);
-}
+const errorHandlers = createErrorHandlers();
 
-module.exports = { handleError, setupProcessHandlers };
+module.exports = { createErrorHandlers, ...errorHandlers };

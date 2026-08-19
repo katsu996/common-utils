@@ -1,7 +1,12 @@
 const { showConfigList } = require("../ui/display");
 
-function listCommand() {
-  showConfigList();
+function createListCommand(dependencies = {}) {
+  const { showConfigListFn = showConfigList } = dependencies;
+  return function listCommand() {
+    showConfigListFn();
+  };
 }
 
-module.exports = { listCommand };
+const listCommand = createListCommand();
+
+module.exports = { createListCommand, listCommand };

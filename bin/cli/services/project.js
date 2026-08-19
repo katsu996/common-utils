@@ -4,65 +4,93 @@ const { theme } = require("../ui/theme");
 const { globalOptions } = require("../utils/global-options");
 const { CONFIG_FILES, applyConfigFile } = require("../config-files");
 
-function spawnAsync(command, args, cwd) {
-  return new Promise((resolve, reject) => {
-    const isWindows = process.platform === "win32";
-    const child = spawn(command, args, {
-      cwd,
-      stdio: globalOptions.dryRun ? "pipe" : "inherit",
-      shell: isWindows,
+function createProjectService(dependencies = {}) {
+  const {
+    spawnFn = spawn,
+    logRef = log,
+    themeModule = theme,
+    globalOptionsRef = globalOptions,
+    configFiles = CONFIG_FILES,
+    applyConfigFileFn = applyConfigFile,
+    processRef = process,
+  } = dependencies;
+
+  function spawnAsync(command, args, cwd) {
+    return new Promise((resolve, reject) => {
+      const isWindows = processRef.platform === "win32";
+      const child = spawnFn(command, args, {
+        cwd,
+        stdio: globalOptionsRef.dryRun ? "pipe" : "inherit",
+        shell: isWindows,
+      });
+      child.on("close", (code) => {
+        if (code === 0) resolve();
+        else {
+          reject(
+            new Error(`${command} の実行に失敗しました (exit code: ${code})`),
+          );
+        }
+      });
+      child.on("error", (error) => reject(error));
     });
-
-    child.on("close", (code) => {
-      if (code === 0) resolve();
-      else
-        reject(
-          new Error(`${command} の実行に失敗しました (exit code: ${code})`),
-        );
-    });
-    child.on("error", (error) => reject(error));
-  });
-}
-
-async function createViteProject(projectName) {
-  if (globalOptions.dryRun) {
-    log.info(theme.warning(`[DRY RUN] pnpm create vite ${projectName}`));
-    return;
-  }
-  log.info("Viteプロジェクトを作成中...");
-  await spawnAsync("pnpm", ["create", "vite", projectName], process.cwd());
-  log.success(`Viteプロジェクト「${projectName}」を作成しました`);
-}
-
-async function installDependencies(projectDir, dependencies) {
-  if (dependencies.length === 0) return;
-
-  if (globalOptions.skipInstall) {
-    log.info("依存関係のインストールをスキップしました");
-    return;
   }
 
-  if (globalOptions.dryRun) {
-    log.info(theme.warning(`[DRY RUN] pnpm add -D ${dependencies.join(" ")}`));
-    return;
-  }
-
-  log.info("依存関係をインストール中...");
-  await spawnAsync("pnpm", ["add", "-D", ...dependencies], projectDir);
-  log.success("依存関係のインストールが完了しました");
-}
-
-function applyConfigFiles(projectDir, selectedConfigs) {
-  const results = [];
-  const normalConfigs = selectedConfigs.filter((id) => id !== "gitignore");
-  for (const configId of normalConfigs) {
-    const configFile = CONFIG_FILES.find((f) => f.id === configId);
-    if (configFile) {
-      const result = applyConfigFile(configFile, projectDir);
-      results.push(result);
+  async function createViteProject(projectName) {
+    if (globalOptionsRef.dryRun) {
+      logRef.info(
+        themeModule.warning(`[DRY RUN] pnpm create vite ${projectName}`),
+      );
+      return;
     }
+    logRef.info("Viteプロジェクトを作成中...");
+    await spawnAsync("pnpm", ["create", "vite", projectName], processRef.cwd());
+    logRef.success(`Viteプロジェクト「${projectName}」を作成しました`);
   }
-  return results;
+
+  async function installDependencies(projectDir, dependenciesToInstall) {
+    if (dependenciesToInstall.length === 0) return;
+    if (globalOptionsRef.skipInstall) {
+      logRef.info("依存関係のインストールをスキップしました");
+      return;
+    }
+    if (globalOptionsRef.dryRun) {
+      logRef.info(
+        themeModule.warning(
+          `[DRY RUN] pnpm add -D ${dependenciesToInstall.join(" ")}`,
+        ),
+      );
+      return;
+    }
+    logRef.info("依存関係をインストール中...");
+    await spawnAsync(
+      "pnpm",
+      ["add", "-D", ...dependenciesToInstall],
+      projectDir,
+    );
+    logRef.success("依存関係のインストールが完了しました");
+  }
+
+  function applyConfigFiles(projectDir, selectedConfigs) {
+    const results = [];
+    const normalConfigs = selectedConfigs.filter((id) => id !== "gitignore");
+    for (const configId of normalConfigs) {
+      const configFile = configFiles.find((file) => file.id === configId);
+      if (configFile) {
+        const result = applyConfigFileFn(configFile, projectDir);
+        results.push(result);
+      }
+    }
+    return results;
+  }
+
+  return {
+    spawnAsync,
+    createViteProject,
+    installDependencies,
+    applyConfigFiles,
+  };
 }
 
-module.exports = { createViteProject, installDependencies, applyConfigFiles };
+const projectService = createProjectService();
+
+module.exports = { createProjectService, ...projectService };

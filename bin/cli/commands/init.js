@@ -20,44 +20,64 @@ const { updatePackageJson } = require("../package");
 const { globalOptions } = require("../utils/global-options");
 const { handleError } = require("../utils/errors");
 
-async function initCommand() {
-  try {
-    showIntro();
+function createInitCommand(dependencies = {}) {
+  const {
+    pathModule = path,
+    outroFn = outro,
+    themeModule = theme,
+    showIntroFn = showIntro,
+    showProjectResultsFn = showProjectResults,
+    showCompletionMessageFn = showCompletionMessage,
+    getProjectNameInputFn = getProjectNameInput,
+    getConfigFileSelectionFn = getConfigFileSelection,
+    createViteProjectFn = createViteProject,
+    installDependenciesFn = installDependencies,
+    applyConfigFilesFn = applyConfigFiles,
+    updateGitignoreFn = updateGitignore,
+    collectDependenciesFn = collectDependencies,
+    updatePackageJsonFn = updatePackageJson,
+    globalOptionsRef = globalOptions,
+    handleErrorFn = handleError,
+    processRef = process,
+    consoleRef = console,
+  } = dependencies;
 
-    const projectName = await getProjectNameInput();
-    if (!projectName) return;
+  return async function initCommand() {
+    try {
+      showIntroFn();
+      const projectName = await getProjectNameInputFn();
+      if (!projectName) return;
 
-    const selectedConfigs = await getConfigFileSelection();
-    if (!selectedConfigs) return;
+      const selectedConfigs = await getConfigFileSelectionFn();
+      if (!selectedConfigs) return;
 
-    const projectDir = path.join(process.cwd(), projectName);
+      const projectDir = pathModule.join(processRef.cwd(), projectName);
+      await createViteProjectFn(projectName);
+      const results = applyConfigFilesFn(projectDir, selectedConfigs);
+      const gitignoreResult = updateGitignoreFn(projectDir, selectedConfigs);
+      if (!gitignoreResult.success) {
+        consoleRef.error(
+          `${themeModule.error(".gitignore更新エラー:")} ${gitignoreResult.error}`,
+        );
+      }
 
-    await createViteProject(projectName);
-
-    const results = applyConfigFiles(projectDir, selectedConfigs);
-
-    const gitignoreResult = updateGitignore(projectDir, selectedConfigs);
-    if (!gitignoreResult.success) {
-      console.error(
-        `${theme.error(".gitignore更新エラー:")} ${gitignoreResult.error}`,
+      const dependenciesToInstall = collectDependenciesFn(selectedConfigs);
+      await installDependenciesFn(projectDir, dependenciesToInstall);
+      const packageUpdateResult = updatePackageJsonFn(
+        projectDir,
+        selectedConfigs,
       );
+      showProjectResultsFn(projectDir, results, packageUpdateResult);
+      if (!globalOptionsRef.dryRun) {
+        showCompletionMessageFn(projectName);
+      }
+      outroFn(themeModule.success("設定が完了しました!"));
+    } catch (error) {
+      handleErrorFn(error);
     }
-
-    const dependencies = collectDependencies(selectedConfigs);
-    await installDependencies(projectDir, dependencies);
-
-    const packageUpdateResult = updatePackageJson(projectDir, selectedConfigs);
-
-    showProjectResults(projectDir, results, packageUpdateResult);
-
-    if (!globalOptions.dryRun) {
-      showCompletionMessage(projectName);
-    }
-
-    outro(theme.success("設定が完了しました!"));
-  } catch (error) {
-    handleError(error);
-  }
+  };
 }
 
-module.exports = { initCommand };
+const initCommand = createInitCommand();
+
+module.exports = { createInitCommand, initCommand };
