@@ -94,6 +94,7 @@ pnpm publish --access public --no-git-checks
    pnpm build
    pnpm publish --access public --no-git-checks
    ```
+
 3. `@katsu996/common-utils` のパッケージページを開く
 4. パッケージ設定 > "Access" セクション > "Manage Access"
 5. 「Add Integration」→「GitHub Actions」を選択

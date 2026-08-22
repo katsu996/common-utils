@@ -4,14 +4,7 @@ import { createRequire } from "node:module";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const require = createRequire(import.meta.url);
 
@@ -389,7 +382,11 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              ["-c", "typescript,oxc,mise,vite,vitest,gitignore", "--skip-install"],
+              [
+                "-c",
+                "typescript,oxc,mise,vite,vitest,gitignore",
+                "--skip-install",
+              ],
               testDir,
               "my-project\n",
             );
