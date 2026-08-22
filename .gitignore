@@ -11,6 +11,7 @@ Thumbs.db
 coverage
 dist
 node_modules
+junit.xml
 
 # ローカルテスト用サンドボックス
 sandbox/

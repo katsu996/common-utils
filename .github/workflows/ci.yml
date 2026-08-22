@@ -37,11 +37,18 @@ jobs:
           pnpm check
           pnpm format:check
 
-      - name: Run tests with coverage
+      - name: Run tests with coverage and JUnit results
         run: |
-          echo "🧪 Running tests with coverage..."
-          pnpm test:coverage
+          echo "🧪 Running tests with coverage and JUnit results..."
+          pnpm test:ci
           echo "📊 Test coverage completed"
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() && matrix.node == env.NODE_VERSION }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: junit.xml
 
       - name: Add coverage summary
         if: always() && !cancelled() && matrix.node == env.NODE_VERSION
