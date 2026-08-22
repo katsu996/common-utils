@@ -1,5 +1,7 @@
 # @katsu996/common-utils
 
+[![codecov](https://codecov.io/gh/katsu996/common-utils/graph/badge.svg?token=4OAQQ31K86)](https://codecov.io/gh/katsu996/common-utils)
+
 TypeScriptプロジェクト向けの共通ユーティリティ関数と厳格な開発設定のコレクションです。
 
 > **注意**: このパッケージは個人用として作成されており、個人の開発スタイルや設定に最適化されています。
