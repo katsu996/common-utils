@@ -44,19 +44,27 @@ jobs:
           echo "📊 Test coverage completed"
 
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() && matrix.node == env.NODE_VERSION }}
+        if: ${{ !cancelled() && matrix.node == 24 }}
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: junit.xml
           report_type: test_results
 
+      - name: Upload coverage to Codecov
+        if: ${{ !cancelled() && matrix.node == 24 }}
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/lcov.info
+          disable_search: true
+
       - name: Add coverage summary
-        if: always() && !cancelled() && matrix.node == env.NODE_VERSION
+        if: always() && !cancelled() && matrix.node == 24
         run: pnpm coverage:summary >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload coverage reports
-        if: always() && !cancelled() && matrix.node == env.NODE_VERSION
+        if: always() && !cancelled() && matrix.node == 24
         uses: actions/upload-artifact@v7
         with:
           name: test-coverage-node-${{ matrix.node }}
