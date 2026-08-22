@@ -1,0 +1,220 @@
+{
+  "nodes": [
+    {
+      "id": "development",
+      "label": "DEVELOPMENT.md - Developer Documentation",
+      "file_type": "document",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_conventional_commits",
+      "label": "Conventional Commits Convention",
+      "file_type": "rationale",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Structured commit message prefixes (feat/fix/docs/etc.) keep history readable and enable tooling; team rules require pnpm check and pnpm build to pass before committing."
+    }
+  ],
+  "edges": [
+    {
+      "source": "development",
+      "target": "bin_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "bin_cli_commands_init_initcommand",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "bin_cli_commands_update_updatecommand",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "bin_cli_commands_list_listcommand",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "commander",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "clack_prompts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "ora",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "picocolors",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "development_conventional_commits",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "_github_pull_request_template_semantic_versioning",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "tsconfig_base",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "ref_biome_base_jsonc",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "src_math",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "tests_config_test",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "tests_math_test",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "package_scripts_dev",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "package_scripts_build",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "package_scripts_lint",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development",
+      "target": "package_scripts_format",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}
