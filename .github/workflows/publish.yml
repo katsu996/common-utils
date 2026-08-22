@@ -67,7 +67,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          ref: "main"
+          ref: ${{ needs.create-tag.outputs.version }}
 
       - uses: pnpm/setup@v2
         with:

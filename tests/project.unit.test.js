@@ -91,7 +91,7 @@ describe("project service", () => {
 
     expect(dependencies.spawnFn).toHaveBeenCalledWith(
       "pnpm",
-      ["add", "-D", "typescript", "vitest"],
+      ["add", "-D", "--save-exact", "typescript", "vitest"],
       { cwd: "/workspace/app", stdio: "inherit", shell: false },
     );
     expect(dependencies.logRef.success).toHaveBeenCalledWith(

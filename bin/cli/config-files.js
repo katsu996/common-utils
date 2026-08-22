@@ -167,6 +167,7 @@ function updateGitignore(projectDir, selectedConfigs) {
     }
 
     const configFilePatterns = selectedConfigs
+      .filter((configId) => configId !== "gitignore")
       .map((configId) => {
         const configFile = CONFIG_FILES.find((f) => f.id === configId);
         return configFile?.destination;
@@ -204,8 +205,7 @@ function updateGitignore(projectDir, selectedConfigs) {
   }
 }
 
-function collectDependencies(selectedConfigs) {
-  const versions = getLibraryVersions();
+function collectDependencies(selectedConfigs, versions = getLibraryVersions()) {
   const dependencies = new Set();
 
   for (const configId of selectedConfigs) {
@@ -213,15 +213,12 @@ function collectDependencies(selectedConfigs) {
     if (configFile?.dependencies) {
       for (const dep of configFile.dependencies) {
         const version = versions[dep];
-        if (version) {
-          const normalized =
-            version.startsWith("^") || version.startsWith("~")
-              ? version
-              : `^${version}`;
-          dependencies.add(`${dep}@${normalized}`);
-        } else {
-          dependencies.add(`${dep}@latest`);
+        if (!version) {
+          throw new Error(
+            `依存関係 "${dep}" のバージョンを解決できませんでした`,
+          );
         }
+        dependencies.add(`${dep}@${version}`);
       }
     }
   }

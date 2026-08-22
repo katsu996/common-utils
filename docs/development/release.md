@@ -9,32 +9,25 @@
 
 ### リリース手順
 
-1. **リリースブランチを作成**
+バージョン番号の更新は Publish ワークフローが自動的に行います（`create-tag` job 内の `pnpm version` により、main ブランチへバージョン更新コミットを作成し Git タグをプッシュします）。事前の手動バージョン更新は不要です。
 
-```bash
-git checkout -b release/v1.x.x
-# バージョン更新
-# package.json の version フィールドを更新
-git add package.json
-git commit -m "chore: bump version to 1.x.x"
-git push origin release/v1.x.x
-```
+1. **main ブランチへのマージを確認**
 
-2. **PR を作成して main にマージ**
+   リリース対象のコードが main ブランチにマージされていることを確認する（ワークフローは main ブランチをチェックアウトして実行されるため）
 
-3. **GitHub Actions の Publish ワークフローを手動トリガー**
+2. **GitHub Actions の Publish ワークフローを手動トリガー**
 
-   GitHub リポジトリの Actions タブ → Publish → **Run workflow**
+   GitHub リポジトリの Actions タブ → Publish to npm → **Run workflow**
 
-   | パラメーター   | 説明                                 |
-   | -------------- | ------------------------------------ |
-   | `version_bump` | `patch` / `minor` / `major` から選択 |
+   | パラメーター | 説明                                 |
+   | ------------ | ------------------------------------ |
+   | `version`    | `patch` / `minor` / `major` から選択 |
 
-4. **自動処理**
+3. **自動処理**
 
    - CI チェック（テスト、リント、ビルド）
-   - Git タグの作成とプッシュ
-   - npm へのパブリッシュ（OIDC 認証）
+   - バージョン更新コミットの作成と Git タグの作成・プッシュ（`create-tag` job）
+   - 作成されたタグから npm へのパブリッシュ（Trusted Publisher / OIDC 認証）
    - GitHub Release の作成
 
 ## 手動リリース（緊急時）
@@ -104,13 +97,15 @@ main ブランチにマージ
   │  test / build            │
   └──────────────────────────┘
         ↓
-  ┌─ create-tag job ────────┐
-  │  git tag v1.x.x         │
-  │  git push --tags        │
+  ┌─ create-tag job ─────────┐
+  │  pnpm version            │
+  │ （バージョン更新・タグ作成）│
+  │  git push origin main    │
+  │  git push --tags         │
   └──────────────────────────┘
         ↓
   ┌─ publish job ───────────┐
-  │  npm publish (OIDC)     │
+  │  pnpm publish (OIDC)    │
   └──────────────────────────┘
         ↓
   ┌─ create-release job ────┐

@@ -5,6 +5,7 @@ const path = require("node:path");
 const { log } = require("@clack/prompts");
 
 const { collectScripts } = require("./config-files");
+const { globalOptions } = require("./utils/global-options");
 
 function hasPackageJson() {
   return fs.existsSync(path.join(process.cwd(), "package.json"));
@@ -33,17 +34,24 @@ function validateProjectName(value) {
   return undefined;
 }
 
-function ensureCaretVersions(packageJson) {
-  for (const key of ["dependencies", "devDependencies"]) {
-    if (packageJson[key]) {
-      for (const pkg of Object.keys(packageJson[key])) {
-        const v = packageJson[key][pkg];
-        if (typeof v === "string" && !v.startsWith("^") && !v.startsWith("~")) {
-          packageJson[key][pkg] = `^${v}`;
-        }
-      }
+function mergeScripts(packageJson, selectedScripts) {
+  const scripts = {};
+  const skipped = {};
+
+  for (const [name, command] of Object.entries(selectedScripts)) {
+    const existing = packageJson.scripts[name];
+    if (existing !== undefined && existing !== command) {
+      skipped[name] = existing;
+      log.warning(
+        `スクリプト "${name}" は既に存在するため上書きしませんでした (既存: ${existing})`,
+      );
+      continue;
     }
+    packageJson.scripts[name] = command;
+    scripts[name] = command;
   }
+
+  return { scripts, skipped };
 }
 
 function updatePackageJsonExisting(selectedConfigs) {
@@ -57,16 +65,17 @@ function updatePackageJsonExisting(selectedConfigs) {
       packageJson.scripts = {};
     }
 
-    packageJson.scripts = {
-      ...packageJson.scripts,
-      ...selectedScripts,
-    };
+    const { scripts, skipped } = mergeScripts(packageJson, selectedScripts);
 
-    ensureCaretVersions(packageJson);
+    if (globalOptions.dryRun) {
+      log.info("[DRY RUN] package.jsonにスクリプトを追加します");
+      return { success: true, scripts, skipped, dryRun: true };
+    }
+
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     log.success("package.jsonにスクリプトを追加しました");
 
-    return { success: true, scripts: selectedScripts };
+    return { success: true, scripts, skipped };
   } catch (error) {
     return { success: false, error: error.message };
   }
@@ -83,18 +92,21 @@ function updatePackageJson(projectDir, selectedConfigs) {
       packageJson.scripts = {};
     }
 
-    packageJson.scripts = {
-      ...packageJson.scripts,
-      ...selectedScripts,
-    };
+    const { scripts, skipped } = mergeScripts(packageJson, selectedScripts);
 
     packageJson.type = "module";
 
-    ensureCaretVersions(packageJson);
+    if (globalOptions.dryRun) {
+      log.info(
+        "[DRY RUN] package.jsonにスクリプトとESモジュール設定を追加します",
+      );
+      return { success: true, scripts, skipped, dryRun: true };
+    }
+
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     log.success("package.jsonにスクリプトとESモジュール設定を追加しました");
 
-    return { success: true, scripts: selectedScripts };
+    return { success: true, scripts, skipped };
   } catch (error) {
     return { success: false, error: error.message };
   }

@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
 const packageUtils = require("../bin/cli/package");
+const { setGlobalOptions } = require("../bin/cli/utils/global-options");
 
 function writePackageJson(directory, value) {
   fs.writeFileSync(
@@ -27,6 +28,7 @@ describe("package utilities", () => {
 
   afterEach(() => {
     process.chdir(originalDirectory);
+    setGlobalOptions({ dryRun: false, skipInstall: false, config: null });
     fs.rmSync(temporaryDirectory, { recursive: true, force: true });
   });
 
@@ -62,11 +64,12 @@ describe("package utilities", () => {
     expect(packageUtils.validateProjectName("valid_name-1")).toBeUndefined();
   });
 
-  it("既存 package.json に設定スクリプトを追加し、依存関係のバージョンを正規化する", () => {
+  it("既存 package.json に設定スクリプトを追加し、依存関係の指定を書き換えない", () => {
     writePackageJson(temporaryDirectory, {
       name: "demo-project",
       version: "1.0.0",
-      dependencies: { commander: "15.0.0" },
+      dependencies: { commander: "15.0.0", shared: "workspace:*" },
+      devDependencies: { vite: "^8.2.1" },
       scripts: { existing: "node existing.js" },
     });
     process.chdir(temporaryDirectory);
@@ -81,7 +84,9 @@ describe("package utilities", () => {
       existing: "node existing.js",
       "type-check": "tsc --noEmit",
     });
-    expect(updated.dependencies.commander).toBe("^15.0.0");
+    expect(updated.dependencies.commander).toBe("15.0.0");
+    expect(updated.dependencies.shared).toBe("workspace:*");
+    expect(updated.devDependencies.vite).toBe("^8.2.1");
   });
 
   it("新規プロジェクトの package.json に ES モジュール設定とスクリプトを追加する", () => {
@@ -105,7 +110,82 @@ describe("package utilities", () => {
       "test:watch": "vitest --watch",
       "test:coverage": "vitest --coverage",
     });
-    expect(updated.devDependencies.vitest).toBe("^4.1.10");
+    expect(updated.devDependencies.vitest).toBe("4.1.10");
+  });
+
+  it("名前が衝突するスクリプトは既存コマンドを保持して報告する", () => {
+    writePackageJson(temporaryDirectory, {
+      name: "demo-project",
+      scripts: { lint: "custom lint", test: "vitest" },
+    });
+
+    const result = packageUtils.updatePackageJson(temporaryDirectory, [
+      "biome",
+      "vitest",
+    ]);
+    const updated = JSON.parse(
+      fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8"),
+    );
+
+    expect(updated.scripts.lint).toBe("custom lint");
+    expect(updated.scripts.check).toBe("biome check .");
+    expect(updated.scripts.test).toBe("vitest");
+    expect(result.skipped).toEqual({ lint: "custom lint" });
+    expect(result.scripts).not.toHaveProperty("lint");
+  });
+
+  it("dry-run 時は既存プロジェクトの package.json を書き換えない", () => {
+    writePackageJson(temporaryDirectory, {
+      name: "demo-project",
+      scripts: {},
+    });
+    process.chdir(temporaryDirectory);
+    setGlobalOptions({ dryRun: true });
+    const before = fs.readFileSync(
+      path.join(temporaryDirectory, "package.json"),
+      "utf8",
+    );
+
+    const result = packageUtils.updatePackageJsonExisting(["typescript"]);
+    const after = fs.readFileSync(
+      path.join(temporaryDirectory, "package.json"),
+      "utf8",
+    );
+
+    expect(after).toBe(before);
+    expect(result).toMatchObject({
+      success: true,
+      dryRun: true,
+      scripts: { "type-check": "tsc --noEmit" },
+    });
+  });
+
+  it("dry-run 時は新規プロジェクトの package.json を書き換えない", () => {
+    writePackageJson(temporaryDirectory, {
+      name: "demo-project",
+      scripts: { test: "custom test" },
+    });
+    setGlobalOptions({ dryRun: true });
+    const before = fs.readFileSync(
+      path.join(temporaryDirectory, "package.json"),
+      "utf8",
+    );
+
+    const result = packageUtils.updatePackageJson(temporaryDirectory, [
+      "typescript",
+      "vitest",
+    ]);
+    const after = fs.readFileSync(
+      path.join(temporaryDirectory, "package.json"),
+      "utf8",
+    );
+
+    expect(after).toBe(before);
+    expect(result).toMatchObject({
+      success: true,
+      dryRun: true,
+      skipped: { test: "custom test" },
+    });
   });
 
   it("読み取りに失敗した場合は更新失敗結果を返す", () => {

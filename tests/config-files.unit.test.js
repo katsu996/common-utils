@@ -147,7 +147,8 @@ describe("config files", () => {
     expect(failure).toMatchObject({ success: false });
   });
 
-  it("依存関係とスクリプトを重複なく収集する", () => {
+  it("依存関係を宣言済みの正確なバージョンで重複なく収集する", () => {
+    const versions = configFiles.getLibraryVersions();
     const dependencies = configFiles.collectDependencies([
       "typescript",
       "vitest",
@@ -159,15 +160,24 @@ describe("config files", () => {
       "typescript",
     ]);
 
-    expect(dependencies).toEqual(
-      expect.arrayContaining([
-        expect.stringMatching(/^typescript@/),
-        expect.stringMatching(/^vitest@/),
-      ]),
-    );
+    expect(dependencies).toEqual([
+      `typescript@${versions.typescript}`,
+      `@types/node@${versions["@types/node"]}`,
+      `vitest@${versions.vitest}`,
+      `@vitest/coverage-v8@${versions["@vitest/coverage-v8"]}`,
+    ]);
     expect(scripts).toMatchObject({
       "type-check": "tsc --noEmit",
       test: "vitest",
     });
+  });
+
+  it("バージョン不明の依存関係はエラーとして報告する", () => {
+    expect(() => configFiles.collectDependencies(["typescript"], {})).toThrow(
+      '依存関係 "typescript" のバージョンを解決できませんでした',
+    );
+    expect(() =>
+      configFiles.collectDependencies(["mise"], { typescript: "7.0.2" }),
+    ).not.toThrow();
   });
 });

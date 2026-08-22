@@ -86,11 +86,19 @@ pnpm publish --access public --no-git-checks
 #### 設定手順
 
 1. [npmjs.com](https://www.npmjs.com) にログイン
-2. `@katsu996/common-utils` のパッケージページを開く
-   - 未作成の場合は先に `pnpm publish --access public --dry-run` で公開を試み、404 エラーを確認した上で `npm init --scope=katsu996` 等で作成する
-3. パッケージ設定 > "Access" セクション > "Manage Access"
-4. 「Add Integration」→「GitHub Actions」を選択
-5. 以下の情報を入力：
+2. パッケージが未作成の場合は、先に認証済みの手動公開で `@katsu996/common-utils` を public として作成する
+   - 注意: `pnpm publish --access public --dry-run` はレジストリにパッケージを作成せず、`npm init` もローカルの package.json を初期化するだけのため、いずれもパッケージ作成には使用できない
+   - `npm login` 済みの環境でビルド済みの成果物を手動公開する（詳細は「🛠 手動リリース（緊急時）」参照）:
+
+   ```bash
+   pnpm build
+   pnpm publish --access public --no-git-checks
+   ```
+3. `@katsu996/common-utils` のパッケージページを開く
+4. パッケージ設定 > "Access" セクション > "Manage Access"
+5. 「Add Integration」→「GitHub Actions」を選択
+6. **Allowed actions で少なくとも「npm publish」を選択する**（2026年5月20日以降に作成する設定では必須）
+7. 以下の情報を入力：
 
    | 項目        | 値                         |
    | ----------- | -------------------------- |
@@ -99,7 +107,7 @@ pnpm publish --access public --no-git-checks
    | Workflow    | `publish.yml`              |
    | Environment | 空欄（すべての環境を許可） |
 
-6. 「Create Integration」をクリック
+8. 「Create Integration」をクリック
 
 #### 確認
 
@@ -165,7 +173,7 @@ pnpm publish --access public --no-git-checks
    - Trusted Publisher の設定が正しいか確認（npm パッケージ設定 > Access > Integrations）
    - `@katsu996` 組織が npmjs.com に存在するか確認
    - publish.yml に `id-token: write` 権限が付与されているか確認
-   - 初回公開時は手動で `npm publish` が必要な場合あり（package の作成）
+   - 初回公開時は先に手動でパッケージを作成してから Trusted Publisher を設定する（「必要な設定（初回のみ）」参照）
    - パッケージ名の重複チェック
    - ネットワーク接続の確認
 

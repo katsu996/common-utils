@@ -78,10 +78,10 @@ describe("project service failure paths", () => {
 
     expect(dependencies.spawnFn).not.toHaveBeenCalled();
     expect(dependencies.themeModule.warning).toHaveBeenCalledWith(
-      "[DRY RUN] pnpm add -D typescript vitest",
+      "[DRY RUN] pnpm add -D --save-exact typescript vitest",
     );
     expect(dependencies.logRef.info).toHaveBeenCalledWith(
-      "warning:[DRY RUN] pnpm add -D typescript vitest",
+      "warning:[DRY RUN] pnpm add -D --save-exact typescript vitest",
     );
   });
 

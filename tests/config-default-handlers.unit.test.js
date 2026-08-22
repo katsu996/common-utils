@@ -6,12 +6,21 @@ const { Command } = require("commander");
 const { createProgram } = require("../bin/config");
 
 describe("config default process handlers", () => {
+  const registered = [];
+
   afterEach(() => {
+    for (const [event, handler] of registered.splice(0)) {
+      process.off(event, handler);
+    }
     vi.restoreAllMocks();
   });
 
   it("依存関係が未指定なら既定のプロセスハンドラを登録する", () => {
     const onSpy = vi.spyOn(process, "on");
+    onSpy.mockImplementation((event, handler) => {
+      registered.push([event, handler]);
+      return process;
+    });
 
     createProgram({
       programRef: new Command(),

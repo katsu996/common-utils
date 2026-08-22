@@ -56,7 +56,7 @@ function createProjectService(dependencies = {}) {
     if (globalOptionsRef.dryRun) {
       logRef.info(
         themeModule.warning(
-          `[DRY RUN] pnpm add -D ${dependenciesToInstall.join(" ")}`,
+          `[DRY RUN] pnpm add -D --save-exact ${dependenciesToInstall.join(" ")}`,
         ),
       );
       return;
@@ -64,7 +64,7 @@ function createProjectService(dependencies = {}) {
     logRef.info("依存関係をインストール中...");
     await spawnAsync(
       "pnpm",
-      ["add", "-D", ...dependenciesToInstall],
+      ["add", "-D", "--save-exact", ...dependenciesToInstall],
       projectDir,
     );
     logRef.success("依存関係のインストールが完了しました");

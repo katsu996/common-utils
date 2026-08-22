@@ -4,7 +4,14 @@ import { createRequire } from "node:module";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 
 const require = createRequire(import.meta.url);
 
@@ -225,15 +232,15 @@ describe("config.js（インタラクティブCLI）", () => {
   describe("ユーティリティ関数", () => {
     it("hasPackageJsonが存在を正しく検出する", () => {
       const dirWithoutPkg = createTempDirectory();
+      const originalCwd = process.cwd;
       try {
-        const originalCwd = process.cwd;
         process.cwd = () => dirWithoutPkg;
         expect(hasPackageJson()).toBe(false);
         process.cwd = () => tempDir;
         createPackageJson(tempDir);
         expect(hasPackageJson()).toBe(true);
-        process.cwd = originalCwd;
       } finally {
+        process.cwd = originalCwd;
         cleanupDirectory(dirWithoutPkg);
       }
     });
@@ -308,12 +315,15 @@ describe("config.js（インタラクティブCLI）", () => {
   });
 
   describe("CRIコマンド処理", () => {
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
+
     it("displayListが全設定ファイルを表示する", () => {
       const output = [];
-      const originalLog = console.log;
-      console.log = (...args) => output.push(args.join(" "));
+      const logSpy = vi.spyOn(console, "log");
+      logSpy.mockImplementation((...args) => output.push(args.join(" ")));
       displayList();
-      console.log = originalLog;
       const text = output.join(" ");
       expect(text).toContain("typescript");
       expect(text).toContain("biome");
@@ -325,10 +335,9 @@ describe("config.js（インタラクティブCLI）", () => {
 
     it("displayHelpがヘルプを表示する", () => {
       const output = [];
-      const originalLog = console.log;
-      console.log = (...args) => output.push(args.join(" "));
+      const logSpy = vi.spyOn(console, "log");
+      logSpy.mockImplementation((...args) => output.push(args.join(" ")));
       displayHelp();
-      console.log = originalLog;
       const text = output.join(" ");
       expect(text).toContain("katsu-config");
       expect(text).toContain("--config");
@@ -344,11 +353,11 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              ["-c", "typescript"],
+              ["-c", "typescript", "--skip-install"],
               testDir,
               "my-project\n",
             );
-            expect(result.code).not.toBe(1);
+            expect(result.code).toBe(0);
             expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
             expect(configFileExists(testDir, "biome.jsonc")).toBe(false);
             expect(configFileExists(testDir, "vitest.config.ts")).toBe(false);
@@ -362,11 +371,11 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              ["-c", "typescript,biome"],
+              ["-c", "typescript,biome", "--skip-install"],
               testDir,
               "my-project\n",
             );
-            expect(result.code).not.toBe(1);
+            expect(result.code).toBe(0);
             expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
             expect(configFileExists(testDir, "biome.jsonc")).toBe(true);
             expect(configFileExists(testDir, "vitest.config.ts")).toBe(false);
@@ -380,11 +389,11 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              ["-c", "typescript,oxc,mise,vite,vitest,gitignore"],
+              ["-c", "typescript,oxc,mise,vite,vitest,gitignore", "--skip-install"],
               testDir,
               "my-project\n",
             );
-            expect(result.code).not.toBe(1);
+            expect(result.code).toBe(0);
             expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
             expect(configFileExists(testDir, "oxlint.json")).toBe(true);
             expect(configFileExists(testDir, "mise.toml")).toBe(true);
@@ -401,11 +410,11 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              ["-c", "typescript,vitest"],
+              ["-c", "typescript,vitest", "--skip-install"],
               testDir,
               "my-project\n",
             );
-            expect(result.code).not.toBe(1);
+            expect(result.code).toBe(0);
             expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
             expect(configFileExists(testDir, "vitest.config.ts")).toBe(true);
             expect(configFileExists(testDir, "biome.jsonc")).toBe(false);
@@ -446,11 +455,11 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              ["-c", "typescript,typescript"],
+              ["-c", "typescript,typescript", "--skip-install"],
               testDir,
               "my-project\n",
             );
-            expect(result.code).not.toBe(1);
+            expect(result.code).toBe(0);
             expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
           } finally {
             cleanupDirectory(testDir);
@@ -505,11 +514,11 @@ describe("config.js（インタラクティブCLI）", () => {
         try {
           createPackageJson(testDir);
           const result = await runKatsuConfig(
-            ["-c", "typescript, biome"],
+            ["-c", "typescript, biome", "--skip-install"],
             testDir,
             "my-project\n",
           );
-          expect(result.code).not.toBe(1);
+          expect(result.code).toBe(0);
           expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
         } finally {
           cleanupDirectory(testDir);
@@ -521,11 +530,11 @@ describe("config.js（インタラクティブCLI）", () => {
         try {
           createPackageJson(testDir);
           const result = await runKatsuConfig(
-            ["-c", "typescript,,biome"],
+            ["-c", "typescript,,biome", "--skip-install"],
             testDir,
             "my-project\n",
           );
-          expect(result.code).not.toBe(1);
+          expect(result.code).toBe(0);
           expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
           expect(configFileExists(testDir, "biome.jsonc")).toBe(true);
         } finally {
@@ -539,10 +548,10 @@ describe("config.js（インタラクティブCLI）", () => {
           createPackageJson(testDir);
           fs.writeFileSync(path.join(testDir, ".gitignore"), "node_modules/\n");
           const result = await runKatsuConfig(
-            ["-c", "typescript,gitignore"],
+            ["-c", "typescript,gitignore", "--skip-install"],
             testDir,
           );
-          expect(result.code).not.toBe(1);
+          expect(result.code).toBe(0);
           if (configFileExists(testDir, ".gitignore")) {
             const gitignoreContent = fs.readFileSync(
               path.join(testDir, ".gitignore"),
@@ -560,10 +569,10 @@ describe("config.js（インタラクティブCLI）", () => {
         try {
           createPackageJson(testDir);
           const result = await runKatsuConfig(
-            ["-c", "typescript,gitignore"],
+            ["-c", "typescript,gitignore", "--skip-install"],
             testDir,
           );
-          expect(result.code).not.toBe(1);
+          expect(result.code).toBe(0);
           expect(configFileExists(testDir, ".gitignore")).toBe(true);
         } finally {
           cleanupDirectory(testDir);
@@ -579,10 +588,10 @@ describe("config.js（インタラクティブCLI）", () => {
             "node_modules/\n# 設定ファイル\ntsconfig.json\n",
           );
           const result = await runKatsuConfig(
-            ["-c", "biome,gitignore"],
+            ["-c", "biome,gitignore", "--skip-install"],
             testDir,
           );
-          expect(result.code).not.toBe(1);
+          expect(result.code).toBe(0);
           if (configFileExists(testDir, ".gitignore")) {
             const gitignoreContent = fs.readFileSync(
               path.join(testDir, ".gitignore"),
@@ -600,10 +609,10 @@ describe("config.js（インタラクティブCLI）", () => {
         try {
           createPackageJson(testDir);
           const result = await runKatsuConfig(
-            ["-c", "typescript,biome,vitest"],
+            ["-c", "typescript,biome,vitest", "--skip-install"],
             testDir,
           );
-          expect(result.code).not.toBe(1);
+          expect(result.code).toBe(0);
           if (configFileExists(testDir, ".gitignore")) {
             const gitignoreContent = fs.readFileSync(
               path.join(testDir, ".gitignore"),

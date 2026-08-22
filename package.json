@@ -46,7 +46,7 @@
     "// Development": "=======================================",
     "dev": "vite",
     "// Build": "=============================================",
-    "build": "vite build",
+    "build": "vite build && tsc --emitDeclarationOnly",
     "// Code Quality": "======================================",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
@@ -73,6 +73,7 @@
     "picocolors": "1.1.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.10",
     "@types/node": "26.2.0",
     "@vitest/coverage-v8": "4.1.10",
     "oxfmt": "0.63.0",

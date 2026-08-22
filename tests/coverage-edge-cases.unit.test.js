@@ -122,7 +122,7 @@ describe("config and package edge cases", () => {
     process.chdir(temporaryDirectory);
     const originalReadFileSync = fs.readFileSync;
     vi.spyOn(fs, "readFileSync").mockImplementation((filePath, ...args) => {
-      if (filePath === path.join(temporaryDirectory, ".gitignore")) {
+      if (String(filePath).endsWith(`${path.sep}.gitignore`)) {
         throw new Error("permission denied");
       }
       return originalReadFileSync.call(fs, filePath, ...args);
