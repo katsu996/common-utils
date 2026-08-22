@@ -61,16 +61,6 @@ export default mergeConfig(
 );
 ```
 
-## Mise 設定
-
-Mise は TOML の `extends` 機構を持たないため、内容を参考に直接記述します。
-
-```toml
-[tools]
-node = "24.19.0"
-pnpm = "11.21.0"
-```
-
 ## エクスポートパス一覧
 
 | パス                              | 設定ファイル            | 継承方法          |
