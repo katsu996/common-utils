@@ -1,0 +1,18 @@
+{
+  "0": "Documentation Hub",
+  "1": "TypeScript Compiler Options",
+  "2": "Package Manager Utils",
+  "3": "CI/CD and Release Docs",
+  "4": "Manifest and Dependencies",
+  "5": "CLI Documentation and Analysis",
+  "6": "CLI Error Handling",
+  "7": "Dev Dependencies and AI Docs",
+  "8": "Update Command Flow",
+  "9": "Init Command Flow",
+  "10": "Project Services",
+  "11": "Config Data and Display",
+  "12": "Config File Registry",
+  "13": "Oxlint Config",
+  "14": "Interactive Prompts",
+  "15": "Spinner and Theme UI"
+}
