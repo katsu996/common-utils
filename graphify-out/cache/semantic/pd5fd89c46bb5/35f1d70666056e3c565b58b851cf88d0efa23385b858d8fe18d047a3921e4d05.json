@@ -1,0 +1,110 @@
+{
+  "nodes": [
+    {
+      "id": "release",
+      "label": "RELEASE.md - Release Guide",
+      "file_type": "document",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "release_trusted_publisher_oidc",
+      "label": "npm Trusted Publisher (OIDC)",
+      "file_type": "rationale",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Publishing uses npm Trusted Publisher (OpenID Connect) with id-token: write permission instead of an NPM_TOKEN secret, so the publish workflow authenticates to npm without stored credentials."
+    }
+  ],
+  "edges": [
+    {
+      "source": "release",
+      "target": "_github_workflows_publish",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "release_trusted_publisher_oidc",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "package_scripts_check",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "package_scripts_build",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "package_scripts_test",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "src_math_add",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "package_bin_katsu_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release",
+      "target": "docs_development_release",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

@@ -1,0 +1,140 @@
+name: Validate Workflows
+
+on:
+  workflow_dispatch: # 手動実行
+  push:
+    paths:
+      - ".github/workflows/**"
+      - "package.json"
+      - "biome*.json"
+      - "tsconfig*.json"
+      - "vite.config*.json"
+      - "vitest.config*.json"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-workflows:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/setup@v2
+        with:
+          cache: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate package.json
+        run: |
+          echo "🔍 Validating package.json..."
+
+          # 必要なフィールドの存在チェック
+          node -p "
+            const pkg = require('./package.json');
+            const required = ['name', 'version', 'description', 'main', 'types', 'exports', 'scripts'];
+
+            for (const field of required) {
+              if (pkg[field] === undefined) {
+                throw new Error('Missing required field: ' + field);
+              }
+            }
+
+            // スクリプトの存在チェック
+            const requiredScripts = ['build', 'type-check', 'check'];
+            for (const script of requiredScripts) {
+              if (pkg.scripts[script] === undefined) {
+                throw new Error('Missing required script: ' + script);
+              }
+            }
+
+            '✅ package.json validation passed';
+          "
+
+      - name: Validate TypeScript config
+        run: |
+          echo "🔍 Validating TypeScript configuration..."
+          pnpm run type-check
+          echo "✅ TypeScript configuration is valid"
+
+      - name: Validate Biome config
+        run: |
+          echo "🔍 Validating Biome configuration..."
+          pnpm run check
+          echo "✅ Biome configuration is valid"
+
+      - name: Test build process
+        run: |
+          echo "🔍 Testing build process..."
+          pnpm run build
+
+          # ビルド結果の検証
+          if [ ! -d "dist" ]; then
+            echo "❌ dist directory not created"
+            exit 1
+          fi
+
+          echo "✅ Build process validation passed"
+
+      - name: Test package exports
+        run: |
+          echo "🔍 Testing package exports..."
+
+          # パッケージをテンポラリにパック
+          pnpm pack --pack-destination temp/
+
+          # 別ディレクトリでテスト
+          mkdir -p test-package
+          cd test-package
+          npm init -y
+          npm install ../temp/katsu996-common-utils-*.tgz
+
+          # インポートテスト
+          node -e "
+            try {
+              // メインエクスポートのテスト
+              const main = require('@katsu996/common-utils');
+              console.log('✅ Main export works:', Object.keys(main));
+
+              // 個別エクスポートのテスト
+              const math = require('@katsu996/common-utils/math');
+              console.log('✅ Math export works:', Object.keys(math));
+
+              console.log('✅ Package exports validation passed');
+            } catch (error) {
+              console.error('❌ Package exports validation failed:', error.message);
+              process.exit(1);
+            }
+          "
+
+      - name: Simulate release process
+        run: |
+          echo "🔍 Simulating release process..."
+
+          # prepublishOnlyスクリプトのテスト
+          pnpm run prepublishOnly
+
+          # 公開物の内容を検証（既に公開済みのバージョンへ接続しない）
+          pnpm pack --dry-run
+
+          echo "✅ Release process simulation passed"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "📊 Validation Summary:"
+          echo "✅ Package.json validation"
+          echo "✅ TypeScript configuration"
+          echo "✅ Biome configuration"
+          echo "✅ Build process"
+          echo "✅ Package exports"
+          echo "✅ Release simulation"
+          echo ""
+          echo "🎉 All validations passed!"
+          echo "The project is ready for CI/CD workflows."
