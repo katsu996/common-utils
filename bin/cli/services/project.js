@@ -43,7 +43,9 @@ function createProjectService(dependencies = {}) {
     // Reject shell metacharacters that could be dangerous for Windows shell execution
     const shellMetacharacters = /[&|<>^%$`\\]/;
     if (shellMetacharacters.test(projectName)) {
-      throw new Error("プロジェクト名に使用できない文字が含まれています (& | < > ^ % $ ` \\ )");
+      throw new Error(
+        "プロジェクト名に使用できない文字が含まれています (& | < > ^ % $ ` \\ )",
+      );
     }
     if (globalOptionsRef.dryRun) {
       logRef.info(
