@@ -48,7 +48,9 @@ describe("prompts", () => {
 
   it("プロジェクト名入力のキャンセルを通知して undefined を返す", async () => {
     const { createPrompts } = require("../bin/cli/ui/prompts");
-    const dependencies = createDependencies();
+    const cancelled = Symbol("cancelled");
+    dependencies.textFn.mockResolvedValue(cancelled);
+    dependencies.isCancelFn.mockImplementation((value) => value === cancelled);
     const prompts = createPrompts(dependencies);
     const result = await prompts.getProjectNameInput();
     expect(result).toBeUndefined();

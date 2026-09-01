@@ -11,9 +11,16 @@ function createErrorHandlers(dependencies = {}) {
 
   function handleError(error) {
     // Normalize non-Error rejection reasons (including undefined, null, strings, etc.)
+    const source = (error && typeof error === "object") ? error : {};
     const normalizedError = error instanceof Error
       ? error
-      : new Error(typeof error === "string" ? error : String(error ?? "Unknown error"));
+      : Object.assign(
+          new Error(
+            typeof error === "string" ? error
+            : (typeof source.message === "string" && source.message) || String(error ?? "Unknown error"),
+          ),
+          { name: (typeof source.name === "string" && source.name) || "Error" },
+        );
 
     if (normalizedError.name === "CancelError" || normalizedError.message === "cancel") {
       cancelFn(themeModule.warning("設定をキャンセルしました"));
