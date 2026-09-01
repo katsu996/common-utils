@@ -35,7 +35,7 @@ function createDependencies(overrides = {}) {
       .mockReturnValue(["typescript", "@types/node"]),
     updatePackageJsonExistingFn: vi.fn().mockReturnValue({
       success: true,
-      addedScripts: { "type-check": "tsc --noEmit" },
+      scripts: { "type-check": "tsc --noEmit" },
     }),
     globalOptionsRef: { dryRun: false },
     handleErrorFn: vi.fn(),

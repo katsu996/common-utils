@@ -100,7 +100,7 @@ function createUpdateCommand(dependencies = {}) {
           updatePackageJsonExistingFn(newlyAddedConfigs);
         if (
           packageUpdateResult?.success &&
-          Object.keys(packageUpdateResult.addedScripts || {}).length > 0
+          Object.keys(packageUpdateResult.scripts || {}).length > 0
         ) {
           showAvailableCommandsFn(packageUpdateResult);
         }

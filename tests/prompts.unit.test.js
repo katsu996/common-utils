@@ -46,14 +46,14 @@ describe("prompts", () => {
     await expect(prompts.getProjectNameInput()).resolves.toBe("my-project");
   });
 
-  it("プロジェクト名入力のキャンセルを通知して null を返す", async () => {
+  it("プロジェクト名入力のキャンセルを通知して undefined を返す", async () => {
+    const { createPrompts } = require("../bin/cli/ui/prompts");
     const cancelled = Symbol("cancelled");
     dependencies.textFn.mockResolvedValue(cancelled);
     dependencies.isCancelFn.mockImplementation((value) => value === cancelled);
-
-    const result = await createPrompts(dependencies).getProjectNameInput();
-
-    expect(result).toBeNull();
+    const prompts = createPrompts(dependencies);
+    const result = await prompts.getProjectNameInput();
+    expect(result).toBeUndefined();
     expect(dependencies.cancelFn).toHaveBeenCalledWith(
       "設定をキャンセルしました",
     );
