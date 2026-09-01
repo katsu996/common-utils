@@ -65,7 +65,7 @@ const CONFIG_FILES = [
     label: "Vite設定 (vite.config.ts)",
     source: path.resolve(packageRoot, "vite.config.base.ts"),
     destination: "vite.config.ts",
-    dependencies: [],
+    dependencies: ["vite"],
     scripts: {},
     contentModifier: (content) => {
       return content;

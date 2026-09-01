@@ -126,7 +126,7 @@ jobs:
           echo "✅ Release process simulation passed"
 
       - name: Summary
-        if: always()
+        if: success()
         run: |
           echo "📊 Validation Summary:"
           echo "✅ Package.json validation"

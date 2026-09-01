@@ -39,7 +39,7 @@ function createPrompts(dependencies = {}) {
     });
     if (isCancelFn(result)) {
       cancelFn(themeModule.warning("設定をキャンセルしました"));
-      return null;
+      return undefined;
     }
     return result?.trim() || "my-project";
   }

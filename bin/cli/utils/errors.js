@@ -10,13 +10,18 @@ function createErrorHandlers(dependencies = {}) {
   } = dependencies;
 
   function handleError(error) {
-    if (error?.name === "CancelError" || error?.message === "cancel") {
+    // Normalize non-Error rejection reasons (including undefined, null, strings, etc.)
+    const normalizedError = error instanceof Error
+      ? error
+      : new Error(typeof error === "string" ? error : String(error ?? "Unknown error"));
+
+    if (normalizedError.name === "CancelError" || normalizedError.message === "cancel") {
       cancelFn(themeModule.warning("設定をキャンセルしました"));
       processRef.exit(0);
       return;
     }
     consoleRef.error(
-      `\n${themeModule.error("予期しないエラー:")} ${error.message}`,
+      `\n${themeModule.error("予期しないエラー:")} ${normalizedError.message}`,
     );
     processRef.exit(1);
   }

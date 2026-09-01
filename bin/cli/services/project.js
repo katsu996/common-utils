@@ -36,6 +36,15 @@ function createProjectService(dependencies = {}) {
   }
 
   async function createViteProject(projectName) {
+    // Validate projectName before passing to spawn to prevent shell injection
+    if (!projectName || projectName.trim().length === 0) {
+      throw new Error("プロジェクト名が指定されていません");
+    }
+    // Reject shell metacharacters that could be dangerous for Windows shell execution
+    const shellMetacharacters = /[&|<>^%$`\\]/;
+    if (shellMetacharacters.test(projectName)) {
+      throw new Error("プロジェクト名に使用できない文字が含まれています (& | < > ^ % $ ` \\ )");
+    }
     if (globalOptionsRef.dryRun) {
       logRef.info(
         themeModule.warning(`[DRY RUN] pnpm create vite ${projectName}`),
