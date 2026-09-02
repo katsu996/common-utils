@@ -158,9 +158,10 @@ function getTemplateGitignore() {
 function updateGitignore(projectDir, selectedConfigs) {
   try {
     const gitignorePath = path.join(projectDir, ".gitignore");
+    const gitignoreExists = fs.existsSync(gitignorePath);
     let gitignoreContent = "";
 
-    if (fs.existsSync(gitignorePath)) {
+    if (gitignoreExists) {
       gitignoreContent = fs.readFileSync(gitignorePath, "utf8");
     } else {
       gitignoreContent = getTemplateGitignore();
@@ -180,22 +181,26 @@ function updateGitignore(projectDir, selectedConfigs) {
       (pattern) => !existingPatterns.has(pattern),
     );
 
-    if (newPatterns.length > 0) {
+    if (newPatterns.length > 0 || !gitignoreExists) {
       if (globalOptions.dryRun) {
         log.info(
-          `[DRY RUN] .gitignoreに設定ファイルを追加します: ${newPatterns.join(", ")}`,
+          newPatterns.length > 0
+            ? `[DRY RUN] .gitignoreに設定ファイルを追加します: ${newPatterns.join(", ")}`
+            : "[DRY RUN] .gitignoreテンプレートから新規作成します",
         );
         return { success: true, added: newPatterns, dryRun: true };
       }
 
-      const updatedContent = addPatternsToGitignore(
-        gitignoreContent,
-        newPatterns,
-      );
+      const updatedContent =
+        newPatterns.length > 0
+          ? addPatternsToGitignore(gitignoreContent, newPatterns)
+          : gitignoreContent;
       fs.writeFileSync(gitignorePath, updatedContent, "utf8");
-      log.success(
-        `.gitignoreに設定ファイルを追加しました: ${newPatterns.join(", ")}`,
-      );
+      if (newPatterns.length > 0) {
+        log.success(
+          `.gitignoreに設定ファイルを追加しました: ${newPatterns.join(", ")}`,
+        );
+      }
       return { success: true, added: newPatterns };
     }
 

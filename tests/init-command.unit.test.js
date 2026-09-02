@@ -11,6 +11,7 @@ function createDependencies(overrides = {}) {
     themeModule: {
       error: vi.fn((message) => message),
       success: vi.fn((message) => message),
+      warning: vi.fn((message) => message),
     },
     showIntroFn: vi.fn(),
     showProjectResultsFn: vi.fn(),
@@ -113,6 +114,23 @@ describe("initCommand", () => {
     expect(dependencies.consoleRef.error).toHaveBeenCalledOnce();
     expect(dependencies.installDependenciesFn).toHaveBeenCalledOnce();
     expect(dependencies.updatePackageJsonFn).toHaveBeenCalledOnce();
+    expect(dependencies.showCompletionMessageFn).not.toHaveBeenCalled();
+    expect(dependencies.outroFn).toHaveBeenCalledWith(
+      "一部の設定処理に失敗しました。出力を確認してください",
+    );
+  });
+
+  it("設定ファイル適用の失敗時は完了メッセージの代わりに部分失敗を通知する", async () => {
+    dependencies.applyConfigFilesFn.mockReturnValue([
+      { success: false, file: "tsconfig.json", error: "write failed" },
+    ]);
+
+    await createInitCommand(dependencies)();
+
+    expect(dependencies.showCompletionMessageFn).not.toHaveBeenCalled();
+    expect(dependencies.outroFn).toHaveBeenCalledWith(
+      "一部の設定処理に失敗しました。出力を確認してください",
+    );
   });
 
   it("初期化中の例外を handleError に委譲する", async () => {

@@ -25,7 +25,7 @@ pnpm katsu-config
 pnpm katsu-config -c all
 
 # 特定の設定のみ適用
-pnpm katsu-config -c typescript biome vitest
+pnpm katsu-config -c typescript,biome,vitest
 ```
 
 ## 手動移行
