@@ -1,0 +1,248 @@
+{
+  "nodes": [
+    {
+      "id": "docs_development_config_inheritance_doc",
+      "label": "Config Inheritance Overview Documentation",
+      "file_type": "document",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_config_inheritance_export_paths_table",
+      "label": "Export Paths Table (5 config templates + inheritance method matrix)",
+      "file_type": "concept",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Central registry that maps public import specifiers to underlying base files and declares the intended inheritance mechanism; explains why biome uses array extends while vite/vitest use mergeConfig."
+    },
+    {
+      "id": "docs_development_config_inheritance_tsconfig_extends",
+      "label": "TSConfig extends Inheritance",
+      "file_type": "concept",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_config_inheritance_biome_extends",
+      "label": "Biome extends Array Inheritance",
+      "file_type": "concept",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_config_inheritance_vite_mergeconfig",
+      "label": "Vite mergeConfig Inheritance",
+      "file_type": "concept",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_config_inheritance_vitest_mergeconfig",
+      "label": "Vitest mergeConfig Inheritance",
+      "file_type": "concept",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_config_inheritance_mise_manual_copy",
+      "label": "Mise Manual Copy (mise.toml requires hand copy, imperfect distribution)",
+      "file_type": "concept",
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Mise lacks an extends mechanism, so distribution is copy-based; this creates drift risk versus programmatic inheritance."
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_development_config_inheritance_doc",
+      "target": "docs_development_config_inheritance_export_paths_table",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_doc",
+      "target": "docs_development_config_inheritance_tsconfig_extends",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_doc",
+      "target": "docs_development_config_inheritance_biome_extends",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_doc",
+      "target": "docs_development_config_inheritance_vite_mergeconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_doc",
+      "target": "docs_development_config_inheritance_vitest_mergeconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_doc",
+      "target": "docs_development_config_inheritance_mise_manual_copy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_development_config_inheritance_tsconfig_extends",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_development_config_inheritance_biome_extends",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_development_config_inheritance_vite_mergeconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_development_config_inheritance_vitest_mergeconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_development_config_inheritance_mise_manual_copy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_getting_started_export_paths_list",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_export_paths_table",
+      "target": "docs_guides_migration_cli_migration",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_config_inheritance_mise_manual_copy",
+      "target": "docs_guides_migration_cli_migration",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/development/config-inheritance.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "shared_config_inheritance_flow",
+      "label": "Shared Config Inheritance Flow (extends + mergeConfig + manual copy)",
+      "nodes": [
+        "docs_configuration_typescript_inheritance",
+        "docs_configuration_typescript_customization_example",
+        "docs_configuration_vite_mergeconfig_pattern",
+        "docs_configuration_vitest_base_config",
+        "docs_development_config_inheritance_tsconfig_extends",
+        "docs_development_config_inheritance_biome_extends",
+        "docs_development_config_inheritance_vite_mergeconfig",
+        "docs_development_config_inheritance_vitest_mergeconfig",
+        "docs_development_config_inheritance_mise_manual_copy",
+        "docs_getting_started_config_inheritance_summary",
+        "docs_guides_migration_cli_migration"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/config-inheritance.md"
+    }
+  ]
+}

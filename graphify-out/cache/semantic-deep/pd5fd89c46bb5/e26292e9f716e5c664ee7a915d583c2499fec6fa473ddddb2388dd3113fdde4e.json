@@ -1,0 +1,215 @@
+{
+  "nodes": [
+    {
+      "id": "docs_configuration_biome_biome_config",
+      "label": "Biome Configuration",
+      "file_type": "document",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_formatter_settings",
+      "label": "Formatter Settings",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_linter_suspicious",
+      "label": "Suspicious Linter Rules",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_linter_style",
+      "label": "Style Linter Rules",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_linter_correctness",
+      "label": "Correctness Linter Rules",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_linter_complexity",
+      "label": "Complexity Linter Rules",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_vcs_integration",
+      "label": "VCS Integration",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_biome_customization",
+      "label": "Customization Example",
+      "file_type": "concept",
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_formatter_settings",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_linter_suspicious",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_linter_style",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_linter_correctness",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_linter_complexity",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_vcs_integration",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_biome_config",
+      "target": "docs_configuration_biome_customization",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_formatter_settings",
+      "target": "development_biome_strict_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_linter_suspicious",
+      "target": "docs_configuration_biome_linter_correctness",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_linter_style",
+      "target": "development_biome_strict_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_vcs_integration",
+      "target": "development_project_structure",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_biome_linter_suspicious",
+      "target": "docs_configuration_biome_linter_correctness",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/configuration/biome.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "id": "docs_index_doc",
+      "label": "Package Overview Documentation (@katsu996/common-utils)",
+      "file_type": "document",
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_index_three_responsibilities",
+      "label": "Three Responsibilities (utility library math, shared strict configs, CLI katsu-config)",
+      "file_type": "concept",
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Single package distributes runtime utilities, compile/lint/test configs, and a setup CLI to reduce per-project boilerplate."
+    },
+    {
+      "id": "docs_index_doc_navigation",
+      "label": "Documentation Navigation Structure (start guide, cli, api math, config guides, development, migration)",
+      "file_type": "concept",
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_index_related_links",
+      "label": "Related Links (GitHub repo, npm package, Issue reporting)",
+      "file_type": "concept",
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_index_doc",
+      "target": "docs_index_three_responsibilities",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index_doc",
+      "target": "docs_index_doc_navigation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index_doc",
+      "target": "docs_index_related_links",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_index_related_links",
+      "target": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_cross_community_edges",
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": "docs/index.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

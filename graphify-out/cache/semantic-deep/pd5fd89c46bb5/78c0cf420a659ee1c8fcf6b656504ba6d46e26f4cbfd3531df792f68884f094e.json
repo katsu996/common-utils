@@ -1,0 +1,122 @@
+{
+  "nodes": [
+    {
+      "id": "_github_workflows_pr_check_pr_check_workflow",
+      "label": "PR Check Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_pr_check_changed_files_detection",
+      "label": "Changed Files Detection",
+      "file_type": "concept",
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_pr_check_package_validation",
+      "label": "Package.json Version Validation",
+      "file_type": "concept",
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_pr_check_quality_gating",
+      "label": "Quality Gating Conditional",
+      "file_type": "concept",
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_pr_check_pr_comment_bot",
+      "label": "PR Comment Bot",
+      "file_type": "concept",
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "_github_workflows_pr_check_pr_check_workflow",
+      "target": "_github_workflows_pr_check_changed_files_detection",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_pr_check_pr_check_workflow",
+      "target": "_github_workflows_pr_check_package_validation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_pr_check_pr_check_workflow",
+      "target": "_github_workflows_pr_check_quality_gating",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_pr_check_pr_check_workflow",
+      "target": "_github_workflows_pr_check_pr_comment_bot",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_pr_check_quality_gating",
+      "target": "_github_workflows_pr_check_changed_files_detection",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_pr_check_changed_files_detection",
+      "target": "_github_workflows_validate_build_verification",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": ".github/workflows/pr-check.yml",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

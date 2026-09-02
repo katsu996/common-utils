@@ -1,0 +1,206 @@
+{
+  "nodes": [
+    {
+      "id": "development_dev_environment_setup",
+      "label": "Dev Environment Setup",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_project_structure",
+      "label": "Project Structure",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_cli_architecture",
+      "label": "CLI Architecture",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_tech_stack",
+      "label": "Tech Stack Commander Clack Ora",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_typescript_strict_config",
+      "label": "Strict TypeScript Configuration",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_biome_strict_config",
+      "label": "Strict Biome Configuration",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_conventional_commits",
+      "label": "Conventional Commits",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_semantic_versioning",
+      "label": "Semantic Versioning",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "development_testing_strategy",
+      "label": "Testing Strategy",
+      "file_type": "concept",
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "development_project_structure",
+      "target": "development_cli_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_cli_architecture",
+      "target": "development_tech_stack",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_project_structure",
+      "target": "development_typescript_strict_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_project_structure",
+      "target": "development_biome_strict_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_dev_environment_setup",
+      "target": "development_testing_strategy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_cli_architecture",
+      "target": "claude_katsu_config_cli",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_tech_stack",
+      "target": "claude_interactive_ui_clack",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_project_structure",
+      "target": "readme_package_exports",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_conventional_commits",
+      "target": "_github_pull_request_template_change_types",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "development_testing_strategy",
+      "target": "docs_cli_katsu_config_auto_scripts",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "DEVELOPMENT.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

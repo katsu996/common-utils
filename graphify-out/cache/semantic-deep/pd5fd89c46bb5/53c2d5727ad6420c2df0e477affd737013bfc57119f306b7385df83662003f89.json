@@ -1,0 +1,153 @@
+{
+  "nodes": [
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_doc",
+      "label": "Memory Query: Why exports connects Package Exports to CLI",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_hub",
+      "label": "Package Exports Hub (package_exports c11 at L26 via contains to package.json)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_eight_subpaths",
+      "label": "Eight Public Subpaths (./math L32 decomposed, ./package.json L37, ./biome L38, ./mise L39, ./oxlint L40, ./tsconfig L41, ./vite L42, ./vitest L43)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_island_subpaths",
+      "label": "Island Subpaths (biome/mise/oxlint/tsconfig/vite/vitest degree 1, only back-edge to exports)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Export entry exists but no edge to the actual config template file it exposes, creating structural island."
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_bin_config_link",
+      "label": "bin/config.js Link (package.json imports_from bin/config.js L14 tying CLI to manifest)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_doc",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_hub",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_doc",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_eight_subpaths",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_doc",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_island_subpaths",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_doc",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_bin_config_link",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_hub",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_eight_subpaths",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_eight_subpaths",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_island_subpaths",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_exports_hub",
+      "target": "docs_development_config_inheritance_export_paths_table",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_eight_subpaths",
+      "target": "docs_getting_started_export_paths_list",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_island_subpaths",
+      "target": "graphify_out_memory_query_20260805_124753_do_biome_oxlint_vite_vitest_mise_show_the_same_fra_exports_islands",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

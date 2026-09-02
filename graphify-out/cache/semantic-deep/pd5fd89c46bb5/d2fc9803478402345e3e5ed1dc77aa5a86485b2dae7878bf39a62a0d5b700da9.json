@@ -1,0 +1,204 @@
+{
+  "nodes": [
+    {
+      "id": "_github_workflows_validate_validate_workflow",
+      "label": "Validate Workflows Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_validate_package_json_validation",
+      "label": "Package.json Validation",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_validate_typescript_validation",
+      "label": "TypeScript Config Validation",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_validate_biome_validation",
+      "label": "Biome Config Validation",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_validate_build_verification",
+      "label": "Build Verification",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_validate_package_exports_test",
+      "label": "Package Exports Test",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_github_workflows_validate_release_simulation",
+      "label": "Release Simulation",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "_github_workflows_validate_validate_workflow",
+      "target": "_github_workflows_validate_package_json_validation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_validate_workflow",
+      "target": "_github_workflows_validate_typescript_validation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_validate_workflow",
+      "target": "_github_workflows_validate_biome_validation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_validate_workflow",
+      "target": "_github_workflows_validate_build_verification",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_validate_workflow",
+      "target": "_github_workflows_validate_package_exports_test",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_validate_workflow",
+      "target": "_github_workflows_validate_release_simulation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_build_verification",
+      "target": "_github_workflows_publish_publish_job",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_package_json_validation",
+      "target": "_github_workflows_pr_check_package_validation",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_typescript_validation",
+      "target": "development_typescript_strict_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_biome_validation",
+      "target": "development_biome_strict_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_biome_validation",
+      "target": "docs_configuration_biome_biome_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_github_workflows_validate_biome_validation",
+      "target": "_github_workflows_validate_typescript_validation",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

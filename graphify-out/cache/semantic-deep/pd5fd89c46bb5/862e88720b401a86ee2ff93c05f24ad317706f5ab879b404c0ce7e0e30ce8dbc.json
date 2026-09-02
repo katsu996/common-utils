@@ -1,0 +1,244 @@
+{
+  "nodes": [
+    {
+      "id": "docs_guides_migration_doc",
+      "label": "Migration Guide Documentation",
+      "file_type": "document",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_guides_migration_cli_migration",
+      "label": "CLI Migration (pnpm add -D, pnpm katsu-config, -c all or -c typescript biome vitest)",
+      "file_type": "concept",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_guides_migration_manual_ts",
+      "label": "Manual TypeScript Migration (create tsconfig.json extends, install typescript @types/node, add type-check script)",
+      "file_type": "concept",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_guides_migration_manual_biome",
+      "label": "Manual Biome Migration (create biome.jsonc extends, install @biomejs/biome, add lint/check/format scripts)",
+      "file_type": "concept",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_guides_migration_manual_vite",
+      "label": "Manual Vite Migration (create vite.config.ts mergeConfig, lib/app examples)",
+      "file_type": "concept",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_guides_migration_manual_vitest",
+      "label": "Manual Vitest Migration (create vitest.config.ts mergeConfig, install vitest @vitest/coverage-v8, add test scripts)",
+      "file_type": "concept",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_guides_migration_cicd_migration",
+      "label": "CI/CD Migration (reference .github/workflows/ci.yml, required checks pnpm install/type-check/check/test/build)",
+      "file_type": "concept",
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_guides_migration_doc",
+      "target": "docs_guides_migration_cli_migration",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_doc",
+      "target": "docs_guides_migration_manual_ts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_doc",
+      "target": "docs_guides_migration_manual_biome",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_doc",
+      "target": "docs_guides_migration_manual_vite",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_doc",
+      "target": "docs_guides_migration_manual_vitest",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_doc",
+      "target": "docs_guides_migration_cicd_migration",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_cli_migration",
+      "target": "docs_guides_migration_manual_ts",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_cicd_migration",
+      "target": "docs_guides_migration_cli_migration",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_manual_ts",
+      "target": "docs_configuration_typescript_inheritance",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_manual_biome",
+      "target": "docs_development_config_inheritance_biome_extends",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_manual_vite",
+      "target": "docs_configuration_vite_library_mode",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_manual_vitest",
+      "target": "docs_configuration_vitest_coverage_v8",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_cicd_migration",
+      "target": "docs_development_contributing_quality_checks",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_cicd_migration",
+      "target": "docs_development_release_ci_job",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_manual_ts",
+      "target": "docs_guides_migration_manual_vite",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_guides_migration_manual_biome",
+      "target": "pnpm_workspace_biome_platform_clis",
+      "relation": "shares_data_with",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.3,
+      "source_file": "docs/guides/migration.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

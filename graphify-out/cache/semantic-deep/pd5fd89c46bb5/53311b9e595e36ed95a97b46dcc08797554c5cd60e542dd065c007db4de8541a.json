@@ -1,0 +1,121 @@
+{
+  "nodes": [
+    {
+      "id": "pnpm_workspace_doc",
+      "label": "pnpm Workspace Configuration",
+      "file_type": "document",
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "pnpm_workspace_minimumreleaseageexclude",
+      "label": "minimumReleaseAgeExclude for @biomejs/biome packages",
+      "file_type": "concept",
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Biome publishes platform-specific CLI packages simultaneously; minimumReleaseAge would otherwise block synchronized installs, so they are excluded."
+    },
+    {
+      "id": "pnpm_workspace_biome_platform_clis",
+      "label": "Biome Platform-Specific CLI Packages (darwin-arm64/x64, linux-musl/arm64/x64, win32-arm64/x64)",
+      "file_type": "concept",
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "pnpm_workspace_doc",
+      "target": "pnpm_workspace_minimumreleaseageexclude",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_doc",
+      "target": "pnpm_workspace_biome_platform_clis",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_minimumreleaseageexclude",
+      "target": "pnpm_workspace_biome_platform_clis",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_minimumreleaseageexclude",
+      "target": "docs_development_config_inheritance_biome_extends",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_biome_platform_clis",
+      "target": "docs_development_contributing_quality_checks",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_minimumreleaseageexclude",
+      "target": "docs_development_contributing_project_structure",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_biome_platform_clis",
+      "target": "graphify_out_memory_query_20260805_124753_do_biome_oxlint_vite_vitest_mise_show_the_same_fra_exports_islands",
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.25,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pnpm_workspace_minimumreleaseageexclude",
+      "target": "pnpm_workspace_biome_platform_clis",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "pnpm-workspace.yaml",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

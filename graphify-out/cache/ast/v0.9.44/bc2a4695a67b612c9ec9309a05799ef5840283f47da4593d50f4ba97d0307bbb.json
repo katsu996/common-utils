@@ -351,235 +351,284 @@
       "source_location": "L61"
     },
     {
+      "id": "$graphify-root$_package_scripts_test_ci",
+      "label": "test:ci",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L62"
+    },
+    {
+      "id": "$graphify-root$_package_scripts_coverage_summary",
+      "label": "coverage:summary",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L63"
+    },
+    {
       "id": "$graphify-root$_package_scripts_utilities",
       "label": "// Utilities",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L62"
+      "source_location": "L64"
     },
     {
       "id": "$graphify-root$_package_scripts_cli",
       "label": "cli",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L63"
+      "source_location": "L65"
     },
     {
       "id": "$graphify-root$_package_scripts_audit",
       "label": "audit",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L64"
+      "source_location": "L66"
     },
     {
       "id": "$graphify-root$_package_scripts_prepublishonly",
       "label": "prepublishOnly",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L65"
+      "source_location": "L67"
     },
     {
       "id": "$graphify-root$_package_dependencies",
       "label": "dependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L67"
+      "source_location": "L69"
     },
     {
       "id": "$graphify-root$_package_dependencies_clack_prompts",
       "label": "@clack/prompts",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L68"
+      "source_location": "L70"
     },
     {
       "id": "clack_prompts",
       "label": "@clack/prompts",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L68"
+      "source_location": "L70"
     },
     {
       "id": "$graphify-root$_package_dependencies_commander",
       "label": "commander",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L69"
+      "source_location": "L71"
     },
     {
       "id": "commander",
       "label": "commander",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L69"
+      "source_location": "L71"
     },
     {
       "id": "$graphify-root$_package_dependencies_ora",
       "label": "ora",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L70"
+      "source_location": "L72"
     },
     {
       "id": "ora",
       "label": "ora",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L70"
+      "source_location": "L72"
     },
     {
       "id": "$graphify-root$_package_dependencies_picocolors",
       "label": "picocolors",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L71"
+      "source_location": "L73"
     },
     {
       "id": "picocolors",
       "label": "picocolors",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L71"
+      "source_location": "L73"
     },
     {
       "id": "$graphify-root$_package_devdependencies",
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L73"
+      "source_location": "L75"
+    },
+    {
+      "id": "$graphify-root$_package_devdependencies_biomejs_biome",
+      "label": "@biomejs/biome",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L76"
+    },
+    {
+      "id": "biomejs_biome",
+      "label": "@biomejs/biome",
+      "file_type": "concept",
+      "source_file": "package.json",
+      "source_location": "L76"
     },
     {
       "id": "$graphify-root$_package_devdependencies_types_node",
       "label": "@types/node",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L74"
+      "source_location": "L77"
     },
     {
       "id": "types_node",
       "label": "@types/node",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L74"
+      "source_location": "L77"
     },
     {
       "id": "$graphify-root$_package_devdependencies_vitest_coverage_v8",
       "label": "@vitest/coverage-v8",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L75"
+      "source_location": "L78"
     },
     {
       "id": "vitest_coverage_v8",
       "label": "@vitest/coverage-v8",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L75"
+      "source_location": "L78"
     },
     {
       "id": "$graphify-root$_package_devdependencies_oxfmt",
       "label": "oxfmt",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L76"
+      "source_location": "L79"
     },
     {
       "id": "oxfmt",
       "label": "oxfmt",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L76"
+      "source_location": "L79"
     },
     {
       "id": "$graphify-root$_package_devdependencies_oxlint",
       "label": "oxlint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L77"
+      "source_location": "L80"
     },
     {
       "id": "oxlint",
       "label": "oxlint",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L77"
+      "source_location": "L80"
     },
     {
       "id": "$graphify-root$_package_devdependencies_typescript",
       "label": "typescript",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L78"
+      "source_location": "L81"
     },
     {
       "id": "typescript",
       "label": "typescript",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L78"
+      "source_location": "L81"
     },
     {
       "id": "$graphify-root$_package_devdependencies_vite",
       "label": "vite",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L79"
+      "source_location": "L82"
     },
     {
       "id": "vite",
       "label": "vite",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L79"
+      "source_location": "L82"
     },
     {
       "id": "$graphify-root$_package_devdependencies_vitest",
       "label": "vitest",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L80"
+      "source_location": "L83"
     },
     {
       "id": "vitest",
       "label": "vitest",
       "file_type": "concept",
       "source_file": "package.json",
-      "source_location": "L80"
+      "source_location": "L83"
     },
     {
-      "id": "$graphify-root$_package_preferglobal",
-      "label": "preferGlobal",
+      "id": "$graphify-root$_package_devengines",
+      "label": "devEngines",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L82"
+      "source_location": "L85"
+    },
+    {
+      "id": "$graphify-root$_package_devengines_runtime",
+      "label": "runtime",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L86"
+    },
+    {
+      "id": "$graphify-root$_package_runtime_name",
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L87"
+    },
+    {
+      "id": "$graphify-root$_package_runtime_version",
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L88"
+    },
+    {
+      "id": "$graphify-root$_package_runtime_onfail",
+      "label": "onFail",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L89"
     },
     {
       "id": "$graphify-root$_package_engines",
       "label": "engines",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L83"
+      "source_location": "L92"
     },
     {
       "id": "$graphify-root$_package_engines_node",
       "label": "node",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L84"
-    },
-    {
-      "id": "$graphify-root$_package_engines_pnpm",
-      "label": "pnpm",
-      "file_type": "code",
-      "source_file": "package.json",
-      "source_location": "L85"
+      "source_location": "L93"
     },
     {
       "id": "$graphify-root$_package_packagemanager",
       "label": "packageManager",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L87"
+      "source_location": "L95"
     }
   ],
   "edges": [
@@ -1044,7 +1093,7 @@
     },
     {
       "source": "$graphify-root$_package_scripts",
-      "target": "$graphify-root$_package_scripts_utilities",
+      "target": "$graphify-root$_package_scripts_test_ci",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
@@ -1053,7 +1102,7 @@
     },
     {
       "source": "$graphify-root$_package_scripts",
-      "target": "$graphify-root$_package_scripts_cli",
+      "target": "$graphify-root$_package_scripts_coverage_summary",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
@@ -1062,7 +1111,7 @@
     },
     {
       "source": "$graphify-root$_package_scripts",
-      "target": "$graphify-root$_package_scripts_audit",
+      "target": "$graphify-root$_package_scripts_utilities",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
@@ -1071,11 +1120,29 @@
     },
     {
       "source": "$graphify-root$_package_scripts",
-      "target": "$graphify-root$_package_scripts_prepublishonly",
+      "target": "$graphify-root$_package_scripts_cli",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
       "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_scripts",
+      "target": "$graphify-root$_package_scripts_audit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_scripts",
+      "target": "$graphify-root$_package_scripts_prepublishonly",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -1084,7 +1151,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L67",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -1093,7 +1160,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L68",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -1102,7 +1169,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L68",
+      "source_location": "L70",
       "weight": 1.0,
       "context": "import"
     },
@@ -1112,7 +1179,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L69",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -1121,7 +1188,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L69",
+      "source_location": "L71",
       "weight": 1.0,
       "context": "import"
     },
@@ -1131,7 +1198,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L70",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -1140,7 +1207,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L70",
+      "source_location": "L72",
       "weight": 1.0,
       "context": "import"
     },
@@ -1150,7 +1217,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L71",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -1159,7 +1226,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L71",
+      "source_location": "L73",
       "weight": 1.0,
       "context": "import"
     },
@@ -1169,8 +1236,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L73",
+      "source_location": "L75",
       "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_devdependencies",
+      "target": "$graphify-root$_package_devdependencies_biomejs_biome",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_devdependencies_biomejs_biome",
+      "target": "biomejs_biome",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L76",
+      "weight": 1.0,
+      "context": "import"
     },
     {
       "source": "$graphify-root$_package_devdependencies",
@@ -1178,7 +1264,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L74",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -1187,7 +1273,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L74",
+      "source_location": "L77",
       "weight": 1.0,
       "context": "import"
     },
@@ -1197,7 +1283,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L75",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -1206,7 +1292,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L75",
+      "source_location": "L78",
       "weight": 1.0,
       "context": "import"
     },
@@ -1216,7 +1302,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L76",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -1225,7 +1311,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L76",
+      "source_location": "L79",
       "weight": 1.0,
       "context": "import"
     },
@@ -1235,7 +1321,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L77",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -1244,7 +1330,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L77",
+      "source_location": "L80",
       "weight": 1.0,
       "context": "import"
     },
@@ -1254,7 +1340,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L78",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -1263,7 +1349,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L78",
+      "source_location": "L81",
       "weight": 1.0,
       "context": "import"
     },
@@ -1273,7 +1359,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L79",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -1282,7 +1368,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L79",
+      "source_location": "L82",
       "weight": 1.0,
       "context": "import"
     },
@@ -1292,7 +1378,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L80",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -1301,17 +1387,53 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L80",
+      "source_location": "L83",
       "weight": 1.0,
       "context": "import"
     },
     {
       "source": "$graphify-root$_package_json",
-      "target": "$graphify-root$_package_preferglobal",
+      "target": "$graphify-root$_package_devengines",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L82",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_devengines",
+      "target": "$graphify-root$_package_devengines_runtime",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_devengines_runtime",
+      "target": "$graphify-root$_package_runtime_name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L87",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_devengines_runtime",
+      "target": "$graphify-root$_package_runtime_version",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_package_devengines_runtime",
+      "target": "$graphify-root$_package_runtime_onfail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -1320,7 +1442,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L83",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -1329,16 +1451,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L84",
-      "weight": 1.0
-    },
-    {
-      "source": "$graphify-root$_package_engines",
-      "target": "$graphify-root$_package_engines_pnpm",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "package.json",
-      "source_location": "L85",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -1347,7 +1460,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
-      "source_location": "L87",
+      "source_location": "L95",
       "weight": 1.0
     }
   ]

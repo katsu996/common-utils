@@ -1,0 +1,162 @@
+{
+  "nodes": [
+    {
+      "id": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_doc",
+      "label": "Memory Query: Why scripts connects npm Scripts to CLI Dependencies",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_manifest_hub",
+      "label": "Manifest Hub Insight (package.json L1 as bridge via contains edges)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_script",
+      "label": "CLI Script Node (package_scripts_cli L63 runs katsu-config)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_dependencies",
+      "label": "CLI Dependencies Community (commander, @clack/prompts, ora, picocolors at L67)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_inferred_import_gap",
+      "label": "Inferred Import Gap (cli script runs katsu-config which imports CLI deps \u2014 no direct graph edge)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_doc",
+      "target": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_manifest_hub",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_doc",
+      "target": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_script",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_doc",
+      "target": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_dependencies",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_doc",
+      "target": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_inferred_import_gap",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_manifest_hub",
+      "target": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_script",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_script",
+      "target": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_dependencies",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_manifest_hub",
+      "target": "docs_development_contributing_project_structure",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_script",
+      "target": "docs_getting_started_cli_usage",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_cli_dependencies",
+      "target": "docs_development_contributing_project_structure",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend_inferred_import_gap",
+      "target": "graphify_out_memory_query_20260805_125953_is_katsu_config_doc_the_only_cross_layer_bridge_to_doc_implementation_gap",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "graphify-out/memory/query_20260805_121711_why_does_scripts_connect_npm_scripts_to_cli_depend.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

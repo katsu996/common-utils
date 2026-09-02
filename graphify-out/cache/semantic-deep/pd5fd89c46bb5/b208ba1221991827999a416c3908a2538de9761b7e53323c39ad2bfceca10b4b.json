@@ -1,0 +1,163 @@
+{
+  "nodes": [
+    {
+      "id": "release_ci_pipeline",
+      "label": "CI Pipeline Description",
+      "file_type": "concept",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "release_publish_workflow_manual",
+      "label": "Manual Publish Workflow",
+      "file_type": "concept",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "release_trusted_publisher_oidc",
+      "label": "Trusted Publisher OIDC",
+      "file_type": "concept",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "release_manual_release_procedure",
+      "label": "Manual Release Procedure",
+      "file_type": "concept",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "release_semver_strategy",
+      "label": "SemVer Strategy",
+      "file_type": "concept",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "release_rollback_strategy",
+      "label": "Rollback Strategy",
+      "file_type": "concept",
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "release_publish_workflow_manual",
+      "target": "release_trusted_publisher_oidc",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_publish_workflow_manual",
+      "target": "release_ci_pipeline",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_manual_release_procedure",
+      "target": "release_semver_strategy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_manual_release_procedure",
+      "target": "release_rollback_strategy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_trusted_publisher_oidc",
+      "target": "release_publish_workflow_manual",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_ci_pipeline",
+      "target": "_github_workflows_ci_ci_workflow",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_publish_workflow_manual",
+      "target": "_github_workflows_publish_publish_workflow",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_manual_release_procedure",
+      "target": "_github_workflows_validate_release_simulation",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "release_rollback_strategy",
+      "target": "_github_workflows_publish_create_release_job",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "RELEASE.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

@@ -1,0 +1,194 @@
+{
+  "nodes": [
+    {
+      "id": "docs_getting_started_doc",
+      "label": "Getting Started Documentation",
+      "file_type": "document",
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_getting_started_requirements",
+      "label": "Requirements (Node >=24.19.0, pnpm >=11.21.0)",
+      "file_type": "concept",
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_getting_started_quickstart_utils",
+      "label": "Utility Quickstart (add, sum, clamp + subpath import @katsu996/common-utils/math)",
+      "file_type": "concept",
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_getting_started_cli_usage",
+      "label": "CLI Usage (pnpm katsu-config, dlx, new-project caveat ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND)",
+      "file_type": "concept",
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "katsu-config requires existing package.json importer; dlx bypasses importer check for greenfield projects."
+    },
+    {
+      "id": "docs_getting_started_export_paths_list",
+      "label": "Export Paths List (8 public subpaths: main, math, package.json, biome, mise, tsconfig, vite, vitest)",
+      "file_type": "concept",
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_getting_started_config_inheritance_summary",
+      "label": "Config Inheritance Summary (tsconfig extends, biome extends array, vite/vitest mergeConfig snippets)",
+      "file_type": "concept",
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_getting_started_doc",
+      "target": "docs_getting_started_requirements",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_doc",
+      "target": "docs_getting_started_quickstart_utils",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_doc",
+      "target": "docs_getting_started_cli_usage",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_doc",
+      "target": "docs_getting_started_export_paths_list",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_doc",
+      "target": "docs_getting_started_config_inheritance_summary",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_export_paths_list",
+      "target": "docs_getting_started_config_inheritance_summary",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_export_paths_list",
+      "target": "docs_index_three_responsibilities",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_config_inheritance_summary",
+      "target": "docs_development_config_inheritance_doc",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_cli_usage",
+      "target": "docs_guides_migration_cli_migration",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_cli_usage",
+      "target": "docs_development_contributing_dev_setup",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_requirements",
+      "target": "docs_development_contributing_dev_setup",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_getting_started_quickstart_utils",
+      "target": "docs_index_three_responsibilities",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/getting-started.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

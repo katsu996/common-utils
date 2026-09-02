@@ -1,0 +1,90 @@
+{
+  "nodes": [
+    {
+      "id": "_coderabbit_coderabbit_config",
+      "label": "CodeRabbit Configuration",
+      "file_type": "code",
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_coderabbit_auto_review",
+      "label": "Auto Review Enabled",
+      "file_type": "concept",
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "_coderabbit_base_branches_pattern",
+      "label": "Base Branches Regex Pattern",
+      "file_type": "concept",
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "_coderabbit_coderabbit_config",
+      "target": "_coderabbit_auto_review",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_coderabbit_coderabbit_config",
+      "target": "_coderabbit_base_branches_pattern",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_coderabbit_auto_review",
+      "target": "_github_workflows_pr_check_pr_comment_bot",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_coderabbit_base_branches_pattern",
+      "target": "_github_workflows_ci_ci_workflow",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "_coderabbit_auto_review",
+      "target": "_github_workflows_validate_biome_validation",
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": ".coderabbit.yaml",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

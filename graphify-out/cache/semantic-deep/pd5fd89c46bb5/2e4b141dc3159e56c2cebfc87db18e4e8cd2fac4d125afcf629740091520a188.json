@@ -1,0 +1,101 @@
+{
+  "nodes": [
+    {
+      "id": "docs_configuration_mise_mise_config",
+      "label": "Mise Configuration",
+      "file_type": "document",
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_mise_node_version",
+      "label": "Node Version Pinning",
+      "file_type": "concept",
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_mise_pnpm_version",
+      "label": "pnpm Version Pinning",
+      "file_type": "concept",
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_mise_usage_example",
+      "label": "Usage Example",
+      "file_type": "concept",
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_configuration_mise_mise_config",
+      "target": "docs_configuration_mise_node_version",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_mise_mise_config",
+      "target": "docs_configuration_mise_pnpm_version",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_mise_mise_config",
+      "target": "docs_configuration_mise_usage_example",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_mise_node_version",
+      "target": "development_dev_environment_setup",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_mise_pnpm_version",
+      "target": "_github_workflows_ci_pnpm_setup",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/mise.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

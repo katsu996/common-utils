@@ -1,0 +1,439 @@
+{
+  "nodes": [
+    {
+      "id": "docs_development_release_doc",
+      "label": "Release Process Documentation",
+      "file_type": "document",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_trusted_publisher",
+      "label": "Trusted Publisher OIDC Authentication",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "OIDC eliminates long-lived NPM_TOKEN, reducing secret leakage; publish workflow authenticates via GitHub OIDC to npm registry."
+    },
+    {
+      "id": "docs_development_release_publish_workflow",
+      "label": "Publish Workflow (manual Run workflow with version patch/minor/major param)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_ci_job",
+      "label": "CI Job (type-check, lint, test, build)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_create_tag_job",
+      "label": "Create-Tag Job (pnpm version, version-commit, git push origin main + tags)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_publish_job",
+      "label": "Publish Job (pnpm publish via OIDC from created tag)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_create_release_job",
+      "label": "Create-Release Job (GitHub Release creation)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_manual_fallback",
+      "label": "Manual Release Fallback (pnpm build, npm login, npm publish --dry-run, git tag, gh release create)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_rollback",
+      "label": "Rollback Procedure (npm unpublish within 72h or npm deprecate)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_npm_token_secret",
+      "label": "NPM_TOKEN Secret (automation type, required when OIDC unavailable)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_release_flow_diagram",
+      "label": "Release Flow Diagram (main->workflow->ci->create-tag->publish->create-release)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_release_verification",
+      "label": "Post-Release Verification (pnpm dlx --version, npm view versions)",
+      "file_type": "concept",
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_trusted_publisher",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_publish_workflow",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_ci_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_create_tag_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_publish_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_create_release_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_manual_fallback",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_rollback",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_npm_token_secret",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_release_flow_diagram",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_doc",
+      "target": "docs_development_release_verification",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_publish_workflow",
+      "target": "docs_development_release_ci_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_publish_workflow",
+      "target": "docs_development_release_create_tag_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_publish_workflow",
+      "target": "docs_development_release_publish_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_publish_workflow",
+      "target": "docs_development_release_create_release_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_ci_job",
+      "target": "docs_development_release_create_tag_job",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_create_tag_job",
+      "target": "docs_development_release_publish_job",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_publish_job",
+      "target": "docs_development_release_create_release_job",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_trusted_publisher",
+      "target": "docs_development_release_npm_token_secret",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_manual_fallback",
+      "target": "docs_development_release_rollback",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_release_flow_diagram",
+      "target": "docs_development_release_ci_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_verification",
+      "target": "docs_development_release_publish_job",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_ci_job",
+      "target": "docs_development_contributing_quality_checks",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_trusted_publisher",
+      "target": "docs_development_release_manual_fallback",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_rollback",
+      "target": "docs_development_contributing_semver",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_verification",
+      "target": "docs_getting_started_requirements",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_npm_token_secret",
+      "target": "pnpm_workspace_minimumreleaseageexclude",
+      "relation": "shares_data_with",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_release_trusted_publisher",
+      "target": "docs_development_release_publish_job",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/development/release.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "release_pipeline_workflow",
+      "label": "Release Pipeline Workflow (ci -> create-tag -> publish -> create-release)",
+      "nodes": [
+        "docs_development_release_ci_job",
+        "docs_development_release_create_tag_job",
+        "docs_development_release_publish_job",
+        "docs_development_release_create_release_job",
+        "docs_development_release_publish_workflow",
+        "docs_development_release_trusted_publisher",
+        "docs_development_contributing_semver",
+        "docs_development_contributing_quality_checks"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/release.md"
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "nodes": [
+    {
+      "id": "docs_development_contributing_doc",
+      "label": "Contributing Guide Documentation",
+      "file_type": "document",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_contributing_dev_setup",
+      "label": "Development Setup (git clone + pnpm install)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_contributing_quality_checks",
+      "label": "Quality Checks (pnpm type-check, check, test, test:coverage, build)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Quality gate enforces strict TS, Biome, tests and build before commit; mirrors CI checks to prevent divergence."
+    },
+    {
+      "id": "docs_development_contributing_commit_prefixes",
+      "label": "Commit Prefixes Convention (feat, fix, chore, docs, refactor, test, ci)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_contributing_project_structure",
+      "label": "Project Structure (src/index.ts/math.ts, bin/config.js + cli/, tests/, *.base.*)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_contributing_coding_conventions",
+      "label": "Coding Conventions (strict TS via tsconfig.base.json, Biome via biome.jsonc, tests per feature)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_contributing_semver",
+      "label": "Semantic Versioning (patch 1.0.1, minor 1.1.0, major 2.0.0)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_development_contributing_pr_template",
+      "label": "Pull Request Template (.github/PULL_REQUEST_TEMPLATE.md)",
+      "file_type": "concept",
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_dev_setup",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_quality_checks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_commit_prefixes",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_project_structure",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_coding_conventions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_semver",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_doc",
+      "target": "docs_development_contributing_pr_template",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_quality_checks",
+      "target": "docs_development_contributing_coding_conventions",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_project_structure",
+      "target": "docs_development_contributing_coding_conventions",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_project_structure",
+      "target": "docs_development_config_inheritance_export_paths_table",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_project_structure",
+      "target": "docs_configuration_typescript_doc",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_commit_prefixes",
+      "target": "docs_development_release_create_tag_job",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_semver",
+      "target": "docs_development_release_publish_workflow",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_development_contributing_quality_checks",
+      "target": "docs_development_release_ci_job",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/development/contributing.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

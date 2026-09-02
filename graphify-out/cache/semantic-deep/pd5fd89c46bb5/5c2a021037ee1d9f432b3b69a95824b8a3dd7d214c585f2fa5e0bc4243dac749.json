@@ -1,0 +1,317 @@
+{
+  "nodes": [
+    {
+      "id": "docs_configuration_typescript_doc",
+      "label": "TypeScript Configuration Documentation",
+      "file_type": "document",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_strict_config",
+      "label": "Strict TypeScript Base Config (@katsu996/common-utils/tsconfig)",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Strictness maximizes type safety and catches null/undefined and implicit any early; published as shared base to enforce consistency across consumer projects."
+    },
+    {
+      "id": "docs_configuration_typescript_target_es2022",
+      "label": "Target ES2022 + module ESNext + bundler resolution",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_strict_family",
+      "label": "Strict Family Options (strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitAny, noImplicitThis, alwaysStrict)",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_additional_checks",
+      "label": "Additional Strictness Checks (noUnusedLocals, noUnusedParameters, exactOptionalPropertyTypes, noImplicitReturns, noFallthroughCasesInSwitch, noUncheckedIndexedAccess, noImplicitOverride, noPropertyAccessFromIndexSignature)",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_output_settings",
+      "label": "Output Settings (declaration, declarationMap, sourceMap, removeComments)",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_module_settings",
+      "label": "Module Settings (isolatedModules, verbatimModuleSyntax, esModuleInterop, resolveJsonModule, forceConsistentCasingInFileNames)",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_inheritance",
+      "label": "TypeScript Config Inheritance via extends",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_configuration_typescript_customization_example",
+      "label": "Customization Example (overriding noUnusedLocals)",
+      "file_type": "concept",
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_strict_config",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_target_es2022",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_strict_family",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_additional_checks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_output_settings",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_module_settings",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_inheritance",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_doc",
+      "target": "docs_configuration_typescript_customization_example",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_strict_config",
+      "target": "docs_configuration_typescript_strict_family",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_strict_config",
+      "target": "docs_configuration_typescript_additional_checks",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_inheritance",
+      "target": "docs_configuration_typescript_customization_example",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_strict_family",
+      "target": "docs_configuration_typescript_additional_checks",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_output_settings",
+      "target": "docs_configuration_typescript_module_settings",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_strict_config",
+      "target": "docs_development_contributing_coding_conventions",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_strict_config",
+      "target": "docs_development_contributing_quality_checks",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_additional_checks",
+      "target": "docs_development_contributing_quality_checks",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_inheritance",
+      "target": "docs_development_config_inheritance_tsconfig_extends",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_customization_example",
+      "target": "docs_development_config_inheritance_tsconfig_extends",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_inheritance",
+      "target": "docs_configuration_vite_mergeconfig_pattern",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_module_settings",
+      "target": "docs_configuration_vite_alias",
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.25,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_configuration_typescript_strict_config",
+      "target": "docs_development_contributing_coding_conventions",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/configuration/typescript.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

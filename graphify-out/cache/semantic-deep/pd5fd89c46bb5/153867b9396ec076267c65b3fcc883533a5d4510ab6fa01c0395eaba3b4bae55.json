@@ -1,0 +1,184 @@
+{
+  "nodes": [
+    {
+      "id": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc",
+      "label": "Memory Query: tsconfig.base.json connections and edge-gap impact",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_god_node_compilerOptions",
+      "label": "God Node compilerOptions (tsconfig_base_compileroptions degree 41)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "All 41 edges are contains to own JSON keys inside tsconfig.base.json, inflating degree and masking true isolation; false-positive hub."
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_fragmentation_three_ids",
+      "label": "Fragmentation into 3 IDs (tsconfig_base c1 degree1, package_json_ref_tsconfig_base_json c2, ./tsconfig.base.json c10)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_inheritance_chain",
+      "label": "Config Inheritance Chain (c10: tsconfig.json --extends--> ./tsconfig.base.json)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc_chain",
+      "label": "Documentation Chain (c3: TypeScript Configuration Doc references tsconfig)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_missing_links",
+      "label": "Missing Links (no edges between exports ./tsconfig, tsconfig.json overlap, and docs)",
+      "file_type": "concept",
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_god_node_compilerOptions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_fragmentation_three_ids",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_inheritance_chain",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc_chain",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_doc",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_missing_links",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_god_node_compilerOptions",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_fragmentation_three_ids",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_fragmentation_three_ids",
+      "target": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_missing_links",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_god_node_compilerOptions",
+      "target": "docs_configuration_typescript_strict_config",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_fragmentation_three_ids",
+      "target": "graphify_out_memory_query_20260805_124753_do_biome_oxlint_vite_vitest_mise_show_the_same_fra_systematic_pattern",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_inheritance_chain",
+      "target": "docs_configuration_typescript_inheritance",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "graphify_out_memory_query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact_missing_links",
+      "target": "graphify_out_memory_query_20260805_122029_why_does_exports_connect_package_exports_to_cli_de_island_subpaths",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "graphify-out/memory/query_20260805_122253_tsconfig_base_json_connections_and_edge_gap_impact.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

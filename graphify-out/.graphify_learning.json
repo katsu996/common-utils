@@ -1,0 +1,184 @@
+{
+  "generated_at": "2026-09-02T05:24:08.881223+00:00",
+  "nodes": {
+    "bin_config": {
+      "code_fingerprint": "52b5a065a1824f7a05dc6c04246b9eee6b14170924ac7738ff9ff6f5d460cc1e",
+      "label": "config.js",
+      "last": "2026-08-05T12:20:29.836603+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:20:29.836603+00:00",
+          "outcome": "useful",
+          "q": "Why does exports connect Package Exports to CLI Dependencies?"
+        }
+      ],
+      "score": 0.52715692,
+      "source_file": "bin/config.js",
+      "status": "tentative",
+      "uses": 1
+    },
+    "docs_api_math_add_function": {
+      "code_fingerprint": "235a6f34f85afc64c64e8d38a58b904bd596797a6a8ad6fe7a25e7d5ee7bb61d",
+      "label": "add Function",
+      "last": "2026-09-02T05:16:58.451676+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-02T05:16:58.451676+00:00",
+          "outcome": "useful",
+          "q": "How does Math Utilities Cohesive Module hyperedge connect docs and source?"
+        }
+      ],
+      "score": 0.999884902,
+      "source_file": "docs/api/math.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "docs_api_math_math_module": {
+      "code_fingerprint": "235a6f34f85afc64c64e8d38a58b904bd596797a6a8ad6fe7a25e7d5ee7bb61d",
+      "label": "Math Module",
+      "last": "2026-09-02T05:16:58.451676+00:00",
+      "neg": 1,
+      "provenance": [
+        {
+          "date": "2026-09-02T05:16:58.451676+00:00",
+          "outcome": "useful",
+          "q": "How does Math Utilities Cohesive Module hyperedge connect docs and source?"
+        }
+      ],
+      "score": 4.158e-06,
+      "source_file": "docs/api/math.md",
+      "status": "contested",
+      "uses": 1,
+      "verdict": "useful"
+    },
+    "docs_api_math_sum_function": {
+      "code_fingerprint": "235a6f34f85afc64c64e8d38a58b904bd596797a6a8ad6fe7a25e7d5ee7bb61d",
+      "label": "sum Function",
+      "last": "2026-09-02T05:16:58.451676+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-02T05:16:58.451676+00:00",
+          "outcome": "useful",
+          "q": "How does Math Utilities Cohesive Module hyperedge connect docs and source?"
+        }
+      ],
+      "score": 0.999884902,
+      "source_file": "docs/api/math.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "package.json",
+      "last": "2026-08-05T12:20:29.836603+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:20:29.836603+00:00",
+          "outcome": "useful",
+          "q": "Why does exports connect Package Exports to CLI Dependencies?"
+        }
+      ],
+      "score": 0.52715692,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package_bin_katsu_config": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "katsu-config",
+      "last": "2026-08-05T12:17:11.285297+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:17:11.285297+00:00",
+          "outcome": "useful",
+          "q": "Why does scripts connect npm Scripts to CLI Dependencies?"
+        }
+      ],
+      "score": 0.527128931,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package_dependencies": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "dependencies",
+      "last": "2026-08-05T12:17:11.285297+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:17:11.285297+00:00",
+          "outcome": "useful",
+          "q": "Why does scripts connect npm Scripts to CLI Dependencies?"
+        }
+      ],
+      "score": 0.527128931,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package_exports": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "exports",
+      "last": "2026-08-05T12:20:29.836603+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:20:29.836603+00:00",
+          "outcome": "useful",
+          "q": "Why does exports connect Package Exports to CLI Dependencies?"
+        }
+      ],
+      "score": 0.52715692,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package_exports_math": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "./math",
+      "last": "2026-08-05T12:20:29.836603+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:20:29.836603+00:00",
+          "outcome": "useful",
+          "q": "Why does exports connect Package Exports to CLI Dependencies?"
+        }
+      ],
+      "score": 0.52715692,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package_scripts": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "scripts",
+      "last": "2026-08-05T12:17:11.285297+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:17:11.285297+00:00",
+          "outcome": "useful",
+          "q": "Why does scripts connect npm Scripts to CLI Dependencies?"
+        }
+      ],
+      "score": 0.527128931,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    },
+    "package_scripts_cli": {
+      "code_fingerprint": "126fcd313e5fe56c085b49da293a4687db5e639bfa41b93a0a16319d3b8b4bf7",
+      "label": "cli",
+      "last": "2026-08-05T12:17:11.285297+00:00",
+      "provenance": [
+        {
+          "date": "2026-08-05T12:17:11.285297+00:00",
+          "outcome": "useful",
+          "q": "Why does scripts connect npm Scripts to CLI Dependencies?"
+        }
+      ],
+      "score": 0.527128931,
+      "source_file": "package.json",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

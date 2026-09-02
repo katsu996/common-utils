@@ -2,7 +2,8 @@
 
 ## Corpus Check
 
-- cluster-only mode — file stats not available
+- 73 files · ~19,076 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
 
@@ -81,8 +82,8 @@
   docs/guides/migration.md → pnpm-workspace.yaml
 - `Biome Platform-Specific CLI Packages (darwin-arm64/x64, linux-musl/arm64/x64, win32-arm64/x64)` --conceptually_related_to--> `Exports Subpaths as Islands (./biome, ./mise, ./oxlint, ./vite, ./vitest degree 1 single back-edge to exports c11)` [AMBIGUOUS]
   pnpm-workspace.yaml → graphify-out/memory/query_20260805_124753_do_biome_oxlint_vite_vitest_mise_show_the_same_fra.md
-- `FAQ Troubleshooting` --conceptually_related_to--> `Rollback Strategy` [AMBIGUOUS]
-  README.md → RELEASE.md
+- `Base Branches Regex Pattern` --conceptually_related_to--> `CI Workflow` [INFERRED]
+  .coderabbit.yaml → .github/workflows/ci.yml
 
 ## Import Cycles
 
@@ -338,6 +339,10 @@ Nodes (3): Graphify Knowledge Graph, Graphify Query Tool, Graphify Update Comman
 
 ## Ambiguous Edges - Review These
 
+- `Auto Review Enabled` → `Biome Config Validation` [AMBIGUOUS]
+  .coderabbit.yaml · relation: conceptually_related_to
+- `NPM Ecosystem Updates` → `pnpm Version Pinning` [AMBIGUOUS]
+  .github/dependabot.yml · relation: conceptually_related_to
 - `FAQ Troubleshooting` → `Rollback Strategy` [AMBIGUOUS]
   README.md · relation: conceptually_related_to
 - `Related Links (GitHub repo, npm package, Issue reporting)` → `Ten Cross-Community Edge Groups (CLI spine c0-c4-c5-c8 rich, manifest hub c2->c7/c9/c11/c8, docs c3<->c6)` [AMBIGUOUS]
@@ -352,16 +357,19 @@ Nodes (3): Graphify Knowledge Graph, Graphify Query Tool, Graphify Update Comman
   AGENTS.md · relation: conceptually_related_to
 - `OXC Config Support` → `Biome Configuration` [AMBIGUOUS]
   docs/cli/katsu-config.md · relation: conceptually_related_to
-- `Auto Review Enabled` → `Biome Config Validation` [AMBIGUOUS]
-  .coderabbit.yaml · relation: conceptually_related_to
-- `NPM Ecosystem Updates` → `pnpm Version Pinning` [AMBIGUOUS]
-  .github/dependabot.yml · relation: conceptually_related_to
 - `NPM_TOKEN Secret (automation type, required when OIDC unavailable)` → `minimumReleaseAgeExclude for @biomejs/biome packages` [AMBIGUOUS]
   docs/development/release.md · relation: shares_data_with
 
 ## Knowledge Gaps
 
-- **277 isolated node(s):** `allowJs`, `allowSyntheticDefaultImports`, `allowUnreachableCode`, `allowUnusedLabels`, `alwaysStrict` (+272 more)
+- **277 isolated node(s):** `path`, `{ outro }`, `{ theme }`, `{
+showIntro,
+showProjectResults,
+showCompletionMessage,
+}`, `{
+getProjectNameInput,
+getConfigFileSelection,
+}` (+272 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -376,6 +384,10 @@ Nodes (3): Graphify Knowledge Graph, Graphify Query Tool, Graphify Update Comman
 
 _Questions this graph is uniquely positioned to answer:_
 
+- **What is the exact relationship between `Auto Review Enabled` and `Biome Config Validation`?**
+  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
+- **What is the exact relationship between `NPM Ecosystem Updates` and `pnpm Version Pinning`?**
+  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `FAQ Troubleshooting` and `Rollback Strategy`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Related Links (GitHub repo, npm package, Issue reporting)` and `Ten Cross-Community Edge Groups (CLI spine c0-c4-c5-c8 rich, manifest hub c2->c7/c9/c11/c8, docs c3<->c6)`?**
@@ -385,8 +397,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **What is the exact relationship between `Manual Biome Migration (create biome.jsonc extends, install @biomejs/biome, add lint/check/format scripts)` and `Biome Platform-Specific CLI Packages (darwin-arm64/x64, linux-musl/arm64/x64, win32-arm64/x64)`?**
   _Edge tagged AMBIGUOUS (relation: shares_data_with) - confidence is low._
 - **What is the exact relationship between `Exports Subpaths as Islands (./biome, ./mise, ./oxlint, ./vite, ./vitest degree 1 single back-edge to exports c11)` and `Biome Platform-Specific CLI Packages (darwin-arm64/x64, linux-musl/arm64/x64, win32-arm64/x64)`?**
-  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **What is the exact relationship between `Math Module` and `Graphify Query Tool`?**
-  _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **What is the exact relationship between `OXC Config Support` and `Biome Configuration`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
