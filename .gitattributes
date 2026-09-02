@@ -1,3 +1,0 @@
-# Keep text files consistent across Windows and Linux environments.
-* text=auto eol=lf
-*.cmd -text
