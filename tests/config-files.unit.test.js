@@ -128,6 +128,18 @@ describe("config files", () => {
     expect(second).toEqual({ success: true, added: [] });
   });
 
+  it("gitignore のみ選択かつ未存在の場合はテンプレートから作成する", () => {
+    const gitignorePath = path.join(temporaryDirectory, ".gitignore");
+
+    const result = configFiles.updateGitignore(temporaryDirectory, [
+      "gitignore",
+    ]);
+
+    expect(result).toEqual({ success: true, added: [] });
+    expect(fs.existsSync(gitignorePath)).toBe(true);
+    expect(fs.readFileSync(gitignorePath, "utf8")).toContain("node_modules");
+  });
+
   it("gitignore の dry-run と書き込み失敗を扱う", () => {
     setGlobalOptions({ dryRun: true });
     const preview = configFiles.updateGitignore(temporaryDirectory, [

@@ -70,6 +70,20 @@ describe("updateCommand", () => {
     expect(dependencies.outroFn).not.toHaveBeenCalled();
   });
 
+  it("選択ヘルパーが null を返した場合は更新もエラー処理もしない", async () => {
+    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue(null);
+
+    await createUpdateCommand(dependencies)();
+
+    expect(dependencies.cancelFn).toHaveBeenCalledWith(
+      "設定をキャンセルしました",
+    );
+    expect(dependencies.applyConfigFileFn).not.toHaveBeenCalled();
+    expect(dependencies.updateGitignoreFn).not.toHaveBeenCalled();
+    expect(dependencies.handleErrorFn).not.toHaveBeenCalled();
+    expect(dependencies.outroFn).not.toHaveBeenCalled();
+  });
+
   it("新規設定と gitignore を適用し、必要な依存関係を導入する", async () => {
     await createUpdateCommand(dependencies)();
 

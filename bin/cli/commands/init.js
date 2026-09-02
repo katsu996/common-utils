@@ -68,10 +68,19 @@ function createInitCommand(dependencies = {}) {
         selectedConfigs,
       );
       showProjectResultsFn(projectDir, results, packageUpdateResult);
-      if (!globalOptionsRef.dryRun) {
+      const hasFailure =
+        !gitignoreResult.success || results.some((result) => !result.success);
+      if (!globalOptionsRef.dryRun && !hasFailure) {
         showCompletionMessageFn(projectName);
       }
-      outroFn(themeModule.success("設定が完了しました!"));
+      outroFn(
+        hasFailure
+          ? themeModule.warning(
+              "一部の設定処理に失敗しました。出力を確認してください",
+            )
+          : themeModule.success("設定が完了しました!"),
+      );
+      return !hasFailure;
     } catch (error) {
       handleErrorFn(error);
     }

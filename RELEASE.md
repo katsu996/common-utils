@@ -204,7 +204,9 @@ pnpm publish --access public --no-git-checks
 # NPMから特定バージョンを非推奨化
 npm deprecate @katsu996/common-utils@0.6.2 "This version has critical issues"
 
-# または完全に削除（72時間以内のみ）
+# または完全に削除（発行後 72 時間以内、かつ依存するパッケージが存在しない場合のみ。
+# 72 時間経過後はさらに週間ダウンロード数 300 未満・オーナー / メンテナ 1 人が条件。
+# 条件を満たさない場合は deprecate を使用）
 npm unpublish @katsu996/common-utils@0.6.2
 ```
 

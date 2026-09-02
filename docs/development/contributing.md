@@ -21,7 +21,7 @@ pnpm install
 
 ```bash
 pnpm type-check    # TypeScript 型チェック
-pnpm check         # Biome による総合チェック
+pnpm check         # 総合チェック（型チェック + リント）
 pnpm test          # テスト実行
 pnpm test:coverage # カバレッジ確認
 pnpm build         # ビルド確認
@@ -52,12 +52,13 @@ common-utils/
 │   ├── config.js         # エントリポイント
 │   ├── config.cmd        # Windows 用バッチファイル
 │   └── cli/              # CLI モジュール
-│       ├── args.js       # 引数パース
+│       ├── commands/     # コマンドハンドラ (init / update / list)
+│       ├── services/     # ビジネスロジック (project.js)
+│       ├── ui/           # UI 表示 (theme / spinner / prompts / display)
+│       ├── utils/        # 横断的ユーティリティ (errors / global-options)
 │       ├── config-files-data.js  # 設定ファイル定義
 │       ├── config-files.js       # 設定ファイル操作
-│       ├── package.js    # package.json 操作
-│       ├── project.js    # メインフロー
-│       └── ui.js         # UI 表示
+│       └── package.js    # package.json 操作
 ├── tests/                # テストファイル
 │   ├── math.test.ts      # 数学関数のテスト
 │   └── config.test.js    # CLI ツールのテスト

@@ -5,6 +5,7 @@
 ## 継承方法
 
 ```typescript
+import { resolve } from "node:path";
 import { defineConfig, mergeConfig } from "vite";
 import baseConfig from "@katsu996/common-utils/vite";
 

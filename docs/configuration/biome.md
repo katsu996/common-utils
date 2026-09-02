@@ -20,7 +20,7 @@
 | 項目        | 値      |
 | ----------- | ------- |
 | indentStyle | `space` |
-| lineWidth   | 119     |
+| lineWidth   | 80      |
 
 ### リンタールール
 

@@ -75,21 +75,18 @@ describe("prompt edge cases", () => {
     ]);
   });
 
-  it("既存プロジェクトの linter と複数選択のキャンセルを通知する", async () => {
+  it("既存プロジェクトの linter キャンセルでは 1 回だけ通知し複数選択に進まない", async () => {
     const linterCancel = Symbol("linter-cancel");
-    const multiselectCancel = Symbol("multiselect-cancel");
     const dependencies = createPromptDependencies({
       selectFn: vi.fn().mockResolvedValue(linterCancel),
-      multiselectFn: vi.fn().mockResolvedValue(multiselectCancel),
-      isCancelFn: vi.fn(
-        (value) => value === linterCancel || value === multiselectCancel,
-      ),
+      isCancelFn: vi.fn((value) => value === linterCancel),
     });
 
     await expect(
       createPrompts(dependencies).getExistingProjectConfigSelection([]),
     ).resolves.toBeNull();
-    expect(dependencies.cancelFn).toHaveBeenCalledTimes(2);
+    expect(dependencies.cancelFn).toHaveBeenCalledTimes(1);
+    expect(dependencies.multiselectFn).not.toHaveBeenCalled();
   });
 });
 

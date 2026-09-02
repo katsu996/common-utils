@@ -51,7 +51,11 @@ function createUpdateCommand(dependencies = {}) {
       showConfigFileStatusFn(fileStatus);
       const selectedConfigs =
         await getExistingProjectConfigSelectionFn(fileStatus);
-      if (isCancelFn(selectedConfigs)) {
+      if (
+        selectedConfigs === null ||
+        selectedConfigs === undefined ||
+        isCancelFn(selectedConfigs)
+      ) {
         cancelFn(themeModule.warning("設定をキャンセルしました"));
         return;
       }
