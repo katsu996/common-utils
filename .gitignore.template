@@ -7,3 +7,12 @@ Thumbs.db
 *.tmp
 *.temp
 .cache/
+
+# 生成物
+coverage
+dist
+node_modules
+junit.xml
+
+# ローカルテスト用サンドボックス
+sandbox/

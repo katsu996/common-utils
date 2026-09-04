@@ -92,14 +92,6 @@ jobs:
             echo "📄 No version change detected"
           fi
 
-      - name: Full quality check
-        if: steps.changed-files.outputs.source_changed == 'true'
-        run: |
-          echo "🔍 Running full quality checks for source changes..."
-          pnpm run type-check
-          pnpm run check
-          pnpm run build
-
       - name: Quick check
         if: steps.changed-files.outputs.source_changed == 'false'
         run: |

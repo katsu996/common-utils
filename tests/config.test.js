@@ -62,10 +62,7 @@ function createPackageJson(dir, projectName = "test-project") {
     version: "1.0.0",
     description: "Test project",
   };
-  fs.writeFileSync(
-    path.join(dir, "package.json"),
-    JSON.stringify(packageJson, null, 2),
-  );
+  fs.writeFileSync(path.join(dir, "package.json"), JSON.stringify(packageJson, null, 2));
 }
 
 function executeCommand(command, args, cwd, input = null) {
@@ -287,14 +284,7 @@ describe("config.js（インタラクティブCLI）", () => {
 
   describe("エラーハンドリング", () => {
     it("SIGINTハンドラが実装されている", () => {
-      const errorsPath = path.resolve(
-        __dirname,
-        "..",
-        "bin",
-        "cli",
-        "utils",
-        "errors.js",
-      );
+      const errorsPath = path.resolve(__dirname, "..", "bin", "cli", "utils", "errors.js");
       const content = fs.readFileSync(errorsPath, "utf-8");
       expect(content).toContain("SIGINT");
       expect(content).toContain("設定をキャンセルしました");
@@ -382,11 +372,7 @@ describe("config.js（インタラクティブCLI）", () => {
           try {
             createPackageJson(testDir);
             const result = await runKatsuConfig(
-              [
-                "-c",
-                "typescript,oxc,mise,vite,vitest,gitignore",
-                "--skip-install",
-              ],
+              ["-c", "typescript,oxc,mise,vite,vitest,gitignore", "--skip-install"],
               testDir,
               "my-project\n",
             );
@@ -475,9 +461,7 @@ describe("config.js（インタラクティブCLI）", () => {
               "my-project\n",
             );
             expect(result.code).not.toBe(1);
-            expect(result.stdout).toContain(
-              "依存関係のインストールをスキップしました",
-            );
+            expect(result.stdout).toContain("依存関係のインストールをスキップしました");
             expect(configFileExists(testDir, "tsconfig.json")).toBe(true);
             expect(configFileExists(testDir, "biome.jsonc")).toBe(true);
           } finally {
@@ -550,10 +534,7 @@ describe("config.js（インタラクティブCLI）", () => {
           );
           expect(result.code).toBe(0);
           if (configFileExists(testDir, ".gitignore")) {
-            const gitignoreContent = fs.readFileSync(
-              path.join(testDir, ".gitignore"),
-              "utf-8",
-            );
+            const gitignoreContent = fs.readFileSync(path.join(testDir, ".gitignore"), "utf-8");
             expect(gitignoreContent).toContain("# 設定ファイル");
           }
         } finally {
@@ -584,16 +565,10 @@ describe("config.js（インタラクティブCLI）", () => {
             path.join(testDir, ".gitignore"),
             "node_modules/\n# 設定ファイル\ntsconfig.json\n",
           );
-          const result = await runKatsuConfig(
-            ["-c", "biome,gitignore", "--skip-install"],
-            testDir,
-          );
+          const result = await runKatsuConfig(["-c", "biome,gitignore", "--skip-install"], testDir);
           expect(result.code).toBe(0);
           if (configFileExists(testDir, ".gitignore")) {
-            const gitignoreContent = fs.readFileSync(
-              path.join(testDir, ".gitignore"),
-              "utf-8",
-            );
+            const gitignoreContent = fs.readFileSync(path.join(testDir, ".gitignore"), "utf-8");
             expect(gitignoreContent).toContain("biome.jsonc");
           }
         } finally {
@@ -611,10 +586,7 @@ describe("config.js（インタラクティブCLI）", () => {
           );
           expect(result.code).toBe(0);
           if (configFileExists(testDir, ".gitignore")) {
-            const gitignoreContent = fs.readFileSync(
-              path.join(testDir, ".gitignore"),
-              "utf-8",
-            );
+            const gitignoreContent = fs.readFileSync(path.join(testDir, ".gitignore"), "utf-8");
             expect(gitignoreContent).toContain("tsconfig.json");
             expect(gitignoreContent).toContain("biome.jsonc");
             expect(gitignoreContent).toContain("vitest.config.ts");

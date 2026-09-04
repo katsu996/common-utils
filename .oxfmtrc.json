@@ -1,16 +1,5 @@
 {
-  "useTabs": false,
-  "tabWidth": 2,
-  "printWidth": 80,
-  "singleQuote": false,
-  "jsxSingleQuote": false,
-  "quoteProps": "as-needed",
-  "trailingComma": "all",
-  "semi": true,
-  "arrowParens": "always",
-  "bracketSameLine": false,
-  "bracketSpacing": true,
-  "endOfLine": "lf",
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "ignorePatterns": [
     "**/.git",
     "**/coverage",
@@ -19,9 +8,6 @@
     "**/out",
     "**/playwright-report",
     "**/test-results",
-    "temp",
-    "test-package",
-    "vite.config.ts",
-    "vitest.config.ts"
+    "graphify-out"
   ]
 }

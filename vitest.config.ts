@@ -1,7 +1,7 @@
 import { defineConfig, mergeConfig } from "vitest/config";
 import baseConfig from "./vitest.config.base";
 
-export default mergeConfig(
+const config = mergeConfig(
   baseConfig,
   defineConfig({
     test: {
@@ -9,3 +9,11 @@ export default mergeConfig(
     },
   }),
 );
+
+// mergeConfig は配列を連結するため、base の広い include を上書きする
+config.test = {
+  ...config.test,
+  include: ["tests/**/*.{test,spec}.{js,ts}"],
+};
+
+export default config;

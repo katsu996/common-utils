@@ -9,10 +9,7 @@ const packageUtils = require("../bin/cli/package");
 const { setGlobalOptions } = require("../bin/cli/utils/global-options");
 
 function writePackageJson(directory, value) {
-  fs.writeFileSync(
-    path.join(directory, "package.json"),
-    JSON.stringify(value, null, 2),
-  );
+  fs.writeFileSync(path.join(directory, "package.json"), JSON.stringify(value, null, 2));
 }
 
 describe("package utilities", () => {
@@ -21,9 +18,7 @@ describe("package utilities", () => {
 
   beforeEach(() => {
     originalDirectory = process.cwd();
-    temporaryDirectory = fs.mkdtempSync(
-      path.join(os.tmpdir(), "package-unit-"),
-    );
+    temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "package-unit-"));
   });
 
   afterEach(() => {
@@ -96,9 +91,7 @@ describe("package utilities", () => {
       devDependencies: { vitest: "4.1.10" },
     });
 
-    const result = packageUtils.updatePackageJson(temporaryDirectory, [
-      "vitest",
-    ]);
+    const result = packageUtils.updatePackageJson(temporaryDirectory, ["vitest"]);
     const updated = JSON.parse(
       fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8"),
     );
@@ -119,10 +112,7 @@ describe("package utilities", () => {
       scripts: { lint: "custom lint", test: "vitest" },
     });
 
-    const result = packageUtils.updatePackageJson(temporaryDirectory, [
-      "biome",
-      "vitest",
-    ]);
+    const result = packageUtils.updatePackageJson(temporaryDirectory, ["biome", "vitest"]);
     const updated = JSON.parse(
       fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8"),
     );
@@ -141,16 +131,10 @@ describe("package utilities", () => {
     });
     process.chdir(temporaryDirectory);
     setGlobalOptions({ dryRun: true });
-    const before = fs.readFileSync(
-      path.join(temporaryDirectory, "package.json"),
-      "utf8",
-    );
+    const before = fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8");
 
     const result = packageUtils.updatePackageJsonExisting(["typescript"]);
-    const after = fs.readFileSync(
-      path.join(temporaryDirectory, "package.json"),
-      "utf8",
-    );
+    const after = fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8");
 
     expect(after).toBe(before);
     expect(result).toMatchObject({
@@ -166,19 +150,10 @@ describe("package utilities", () => {
       scripts: { test: "custom test" },
     });
     setGlobalOptions({ dryRun: true });
-    const before = fs.readFileSync(
-      path.join(temporaryDirectory, "package.json"),
-      "utf8",
-    );
+    const before = fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8");
 
-    const result = packageUtils.updatePackageJson(temporaryDirectory, [
-      "typescript",
-      "vitest",
-    ]);
-    const after = fs.readFileSync(
-      path.join(temporaryDirectory, "package.json"),
-      "utf8",
-    );
+    const result = packageUtils.updatePackageJson(temporaryDirectory, ["typescript", "vitest"]);
+    const after = fs.readFileSync(path.join(temporaryDirectory, "package.json"), "utf8");
 
     expect(after).toBe(before);
     expect(result).toMatchObject({
@@ -192,14 +167,10 @@ describe("package utilities", () => {
     fs.writeFileSync(path.join(temporaryDirectory, "package.json"), "{");
     process.chdir(temporaryDirectory);
 
-    expect(
-      packageUtils.updatePackageJsonExisting(["typescript"]),
-    ).toMatchObject({
+    expect(packageUtils.updatePackageJsonExisting(["typescript"])).toMatchObject({
       success: false,
     });
-    expect(
-      packageUtils.updatePackageJson(temporaryDirectory, ["typescript"]),
-    ).toMatchObject({
+    expect(packageUtils.updatePackageJson(temporaryDirectory, ["typescript"])).toMatchObject({
       success: false,
     });
   });
