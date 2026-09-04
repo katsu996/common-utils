@@ -20,16 +20,10 @@ function createDependencies(overrides = {}) {
     getConfigFileSelectionFn: vi.fn().mockResolvedValue(["typescript"]),
     createViteProjectFn: vi.fn().mockResolvedValue(undefined),
     installDependenciesFn: vi.fn().mockResolvedValue(undefined),
-    applyConfigFilesFn: vi
-      .fn()
-      .mockReturnValue([{ success: true, file: "tsconfig.json" }]),
+    applyConfigFilesFn: vi.fn().mockReturnValue([{ success: true, file: "tsconfig.json" }]),
     updateGitignoreFn: vi.fn().mockReturnValue({ success: true }),
-    collectDependenciesFn: vi
-      .fn()
-      .mockReturnValue(["typescript", "@types/node"]),
-    updatePackageJsonFn: vi
-      .fn()
-      .mockReturnValue({ success: true, addedScripts: ["type-check"] }),
+    collectDependenciesFn: vi.fn().mockReturnValue(["typescript", "@types/node"]),
+    updatePackageJsonFn: vi.fn().mockReturnValue({ success: true, addedScripts: ["type-check"] }),
     globalOptionsRef: { dryRun: false },
     handleErrorFn: vi.fn(),
     processRef: { cwd: () => "/workspace" },
@@ -68,29 +62,22 @@ describe("initCommand", () => {
     await createInitCommand(dependencies)();
 
     expect(dependencies.createViteProjectFn).toHaveBeenCalledWith("sample-app");
-    expect(dependencies.applyConfigFilesFn).toHaveBeenCalledWith(
-      "/workspace/sample-app",
-      ["typescript"],
-    );
-    expect(dependencies.updateGitignoreFn).toHaveBeenCalledWith(
-      "/workspace/sample-app",
-      ["typescript"],
-    );
-    expect(dependencies.collectDependenciesFn).toHaveBeenCalledWith([
+    expect(dependencies.applyConfigFilesFn).toHaveBeenCalledWith("/workspace/sample-app", [
       "typescript",
     ]);
-    expect(dependencies.installDependenciesFn).toHaveBeenCalledWith(
-      "/workspace/sample-app",
-      ["typescript", "@types/node"],
-    );
-    expect(dependencies.updatePackageJsonFn).toHaveBeenCalledWith(
-      "/workspace/sample-app",
-      ["typescript"],
-    );
+    expect(dependencies.updateGitignoreFn).toHaveBeenCalledWith("/workspace/sample-app", [
+      "typescript",
+    ]);
+    expect(dependencies.collectDependenciesFn).toHaveBeenCalledWith(["typescript"]);
+    expect(dependencies.installDependenciesFn).toHaveBeenCalledWith("/workspace/sample-app", [
+      "typescript",
+      "@types/node",
+    ]);
+    expect(dependencies.updatePackageJsonFn).toHaveBeenCalledWith("/workspace/sample-app", [
+      "typescript",
+    ]);
     expect(dependencies.showProjectResultsFn).toHaveBeenCalledOnce();
-    expect(dependencies.showCompletionMessageFn).toHaveBeenCalledWith(
-      "sample-app",
-    );
+    expect(dependencies.showCompletionMessageFn).toHaveBeenCalledWith("sample-app");
     expect(dependencies.outroFn).toHaveBeenCalledWith("設定が完了しました!");
   });
 

@@ -18,9 +18,7 @@ function createDependencies(overrides = {}) {
     themeModule: { warning: vi.fn((message) => message) },
     globalOptionsRef: { dryRun: false, skipInstall: false },
     configFiles: [{ id: "typescript", filename: "tsconfig.json" }],
-    applyConfigFileFn: vi
-      .fn()
-      .mockReturnValue({ success: true, file: "tsconfig.json" }),
+    applyConfigFileFn: vi.fn().mockReturnValue({ success: true, file: "tsconfig.json" }),
     processRef: { platform: "linux", cwd: () => "/workspace" },
     ...overrides,
   };
@@ -42,11 +40,11 @@ describe("project service", () => {
     child.emit("close", 0);
     await creating;
 
-    expect(dependencies.spawnFn).toHaveBeenCalledWith(
-      "pnpm",
-      ["create", "vite", "sample-app"],
-      { cwd: "/workspace", stdio: "inherit", shell: false },
-    );
+    expect(dependencies.spawnFn).toHaveBeenCalledWith("pnpm", ["create", "vite", "sample-app"], {
+      cwd: "/workspace",
+      stdio: "inherit",
+      shell: false,
+    });
     expect(dependencies.logRef.success).toHaveBeenCalledWith(
       "Viteプロジェクト「sample-app」を作成しました",
     );
@@ -60,9 +58,7 @@ describe("project service", () => {
     const creating = service.createViteProject("sample-app");
     child.emit("close", 1);
 
-    await expect(creating).rejects.toThrow(
-      "pnpm の実行に失敗しました (exit code: 1)",
-    );
+    await expect(creating).rejects.toThrow("pnpm の実行に失敗しました (exit code: 1)");
   });
 
   it("dry-run 時は Vite プロジェクトを作成しない", async () => {
@@ -72,9 +68,7 @@ describe("project service", () => {
     await service.createViteProject("sample-app");
 
     expect(dependencies.spawnFn).not.toHaveBeenCalled();
-    expect(dependencies.logRef.info).toHaveBeenCalledWith(
-      "[DRY RUN] pnpm create vite sample-app",
-    );
+    expect(dependencies.logRef.info).toHaveBeenCalledWith("[DRY RUN] pnpm create vite sample-app");
   });
 
   it("依存関係を導入し、成功時に完了を通知する", async () => {
@@ -82,10 +76,7 @@ describe("project service", () => {
     dependencies.spawnFn.mockReturnValue(child);
     const service = createProjectService(dependencies);
 
-    const installing = service.installDependencies("/workspace/app", [
-      "typescript",
-      "vitest",
-    ]);
+    const installing = service.installDependencies("/workspace/app", ["typescript", "vitest"]);
     child.emit("close", 0);
     await installing;
 

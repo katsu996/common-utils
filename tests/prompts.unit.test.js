@@ -54,9 +54,7 @@ describe("prompts", () => {
     const prompts = createPrompts(dependencies);
     const result = await prompts.getProjectNameInput();
     expect(result).toBeUndefined();
-    expect(dependencies.cancelFn).toHaveBeenCalledWith(
-      "設定をキャンセルしました",
-    );
+    expect(dependencies.cancelFn).toHaveBeenCalledWith("設定をキャンセルしました");
   });
 
   it("プロジェクト名のバリデーションで文字数と使用可能文字を検証する", async () => {
@@ -64,9 +62,7 @@ describe("prompts", () => {
     await prompts.getProjectNameInput();
     const validate = dependencies.textFn.mock.calls[0][0].validate;
 
-    expect(validate("a".repeat(256))).toBe(
-      "プロジェクト名は255文字以内で入力してください",
-    );
+    expect(validate("a".repeat(256))).toBe("プロジェクト名は255文字以内で入力してください");
     expect(validate("invalid name")).toBe(
       "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です",
     );
@@ -79,10 +75,7 @@ describe("prompts", () => {
     const result = await createPrompts(dependencies).getConfigFileSelection();
 
     expect(result).toEqual(["typescript", "vite"]);
-    expect(dependencies.validateConfigIdsFn).toHaveBeenCalledWith([
-      "typescript",
-      "vite",
-    ]);
+    expect(dependencies.validateConfigIdsFn).toHaveBeenCalledWith(["typescript", "vite"]);
     expect(dependencies.selectFn).not.toHaveBeenCalled();
   });
 
@@ -99,9 +92,7 @@ describe("prompts", () => {
     dependencies.selectFn.mockResolvedValue(null);
     dependencies.multiselectFn.mockResolvedValue(["vite"]);
 
-    await expect(
-      createPrompts(dependencies).getConfigFileSelection(),
-    ).resolves.toEqual(["vite"]);
+    await expect(createPrompts(dependencies).getConfigFileSelection()).resolves.toEqual(["vite"]);
   });
 
   it("設定ファイル選択のキャンセルを通知して null を返す", async () => {
@@ -112,9 +103,7 @@ describe("prompts", () => {
     const result = await createPrompts(dependencies).getConfigFileSelection();
 
     expect(result).toBeNull();
-    expect(dependencies.cancelFn).toHaveBeenCalledWith(
-      "設定をキャンセルしました",
-    );
+    expect(dependencies.cancelFn).toHaveBeenCalledWith("設定をキャンセルしました");
   });
 
   it("既存プロジェクトでは存在する設定を初期選択し、linter を保持する", async () => {
@@ -127,10 +116,7 @@ describe("prompts", () => {
       { id: "biome", exists: true },
     ];
 
-    const result =
-      await createPrompts(dependencies).getExistingProjectConfigSelection(
-        fileStatus,
-      );
+    const result = await createPrompts(dependencies).getExistingProjectConfigSelection(fileStatus);
 
     expect(result).toEqual(["typescript", "vite", "biome"]);
     expect(dependencies.selectFn).toHaveBeenCalledWith(

@@ -56,9 +56,7 @@ describe("prompt edge cases", () => {
       selectFn: vi.fn().mockResolvedValue(undefined),
     });
 
-    await expect(
-      createPrompts(dependencies).getConfigFileSelection(),
-    ).resolves.toBeNull();
+    await expect(createPrompts(dependencies).getConfigFileSelection()).resolves.toBeNull();
     expect(dependencies.multiselectFn).not.toHaveBeenCalled();
   });
 
@@ -70,9 +68,7 @@ describe("prompt edge cases", () => {
     await expect(
       createPrompts(dependencies).getExistingProjectConfigSelection([]),
     ).resolves.toEqual(["typescript"]);
-    expect(dependencies.validateConfigIdsFn).toHaveBeenCalledWith([
-      "typescript",
-    ]);
+    expect(dependencies.validateConfigIdsFn).toHaveBeenCalledWith(["typescript"]);
   });
 
   it("既存プロジェクトの linter キャンセルでは 1 回だけ通知し複数選択に進まない", async () => {
@@ -103,19 +99,13 @@ describe("config and package edge cases", () => {
       skipGitignore: false,
     });
     if (originalDirectory) process.chdir(originalDirectory);
-    if (temporaryDirectory)
-      fs.rmSync(temporaryDirectory, { recursive: true, force: true });
+    if (temporaryDirectory) fs.rmSync(temporaryDirectory, { recursive: true, force: true });
   });
 
   it("gitignore の読み込み失敗を未存在として扱う", () => {
     originalDirectory = process.cwd();
-    temporaryDirectory = fs.mkdtempSync(
-      path.join(os.tmpdir(), "coverage-gitignore-"),
-    );
-    fs.writeFileSync(
-      path.join(temporaryDirectory, ".gitignore"),
-      "# 設定ファイル\n",
-    );
+    temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "coverage-gitignore-"));
+    fs.writeFileSync(path.join(temporaryDirectory, ".gitignore"), "# 設定ファイル\n");
     process.chdir(temporaryDirectory);
     const originalReadFileSync = fs.readFileSync;
     vi.spyOn(fs, "readFileSync").mockImplementation((filePath, ...args) => {
@@ -133,9 +123,7 @@ describe("config and package edge cases", () => {
   });
 
   it("dry-run 時に既存設定ファイルを更新対象として報告する", () => {
-    temporaryDirectory = fs.mkdtempSync(
-      path.join(os.tmpdir(), "coverage-apply-"),
-    );
+    temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "coverage-apply-"));
     const source = path.join(temporaryDirectory, "source.txt");
     const destination = path.join(temporaryDirectory, "target.txt");
     fs.writeFileSync(source, "content");
@@ -143,10 +131,7 @@ describe("config and package edge cases", () => {
     setGlobalOptions({ dryRun: true });
 
     expect(
-      configFiles.applyConfigFile(
-        { source, destination: "target.txt" },
-        temporaryDirectory,
-      ),
+      configFiles.applyConfigFile({ source, destination: "target.txt" }, temporaryDirectory),
     ).toMatchObject({
       success: true,
       dryRun: true,
@@ -157,18 +142,14 @@ describe("config and package edge cases", () => {
 
   it("scripts のない package.json に既存設定スクリプトを追加する", () => {
     originalDirectory = process.cwd();
-    temporaryDirectory = fs.mkdtempSync(
-      path.join(os.tmpdir(), "coverage-package-"),
-    );
+    temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), "coverage-package-"));
     fs.writeFileSync(
       path.join(temporaryDirectory, "package.json"),
       JSON.stringify({ name: "demo", version: "1.0.0" }),
     );
     process.chdir(temporaryDirectory);
 
-    expect(
-      packageUtils.updatePackageJsonExisting(["typescript"]),
-    ).toMatchObject({
+    expect(packageUtils.updatePackageJsonExisting(["typescript"])).toMatchObject({
       success: true,
     });
     const updated = JSON.parse(

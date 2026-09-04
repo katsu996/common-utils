@@ -1,10 +1,4 @@
-const {
-  text,
-  select,
-  multiselect,
-  isCancel,
-  cancel,
-} = require("@clack/prompts");
+const { text, select, multiselect, isCancel, cancel } = require("@clack/prompts");
 const { theme } = require("./theme");
 const { CONFIG_FILES } = require("../config-files-data");
 const { globalOptions } = require("../utils/global-options");
@@ -30,8 +24,7 @@ function createPrompts(dependencies = {}) {
       defaultValue: "my-project",
       validate: (value) => {
         if (!value || value.trim().length === 0) return undefined;
-        if (value.length > 255)
-          return "プロジェクト名は255文字以内で入力してください";
+        if (value.length > 255) return "プロジェクト名は255文字以内で入力してください";
         if (!/^[a-zA-Z0-9-_]+$/.test(value))
           return "プロジェクト名は英数字とハイフン、アンダースコアのみ使用可能です";
         return undefined;
@@ -45,9 +38,7 @@ function createPrompts(dependencies = {}) {
   }
 
   function getNonLinterConfigs() {
-    return configFiles.filter(
-      (file) => file.id !== "oxc" && file.id !== "biome",
-    );
+    return configFiles.filter((file) => file.id !== "oxc" && file.id !== "biome");
   }
 
   async function getLinterSelection(existingLinter) {
@@ -117,9 +108,7 @@ function createPrompts(dependencies = {}) {
         };
       }),
       initialValues: otherConfigs
-        .filter(
-          (file) => fileStatus.find((status) => status.id === file.id)?.exists,
-        )
+        .filter((file) => fileStatus.find((status) => status.id === file.id)?.exists)
         .map((file) => file.id),
     });
     if (isCancelFn(selectedOthers)) {

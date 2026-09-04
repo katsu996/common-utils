@@ -18,21 +18,13 @@ function createDependencies(overrides = {}) {
     showConfigFileStatusFn: vi.fn(),
     showResultsFn: vi.fn(),
     showAvailableCommandsFn: vi.fn(),
-    getExistingProjectConfigSelectionFn: vi
-      .fn()
-      .mockResolvedValue(["typescript", "gitignore"]),
+    getExistingProjectConfigSelectionFn: vi.fn().mockResolvedValue(["typescript", "gitignore"]),
     installDependenciesFn: vi.fn().mockResolvedValue(undefined),
     configFiles: [{ id: "typescript", filename: "tsconfig.json" }],
-    checkConfigFileStatusFn: vi
-      .fn()
-      .mockReturnValue([{ id: "typescript", exists: false }]),
-    applyConfigFileFn: vi
-      .fn()
-      .mockReturnValue({ success: true, file: "tsconfig.json" }),
+    checkConfigFileStatusFn: vi.fn().mockReturnValue([{ id: "typescript", exists: false }]),
+    applyConfigFileFn: vi.fn().mockReturnValue({ success: true, file: "tsconfig.json" }),
     updateGitignoreFn: vi.fn().mockReturnValue({ success: true }),
-    collectDependenciesFn: vi
-      .fn()
-      .mockReturnValue(["typescript", "@types/node"]),
+    collectDependenciesFn: vi.fn().mockReturnValue(["typescript", "@types/node"]),
     updatePackageJsonExistingFn: vi.fn().mockReturnValue({
       success: true,
       scripts: { "type-check": "tsc --noEmit" },
@@ -54,18 +46,12 @@ describe("updateCommand", () => {
 
   it("キャンセルされた選択では設定を変更しない", async () => {
     const cancellation = Symbol("cancelled");
-    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue(
-      cancellation,
-    );
-    dependencies.isCancelFn.mockImplementation(
-      (value) => value === cancellation,
-    );
+    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue(cancellation);
+    dependencies.isCancelFn.mockImplementation((value) => value === cancellation);
 
     await createUpdateCommand(dependencies)();
 
-    expect(dependencies.cancelFn).toHaveBeenCalledWith(
-      "設定をキャンセルしました",
-    );
+    expect(dependencies.cancelFn).toHaveBeenCalledWith("設定をキャンセルしました");
     expect(dependencies.applyConfigFileFn).not.toHaveBeenCalled();
     expect(dependencies.outroFn).not.toHaveBeenCalled();
   });
@@ -75,9 +61,7 @@ describe("updateCommand", () => {
 
     await createUpdateCommand(dependencies)();
 
-    expect(dependencies.cancelFn).toHaveBeenCalledWith(
-      "設定をキャンセルしました",
-    );
+    expect(dependencies.cancelFn).toHaveBeenCalledWith("設定をキャンセルしました");
     expect(dependencies.applyConfigFileFn).not.toHaveBeenCalled();
     expect(dependencies.updateGitignoreFn).not.toHaveBeenCalled();
     expect(dependencies.handleErrorFn).not.toHaveBeenCalled();
@@ -91,19 +75,13 @@ describe("updateCommand", () => {
       { id: "typescript", filename: "tsconfig.json" },
       "/workspace",
     );
-    expect(dependencies.updateGitignoreFn).toHaveBeenCalledWith("/workspace", [
+    expect(dependencies.updateGitignoreFn).toHaveBeenCalledWith("/workspace", ["typescript"]);
+    expect(dependencies.collectDependenciesFn).toHaveBeenCalledWith(["typescript"]);
+    expect(dependencies.installDependenciesFn).toHaveBeenCalledWith("/workspace", [
       "typescript",
+      "@types/node",
     ]);
-    expect(dependencies.collectDependenciesFn).toHaveBeenCalledWith([
-      "typescript",
-    ]);
-    expect(dependencies.installDependenciesFn).toHaveBeenCalledWith(
-      "/workspace",
-      ["typescript", "@types/node"],
-    );
-    expect(dependencies.updatePackageJsonExistingFn).toHaveBeenCalledWith([
-      "typescript",
-    ]);
+    expect(dependencies.updatePackageJsonExistingFn).toHaveBeenCalledWith(["typescript"]);
     expect(dependencies.showAvailableCommandsFn).toHaveBeenCalledOnce();
     expect(dependencies.showResultsFn).toHaveBeenCalledWith([
       { success: true, file: "tsconfig.json", wasExisting: false },
@@ -113,12 +91,8 @@ describe("updateCommand", () => {
   });
 
   it("既存の設定だけを選択した場合は依存関係を再導入しない", async () => {
-    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue([
-      "typescript",
-    ]);
-    dependencies.checkConfigFileStatusFn.mockReturnValue([
-      { id: "typescript", exists: true },
-    ]);
+    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue(["typescript"]);
+    dependencies.checkConfigFileStatusFn.mockReturnValue([{ id: "typescript", exists: true }]);
 
     await createUpdateCommand(dependencies)();
 
@@ -130,9 +104,7 @@ describe("updateCommand", () => {
   });
 
   it("gitignore 更新の失敗を結果として表示する", async () => {
-    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue([
-      "gitignore",
-    ]);
+    dependencies.getExistingProjectConfigSelectionFn.mockResolvedValue(["gitignore"]);
     dependencies.updateGitignoreFn.mockReturnValue({
       success: false,
       error: "write failed",

@@ -25,8 +25,7 @@ describe("config files edge cases", () => {
       skipGitignore: false,
     });
     if (originalDirectory) process.chdir(originalDirectory);
-    if (temporaryDirectory)
-      fs.rmSync(temporaryDirectory, { recursive: true, force: true });
+    if (temporaryDirectory) fs.rmSync(temporaryDirectory, { recursive: true, force: true });
   });
 
   it("ライブラリバージョン読み込み失敗時は安全な代替バージョンを返す", () => {
@@ -57,9 +56,7 @@ describe("config files edge cases", () => {
     process.chdir(temporaryDirectory);
 
     expect(
-      configFiles
-        .checkConfigFileStatus()
-        .find((file) => file.id === "gitignore"),
+      configFiles.checkConfigFileStatus().find((file) => file.id === "gitignore"),
     ).toMatchObject({ exists: true });
   });
 
@@ -68,9 +65,7 @@ describe("config files edge cases", () => {
     const gitignorePath = path.join(temporaryDirectory, ".gitignore");
     fs.writeFileSync(gitignorePath, "node_modules");
 
-    expect(
-      configFiles.updateGitignore(temporaryDirectory, ["typescript"]),
-    ).toMatchObject({
+    expect(configFiles.updateGitignore(temporaryDirectory, ["typescript"])).toMatchObject({
       success: true,
       added: ["tsconfig.json"],
     });
@@ -82,16 +77,12 @@ describe("config files edge cases", () => {
       gitignorePath,
       "# 設定ファイル\ntsconfig.json\n# 別セクション\nnode_modules\n",
     );
-    expect(
-      configFiles.updateGitignore(temporaryDirectory, ["vitest"]),
-    ).toMatchObject({
+    expect(configFiles.updateGitignore(temporaryDirectory, ["vitest"])).toMatchObject({
       success: true,
       added: ["vitest.config.ts"],
     });
     const updated = fs.readFileSync(gitignorePath, "utf8");
-    expect(updated.indexOf("vitest.config.ts")).toBeLessThan(
-      updated.indexOf("# 別セクション"),
-    );
+    expect(updated.indexOf("vitest.config.ts")).toBeLessThan(updated.indexOf("# 別セクション"));
   });
 
   it("gitignore テンプレート読み込み失敗時も空の内容から更新する", () => {
@@ -105,15 +96,13 @@ describe("config files edge cases", () => {
       return originalReadFileSync.call(fs, filePath, ...args);
     });
 
-    expect(
-      configFiles.updateGitignore(temporaryDirectory, ["typescript"]),
-    ).toMatchObject({
+    expect(configFiles.updateGitignore(temporaryDirectory, ["typescript"])).toMatchObject({
       success: true,
       added: ["tsconfig.json"],
     });
-    expect(
-      fs.readFileSync(path.join(temporaryDirectory, ".gitignore"), "utf8"),
-    ).toContain("tsconfig.json");
+    expect(fs.readFileSync(path.join(temporaryDirectory, ".gitignore"), "utf8")).toContain(
+      "tsconfig.json",
+    );
     expect(warningSpy).toHaveBeenCalledOnce();
   });
 });

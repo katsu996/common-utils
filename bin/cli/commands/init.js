@@ -1,20 +1,9 @@
 const path = require("node:path");
 const { outro } = require("@clack/prompts");
 const { theme } = require("../ui/theme");
-const {
-  showIntro,
-  showProjectResults,
-  showCompletionMessage,
-} = require("../ui/display");
-const {
-  getProjectNameInput,
-  getConfigFileSelection,
-} = require("../ui/prompts");
-const {
-  createViteProject,
-  installDependencies,
-  applyConfigFiles,
-} = require("../services/project");
+const { showIntro, showProjectResults, showCompletionMessage } = require("../ui/display");
+const { getProjectNameInput, getConfigFileSelection } = require("../ui/prompts");
+const { createViteProject, installDependencies, applyConfigFiles } = require("../services/project");
 const { updateGitignore, collectDependencies } = require("../config-files");
 const { updatePackageJson } = require("../package");
 const { globalOptions } = require("../utils/global-options");
@@ -56,28 +45,20 @@ function createInitCommand(dependencies = {}) {
       const results = applyConfigFilesFn(projectDir, selectedConfigs);
       const gitignoreResult = updateGitignoreFn(projectDir, selectedConfigs);
       if (!gitignoreResult.success) {
-        consoleRef.error(
-          `${themeModule.error(".gitignore更新エラー:")} ${gitignoreResult.error}`,
-        );
+        consoleRef.error(`${themeModule.error(".gitignore更新エラー:")} ${gitignoreResult.error}`);
       }
 
       const dependenciesToInstall = collectDependenciesFn(selectedConfigs);
       await installDependenciesFn(projectDir, dependenciesToInstall);
-      const packageUpdateResult = updatePackageJsonFn(
-        projectDir,
-        selectedConfigs,
-      );
+      const packageUpdateResult = updatePackageJsonFn(projectDir, selectedConfigs);
       showProjectResultsFn(projectDir, results, packageUpdateResult);
-      const hasFailure =
-        !gitignoreResult.success || results.some((result) => !result.success);
+      const hasFailure = !gitignoreResult.success || results.some((result) => !result.success);
       if (!globalOptionsRef.dryRun && !hasFailure) {
         showCompletionMessageFn(projectName);
       }
       outroFn(
         hasFailure
-          ? themeModule.warning(
-              "一部の設定処理に失敗しました。出力を確認してください",
-            )
+          ? themeModule.warning("一部の設定処理に失敗しました。出力を確認してください")
           : themeModule.success("設定が完了しました!"),
       );
       return !hasFailure;

@@ -32,9 +32,7 @@ describe("config files", () => {
     const versions = configFiles.getLibraryVersions();
 
     expect(versions["@katsu996/common-utils"]).toMatch(/^\d+\.\d+\.\d+$/);
-    expect(() =>
-      configFiles.validateConfigIds(["typescript", "vitest"]),
-    ).not.toThrow();
+    expect(() => configFiles.validateConfigIds(["typescript", "vitest"])).not.toThrow();
     expect(() => configFiles.validateConfigIds(["missing-config"])).toThrow(
       'process.exit unexpectedly called with "1"',
     );
@@ -64,9 +62,9 @@ describe("config files", () => {
     const result = configFiles.applyConfigFile(file, temporaryDirectory);
 
     expect(result).toEqual({ success: true, file: "generated.txt" });
-    expect(
-      fs.readFileSync(path.join(temporaryDirectory, "generated.txt"), "utf8"),
-    ).toBe("template-content-modified");
+    expect(fs.readFileSync(path.join(temporaryDirectory, "generated.txt"), "utf8")).toBe(
+      "template-content-modified",
+    );
 
     setGlobalOptions({ dryRun: true });
     const preview = configFiles.applyConfigFile(
@@ -79,17 +77,12 @@ describe("config files", () => {
       dryRun: true,
       wouldCreate: true,
     });
-    expect(fs.existsSync(path.join(temporaryDirectory, "preview.txt"))).toBe(
-      false,
-    );
+    expect(fs.existsSync(path.join(temporaryDirectory, "preview.txt"))).toBe(false);
   });
 
   it("設定ファイルの source 不備を失敗結果として返す", () => {
     expect(
-      configFiles.applyConfigFile(
-        { id: "test", destination: "missing.txt" },
-        temporaryDirectory,
-      ),
+      configFiles.applyConfigFile({ id: "test", destination: "missing.txt" }, temporaryDirectory),
     ).toMatchObject({ success: false, error: "source path is not defined" });
     expect(
       configFiles.applyConfigFile(
@@ -104,23 +97,11 @@ describe("config files", () => {
   });
 
   it("gitignore に不足パターンを追加し、再実行時は重複追加しない", () => {
-    fs.writeFileSync(
-      path.join(temporaryDirectory, ".gitignore"),
-      "node_modules\n",
-    );
+    fs.writeFileSync(path.join(temporaryDirectory, ".gitignore"), "node_modules\n");
 
-    const first = configFiles.updateGitignore(temporaryDirectory, [
-      "typescript",
-      "vitest",
-    ]);
-    const content = fs.readFileSync(
-      path.join(temporaryDirectory, ".gitignore"),
-      "utf8",
-    );
-    const second = configFiles.updateGitignore(temporaryDirectory, [
-      "typescript",
-      "vitest",
-    ]);
+    const first = configFiles.updateGitignore(temporaryDirectory, ["typescript", "vitest"]);
+    const content = fs.readFileSync(path.join(temporaryDirectory, ".gitignore"), "utf8");
+    const second = configFiles.updateGitignore(temporaryDirectory, ["typescript", "vitest"]);
 
     expect(first).toMatchObject({ success: true });
     expect(first.added.length).toBeGreaterThan(0);
@@ -131,9 +112,7 @@ describe("config files", () => {
   it("gitignore のみ選択かつ未存在の場合はテンプレートから作成する", () => {
     const gitignorePath = path.join(temporaryDirectory, ".gitignore");
 
-    const result = configFiles.updateGitignore(temporaryDirectory, [
-      "gitignore",
-    ]);
+    const result = configFiles.updateGitignore(temporaryDirectory, ["gitignore"]);
 
     expect(result).toEqual({ success: true, added: [] });
     expect(fs.existsSync(gitignorePath)).toBe(true);
@@ -142,14 +121,10 @@ describe("config files", () => {
 
   it("gitignore の dry-run と書き込み失敗を扱う", () => {
     setGlobalOptions({ dryRun: true });
-    const preview = configFiles.updateGitignore(temporaryDirectory, [
-      "typescript",
-    ]);
+    const preview = configFiles.updateGitignore(temporaryDirectory, ["typescript"]);
 
     expect(preview).toMatchObject({ success: true, dryRun: true });
-    expect(fs.existsSync(path.join(temporaryDirectory, ".gitignore"))).toBe(
-      false,
-    );
+    expect(fs.existsSync(path.join(temporaryDirectory, ".gitignore"))).toBe(false);
 
     setGlobalOptions({ dryRun: false });
     const failure = configFiles.updateGitignore(
@@ -161,16 +136,8 @@ describe("config files", () => {
 
   it("依存関係を宣言済みの正確なバージョンで重複なく収集する", () => {
     const versions = configFiles.getLibraryVersions();
-    const dependencies = configFiles.collectDependencies([
-      "typescript",
-      "vitest",
-      "typescript",
-    ]);
-    const scripts = configFiles.collectScripts([
-      "typescript",
-      "vitest",
-      "typescript",
-    ]);
+    const dependencies = configFiles.collectDependencies(["typescript", "vitest", "typescript"]);
+    const scripts = configFiles.collectScripts(["typescript", "vitest", "typescript"]);
 
     expect(dependencies).toEqual([
       `typescript@${versions.typescript}`,
@@ -188,8 +155,6 @@ describe("config files", () => {
     expect(() => configFiles.collectDependencies(["typescript"], {})).toThrow(
       '依存関係 "typescript" のバージョンを解決できませんでした',
     );
-    expect(() =>
-      configFiles.collectDependencies(["mise"], { typescript: "7.0.2" }),
-    ).not.toThrow();
+    expect(() => configFiles.collectDependencies(["mise"], { typescript: "7.0.2" })).not.toThrow();
   });
 });
