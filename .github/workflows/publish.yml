@@ -30,7 +30,7 @@ jobs:
         with:
           ref: "main"
 
-      - uses: pnpm/setup@v2
+      - uses: pnpm/setup@v3
         with:
           cache: true
 
@@ -69,7 +69,7 @@ jobs:
         with:
           ref: ${{ needs.create-tag.outputs.version }}
 
-      - uses: pnpm/setup@v2
+      - uses: pnpm/setup@v3
         with:
           cache: true
 
