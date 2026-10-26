@@ -71,10 +71,7 @@ describe("project service failure paths", () => {
     });
     const service = createProjectService(dependencies);
 
-    await service.installDependencies("/workspace/app", [
-      "typescript",
-      "vitest",
-    ]);
+    await service.installDependencies("/workspace/app", ["typescript", "vitest"]);
 
     expect(dependencies.spawnFn).not.toHaveBeenCalled();
     expect(dependencies.themeModule.warning).toHaveBeenCalledWith(

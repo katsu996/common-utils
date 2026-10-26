@@ -29,9 +29,11 @@
 
 - TypeScript設定 (tsconfig.json)
 - Biome設定 (biome.jsonc)
+- OXC設定 (oxlint.json)
 - Mise設定 (mise.toml)
 - Vite設定 (vite.config.ts)
 - Vitest設定 (vitest.config.ts)
+- .gitignore設定 (.gitignore)
 
 **新規プロジェクトの動作:**
 
@@ -43,7 +45,7 @@
    - `@katsu996/common-utils` - 共通設定（常に最新版）
    - `typescript`, `@types/node` - TypeScript設定選択時
    - `@biomejs/biome` - Biome設定選択時
-   - `vitest`, `@vitest/coverage-v8@` - Vitest設定選択時
+   - `vitest`, `@vitest/coverage-v8` - Vitest設定選択時
    - **本プロジェクトのpackage.jsonと同じバージョンで固定インストール**
 6. **選択した設定ファイルに応じて動的にnpmスクリプトを追加とESモジュール設定（`"type": "module"`）**
 7. 利用可能コマンド一覧の表示

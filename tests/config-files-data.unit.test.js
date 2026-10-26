@@ -41,9 +41,7 @@ describe("config file definitions", () => {
   });
 
   it("各 contentModifier がテンプレート内容をそのまま返す", () => {
-    const filesWithModifier = CONFIG_FILES.filter(
-      (file) => file.contentModifier,
-    );
+    const filesWithModifier = CONFIG_FILES.filter((file) => file.contentModifier);
 
     expect(filesWithModifier.map((file) => file.id)).toEqual([
       "typescript",
@@ -58,9 +56,7 @@ describe("config file definitions", () => {
   });
 
   it("設定別の依存関係とスクリプトを正しく定義する", () => {
-    const byId = Object.fromEntries(
-      CONFIG_FILES.map((file) => [file.id, file]),
-    );
+    const byId = Object.fromEntries(CONFIG_FILES.map((file) => [file.id, file]));
 
     expect(byId.typescript).toMatchObject({
       dependencies: ["typescript", "@types/node"],

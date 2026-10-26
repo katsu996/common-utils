@@ -97,9 +97,7 @@ function updatePackageJson(projectDir, selectedConfigs) {
     packageJson.type = "module";
 
     if (globalOptions.dryRun) {
-      log.info(
-        "[DRY RUN] package.jsonにスクリプトとESモジュール設定を追加します",
-      );
+      log.info("[DRY RUN] package.jsonにスクリプトとESモジュール設定を追加します");
       return { success: true, scripts, skipped, dryRun: true };
     }
 
