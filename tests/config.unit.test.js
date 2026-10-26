@@ -58,9 +58,7 @@ describe("config CLI", () => {
 
     await cli.parseAsync(["node", "katsu-config"]);
 
-    expect(dependencies.fsModule.existsSync).toHaveBeenCalledWith(
-      "/workspace/package.json",
-    );
+    expect(dependencies.fsModule.existsSync).toHaveBeenCalledWith("/workspace/package.json");
     expect(dependencies.updateCommandFn).toHaveBeenCalledOnce();
     expect(dependencies.initCommandFn).not.toHaveBeenCalled();
   });
@@ -133,9 +131,7 @@ describe("config CLI", () => {
       hook: vi.fn().mockReturnThis(),
       command: vi.fn().mockReturnValue(command),
       action: vi.fn().mockReturnThis(),
-      parseAsync: vi
-        .fn()
-        .mockRejectedValue({ code: "commander.missingMandatoryOptionValue" }),
+      parseAsync: vi.fn().mockRejectedValue({ code: "commander.missingMandatoryOptionValue" }),
     };
     const processRef = { cwd: () => "/workspace", exit: vi.fn() };
     const handleErrorFn = vi.fn();

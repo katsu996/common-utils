@@ -26,9 +26,7 @@ function createProjectService(dependencies = {}) {
       child.on("close", (code) => {
         if (code === 0) resolve();
         else {
-          reject(
-            new Error(`${command} の実行に失敗しました (exit code: ${code})`),
-          );
+          reject(new Error(`${command} の実行に失敗しました (exit code: ${code})`));
         }
       });
       child.on("error", (error) => reject(error));
@@ -43,14 +41,10 @@ function createProjectService(dependencies = {}) {
     // Reject shell metacharacters that could be dangerous for Windows shell execution
     const shellMetacharacters = /[&|<>^%$`\\]/;
     if (shellMetacharacters.test(projectName)) {
-      throw new Error(
-        "プロジェクト名に使用できない文字が含まれています (& | < > ^ % $ ` \\ )",
-      );
+      throw new Error("プロジェクト名に使用できない文字が含まれています (& | < > ^ % $ ` \\ )");
     }
     if (globalOptionsRef.dryRun) {
-      logRef.info(
-        themeModule.warning(`[DRY RUN] pnpm create vite ${projectName}`),
-      );
+      logRef.info(themeModule.warning(`[DRY RUN] pnpm create vite ${projectName}`));
       return;
     }
     logRef.info("Viteプロジェクトを作成中...");
@@ -73,11 +67,7 @@ function createProjectService(dependencies = {}) {
       return;
     }
     logRef.info("依存関係をインストール中...");
-    await spawnAsync(
-      "pnpm",
-      ["add", "-D", "--save-exact", ...dependenciesToInstall],
-      projectDir,
-    );
+    await spawnAsync("pnpm", ["add", "-D", "--save-exact", ...dependenciesToInstall], projectDir);
     logRef.success("依存関係のインストールが完了しました");
   }
 

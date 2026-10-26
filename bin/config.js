@@ -59,14 +59,9 @@ function createProgram(dependencies = {}) {
     .command("update")
     .description("既存プロジェクトの設定ファイルを更新")
     .action(updateCommandFn);
-  programRef
-    .command("list")
-    .description("利用可能な設定ファイル一覧を表示")
-    .action(listCommandFn);
+  programRef.command("list").description("利用可能な設定ファイル一覧を表示").action(listCommandFn);
   programRef.action(async () => {
-    const hasPackage = fsModule.existsSync(
-      pathModule.join(processRef.cwd(), "package.json"),
-    );
+    const hasPackage = fsModule.existsSync(pathModule.join(processRef.cwd(), "package.json"));
     if (hasPackage) {
       await updateCommandFn();
     } else {
@@ -78,11 +73,7 @@ function createProgram(dependencies = {}) {
 }
 
 async function runCli(dependencies = {}) {
-  const {
-    processRef = process,
-    handleErrorFn = handleError,
-    argv = process.argv,
-  } = dependencies;
+  const { processRef = process, handleErrorFn = handleError, argv = process.argv } = dependencies;
   const cli = createProgram(dependencies);
   try {
     await cli.parseAsync(argv);

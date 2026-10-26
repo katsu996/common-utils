@@ -35,11 +35,7 @@ describe("config default process handlers", () => {
     });
 
     expect(onSpy.mock.calls.map(([event]) => event)).toEqual(
-      expect.arrayContaining([
-        "SIGINT",
-        "uncaughtException",
-        "unhandledRejection",
-      ]),
+      expect.arrayContaining(["SIGINT", "uncaughtException", "unhandledRejection"]),
     );
   });
 });
