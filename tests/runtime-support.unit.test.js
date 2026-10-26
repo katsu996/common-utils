@@ -6,10 +6,7 @@ const { createSpinner, withSpinner } = require("../bin/cli/ui/spinner");
 const { createErrorHandlers } = require("../bin/cli/utils/errors");
 const { createListCommand } = require("../bin/cli/commands/list");
 const { theme } = require("../bin/cli/ui/theme");
-const {
-  globalOptions,
-  setGlobalOptions,
-} = require("../bin/cli/utils/global-options");
+const { globalOptions, setGlobalOptions } = require("../bin/cli/utils/global-options");
 
 function createSpinnerDependencies(spinner) {
   return {
@@ -95,9 +92,7 @@ describe("error handlers", () => {
   it("キャンセル例外をキャンセル表示と正常終了に変換する", () => {
     handlers.handleError({ name: "CancelError", message: "cancelled" });
 
-    expect(dependencies.cancelFn).toHaveBeenCalledWith(
-      "warning:設定をキャンセルしました",
-    );
+    expect(dependencies.cancelFn).toHaveBeenCalledWith("warning:設定をキャンセルしました");
     expect(dependencies.processRef.exit).toHaveBeenCalledWith(0);
     expect(dependencies.consoleRef.error).not.toHaveBeenCalled();
   });
@@ -105,9 +100,7 @@ describe("error handlers", () => {
   it("通常の例外をエラー表示と異常終了に変換する", () => {
     handlers.handleError(new Error("boom"));
 
-    expect(dependencies.consoleRef.error).toHaveBeenCalledWith(
-      "\nerror:予期しないエラー: boom",
-    );
+    expect(dependencies.consoleRef.error).toHaveBeenCalledWith("\nerror:予期しないエラー: boom");
     expect(dependencies.processRef.exit).toHaveBeenCalledWith(1);
   });
 
@@ -115,10 +108,7 @@ describe("error handlers", () => {
     handlers.setupProcessHandlers();
 
     const registrations = Object.fromEntries(
-      dependencies.processRef.on.mock.calls.map(([event, handler]) => [
-        event,
-        handler,
-      ]),
+      dependencies.processRef.on.mock.calls.map(([event, handler]) => [event, handler]),
     );
     expect(Object.keys(registrations)).toEqual([
       "SIGINT",

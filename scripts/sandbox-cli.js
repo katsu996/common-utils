@@ -17,9 +17,13 @@ const args = process.argv.slice(2);
 const child = spawn("node", [cliPath, ...args], {
   cwd: sandboxDir,
   stdio: "inherit",
-  shell: process.platform === "win32",
+});
+
+child.on("error", (error) => {
+  console.error(`CLI の起動に失敗しました: ${error.message}`);
+  process.exit(1);
 });
 
 child.on("close", (code) => {
-  process.exit(code ?? 0);
+  process.exit(code ?? 1);
 });

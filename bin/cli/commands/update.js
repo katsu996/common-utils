@@ -49,9 +49,12 @@ function createUpdateCommand(dependencies = {}) {
       showIntroFn();
       const fileStatus = checkConfigFileStatusFn();
       showConfigFileStatusFn(fileStatus);
-      const selectedConfigs =
-        await getExistingProjectConfigSelectionFn(fileStatus);
-      if (isCancelFn(selectedConfigs)) {
+      const selectedConfigs = await getExistingProjectConfigSelectionFn(fileStatus);
+      if (
+        selectedConfigs === null ||
+        selectedConfigs === undefined ||
+        isCancelFn(selectedConfigs)
+      ) {
         cancelFn(themeModule.warning("設定をキャンセルしました"));
         return;
       }
@@ -69,10 +72,7 @@ function createUpdateCommand(dependencies = {}) {
       }
 
       if (selectedConfigs.includes("gitignore")) {
-        const gitignoreResult = updateGitignoreFn(
-          processRef.cwd(),
-          otherConfigs,
-        );
+        const gitignoreResult = updateGitignoreFn(processRef.cwd(), otherConfigs);
         if (gitignoreResult.success) {
           results.push({
             success: true,
@@ -96,8 +96,7 @@ function createUpdateCommand(dependencies = {}) {
       if (newlyAddedConfigs.length > 0) {
         const dependenciesToInstall = collectDependenciesFn(newlyAddedConfigs);
         await installDependenciesFn(processRef.cwd(), dependenciesToInstall);
-        const packageUpdateResult =
-          updatePackageJsonExistingFn(newlyAddedConfigs);
+        const packageUpdateResult = updatePackageJsonExistingFn(newlyAddedConfigs);
         if (
           packageUpdateResult?.success &&
           Object.keys(packageUpdateResult.scripts || {}).length > 0
@@ -109,9 +108,7 @@ function createUpdateCommand(dependencies = {}) {
       showResultsFn(results);
       if (globalOptionsRef.dryRun) {
         consoleRef.log();
-        logRef.success(
-          themeModule.warning("[DRY RUN] 実際には変更は行われませんでした"),
-        );
+        logRef.success(themeModule.warning("[DRY RUN] 実際には変更は行われませんでした"));
       }
       outroFn(themeModule.success("設定が完了しました!"));
     } catch (error) {

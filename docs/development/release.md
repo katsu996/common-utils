@@ -69,7 +69,9 @@ npm view @katsu996/common-utils versions
 
 ```bash
 # 該当バージョンを unpublish
-# ※ unpublish は発行後 72 時間以内のみ可能
+# ※ unpublish は発行後 72 時間以内、かつレジストリ上で依存するパッケージが存在しない場合のみ可能
+# ※ 72 時間経過後は、さらに週間ダウンロード数 300 未満・オーナー / メンテナが 1 人であることが条件
+# ※ 条件を満たさない場合は unpublish できないため、deprecate を使用
 npm unpublish @katsu996/common-utils@1.x.x
 
 # または deprecated マーク
@@ -80,13 +82,13 @@ npm deprecate @katsu996/common-utils@1.x.x "重大な問題のため使用しな
 
 OIDC を使用しない場合、以下の Secrets が必要です:
 
-| Secret      | 説明                                        |
-| ----------- | ------------------------------------------- |
-| `NPM_TOKEN` | npm automation token（`automation` タイプ） |
+| Secret      | 説明                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------- |
+| `NPM_TOKEN` | npm グラニュラーアクセストークン（対象パッケージの書き込み権限と 2FA バイパスを設定） |
 
 ## リリースフロー図
 
-```
+```text
 main ブランチにマージ
         ↓
   Publish ワークフロー手動実行

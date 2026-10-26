@@ -27,17 +27,12 @@ function createErrorHandlers(dependencies = {}) {
             },
           );
 
-    if (
-      normalizedError.name === "CancelError" ||
-      normalizedError.message === "cancel"
-    ) {
+    if (normalizedError.name === "CancelError" || normalizedError.message === "cancel") {
       cancelFn(themeModule.warning("設定をキャンセルしました"));
       processRef.exit(0);
       return;
     }
-    consoleRef.error(
-      `\n${themeModule.error("予期しないエラー:")} ${normalizedError.message}`,
-    );
+    consoleRef.error(`\n${themeModule.error("予期しないエラー:")} ${normalizedError.message}`);
     processRef.exit(1);
   }
 
