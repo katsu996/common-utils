@@ -2,9 +2,9 @@
 
 Node/Bun/pnpm バージョン統一 + lock ファイル更新 + mise.toml 追加を適用したリポジトリ（push なし、default branch に commit）。
 
-件数: 39
+件数: 40
 
-| リポジトリ | ブランチ | コミット (HEAD) |
+| リポジトリ | ブランチ | コミット (chore) |
 |---|---|---|
 | Discord-SpotJobs | main | 2331e1d |
 | EditResult | main | f119583 |
@@ -19,7 +19,7 @@ Node/Bun/pnpm バージョン統一 + lock ファイル更新 + mise.toml 追加
 | OnlineGame-Backend | main | 98e9966 |
 | RatingMonitor | main | 96860fb |
 | RatingMonitorDiscord | main | 0ba8669 |
-| SalonAdvisor | feat/contracts-data-foundation | 384129779 |
+| SalonAdvisor | feat/contracts-data-foundation | 60d21f8 |
 | Samurai-Kirby | main | c5378a7 |
 | StoneColoring | main | 94d3102 |
 | StreetFighter | main | 269ea5c |
@@ -33,6 +33,7 @@ Node/Bun/pnpm バージョン統一 + lock ファイル更新 + mise.toml 追加
 | cloudflare-rust | main | d96986a |
 | cloudflare-typescript-hono | main | 74e55d3 |
 | cloudflare-website-cms | main | 7cd2ff6 |
+| common-utils | main | 9f9091b |
 | katsu | main | 777ab33 |
 | md2html | main | b8b3dd5 |
 | memo | main | 97c5710 |
